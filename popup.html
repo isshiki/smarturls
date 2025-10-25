@@ -13,9 +13,9 @@
     </div>
     <label class="theme-ctrl">
       <select id="theme">
-        <option value="system">System</option>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
+        <option value="system" data-i18n="theme_system">System</option>
+        <option value="dark"   data-i18n="theme_dark">Dark</option>
+        <option value="light"  data-i18n="theme_light">Light</option>
       </select>
     </label>
   </header>
@@ -38,7 +38,7 @@
 
         <!-- ★ Scope を最上段へ移動 -->
         <div class="field">
-          <label class="label">Scope</label>
+          <label class="label" data-i18n="scope_label">Scope</label>
           <div class="scope">
             <label><input type="radio" name="scope" value="current" checked />
               <span data-i18n="scope_current">Current window</span></label>
@@ -48,13 +48,13 @@
         </div>
 
         <div class="field">
-          <label class="label">Copy Format</label>
+          <label class="label" data-i18n="copy_format">Copy Format</label>
           <select id="fmt">
             <option value="md">Markdown [title](url)</option>
-            <option value="url">URL Only</option>
+            <option value="url"  data-i18n="url_only">URL Only</option>
             <option value="tsv">TSV: title\turl</option>
             <option value="html">HTML &lt;a href&gt;</option>
-            <option value="jsonl">JSON Lines</option>
+            <option value="jsonl" data-i18n="json_lines">JSON Lines</option>
             <option value="custom" data-i18n="opt_custom">Custom template…</option>
           </select>
         </div>
@@ -132,15 +132,15 @@
 
         <!-- オープンフォーマット -->
         <div class="field">
-          <label class="label">Open Format</label>
+          <label class="label" data-i18n="open_format">Open Format</label>
           <select id="openFmt">
-            <option value="smart" selected>Smart (auto-detect)</option>
+            <option value="smart" data-i18n="smart_auto">Smart (auto-detect)</option>
             <option value="md">Markdown [title](url)</option>
-            <option value="url">URL Only</option>
+            <option value="url"  data-i18n="url_only">URL Only</option>
             <option value="tsv">TSV: title\turl</option>
             <option value="html">HTML &lt;a href&gt;</option>
-            <option value="jsonl">JSON Lines</option>
-            <option value="custom">Custom template…</option>
+            <option value="jsonl" data-i18n="json_lines">JSON Lines</option>
+            <option value="custom" data-i18n="opt_custom">Custom template…</option>
           </select>
         </div>
 
@@ -157,9 +157,9 @@
         <summary data-i18n="advanced">Advanced</summary>
 
         <div class="field">
-          <label class="label">Open custom template</label>
+          <label class="label" data-i18n="open_tpl_label">Open custom template</label>
           <input id="openTpl" type="text" placeholder="- [$title]($url)" />
-          <p class="hint">
+          <p class="hint" data-i18n="same_tokens_hint">
             Use the same tokens as copy: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)
           </p>
         </div>
@@ -172,10 +172,15 @@
     </div>
   </div>
 
+  <!-- フッター：虫アイコンのみ＋ホバーでテキスト表示 -->
   <footer class="footer">
-    <a id="issues" href="https://github.com/isshiki/smarturls/issues" target="_blank" rel="noreferrer" data-i18n="report_bug">
-      Report a bug
-    </a>
+    <a id="issues"
+      class="bug"
+      href="https://github.com/isshiki/smarturls/issues"
+      target="_blank" rel="noreferrer"
+      aria-label="Report a bug"
+      data-i18n-title="report_bug"
+      title="Report a bug">🐞</a>
   </footer>
 
   <script src="popup.js"></script>

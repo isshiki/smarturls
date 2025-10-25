@@ -15,11 +15,10 @@
 
   "opt_dedup":      { "message": "重複URLを除外" },
   "opt_http":       { "message": "http/httpsのみ" },
-  "opt_nopinned":   { "message": "ピン留めを除外" },
-  "opt_nopinned_hint": { "message": "ブラウザでピン留めされているタブをスキップします。" },
+  "opt_nopinned":   { "message": "［固定］を除外" },
+  "opt_nopinned_hint": { "message": "ブラウザで［固定］されているタブをスキップします。" },
 
   "advanced":       { "message": "詳細設定" },
-  "filters_title":  { "message": "フィルター" },
 
   "custom_tpl_label":   { "message": "カスタムテンプレート" },
   "custom_tpl_tokens":  { "message": "利用可能: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
@@ -42,5 +41,27 @@
   "no_urls":        { "message": "URLが見つかりません" },
   "confirm_many":   { "message": "大量のタブを開きます。続行しますか？" },
 
-  "report_bug":     { "message": "不具合を報告" }
+  "theme_system": { "message": "システム" },
+  "theme_dark":   { "message": "ダーク" },
+  "theme_light":  { "message": "ライト" },
+
+  "scope_label":  { "message": "対象" },
+  "copy_format":  { "message": "コピー形式" },
+  "open_format":  { "message": "オープン形式" },
+
+  "opt_custom":   { "message": "カスタムテンプレート…" },
+  "url_only":     { "message": "URLのみ" },
+  "json_lines":   { "message": "JSONデータ" },
+  "smart_auto":   { "message": "スマート（自動検出）" },
+
+  "open_tpl_label":     { "message": "オープン用カスタムテンプレート" },
+  "same_tokens_hint":   { "message": "コピーと同じトークンが使えます：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "フィルター" },
+
+  "report_bug":         { "message": "不具合を報告" },
+
+  "err_clipboard_denied": { "message": "ブラウザによりクリップボードの読み取りがブロックされました。" },
+  "err_clipboard_unavailable": { "message": "このページではクリップボードを利用できません。" },
+  "err_unknown": { "message": "不明なエラー" }
 }

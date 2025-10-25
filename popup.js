@@ -368,12 +368,28 @@ $("#btnOpen").addEventListener("click", async () => {
 
     // source
     let text = "";
-    const sourceKind = $("#source").value; // hidden select kept in sync with radios
+    const sourceKind = $("#source").value;
     if (sourceKind === "textarea") {
       text = $("#manualInput").value || "";
     } else {
-      text = await navigator.clipboard.readText();
-      if (!text) { toast(t("empty_clip","Clipboard is empty"), false); return; }
+      try {
+        text = await navigator.clipboard.readText();
+      } catch (e) {
+        // 代表的なケースをメッセージ分岐
+        const name = e && e.name;
+        if (name === "NotAllowedError" || name === "SecurityError") {
+          toast(t("err_clipboard_denied", "Clipboard read was blocked by the browser."), false);
+        } else if (name === "NotFoundError") {
+          toast(t("err_clipboard_unavailable", "Clipboard is unavailable on this page."), false);
+        } else {
+          toast(t("err_unknown", "Unknown error") + (e?.message ? `: ${e.message}` : ""), false);
+        }
+        return;
+      }
+      if (!text) {
+        toast(t("empty_clip","Clipboard is empty"), false);
+        return;
+      }
     }
 
     // parse by format

@@ -15,11 +15,10 @@
 
   "opt_dedup":      { "message": "Remove duplicates" },
   "opt_http":       { "message": "http/https only" },
-  "opt_nopinned":   { "message": "Exclude pinned tabs" },
+  "opt_nopinned":   { "message": "Exclude [pinned] tabs" },
   "opt_nopinned_hint": { "message": "Skip tabs that are pinned in the browser." },
 
   "advanced":       { "message": "Advanced" },
-  "filters_title":  { "message": "Filters" },
 
   "custom_tpl_label":   { "message": "Custom template" },
   "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
@@ -42,5 +41,28 @@
   "no_urls":        { "message": "No URLs found" },
   "confirm_many":   { "message": "Open many tabs?" },
 
-  "report_bug":     { "message": "Report a bug" }
+
+  "theme_system": { "message": "System" },
+  "theme_dark":   { "message": "Dark" },
+  "theme_light":  { "message": "Light" },
+
+  "scope_label":  { "message": "Scope" },
+  "copy_format":  { "message": "Copy Format" },
+  "open_format":  { "message": "Open Format" },
+
+  "opt_custom":   { "message": "Custom template…" },
+  "url_only":     { "message": "URL Only" },
+  "json_lines":   { "message": "JSON Data" },
+  "smart_auto":   { "message": "Smart (auto-detect)" },
+
+  "open_tpl_label":     { "message": "Open custom template" },
+  "same_tokens_hint":   { "message": "Use the same tokens as copy: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filters" },
+
+  "report_bug":         { "message": "Report a bug" },
+
+  "err_clipboard_denied": { "message": "Clipboard read was blocked by the browser." },
+  "err_clipboard_unavailable": { "message": "Clipboard is unavailable on this page." },
+  "err_unknown": { "message": "Unknown error" }
 }
