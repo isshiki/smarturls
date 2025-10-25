@@ -1,17 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "SmartURLs – Copy and Open",
-  "version": "1.0.0",
-  "description": "Copy all tab URLs in Markdown/URL/TSV and open from clipboard or textarea with a smart URL parser.",
+  "name": "__MSG_appName__",
+  "short_name": "SmartURLs",
+  "version": "0.1.0",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "action": {
     "default_title": "SmartURLs",
     "default_popup": "popup.html"
   },
+  "background": { "service_worker": "sw.js" },
   "permissions": ["tabs", "clipboardRead", "clipboardWrite", "storage"],
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
     "128": "icons/icon128.png"
   },
-  "author": "Ichishiki Labs"
+  "author": "Masahiko Isshiki"
 }

@@ -1,4 +1,6 @@
 {
+  "appName": { "message": "SmartURLs - URLをコピー＆オープン" },
+  "appDesc": { "message": "タブのURL（オプションでタイトル付き）をMarkdown、HTML、TSV、JSON、またはカスタム形式でコピーできます。逆にテキストやクリップボードからURLを開くことも可能です。Smart Parserモードにより、形式を自動検出して正しく開きます。" },
   "subtitle": { "message": "URLのコピー＆オープン" },
   "copy_btn": { "message": "コピー" },
   "open_btn": { "message": "オープン" },

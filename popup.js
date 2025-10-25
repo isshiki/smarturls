@@ -210,7 +210,7 @@ async function openUrls(list, limit) {
     if (!confirm(`${t("confirm_many","Open many tabs?")} ${list.length}`)) return;
   }
   for (const u of list) {
-    try { await chrome.tabs.create({ url: u }); } catch (e) { console.warn(e); }
+    try { await chrome.tabs.create({ url: u, active: false }); } catch (e) { console.warn(e); }
     await delay(60);
   }
   toast(t("opened_n","Opened ") + `${list.length}`);
@@ -231,7 +231,19 @@ $("#btnOpen").addEventListener("click", async () => {
     if (cfg.httpOnly) urls = urls.filter(u => /^https?:\/\//i.test(u));
     if (cfg.dedup) urls = Array.from(new Set(urls));
     if (urls.length === 0) { toast(t("no_urls","No URLs found"), false); return; }
-    await openUrls(urls, Number(cfg.openLimit) || 30);
+    // 30件超の確認はここで
+    const limit = Number(cfg.openLimit) || 30;
+    if (urls.length > limit) {
+      if (!confirm(`${t("confirm_many","Open many tabs?")} ${urls.length}`)) return;
+    }
+    // 背景SWに委譲
+    chrome.runtime.sendMessage(
+      { type: "OPEN_URLS", urls, limit },
+      (res) => {
+        if (res?.ok) toast(t("opened_n","Opened ") + `${res.opened}`);
+        else toast(t("open_failed","Open failed"), false);
+      }
+    );
   } catch (e) {
     console.error(e);
     toast(t("open_failed","Open failed"), false);

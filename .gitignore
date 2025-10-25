@@ -1,0 +1,28 @@
+# Node / build artifacts (将来的に使用する場合)
+node_modules/
+dist/
+build/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# Environment / credentials
+.env
+.env.*
+
+# Ignore any file or folder that starts with "@"
+@*
+@*/
+
+# Ignore local workspace / temp files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional: Chrome build package
+*.zip
