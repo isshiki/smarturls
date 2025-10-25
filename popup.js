@@ -11,46 +11,93 @@ function applyI18n() {
     el.textContent = t(key, el.textContent);
   });
 }
-applyI18n();
-
 function applyI18nTitle() {
   document.querySelectorAll("[data-i18n-title]").forEach(el => {
     const key = el.getAttribute("data-i18n-title");
     el.title = t(key, el.title);
   });
 }
+applyI18n();
 applyI18nTitle();
 
 // ========== UI Helpers ==========
 const $ = (sel) => document.querySelector(sel);
 const toast = (msg, ok = true) => {
   const el = $("#toast");
-  el.className = ok ? "ok" : "err";
+  el.classList.remove("ok","err");
+  el.classList.add(ok ? "ok" : "err");
   el.textContent = msg;
-  setTimeout(() => { if (el.textContent === msg) el.textContent = ""; }, 3000);
+  el.classList.add("show");
+  // 60秒表示 → 消す時に背景クラスも外す
+  setTimeout(() => {
+    if (el.textContent === msg) {
+      el.classList.remove("show","ok","err");
+      el.textContent = "";
+    }
+  }, 60000);
 };
+
+
+// ========== Theme helpers ==========
+function applyTheme(mode) {
+  const root = document.documentElement;
+  if (!mode || mode === "system") {
+    root.removeAttribute("data-theme");
+  } else {
+    root.setAttribute("data-theme", mode); // "dark" | "light"
+  }
+}
 
 // ========== Storage (defaults) ==========
 const defaults = {
+  // copy
   fmt: "md",
   tpl: "[$title]($url)",
-  source: "clipboard",
-  scope: "current",
+
+  // open
+  openFmt: "smart",             // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
+  openTpl: "[$title]($url)",    // custom parser pattern
+
+  // common
+  source: "clipboard",          // "clipboard" | "textarea"
+  scope: "current",             // "current" | "all"
   dedup: true,
   httpOnly: true,
   noPinned: false,
-  excludeList: "https://example.com/path/*",
+  excludeList: "",
   sort: "natural",
   desc: false,
-  openLimit: 30
+  openLimit: 30,
+
+  // ui
+  theme: "system"               // "system" | "dark" | "light"
 };
 
 async function load() {
   const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
+
+  // theme
+  $("#theme").value = cfg.theme;
+  applyTheme(cfg.theme);
+
+  // copy
   $("#fmt").value = cfg.fmt;
   $("#tpl").value = cfg.tpl;
+
+  // open
+  $("#openFmt").value = cfg.openFmt;
+  $("#openTpl").value = cfg.openTpl;
+
+  // source (radio <-> hidden select 同期)
   $("#source").value = cfg.source;
-  document.querySelector(`input[name=scope][value=${cfg.scope}]`).checked = true;
+  const radio = document.querySelector(`input[name=sourceKind][value=${cfg.source}]`);
+  if (radio) radio.checked = true;
+
+  // scope
+  const scopeRadio = document.querySelector(`input[name=scope][value=${cfg.scope}]`);
+  if (scopeRadio) scopeRadio.checked = true;
+
+  // filters & etc
   $("#chkDedup").checked = cfg.dedup;
   $("#chkHttp").checked = cfg.httpOnly;
   $("#chkNoPinned").checked = cfg.noPinned;
@@ -63,28 +110,40 @@ async function save(partial) { await chrome.storage.sync.set(partial); }
 load();
 
 // Save on change (lightweight)
-["fmt","tpl","source","sort","openLimit"].forEach(id => {
-  $( "#" + id ).addEventListener("change", e => save({[id]: e.target.value}));
+["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
+  $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
 });
 [["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
-  .forEach(([id,key]) => $( "#" + id ).addEventListener("change", e => save({[key]: e.target.checked})));
-["excludeList"].forEach(id => $( "#" + id ).addEventListener("input", e => save({[id]: e.target.value})));
-document.querySelectorAll("input[name=scope]").forEach(r => r.addEventListener("change", e => save({scope: e.target.value})));
+  .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
+["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
+
+// theme select
+$("#theme").addEventListener("change", async (e) => {
+  const v = e.target.value;
+  applyTheme(v);
+  await save({ theme: v });
+});
+
+// source radios <-> hidden select 同期（既存コード互換のため #source を引き続き参照）
+document.querySelectorAll("input[name=sourceKind]").forEach(r => {
+  r.addEventListener("change", async (e) => {
+    if (!e.target.checked) return;
+    $("#source").value = e.target.value;
+    await save({ source: e.target.value });
+  });
+});
 
 // ========== Core: Tabs fetch & filters ==========
 function wildcardToRegExp(pattern) {
-  // escape regex special, then * -> .*
-  const esc = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&")
-                     .replace(/\*/g, ".*");
+  // escape regex specials, then only * -> .*
+  const esc = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
   return new RegExp("^" + esc + "$", "i");
 }
-
 function excludeFilter(url, patterns) {
   if (!patterns) return false;
   const list = patterns.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
   return list.some(p => wildcardToRegExp(p).test(url));
 }
-
 async function fetchTabs(scope, { httpOnly, noPinned }) {
   let tabs = [];
   if (scope === "all") {
@@ -100,7 +159,6 @@ async function fetchTabs(scope, { httpOnly, noPinned }) {
     return true;
   });
 }
-
 function sortTabs(tabs, key, desc) {
   if (key === "natural") return tabs;
   const cmp = (a, b) => {
@@ -111,7 +169,6 @@ function sortTabs(tabs, key, desc) {
   const s = [...tabs].sort(cmp);
   return desc ? s.reverse() : s;
 }
-
 function uniqueByUrl(tabs) {
   const seen = new Set();
   return tabs.filter(t => {
@@ -178,16 +235,16 @@ $("#btnCopy").addEventListener("click", async () => {
   }
 });
 
-// ========== Open ==========
-function extractUrls(text) {
+// ========== Open (parsers) ==========
+function extractUrlsSmart(text) {
   const urls = new Set();
 
-  // 1) Markdown [title](url) — avoid swallowing trailing ')'
+  // 1) Markdown [title](url)
   const md = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi;
   let m;
   while ((m = md.exec(text)) !== null) urls.add(m[1]);
 
-  // 2) <https://...> — strip trailing '>'
+  // 2) <https://...>
   const angle = /<\s*(https?:\/\/[^>\s]+)\s*>/gi;
   while ((m = angle.exec(text)) !== null) urls.add(m[1]);
 
@@ -199,11 +256,10 @@ function extractUrls(text) {
   const jsonl = /"url"\s*:\s*"(https?:\/\/[^"]+)"/gi;
   while ((m = jsonl.exec(text)) !== null) urls.add(m[1]);
 
-  // 5) Delimited or bare URLs (stop on space or ) ] >)
+  // 5) bare URLs
   const bare = /https?:\/\/[^\s)\]>]+/gi;
   while ((m = bare.exec(text)) !== null) {
     let u = m[0];
-    // common trailing punctuation clean
     u = u.replace(/[),.>]+$/g, "");
     urls.add(u);
   }
@@ -211,39 +267,89 @@ function extractUrls(text) {
   return Array.from(urls);
 }
 
-async function openUrls(list, limit) {
-  const delay = (ms) => new Promise(r => setTimeout(r, ms));
-  if (list.length > limit) {
-    if (!confirm(`${t("confirm_many","Open many tabs?")} ${list.length}`)) return;
+function extractByFormat(fmt, text, tpl) {
+  if (fmt === "smart") return extractUrlsSmart(text);
+
+  const out = new Set();
+  const addIf = (u) => { if (u && /^https?:\/\//i.test(u)) out.add(u); };
+
+  if (fmt === "md") {
+    const r = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
+    while ((m = r.exec(text)) !== null) addIf(m[1]);
+  } else if (fmt === "url") {
+    text.split(/\r?\n/).forEach(line => {
+      const m = line.match(/https?:\/\/[^\s)>\]]+/i);
+      if (m) addIf(m[0]);
+    });
+  } else if (fmt === "tsv") {
+    text.split(/\r?\n/).forEach(line => {
+      const parts = line.split("\t");
+      if (parts[1]) addIf(parts[1].trim());
+    });
+  } else if (fmt === "html") {
+    const r = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi; let m;
+    while ((m = r.exec(text)) !== null) addIf(m[1]);
+  } else if (fmt === "jsonl") {
+    text.split(/\r?\n/).forEach(line => {
+      try {
+        const obj = JSON.parse(line);
+        addIf(obj.url);
+      } catch {}
+    });
+  } else if (fmt === "custom") {
+    // very simple templated regex: replace $url with capture, other $tokens with non-greedy
+    // escape everything else
+    const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let pat = esc(tpl || "[$title]($url)");
+    // other known tokens -> non-greedy match
+    const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
+    otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
+    // $url -> capture
+    pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
+    try {
+      const re = new RegExp(pat, "gi");
+      let m;
+      while ((m = re.exec(text)) !== null) addIf(m[1]);
+    } catch {
+      // fallback to smart on invalid regex build
+      return extractUrlsSmart(text);
+    }
   }
-  for (const u of list) {
-    try { await chrome.tabs.create({ url: u, active: false }); } catch (e) { console.warn(e); }
-    await delay(60);
-  }
-  toast(t("opened_n","Opened ") + `${list.length}`);
+  return Array.from(out);
 }
 
+// ========== Open ==========
 $("#btnOpen").addEventListener("click", async () => {
   try {
     const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
+
+    // source
     let text = "";
-    if ($("#source").value === "textarea") {
+    const sourceKind = $("#source").value; // hidden select kept in sync with radios
+    if (sourceKind === "textarea") {
       text = $("#manualInput").value || "";
     } else {
       text = await navigator.clipboard.readText();
       if (!text) { toast(t("empty_clip","Clipboard is empty"), false); return; }
     }
-    let urls = extractUrls(text);
+
+    // parse by format
+    const urls0 = extractByFormat(cfg.openFmt, text, cfg.openTpl);
+    let urls = urls0;
+
+    // filters
     const ex = (cfg.excludeList || "").trim();
     if (ex) urls = urls.filter(u => !excludeFilter(u, ex));
     if (cfg.httpOnly) urls = urls.filter(u => /^https?:\/\//i.test(u));
     if (cfg.dedup) urls = Array.from(new Set(urls));
     if (urls.length === 0) { toast(t("no_urls","No URLs found"), false); return; }
-    // 30件超の確認はここで
+
+    // many check
     const limit = Number(cfg.openLimit) || 30;
     if (urls.length > limit) {
       if (!confirm(`${t("confirm_many","Open many tabs?")} ${urls.length}`)) return;
     }
+
     // 背景SWに委譲
     chrome.runtime.sendMessage(
       { type: "OPEN_URLS", urls, limit },
