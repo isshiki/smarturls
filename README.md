@@ -1,10 +1,14 @@
 # SmartURLs
 
-SmartURLs is a Chrome extension that helps you **copy** and **open** URLs in a simple and flexible way.  
-Copy all tab URLs in different formats, or open URLs directly from text or your clipboard — all in one click.
+SmartURLs is a Chrome extension that helps you **copy**, **manage**, and **open** URLs easily and flexibly.
+Copy all tab URLs in multiple formats, or open URLs directly from text or your clipboard — all in one click.
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue.svg)](https://chrome.google.com/webstore/detail/smarturls/your-extension-id)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+
+---
+
+![SmartURLs Screenshot](./screenshots/screenshot1.png)
 
 ---
 
@@ -12,25 +16,25 @@ Copy all tab URLs in different formats, or open URLs directly from text or your 
 
 ### 📋 Copy URLs
 
-- Export URLs in **Markdown**, **HTML**, **TSV**, **JSON**, or custom templates  
-- Include **page titles** for clarity  
-- Choose scope: **current window** or **all windows**  
-- Filter options: remove duplicates, HTTP/HTTPS only, skip pinned tabs  
-- Exclude URLs using **wildcard patterns**
+* Export tab URLs as **Markdown**, **HTML**, **TSV**, **JSON**, or **custom templates**
+* Include **page titles** for better readability
+* Choose scope: **current window** or **all windows**
+* Filter options: remove duplicates, HTTP/HTTPS only, skip pinned tabs
+* Exclude URLs using **wildcard patterns**
 
 ### 🚀 Open URLs
 
-- Detect and open URLs from **clipboard** or **pasted text**  
-- Supports multiple formats (Markdown, HTML, JSON, TSV, etc.)  
-- Automatically detects text formats  
-- Optional confirmation before opening many tabs
+* Detect and open URLs from **clipboard** or **pasted text**
+* Supports various formats (Markdown, HTML, JSON, TSV, plain text, etc.)
+* Automatically detects text format
+* Optional confirmation before opening many tabs
 
 ### 🎨 Appearance & Settings
 
-- **Themes**: System / Dark / Light  
-- **Languages**: 16 supported, switch instantly  
-- **Saved preferences**: Settings are stored automatically  
-- Clean and responsive popup design
+* **Themes:** System / Dark / Light
+* **Languages:** 16 supported, switch instantly
+* **Preferences:** Saved automatically via Chrome Storage
+* Clean, lightweight, and responsive popup design
 
 ---
 
@@ -38,50 +42,29 @@ Copy all tab URLs in different formats, or open URLs directly from text or your 
 
 ### From Chrome Web Store
 
-1. Visit the [SmartURLs page](https://chrome.google.com/webstore/detail/smarturls/your-extension-id)
+1. Visit the [SmartURLs listing](https://chrome.google.com/webstore/detail/smarturls/your-extension-id)
 2. Click **Add to Chrome**
 
 ### Manual (Development)
 
-1. Download or clone this repository  
-2. Open `chrome://extensions` in Chrome  
-3. Enable **Developer mode**  
+1. Clone or download this repository
+2. Open `chrome://extensions` in Chrome
+3. Enable **Developer mode**
 4. Click **Load unpacked** and select the `smarturls` folder
 
 ---
 
-## 📖 Usage
+## 🗒 Version History
 
-1. Click the SmartURLs icon in the Chrome toolbar  
-2. Select your preferred options  
-3. **Copy Mode** → Click “Copy” to copy all tab URLs  
-4. **Open Mode** → Click “Open” to open URLs from text or clipboard
-
----
-
-## ⚙️ Settings Overview
-
-| Category | Options |
-|-----------|----------|
-| **Theme** | System / Dark / Light |
-| **Language** | 16 languages |
-| **Copy Format** | Markdown / HTML / TSV / JSON / Custom |
-| **Scope** | Current window / All windows |
-| **Filters** | Duplicates / https Protocol / Pinned tabs / Exclusion patterns |
-| **Open Source** | Clipboard / Text input |
-| **Open Limit** | Confirmation threshold for many tabs |
-
----
-
-## 🌍 Supported Languages
-
-English, 日本語, 中文(简体), 中文(繁體), Español, Português, Français, Deutsch, 한국어, Русский, Italiano, Nederlands, Polski, Türkçe, Bahasa Indonesia, Tiếng Việt
+| Version | Date       | Notes                  |
+| ------- | ---------- | ---------------------- |
+| 1.0.0   | 2025-10-26 | Initial public release |
 
 ---
 
 ## 🛠️ Development
 
-### Structure
+### Project Structure
 
 ```text
 smarturls/
@@ -90,6 +73,8 @@ smarturls/
 ├── popup.js
 ├── styles.css
 ├── sw.js
+├── build.ps1
+├── build.bat
 ├── _locales/
 │   ├── en/
 │   ├── ja/
@@ -98,12 +83,53 @@ smarturls/
 └── README.md
 ```
 
-### Local Development Tips
+### Build Script (PowerShell)
 
-* The extension follows **Manifest V3**.
-* UI text is localized through `_locales/<lang>/messages.json` (Chrome i18n API + manual loader).
-* User settings are stored via `chrome.storage.local`.
-* To reload changes quickly, enable **Developer mode** and click **Reload (⟳)** in `chrome://extensions`.
+SmartURLs includes a PowerShell build script to package the extension automatically.
+
+```powershell
+# Run from the repository root
+.\build.ps1
+```
+
+This will:
+
+1. Create a clean `/build/` directory
+2. Copy required files from the project root
+3. Generate a release ZIP in `/dist/`
+4. The final ZIP will have `manifest.json` at its root (required by Chrome Web Store)
+
+You can also use the batch wrapper:
+
+```bat
+build.bat
+```
+
+The ZIP file can be uploaded directly to the Chrome Web Store.
+
+---
+
+### Updating the Version
+
+Before packaging or publishing a new release:
+
+1. Open `manifest.json`
+2. Increment the `"version"` number (e.g., `1.2.3 → 1.2.4`)
+3. Re-run the build script:
+
+   ```powershell
+   .\build.ps1
+   ```
+
+4. A new file will be generated in `/dist/` as:
+
+   ```powershell
+   smarturls-<version>.zip
+   ```
+
+5. Upload this new ZIP to the **Chrome Web Store Developer Dashboard**
+
+> ⚠️ Chrome Web Store rejects updates if the `version` in `manifest.json` hasn’t changed.
 
 ---
 
@@ -115,5 +141,5 @@ Licensed under the [Apache License 2.0](LICENSE).
 
 ## 💬 Feedback
 
-* Report issues or suggestions on [GitHub Issues](https://github.com/isshiki/smarturls/issues)
-* Pull requests are welcome
+* Report bugs or suggestions via [GitHub Issues](https://github.com/isshiki/smarturls/issues)
+* Pull requests are always welcome

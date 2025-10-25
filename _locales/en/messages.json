@@ -1,6 +1,6 @@
 {
   "appName":        { "message": "SmartURLs - Copy and Open URLs" },
-  "appDesc":        { "message": "Copy all URLs (with titles) as Markdown, HTML, TSV, JSON, or custom text. It also works the other way around — opening URLs from text or the clipboard, where Smart Parser mode automatically detects any format." },
+  "appDesc":        { "message": "Copy and open URLs easily. Export links in multiple formats or open them from text or clipboard." },
   "subtitle":       { "message": "Copy & Open URLs" },
 
   "theme_system":   { "message": "System" },

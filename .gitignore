@@ -1,28 +1,44 @@
-# Node / build artifacts (将来的に使用する場合)
+# =========================================================
+# Node / build artifacts (for future use)
+# =========================================================
 node_modules/
-dist/
 build/
+dist/
 
-# OS / editor files
+# Chrome extension build outputs
+/*.zip
+
+# =========================================================
+# Development environments
+# =========================================================
+.venv/
+
+# =========================================================
+# Editors / IDEs
+# =========================================================
+.vscode/
+.idea/
+
+# =========================================================
+# OS / temporary files
+# =========================================================
 .DS_Store
 Thumbs.db
 *.log
 *.tmp
 *.bak
-
-# Environment / credentials
-.env
-.env.*
-
-# Ignore any file or folder that starts with "@"
-@*
-@*/
-
-# Ignore local workspace / temp files
-.vscode/
-.idea/
 *.swp
 *.swo
 
-# Optional: Chrome build package
-*.zip
+# =========================================================
+# Environment / credentials
+# =========================================================
+.env
+.env.*
+
+# =========================================================
+# Local workspace / temporary files
+# =========================================================
+# Ignore any file or folder starting with "@"
+@*
+@*/
