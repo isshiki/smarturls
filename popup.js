@@ -324,27 +324,41 @@ function extractByFormat(fmt, text, tpl) {
   const addIf = (u) => { if (u && /^https?:\/\//i.test(u)) out.add(u); };
 
   if (fmt === "md") {
+    // Markdown: [title](url)
     const r = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
+
   } else if (fmt === "url") {
+    // 厳格：行全体がURLのみ（埋め込みURLは拾わない）
     text.split(/\r?\n/).forEach(line => {
-      const m = line.match(/https?:\/\/[^\s)>\]]+/i);
+      const s = line.trim();
+      const m = s.match(/^https?:\/\/[^\s)>\]]+$/i);
       if (m) addIf(m[0]);
     });
+
   } else if (fmt === "tsv") {
+    // TSV: title \t url（2列目をURLとして扱う）
     text.split(/\r?\n/).forEach(line => {
       const parts = line.split("\t");
       if (parts[1]) addIf(parts[1].trim());
     });
+
   } else if (fmt === "html") {
+    // HTML: <a href="url">
     const r = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi; let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
+
   } else if (fmt === "jsonl") {
+    // JSON Lines: {"url":"..."} を1行ずつ
     text.split(/\r?\n/).forEach(line => {
-      try { const obj = JSON.parse(line); addIf(obj.url); } catch {}
+      try {
+        const obj = JSON.parse(line);
+        addIf(obj && obj.url);
+      } catch {}
     });
+
   } else if (fmt === "custom") {
-    // very simple templated regex: replace $url with capture, other $tokens with non-greedy
+    // カスタムテンプレ：$url をURLキャプチャに、他トークンは非貪欲に
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     let pat = esc(tpl || "[$title]($url)");
     const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
@@ -355,11 +369,14 @@ function extractByFormat(fmt, text, tpl) {
       let m;
       while ((m = re.exec(text)) !== null) addIf(m[1]);
     } catch {
-      return extractUrlsSmart(text);
+      // フォールバックしない（0件にする）
+      return [];
     }
   }
+
   return Array.from(out);
 }
+
 
 // ========== Open ==========
 $("#btnOpen").addEventListener("click", async () => {

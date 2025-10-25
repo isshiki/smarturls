@@ -137,16 +137,59 @@ details.block[open] > summary::after{
 #pasteBox textarea { display:block; }
 
 /* Footer */
-.footer{ display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:10px; color: var(--muted); font-size:12px; }
+/* Footer ベース */
+.footer{
+  display:flex; gap:8px; align-items:center; justify-content:flex-end;
+  margin-top:10px; color: var(--muted); font-size:12px;
+}
 .footer a{ color: inherit; text-decoration: none; }
 .footer a:hover{ text-decoration: underline; }
-.footer .bug{
-  font-size: 16px;
-  opacity: .45;
-  transition: opacity .15s ease, transform .1s ease;
-  text-decoration: none;
+
+/* 報告リンク：ミニマル＋ホバー展開型 */
+.footer .report{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;   /* ← アイコンを右端に寄せる */
+  overflow:hidden;
+  white-space:nowrap;
+  width:24px;                 /* ← 初期幅＝アイコン幅 */
+  transition: width .25s ease, opacity .15s ease;
+  text-decoration: none !important;
+  opacity: .55;               /* 控えめ */
 }
-.footer .bug:hover{
+.footer .report:hover{
+  width: 168px;               /* ← 展開幅（必要に応じて調整） */
   opacity: 1;
-  transform: translateY(-1px);
+}
+
+/* ラベルはホバー時に“右→左”へスライドイン＋余白を確保 */
+.footer .report .label{
+  margin-right: 8px;          /* ← アイコンとのスペース（ご要望の“もう少し空ける”） */
+  opacity: 0;
+  transform: translateX(12px);/* ← 右から入ってくる */
+  transition: opacity .2s ease .1s, transform .2s ease .1s;
+}
+.footer .report:hover .label{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* アイコンは右端固定。にじみ防止のため line-height を1に */
+.footer .report .icon{
+  line-height: 1;
+  font-size: 16px;
+}
+
+/* 下線を完全無効化（見た目の“点々”防止） */
+.footer .report,
+.footer .report:hover,
+.footer .report:focus{
+  text-decoration: none !important;
+}
+
+/* キーボード操作のフォーカスリング */
+.footer .report:focus{
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
 }

@@ -3,28 +3,40 @@
   "appDesc":        { "message": "Copy all URLs (with titles) as Markdown, HTML, TSV, JSON, or custom text. It also works the other way around — opening URLs from text or the clipboard, where Smart Parser mode automatically detects any format." },
   "subtitle":       { "message": "Copy & Open URLs" },
 
+  "theme_system":   { "message": "System" },
+  "theme_dark":     { "message": "Dark" },
+  "theme_light":    { "message": "Light" },
+
   "copy_btn":       { "message": "Copy" },
   "open_btn":       { "message": "Open" },
+
+  "scope_label":    { "message": "Scope" },
+  "scope_current":  { "message": "Current window" },
+  "scope_all":      { "message": "All windows" },
 
   "source_label":   { "message": "Source" },
   "src_clipboard":  { "message": "Clipboard" },
   "src_textarea":   { "message": "Paste text" },
 
-  "scope_current":  { "message": "Current window" },
-  "scope_all":      { "message": "All windows" },
-
-  "opt_dedup":      { "message": "Remove duplicates" },
-  "opt_http":       { "message": "http/https only" },
-  "opt_nopinned":   { "message": "Exclude [pinned] tabs" },
-  "opt_nopinned_hint": { "message": "Skip tabs that are pinned in the browser." },
-
-  "advanced":       { "message": "Advanced" },
+  "copy_format":    { "message": "Copy Format" },
+  "open_format":    { "message": "Open Format" },
+  "smart_auto":     { "message": "Smart (auto-detect)" },
+  "url_only":       { "message": "URL Only" },
+  "json_lines":     { "message": "JSON Data" },
+  "opt_custom":     { "message": "Custom template…" },
 
   "custom_tpl_label":   { "message": "Custom template" },
   "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Open custom template" },
+  "same_tokens_hint":   { "message": "Use the same tokens as copy: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 
-  "exclude_label":  { "message": "Exclude patterns" },
-  "exclude_hint":   { "message": "Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*" },
+  "filters_title":      { "message": "Filters" },
+  "opt_dedup":          { "message": "Remove duplicates" },
+  "opt_http":           { "message": "http/https only" },
+  "opt_nopinned":       { "message": "Exclude [pinned] tabs" },
+  "opt_nopinned_hint":  { "message": "Skip tabs that are pinned in the browser." },
+  "exclude_label":      { "message": "Exclude patterns" },
+  "exclude_hint":       { "message": "Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*" },
 
   "sort_label":     { "message": "Sort by" },
   "sort_natural":   { "message": "Current order" },
@@ -38,31 +50,15 @@
   "opened_n":       { "message": "Opened " },
   "open_failed":    { "message": "Open failed" },
   "empty_clip":     { "message": "Clipboard is empty" },
-  "no_urls":        { "message": "No URLs found" },
+  "no_urls":        { "message": "No URLs found. The open format may be invalid." },
   "confirm_many":   { "message": "Open many tabs?" },
 
+  "advanced":       { "message": "Advanced" },
+  "filters_title_alt": { "message": "Filters" },
 
-  "theme_system": { "message": "System" },
-  "theme_dark":   { "message": "Dark" },
-  "theme_light":  { "message": "Light" },
+  "report_bug":     { "message": "Report a bug" },
 
-  "scope_label":  { "message": "Scope" },
-  "copy_format":  { "message": "Copy Format" },
-  "open_format":  { "message": "Open Format" },
-
-  "opt_custom":   { "message": "Custom template…" },
-  "url_only":     { "message": "URL Only" },
-  "json_lines":   { "message": "JSON Data" },
-  "smart_auto":   { "message": "Smart (auto-detect)" },
-
-  "open_tpl_label":     { "message": "Open custom template" },
-  "same_tokens_hint":   { "message": "Use the same tokens as copy: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-
-  "filters_title":      { "message": "Filters" },
-
-  "report_bug":         { "message": "Report a bug" },
-
-  "err_clipboard_denied": { "message": "Clipboard read was blocked by the browser." },
+  "err_clipboard_denied":      { "message": "Clipboard read was blocked by the browser." },
   "err_clipboard_unavailable": { "message": "Clipboard is unavailable on this page." },
-  "err_unknown": { "message": "Unknown error" }
+  "err_unknown":               { "message": "Unknown error" }
 }
