@@ -1,0 +1,15 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+
+  <circle cx="300" cy="300" r="300" fill="#1A73E8"/>
+
+  <g transform="rotate(-45 300 300)">
+    <!-- 左下の輪っか -->
+    <rect x="50" y="190" width="300" height="160" rx="80" ry="80"
+          fill="none" stroke="white" stroke-width="50"/>
+
+    <!-- 右上の輪っか -->
+    <rect x="250" y="250" width="300" height="160" rx="80" ry="80"
+          fill="none" stroke="white" stroke-width="50"/>
+
+  </g>
+</svg>
