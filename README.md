@@ -83,53 +83,35 @@ smarturls/
 └── README.md
 ```
 
-### Build Script (PowerShell)
+### ⛏️ Testing the Extension
 
-SmartURLs includes a PowerShell build script to package the extension automatically.
+SmartURLs can be tested locally before publishing to the Chrome Web Store.
 
-```powershell
-# Run from the repository root
-.\build.ps1
-```
+#### During Development
 
-This will:
+1. Open `chrome://extensions`
+2. Enable **Developer mode**
+3. Click **Load unpacked** and select the project folder (`smarturls/`)
+4. Make code changes and reload the extension with the **⟳ Reload** button
 
-1. Create a clean `/build/` directory
-2. Copy required files from the project root
-3. Generate a release ZIP in `/dist/`
-4. The final ZIP will have `manifest.json` at its root (required by Chrome Web Store)
+#### Before Publishing
 
-You can also use the batch wrapper:
-
-```bat
-build.bat
-```
-
-The ZIP file can be uploaded directly to the Chrome Web Store.
-
----
-
-### Updating the Version
-
-Before packaging or publishing a new release:
-
-1. Open `manifest.json`
-2. Increment the `"version"` number (e.g., `1.2.3 → 1.2.4`)
-3. Re-run the build script:
+1. Run the build script:
 
    ```powershell
    .\build.ps1
    ```
 
-4. A new file will be generated in `/dist/` as:
+   → This generates a ZIP file in `/dist/`
 
-   ```powershell
-   smarturls-<version>.zip
-   ```
+2. In `chrome://extensions`, **remove** the unpacked version (to avoid conflicts)
 
-5. Upload this new ZIP to the **Chrome Web Store Developer Dashboard**
+3. In `chrome://extensions`, **drag and drop** the generated ZIP file onto the page to test it directly
 
-> ⚠️ Chrome Web Store rejects updates if the `version` in `manifest.json` hasn’t changed.
+4. Verify that it installs and works correctly before uploading to the Chrome Web Store
+
+🗒 **Tip:**
+Always test the ZIP version before submitting — this ensures that `manifest.json` and folder paths are correctly packaged.
 
 ---
 
