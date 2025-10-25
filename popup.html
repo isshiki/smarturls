@@ -86,7 +86,6 @@
 
         <div class="field">
           <label class="label" data-i18n="exclude_label">Exclude patterns</label>
-          <!-- ★ 値は空、プレースホルダだけに -->
           <textarea id="excludeList" placeholder="https://example.com/path/*"></textarea>
           <p class="hint" data-i18n="exclude_hint">
             Enter one pattern per line (separate by new lines). Use * as a wildcard.
@@ -101,7 +100,6 @@
               <option value="natural" data-i18n="sort_natural">Current order</option>
               <option value="title">Title</option>
               <option value="url">URL</option>
-              <option value="domain">Domain</option>
             </select>
             <label class="inline">
               <input type="checkbox" id="desc" />
@@ -145,6 +143,12 @@
             <option value="custom">Custom template…</option>
           </select>
         </div>
+
+        <div id="pasteBox" class="field" hidden>
+          <label class="label" data-i18n="textarea_label">Paste text</label>
+          <textarea id="manualInput" placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
+        </div>
+
       </section>
 
       <!-- 詳細：オープン -->
@@ -157,11 +161,6 @@
           <p class="hint">
             Use the same tokens as copy: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)
           </p>
-        </div>
-
-        <div class="field">
-          <label class="label" data-i18n="textarea_label">Textarea (fallback)</label>
-          <textarea id="manualInput" placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
         </div>
 
         <div class="field">

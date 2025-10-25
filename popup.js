@@ -25,17 +25,16 @@ const $ = (sel) => document.querySelector(sel);
 const toast = (msg, ok = true) => {
   const el = $("#toast");
   el.classList.remove("ok","err");
-  el.classList.add(ok ? "ok" : "err");
+  el.classList.add(ok ? "ok" : "err", "show");
   el.textContent = msg;
-  el.classList.add("show");
-  // 60秒表示 → 消す時に背景クラスも外す
   setTimeout(() => {
     if (el.textContent === msg) {
       el.classList.remove("show","ok","err");
       el.textContent = "";
     }
-  }, 60000);
+  }, 60000); // 60s
 };
+
 
 
 // ========== Theme helpers ==========
@@ -133,6 +132,21 @@ document.querySelectorAll("input[name=sourceKind]").forEach(r => {
   });
 });
 
+// ====== 貼り付け欄の自動表示 ======
+function updatePasteBox() {
+  const kind = $("#source").value; // radios と同期済みの hidden select
+  const box = $("#pasteBox");
+  if (box) box.hidden = (kind !== "textarea");
+}
+
+// 既存の radios の change に追記する場合でもOKですが、独立で動かすならこう：
+document.querySelectorAll("input[name=sourceKind]").forEach(r => {
+  r.addEventListener("change", async () => updatePasteBox());
+});
+
+// ページ初期化時にも反映
+updatePasteBox();
+
 // ========== Core: Tabs fetch & filters ==========
 function wildcardToRegExp(pattern) {
   // escape regex specials, then only * -> .*
@@ -192,8 +206,8 @@ function formatLine(tab, cfg, idx) {
   const localDate = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   const localTime = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
   const du = new Date(d.getTime() + d.getTimezoneOffset() * 60000);
-  const utcDate = `${du.getUTCFullYear()}-${pad(du.getUTCMonth()+1)}-${pad(du.getUTCDate())}`;
-  const utcTime = `${pad(du.getUTCHours())}:${pad(du.getUTCMinutes())}:${pad(du.getUTCSeconds())}`;
+  const utcDate = `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
+  const utcTime = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
 
   const tokens = {
     "$title": title.replaceAll("]", "\\]"),
