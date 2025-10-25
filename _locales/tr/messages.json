@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - URL Kopyalama ve Açma" },
+  "appDesc":        { "message": "Tüm URL'leri (başlıklar dahil) Markdown, HTML, TSV, JSON veya özel metin olarak kopyalar. Ayrıca metin veya panodan URL açabilir, Smart Parser modu tüm formatları otomatik olarak algılar." },
+  "subtitle":       { "message": "URL Kopyalama ve Açma" },
+
+  "theme_system":   { "message": "Sistem" },
+  "theme_dark":     { "message": "Koyu" },
+  "theme_light":    { "message": "Açık" },
+
+  "copy_btn":       { "message": "Kopyala" },
+  "open_btn":       { "message": "Aç" },
+
+  "scope_label":    { "message": "Kapsam" },
+  "scope_current":  { "message": "Geçerli pencere" },
+  "scope_all":      { "message": "Tüm pencereler" },
+
+  "source_label":   { "message": "Kaynak" },
+  "src_clipboard":  { "message": "Pano" },
+  "src_textarea":   { "message": "Metin yapıştır" },
+
+  "copy_format":    { "message": "Kopyalama formatı" },
+  "open_format":    { "message": "Açma formatı" },
+  "smart_auto":     { "message": "Akıllı (otomatik algılama)" },
+  "url_only":       { "message": "Sadece URL" },
+  "json_lines":     { "message": "JSON verileri" },
+  "opt_custom":     { "message": "Özel şablon…" },
+
+  "custom_tpl_label":   { "message": "Özel şablon" },
+  "custom_tpl_tokens":  { "message": "Tokenler: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Açma için özel şablon" },
+  "same_tokens_hint":   { "message": "Kopyalama ile aynı tokenleri kullanır: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filtreler" },
+  "opt_dedup":          { "message": "Çiftleri kaldır" },
+  "opt_http":           { "message": "Sadece http/https" },
+  "opt_nopinned":       { "message": "[Sabitlenmiş] sekmeleri hariç tut" },
+  "opt_nopinned_hint":  { "message": "Tarayıcıdaki sabitlenmiş sekmeleri atlar." },
+  "exclude_label":      { "message": "Hariç tutma desenleri" },
+  "exclude_hint":       { "message": "Her satırda bir desen (yeni satırla ayrılmış). *'ı joker olarak kullan. Örnek: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Sırala" },
+  "sort_natural":   { "message": "Geçerli sıra" },
+  "sort_desc":      { "message": "Azalan" },
+
+  "confirm_label":  { "message": "N+ sekme için onayla" },
+  "textarea_label": { "message": "Metin yapıştır" },
+
+  "copied_n":       { "message": "Kopyalandı " },
+  "copy_failed":    { "message": "Kopyalama başarısız" },
+  "opened_n":       { "message": "Açıldı " },
+  "open_failed":    { "message": "Açma başarısız" },
+  "empty_clip":     { "message": "Pano boş" },
+  "no_urls":        { "message": "URL bulunamadı. Açma formatı yanlış olabilir." },
+  "confirm_many":   { "message": "Çok fazla sekme aç?" },
+
+  "advanced":       { "message": "Gelişmiş" },
+  "filters_title_alt": { "message": "Filtreler" },
+
+  "report_bug":     { "message": "Hata bildir" },
+
+  "err_clipboard_denied":      { "message": "Tarayıcı pano okumayı engelledi." },
+  "err_clipboard_unavailable": { "message": "Bu sayfada pano kullanılamıyor." },
+  "err_unknown":               { "message": "Bilinmeyen hata" }
 }

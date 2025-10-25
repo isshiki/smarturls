@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Copiar y Abrir URLs" },
+  "appDesc":        { "message": "Copia todas las URLs (con títulos) como Markdown, HTML, TSV, JSON o texto personalizado. También funciona al revés: abriendo URLs desde texto o el portapapeles, donde el modo Smart Parser detecta automáticamente cualquier formato." },
+  "subtitle":       { "message": "Copiar y Abrir URLs" },
+
+  "theme_system":   { "message": "Sistema" },
+  "theme_dark":     { "message": "Oscuro" },
+  "theme_light":    { "message": "Claro" },
+
+  "copy_btn":       { "message": "Copiar" },
+  "open_btn":       { "message": "Abrir" },
+
+  "scope_label":    { "message": "Alcance" },
+  "scope_current":  { "message": "Ventana actual" },
+  "scope_all":      { "message": "Todas las ventanas" },
+
+  "source_label":   { "message": "Fuente" },
+  "src_clipboard":  { "message": "Portapapeles" },
+  "src_textarea":   { "message": "Pegar texto" },
+
+  "copy_format":    { "message": "Formato de Copia" },
+  "open_format":    { "message": "Formato de Apertura" },
+  "smart_auto":     { "message": "Inteligente (auto-detectar)" },
+  "url_only":       { "message": "Solo URL" },
+  "json_lines":     { "message": "Datos JSON" },
+  "opt_custom":     { "message": "Plantilla personalizada…" },
+
+  "custom_tpl_label":   { "message": "Plantilla personalizada" },
+  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Plantilla personalizada de apertura" },
+  "same_tokens_hint":   { "message": "Usa los mismos tokens que copiar: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filtros" },
+  "opt_dedup":          { "message": "Eliminar duplicados" },
+  "opt_http":           { "message": "Solo http/https" },
+  "opt_nopinned":       { "message": "Excluir pestañas [fijadas]" },
+  "opt_nopinned_hint":  { "message": "Omitir pestañas que están fijadas en el navegador." },
+  "exclude_label":      { "message": "Patrones de exclusión" },
+  "exclude_hint":       { "message": "Ingresa un patrón por línea (separados por nuevas líneas). Usa * como comodín. Ejemplo: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Ordenar por" },
+  "sort_natural":   { "message": "Orden actual" },
+  "sort_desc":      { "message": "Desc" },
+
+  "confirm_label":  { "message": "Confirmar si hay más de N pestañas" },
+  "textarea_label": { "message": "Pegar texto" },
+
+  "copied_n":       { "message": "Copiado " },
+  "copy_failed":    { "message": "Copia fallida" },
+  "opened_n":       { "message": "Abierto " },
+  "open_failed":    { "message": "Apertura fallida" },
+  "empty_clip":     { "message": "Portapapeles vacío" },
+  "no_urls":        { "message": "No se encontraron URLs. El formato de apertura puede ser inválido." },
+  "confirm_many":   { "message": "¿Abrir muchas pestañas?" },
+
+  "advanced":       { "message": "Avanzado" },
+  "filters_title_alt": { "message": "Filtros" },
+
+  "report_bug":     { "message": "Reportar un error" },
+
+  "err_clipboard_denied":      { "message": "La lectura del portapapeles fue bloqueada por el navegador." },
+  "err_clipboard_unavailable": { "message": "El portapapeles no está disponible en esta página." },
+  "err_unknown":               { "message": "Error desconocido" }
 }

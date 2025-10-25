@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Copia e Apri URL" },
+  "appDesc":        { "message": "Copia tutti gli URL (inclusi i titoli) in formato Markdown, HTML, TSV, JSON o testo personalizzato. Può anche aprire URL da testo o clipboard, con modalità Smart Parser che rileva automaticamente tutti i formati." },
+  "subtitle":       { "message": "Copia e Apri URL" },
+
+  "theme_system":   { "message": "Sistema" },
+  "theme_dark":     { "message": "Scuro" },
+  "theme_light":    { "message": "Chiaro" },
+
+  "copy_btn":       { "message": "Copia" },
+  "open_btn":       { "message": "Apri" },
+
+  "scope_label":    { "message": "Ambito" },
+  "scope_current":  { "message": "Finestra corrente" },
+  "scope_all":      { "message": "Tutte le finestre" },
+
+  "source_label":   { "message": "Fonte" },
+  "src_clipboard":  { "message": "Clipboard" },
+  "src_textarea":   { "message": "Incolla testo" },
+
+  "copy_format":    { "message": "Formato copia" },
+  "open_format":    { "message": "Formato apertura" },
+  "smart_auto":     { "message": "Smart (rilevamento automatico)" },
+  "url_only":       { "message": "Solo URL" },
+  "json_lines":     { "message": "Dati JSON" },
+  "opt_custom":     { "message": "Modello personalizzato…" },
+
+  "custom_tpl_label":   { "message": "Modello personalizzato" },
+  "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Modello personalizzato per apertura" },
+  "same_tokens_hint":   { "message": "Usa gli stessi token della copia: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filtri" },
+  "opt_dedup":          { "message": "Rimuovi duplicati" },
+  "opt_http":           { "message": "Solo http/https" },
+  "opt_nopinned":       { "message": "Escludi schede [fissate]" },
+  "opt_nopinned_hint":  { "message": "Salta le schede fissate nel browser." },
+  "exclude_label":      { "message": "Pattern di esclusione" },
+  "exclude_hint":       { "message": "Un pattern per riga (separati da nuova riga). Usa * come jolly. Esempio: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Ordina per" },
+  "sort_natural":   { "message": "Ordine corrente" },
+  "sort_desc":      { "message": "Decrescente" },
+
+  "confirm_label":  { "message": "Conferma per N+ schede" },
+  "textarea_label": { "message": "Incolla testo" },
+
+  "copied_n":       { "message": "Copiato " },
+  "copy_failed":    { "message": "Copia fallita" },
+  "opened_n":       { "message": "Aperto " },
+  "open_failed":    { "message": "Apertura fallita" },
+  "empty_clip":     { "message": "Clipboard vuoto" },
+  "no_urls":        { "message": "URL non trovati. Potrebbe essere un formato di apertura errato." },
+  "confirm_many":   { "message": "Aprire molte schede?" },
+
+  "advanced":       { "message": "Avanzate" },
+  "filters_title_alt": { "message": "Filtri" },
+
+  "report_bug":     { "message": "Segnala bug" },
+
+  "err_clipboard_denied":      { "message": "Il browser ha bloccato la lettura del clipboard." },
+  "err_clipboard_unavailable": { "message": "Clipboard non disponibile in questa pagina." },
+  "err_unknown":               { "message": "Errore sconosciuto" }
 }

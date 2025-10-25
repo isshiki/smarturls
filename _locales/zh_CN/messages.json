@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - 复制和打开 URL" },
+  "appDesc":        { "message": "将所有 URL（带标题）复制为 Markdown、HTML、TSV、JSON 或自定义文本。它也可以反向工作——从文本或剪贴板打开 URL，其中智能解析器模式自动检测任何格式。" },
+  "subtitle":       { "message": "复制和打开 URL" },
+
+  "theme_system":   { "message": "系统" },
+  "theme_dark":     { "message": "深色" },
+  "theme_light":    { "message": "浅色" },
+
+  "copy_btn":       { "message": "复制" },
+  "open_btn":       { "message": "打开" },
+
+  "scope_label":    { "message": "范围" },
+  "scope_current":  { "message": "当前窗口" },
+  "scope_all":      { "message": "所有窗口" },
+
+  "source_label":   { "message": "来源" },
+  "src_clipboard":  { "message": "剪贴板" },
+  "src_textarea":   { "message": "粘贴文本" },
+
+  "copy_format":    { "message": "复制格式" },
+  "open_format":    { "message": "打开格式" },
+  "smart_auto":     { "message": "智能（自动检测）" },
+  "url_only":       { "message": "仅 URL" },
+  "json_lines":     { "message": "JSON 数据" },
+  "opt_custom":     { "message": "自定义模板…" },
+
+  "custom_tpl_label":   { "message": "自定义模板" },
+  "custom_tpl_tokens":  { "message": "令牌：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "打开自定义模板" },
+  "same_tokens_hint":   { "message": "使用与复制相同的令牌：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "过滤器" },
+  "opt_dedup":          { "message": "移除重复项" },
+  "opt_http":           { "message": "仅 http/https" },
+  "opt_nopinned":       { "message": "排除 [固定] 标签页" },
+  "opt_nopinned_hint":  { "message": "跳过浏览器中固定的标签页。" },
+  "exclude_label":      { "message": "排除模式" },
+  "exclude_hint":       { "message": "每行输入一个模式（用换行符分隔）。使用 * 作为通配符。示例：https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "排序依据" },
+  "sort_natural":   { "message": "当前顺序" },
+  "sort_desc":      { "message": "降序" },
+
+  "confirm_label":  { "message": "如果超过 N 个标签页则确认" },
+  "textarea_label": { "message": "粘贴文本" },
+
+  "copied_n":       { "message": "已复制 " },
+  "copy_failed":    { "message": "复制失败" },
+  "opened_n":       { "message": "已打开 " },
+  "open_failed":    { "message": "打开失败" },
+  "empty_clip":     { "message": "剪贴板为空" },
+  "no_urls":        { "message": "未找到 URL。打开格式可能无效。" },
+  "confirm_many":   { "message": "打开许多标签页？" },
+
+  "advanced":       { "message": "高级" },
+  "filters_title_alt": { "message": "过滤器" },
+
+  "report_bug":     { "message": "报告错误" },
+
+  "err_clipboard_denied":      { "message": "浏览器阻止了剪贴板读取。" },
+  "err_clipboard_unavailable": { "message": "此页面上剪贴板不可用。" },
+  "err_unknown":               { "message": "未知错误" }
 }

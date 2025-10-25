@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - 複製和開啟 URL" },
+  "appDesc":        { "message": "將所有 URL（帶標題）複製為 Markdown、HTML、TSV、JSON 或自訂文字。它也可以反向工作——從文字或剪貼簿開啟 URL，其中智慧解析器模式自動偵測任何格式。" },
+  "subtitle":       { "message": "複製和開啟 URL" },
+
+  "theme_system":   { "message": "系統" },
+  "theme_dark":     { "message": "深色" },
+  "theme_light":    { "message": "淺色" },
+
+  "copy_btn":       { "message": "複製" },
+  "open_btn":       { "message": "開啟" },
+
+  "scope_label":    { "message": "範圍" },
+  "scope_current":  { "message": "目前視窗" },
+  "scope_all":      { "message": "所有視窗" },
+
+  "source_label":   { "message": "來源" },
+  "src_clipboard":  { "message": "剪貼簿" },
+  "src_textarea":   { "message": "貼上文字" },
+
+  "copy_format":    { "message": "複製格式" },
+  "open_format":    { "message": "開啟格式" },
+  "smart_auto":     { "message": "智慧（自動偵測）" },
+  "url_only":       { "message": "僅 URL" },
+  "json_lines":     { "message": "JSON 資料" },
+  "opt_custom":     { "message": "自訂範本…" },
+
+  "custom_tpl_label":   { "message": "自訂範本" },
+  "custom_tpl_tokens":  { "message": "權杖：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "開啟自訂範本" },
+  "same_tokens_hint":   { "message": "使用與複製相同的權杖：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "篩選器" },
+  "opt_dedup":          { "message": "移除重複項目" },
+  "opt_http":           { "message": "僅 http/https" },
+  "opt_nopinned":       { "message": "排除 [固定] 分頁" },
+  "opt_nopinned_hint":  { "message": "跳過瀏覽器中固定的分頁。" },
+  "exclude_label":      { "message": "排除模式" },
+  "exclude_hint":       { "message": "每行輸入一個模式（用換行符分隔）。使用 * 作為萬用字元。範例：https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "排序依據" },
+  "sort_natural":   { "message": "目前順序" },
+  "sort_desc":      { "message": "降序" },
+
+  "confirm_label":  { "message": "如果超過 N 個分頁則確認" },
+  "textarea_label": { "message": "貼上文字" },
+
+  "copied_n":       { "message": "已複製 " },
+  "copy_failed":    { "message": "複製失敗" },
+  "opened_n":       { "message": "已開啟 " },
+  "open_failed":    { "message": "開啟失敗" },
+  "empty_clip":     { "message": "剪貼簿為空" },
+  "no_urls":        { "message": "未找到 URL。開啟格式可能無效。" },
+  "confirm_many":   { "message": "開啟許多分頁？" },
+
+  "advanced":       { "message": "進階" },
+  "filters_title_alt": { "message": "篩選器" },
+
+  "report_bug":     { "message": "回報錯誤" },
+
+  "err_clipboard_denied":      { "message": "瀏覽器阻止了剪貼簿讀取。" },
+  "err_clipboard_unavailable": { "message": "此頁面上剪貼簿不可用。" },
+  "err_unknown":               { "message": "未知錯誤" }
 }

@@ -1,10 +1,30 @@
 // ========== i18n ==========
+let currentLang = "AutoLang";
+let dict = null; // 手動読み込み用の辞書（lang≠Autoのときに使う）
+
+async function loadDict(lang) {
+  if (lang === "AutoLang") { dict = null; return; }
+  // 例: _locales/ja/messages.json を fetch
+  const url = chrome.runtime.getURL(`_locales/${lang}/messages.json`);
+  const res = await fetch(url);
+  dict = await res.json();
+}
+
 function t(id, fallback) {
   try {
-    const s = chrome.i18n.getMessage(id);
-    return s || fallback || id;
-  } catch { return fallback || id; }
+    // 1) Auto => Chromeのi18nをそのまま使う
+    if (currentLang === "AutoLang") {
+      const s = chrome.i18n.getMessage(id);
+      return s || fallback || id;
+    }
+    // 2) 手動辞書 => messages.jsonの "message" を参照
+    const entry = dict?.[id]?.message;
+    return entry || fallback || id;
+  } catch {
+    return fallback || id;
+  }
 }
+
 function applyI18n() {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -65,7 +85,8 @@ const defaults = {
   openLimit: 30,
 
   // ui
-  theme: "system"            // "system" | "dark" | "light"
+  theme: "system",           // "system" | "dark" | "light"
+  lang: "AutoLang"             // "AutoLang" | language code
 };
 
 async function load() {
@@ -74,6 +95,9 @@ async function load() {
   // theme
   $("#theme").value = cfg.theme;
   applyTheme(cfg.theme);
+
+  // lang
+  $("#lang").value = cfg.lang;
 
   // copy
   $("#fmt").value = cfg.fmt;
@@ -140,13 +164,18 @@ function initPasteBoxDefault() {
 
 // ====== 初期化 ======
 async function init() {
+  // 1) まず設定を読む（先にやるのが重要）
+  const cfg = await load();     // あなたの既存の load()
+  currentLang = cfg.lang || "AutoLang";
+
+  // 2) 必要なら辞書を読み込む
+  await loadDict(currentLang);
+
+  // 3) 初回適用
   applyI18n();
   applyI18nTitle();
 
-  // 1) 設定読込を待つ（ここが重要）
-  await load();
-
-  // 2) イベントを設定
+  // 4) イベント
   ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
     $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
   });
@@ -154,31 +183,35 @@ async function init() {
     .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
   ["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
 
-  // theme select
   $("#theme").addEventListener("change", async (e) => {
     const v = e.target.value;
     applyTheme(v);
     await save({ theme: v });
   });
 
-  // source radios <-> hidden select 同期
+  // 言語切替
+  $("#lang").addEventListener("change", async (e) => {
+    const v = e.target.value;         // "AutoLang" | "en" | "ja" | ...
+    currentLang = v;
+    await save({ lang: v });
+    await loadDict(currentLang);      // ここで辞書を切替
+    applyI18n();
+    applyI18nTitle();
+  });
+
+  // …以下は既存の処理 …
   document.querySelectorAll('input[name="sourceKind"]').forEach(r => {
     r.addEventListener("change", async (e) => {
       if (!e.target.checked) return;
-      const v = e.target.value;           // "clipboard" | "textarea"
-      $("#source").value = v;             // hidden select を同期
+      const v = e.target.value;
+      $("#source").value = v;
       await save({ source: v });
       updatePasteBox(v);
     });
   });
 
-  // 3) 表示反映（ロード後に実行するのがポイント）
   updatePasteBox();
-  initPasteBoxDefault();   // テキストが入っていれば textarea を選択＆表示
-
-  // デバッグしたい場合は下を一時的に有効化：
-  // console.debug("init source=", $("#source").value,
-  //               "radio=", document.querySelector('input[name="sourceKind"]:checked')?.value);
+  initPasteBoxDefault();
 }
 
 // DOM 準備後に初期化

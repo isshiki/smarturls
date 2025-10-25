@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - URLs kopieren und öffnen" },
+  "appDesc":        { "message": "Kopieren Sie alle URLs (mit Titeln) als Markdown, HTML, TSV, JSON oder benutzerdefinierten Text. Es funktioniert auch umgekehrt — URLs aus Text oder der Zwischenablage öffnen, wobei der Smart Parser-Modus automatisch jedes Format erkennt." },
+  "subtitle":       { "message": "URLs kopieren und öffnen" },
+
+  "theme_system":   { "message": "System" },
+  "theme_dark":     { "message": "Dunkel" },
+  "theme_light":    { "message": "Hell" },
+
+  "copy_btn":       { "message": "Kopieren" },
+  "open_btn":       { "message": "Öffnen" },
+
+  "scope_label":    { "message": "Bereich" },
+  "scope_current":  { "message": "Aktuelles Fenster" },
+  "scope_all":      { "message": "Alle Fenster" },
+
+  "source_label":   { "message": "Quelle" },
+  "src_clipboard":  { "message": "Zwischenablage" },
+  "src_textarea":   { "message": "Text einfügen" },
+
+  "copy_format":    { "message": "Kopierformat" },
+  "open_format":    { "message": "Öffnungsformat" },
+  "smart_auto":     { "message": "Intelligent (automatisch erkennen)" },
+  "url_only":       { "message": "Nur URL" },
+  "json_lines":     { "message": "JSON-Daten" },
+  "opt_custom":     { "message": "Benutzerdefinierte Vorlage…" },
+
+  "custom_tpl_label":   { "message": "Benutzerdefinierte Vorlage" },
+  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Benutzerdefinierte Öffnungsvorlage" },
+  "same_tokens_hint":   { "message": "Verwenden Sie die gleichen Tokens wie beim Kopieren: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filter" },
+  "opt_dedup":          { "message": "Duplikate entfernen" },
+  "opt_http":           { "message": "Nur http/https" },
+  "opt_nopinned":       { "message": "[Angeheftete] Tabs ausschließen" },
+  "opt_nopinned_hint":  { "message": "Angeheftete Tabs im Browser überspringen." },
+  "exclude_label":      { "message": "Ausschlussmuster" },
+  "exclude_hint":       { "message": "Geben Sie ein Muster pro Zeile ein (getrennt durch neue Zeilen). Verwenden Sie * als Platzhalter. Beispiel: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Sortieren nach" },
+  "sort_natural":   { "message": "Aktuelle Reihenfolge" },
+  "sort_desc":      { "message": "Absteigend" },
+
+  "confirm_label":  { "message": "Bestätigen, wenn mehr als N Tabs" },
+  "textarea_label": { "message": "Text einfügen" },
+
+  "copied_n":       { "message": "Kopiert " },
+  "copy_failed":    { "message": "Kopieren fehlgeschlagen" },
+  "opened_n":       { "message": "Geöffnet " },
+  "open_failed":    { "message": "Öffnen fehlgeschlagen" },
+  "empty_clip":     { "message": "Zwischenablage leer" },
+  "no_urls":        { "message": "Keine URLs gefunden. Das Öffnungsformat ist möglicherweise ungültig." },
+  "confirm_many":   { "message": "Viele Tabs öffnen?" },
+
+  "advanced":       { "message": "Erweitert" },
+  "filters_title_alt": { "message": "Filter" },
+
+  "report_bug":     { "message": "Einen Fehler melden" },
+
+  "err_clipboard_denied":      { "message": "Der Zugriff auf die Zwischenablage wurde vom Browser blockiert." },
+  "err_clipboard_unavailable": { "message": "Die Zwischenablage ist auf dieser Seite nicht verfügbar." },
+  "err_unknown":               { "message": "Unbekannter Fehler" }
 }

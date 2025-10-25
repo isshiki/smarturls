@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Sao chép và Mở URL" },
+  "appDesc":        { "message": "Sao chép tất cả URL (bao gồm tiêu đề) ở định dạng Markdown, HTML, TSV, JSON hoặc văn bản tùy chỉnh. Cũng có thể mở URL từ văn bản hoặc clipboard, với chế độ Smart Parser tự động phát hiện tất cả định dạng." },
+  "subtitle":       { "message": "Sao chép và Mở URL" },
+
+  "theme_system":   { "message": "Hệ thống" },
+  "theme_dark":     { "message": "Tối" },
+  "theme_light":    { "message": "Sáng" },
+
+  "copy_btn":       { "message": "Sao chép" },
+  "open_btn":       { "message": "Mở" },
+
+  "scope_label":    { "message": "Phạm vi" },
+  "scope_current":  { "message": "Cửa sổ hiện tại" },
+  "scope_all":      { "message": "Tất cả cửa sổ" },
+
+  "source_label":   { "message": "Nguồn" },
+  "src_clipboard":  { "message": "Clipboard" },
+  "src_textarea":   { "message": "Dán văn bản" },
+
+  "copy_format":    { "message": "Định dạng sao chép" },
+  "open_format":    { "message": "Định dạng mở" },
+  "smart_auto":     { "message": "Thông minh (tự động phát hiện)" },
+  "url_only":       { "message": "Chỉ URL" },
+  "json_lines":     { "message": "Dữ liệu JSON" },
+  "opt_custom":     { "message": "Mẫu tùy chỉnh…" },
+
+  "custom_tpl_label":   { "message": "Mẫu tùy chỉnh" },
+  "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Mẫu tùy chỉnh để mở" },
+  "same_tokens_hint":   { "message": "Sử dụng cùng token với sao chép: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Bộ lọc" },
+  "opt_dedup":          { "message": "Loại bỏ trùng lặp" },
+  "opt_http":           { "message": "Chỉ http/https" },
+  "opt_nopinned":       { "message": "Loại trừ tab [được ghim]" },
+  "opt_nopinned_hint":  { "message": "Bỏ qua các tab được ghim trong trình duyệt." },
+  "exclude_label":      { "message": "Mẫu loại trừ" },
+  "exclude_hint":       { "message": "Một mẫu mỗi dòng (phân tách bằng dòng mới). Sử dụng * làm ký tự đại diện. Ví dụ: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Sắp xếp theo" },
+  "sort_natural":   { "message": "Thứ tự hiện tại" },
+  "sort_desc":      { "message": "Giảm dần" },
+
+  "confirm_label":  { "message": "Xác nhận cho N+ tab" },
+  "textarea_label": { "message": "Dán văn bản" },
+
+  "copied_n":       { "message": "Đã sao chép " },
+  "copy_failed":    { "message": "Sao chép thất bại" },
+  "opened_n":       { "message": "Đã mở " },
+  "open_failed":    { "message": "Mở thất bại" },
+  "empty_clip":     { "message": "Clipboard trống" },
+  "no_urls":        { "message": "Không tìm thấy URL. Có thể định dạng mở sai." },
+  "confirm_many":   { "message": "Mở nhiều tab?" },
+
+  "advanced":       { "message": "Nâng cao" },
+  "filters_title_alt": { "message": "Bộ lọc" },
+
+  "report_bug":     { "message": "Báo lỗi" },
+
+  "err_clipboard_denied":      { "message": "Trình duyệt đã chặn đọc clipboard." },
+  "err_clipboard_unavailable": { "message": "Clipboard không khả dụng trên trang này." },
+  "err_unknown":               { "message": "Lỗi không xác định" }
 }

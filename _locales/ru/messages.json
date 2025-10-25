@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Копирование и открытие URL" },
+  "appDesc":        { "message": "Копирует все URL (включая заголовки) в формате Markdown, HTML, TSV, JSON или пользовательском тексте. Также может открывать URL из текста или буфера обмена, с режимом Smart Parser, который автоматически распознает все форматы." },
+  "subtitle":       { "message": "Копирование и открытие URL" },
+
+  "theme_system":   { "message": "Системная" },
+  "theme_dark":     { "message": "Темная" },
+  "theme_light":    { "message": "Светлая" },
+
+  "copy_btn":       { "message": "Копировать" },
+  "open_btn":       { "message": "Открыть" },
+
+  "scope_label":    { "message": "Область" },
+  "scope_current":  { "message": "Текущее окно" },
+  "scope_all":      { "message": "Все окна" },
+
+  "source_label":   { "message": "Источник" },
+  "src_clipboard":  { "message": "Буфер обмена" },
+  "src_textarea":   { "message": "Вставить текст" },
+
+  "copy_format":    { "message": "Формат копирования" },
+  "open_format":    { "message": "Формат открытия" },
+  "smart_auto":     { "message": "Умный (автоопределение)" },
+  "url_only":       { "message": "Только URL" },
+  "json_lines":     { "message": "JSON данные" },
+  "opt_custom":     { "message": "Пользовательский шаблон…" },
+
+  "custom_tpl_label":   { "message": "Пользовательский шаблон" },
+  "custom_tpl_tokens":  { "message": "Токены: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Пользовательский шаблон для открытия" },
+  "same_tokens_hint":   { "message": "Использует те же токены, что и для копирования: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Фильтры" },
+  "opt_dedup":          { "message": "Удалить дубликаты" },
+  "opt_http":           { "message": "Только http/https" },
+  "opt_nopinned":       { "message": "Исключить [закрепленные] вкладки" },
+  "opt_nopinned_hint":  { "message": "Пропускает закрепленные вкладки в браузере." },
+  "exclude_label":      { "message": "Шаблоны исключения" },
+  "exclude_hint":       { "message": "Один шаблон на строку (разделенные новой строкой). Используйте * как подстановочный знак. Пример: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Сортировка по" },
+  "sort_natural":   { "message": "Текущий порядок" },
+  "sort_desc":      { "message": "По убыванию" },
+
+  "confirm_label":  { "message": "Подтверждать при N+ вкладках" },
+  "textarea_label": { "message": "Вставить текст" },
+
+  "copied_n":       { "message": "Скопировано " },
+  "copy_failed":    { "message": "Не удалось скопировать" },
+  "opened_n":       { "message": "Открыто " },
+  "open_failed":    { "message": "Не удалось открыть" },
+  "empty_clip":     { "message": "Буфер обмена пуст" },
+  "no_urls":        { "message": "URL не найдены. Возможно, неправильный формат открытия." },
+  "confirm_many":   { "message": "Открыть много вкладок?" },
+
+  "advanced":       { "message": "Расширенные" },
+  "filters_title_alt": { "message": "Фильтры" },
+
+  "report_bug":     { "message": "Сообщить об ошибке" },
+
+  "err_clipboard_denied":      { "message": "Браузер заблокировал чтение буфера обмена." },
+  "err_clipboard_unavailable": { "message": "Буфер обмена недоступен на этой странице." },
+  "err_unknown":               { "message": "Неизвестная ошибка" }
 }

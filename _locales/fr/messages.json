@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Copier et Ouvrir les URLs" },
+  "appDesc":        { "message": "Copiez toutes les URLs (avec titres) en Markdown, HTML, TSV, JSON ou texte personnalisé. Cela fonctionne aussi dans l'autre sens — ouvrant les URLs depuis du texte ou le presse-papiers, où le mode Smart Parser détecte automatiquement tout format." },
+  "subtitle":       { "message": "Copier et Ouvrir les URLs" },
+
+  "theme_system":   { "message": "Système" },
+  "theme_dark":     { "message": "Sombre" },
+  "theme_light":    { "message": "Clair" },
+
+  "copy_btn":       { "message": "Copier" },
+  "open_btn":       { "message": "Ouvrir" },
+
+  "scope_label":    { "message": "Portée" },
+  "scope_current":  { "message": "Fenêtre actuelle" },
+  "scope_all":      { "message": "Toutes les fenêtres" },
+
+  "source_label":   { "message": "Source" },
+  "src_clipboard":  { "message": "Presse-papiers" },
+  "src_textarea":   { "message": "Coller le texte" },
+
+  "copy_format":    { "message": "Format de Copie" },
+  "open_format":    { "message": "Format d'Ouverture" },
+  "smart_auto":     { "message": "Intelligent (auto-détection)" },
+  "url_only":       { "message": "URL seulement" },
+  "json_lines":     { "message": "Données JSON" },
+  "opt_custom":     { "message": "Modèle personnalisé…" },
+
+  "custom_tpl_label":   { "message": "Modèle personnalisé" },
+  "custom_tpl_tokens":  { "message": "Jetons : $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Modèle personnalisé d'ouverture" },
+  "same_tokens_hint":   { "message": "Utilisez les mêmes jetons que pour la copie : $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filtres" },
+  "opt_dedup":          { "message": "Supprimer les doublons" },
+  "opt_http":           { "message": "http/https seulement" },
+  "opt_nopinned":       { "message": "Exclure les onglets [épinglés]" },
+  "opt_nopinned_hint":  { "message": "Ignorer les onglets épinglés dans le navigateur." },
+  "exclude_label":      { "message": "Motifs d'exclusion" },
+  "exclude_hint":       { "message": "Entrez un motif par ligne (séparés par des nouvelles lignes). Utilisez * comme joker. Exemple : https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Trier par" },
+  "sort_natural":   { "message": "Ordre actuel" },
+  "sort_desc":      { "message": "Desc" },
+
+  "confirm_label":  { "message": "Confirmer si plus de N onglets" },
+  "textarea_label": { "message": "Coller le texte" },
+
+  "copied_n":       { "message": "Copié " },
+  "copy_failed":    { "message": "Échec de la copie" },
+  "opened_n":       { "message": "Ouvert " },
+  "open_failed":    { "message": "Échec de l'ouverture" },
+  "empty_clip":     { "message": "Presse-papiers vide" },
+  "no_urls":        { "message": "Aucune URL trouvée. Le format d'ouverture peut être invalide." },
+  "confirm_many":   { "message": "Ouvrir beaucoup d'onglets ?" },
+
+  "advanced":       { "message": "Avancé" },
+  "filters_title_alt": { "message": "Filtres" },
+
+  "report_bug":     { "message": "Signaler un bug" },
+
+  "err_clipboard_denied":      { "message": "La lecture du presse-papiers a été bloquée par le navigateur." },
+  "err_clipboard_unavailable": { "message": "Le presse-papiers n'est pas disponible sur cette page." },
+  "err_unknown":               { "message": "Erreur inconnue" }
 }

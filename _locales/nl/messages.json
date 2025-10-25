@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - URL's Kopiëren en Openen" },
+  "appDesc":        { "message": "Kopieert alle URL's (inclusief titels) in Markdown, HTML, TSV, JSON of aangepaste tekst. Kan ook URL's openen vanuit tekst of klembord, met Smart Parser-modus die automatisch alle formaten detecteert." },
+  "subtitle":       { "message": "URL's Kopiëren en Openen" },
+
+  "theme_system":   { "message": "Systeem" },
+  "theme_dark":     { "message": "Donker" },
+  "theme_light":    { "message": "Licht" },
+
+  "copy_btn":       { "message": "Kopiëren" },
+  "open_btn":       { "message": "Openen" },
+
+  "scope_label":    { "message": "Bereik" },
+  "scope_current":  { "message": "Huidig venster" },
+  "scope_all":      { "message": "Alle vensters" },
+
+  "source_label":   { "message": "Bron" },
+  "src_clipboard":  { "message": "Klembord" },
+  "src_textarea":   { "message": "Tekst plakken" },
+
+  "copy_format":    { "message": "Kopieerformaat" },
+  "open_format":    { "message": "Openingsformaat" },
+  "smart_auto":     { "message": "Slim (automatisch detecteren)" },
+  "url_only":       { "message": "Alleen URL's" },
+  "json_lines":     { "message": "JSON gegevens" },
+  "opt_custom":     { "message": "Aangepaste sjabloon…" },
+
+  "custom_tpl_label":   { "message": "Aangepaste sjabloon" },
+  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Aangepaste sjabloon voor openen" },
+  "same_tokens_hint":   { "message": "Gebruikt dezelfde tokens als kopiëren: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filters" },
+  "opt_dedup":          { "message": "Duplicaten verwijderen" },
+  "opt_http":           { "message": "Alleen http/https" },
+  "opt_nopinned":       { "message": "[Vastgezette] tabbladen uitsluiten" },
+  "opt_nopinned_hint":  { "message": "Slaat vastgezette tabbladen in de browser over." },
+  "exclude_label":      { "message": "Uitsluitingspatronen" },
+  "exclude_hint":       { "message": "Eén patroon per regel (gescheiden door nieuwe regel). Gebruik * als wildcard. Voorbeeld: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Sorteren op" },
+  "sort_natural":   { "message": "Huidige volgorde" },
+  "sort_desc":      { "message": "Aflopend" },
+
+  "confirm_label":  { "message": "Bevestigen bij N+ tabbladen" },
+  "textarea_label": { "message": "Tekst plakken" },
+
+  "copied_n":       { "message": "Gekopieerd " },
+  "copy_failed":    { "message": "Kopiëren mislukt" },
+  "opened_n":       { "message": "Geopend " },
+  "open_failed":    { "message": "Openen mislukt" },
+  "empty_clip":     { "message": "Klembord leeg" },
+  "no_urls":        { "message": "Geen URL's gevonden. Mogelijk verkeerd openingsformaat." },
+  "confirm_many":   { "message": "Veel tabbladen openen?" },
+
+  "advanced":       { "message": "Geavanceerd" },
+  "filters_title_alt": { "message": "Filters" },
+
+  "report_bug":     { "message": "Bug melden" },
+
+  "err_clipboard_denied":      { "message": "Browser heeft klembord lezen geblokkeerd." },
+  "err_clipboard_unavailable": { "message": "Klembord niet beschikbaar op deze pagina." },
+  "err_unknown":               { "message": "Onbekende fout" }
 }

@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Copiar e Abrir URLs" },
+  "appDesc":        { "message": "Copie todas as URLs (com títulos) como Markdown, HTML, TSV, JSON ou texto personalizado. Também funciona ao contrário — abrindo URLs de texto ou da área de transferência, onde o modo Smart Parser detecta automaticamente qualquer formato." },
+  "subtitle":       { "message": "Copiar e Abrir URLs" },
+
+  "theme_system":   { "message": "Sistema" },
+  "theme_dark":     { "message": "Escuro" },
+  "theme_light":    { "message": "Claro" },
+
+  "copy_btn":       { "message": "Copiar" },
+  "open_btn":       { "message": "Abrir" },
+
+  "scope_label":    { "message": "Escopo" },
+  "scope_current":  { "message": "Janela atual" },
+  "scope_all":      { "message": "Todas as janelas" },
+
+  "source_label":   { "message": "Fonte" },
+  "src_clipboard":  { "message": "Área de transferência" },
+  "src_textarea":   { "message": "Colar texto" },
+
+  "copy_format":    { "message": "Formato de Cópia" },
+  "open_format":    { "message": "Formato de Abertura" },
+  "smart_auto":     { "message": "Inteligente (auto-detectar)" },
+  "url_only":       { "message": "Apenas URL" },
+  "json_lines":     { "message": "Dados JSON" },
+  "opt_custom":     { "message": "Modelo personalizado…" },
+
+  "custom_tpl_label":   { "message": "Modelo personalizado" },
+  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Modelo personalizado de abertura" },
+  "same_tokens_hint":   { "message": "Use os mesmos tokens de cópia: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filtros" },
+  "opt_dedup":          { "message": "Remover duplicatas" },
+  "opt_http":           { "message": "Apenas http/https" },
+  "opt_nopinned":       { "message": "Excluir abas [fixadas]" },
+  "opt_nopinned_hint":  { "message": "Pular abas que estão fixadas no navegador." },
+  "exclude_label":      { "message": "Padrões de exclusão" },
+  "exclude_hint":       { "message": "Digite um padrão por linha (separados por novas linhas). Use * como curinga. Exemplo: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Ordenar por" },
+  "sort_natural":   { "message": "Ordem atual" },
+  "sort_desc":      { "message": "Desc" },
+
+  "confirm_label":  { "message": "Confirmar se mais de N abas" },
+  "textarea_label": { "message": "Colar texto" },
+
+  "copied_n":       { "message": "Copiado " },
+  "copy_failed":    { "message": "Cópia falhou" },
+  "opened_n":       { "message": "Aberto " },
+  "open_failed":    { "message": "Abertura falhou" },
+  "empty_clip":     { "message": "Área de transferência vazia" },
+  "no_urls":        { "message": "Nenhuma URL encontrada. O formato de abertura pode ser inválido." },
+  "confirm_many":   { "message": "Abrir muitas abas?" },
+
+  "advanced":       { "message": "Avançado" },
+  "filters_title_alt": { "message": "Filtros" },
+
+  "report_bug":     { "message": "Reportar um bug" },
+
+  "err_clipboard_denied":      { "message": "A leitura da área de transferência foi bloqueada pelo navegador." },
+  "err_clipboard_unavailable": { "message": "A área de transferência não está disponível nesta página." },
+  "err_unknown":               { "message": "Erro desconhecido" }
 }

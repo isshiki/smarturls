@@ -1,6 +1,64 @@
 {
-  "example_key": {
-    "message": "",
-    "description": "Describe what this string is used for"
-  }
+  "appName":        { "message": "SmartURLs - Salin dan Buka URL" },
+  "appDesc":        { "message": "Menyalin semua URL (termasuk judul) dalam format Markdown, HTML, TSV, JSON, atau teks kustom. Juga dapat membuka URL dari teks atau clipboard, dengan mode Smart Parser yang secara otomatis mendeteksi semua format." },
+  "subtitle":       { "message": "Salin dan Buka URL" },
+
+  "theme_system":   { "message": "Sistem" },
+  "theme_dark":     { "message": "Gelap" },
+  "theme_light":    { "message": "Terang" },
+
+  "copy_btn":       { "message": "Salin" },
+  "open_btn":       { "message": "Buka" },
+
+  "scope_label":    { "message": "Cakupan" },
+  "scope_current":  { "message": "Jendela saat ini" },
+  "scope_all":      { "message": "Semua jendela" },
+
+  "source_label":   { "message": "Sumber" },
+  "src_clipboard":  { "message": "Clipboard" },
+  "src_textarea":   { "message": "Tempel teks" },
+
+  "copy_format":    { "message": "Format salin" },
+  "open_format":    { "message": "Format buka" },
+  "smart_auto":     { "message": "Pintar (deteksi otomatis)" },
+  "url_only":       { "message": "Hanya URL" },
+  "json_lines":     { "message": "Data JSON" },
+  "opt_custom":     { "message": "Template kustom…" },
+
+  "custom_tpl_label":   { "message": "Template kustom" },
+  "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "open_tpl_label":     { "message": "Template kustom untuk membuka" },
+  "same_tokens_hint":   { "message": "Menggunakan token yang sama dengan salin: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "filters_title":      { "message": "Filter" },
+  "opt_dedup":          { "message": "Hapus duplikat" },
+  "opt_http":           { "message": "Hanya http/https" },
+  "opt_nopinned":       { "message": "Kecualikan tab [disematkan]" },
+  "opt_nopinned_hint":  { "message": "Melewati tab yang disematkan di browser." },
+  "exclude_label":      { "message": "Pola pengecualian" },
+  "exclude_hint":       { "message": "Satu pola per baris (dipisahkan oleh baris baru). Gunakan * sebagai wildcard. Contoh: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Urutkan berdasarkan" },
+  "sort_natural":   { "message": "Urutan saat ini" },
+  "sort_desc":      { "message": "Menurun" },
+
+  "confirm_label":  { "message": "Konfirmasi untuk N+ tab" },
+  "textarea_label": { "message": "Tempel teks" },
+
+  "copied_n":       { "message": "Disalin " },
+  "copy_failed":    { "message": "Salin gagal" },
+  "opened_n":       { "message": "Dibuka " },
+  "open_failed":    { "message": "Buka gagal" },
+  "empty_clip":     { "message": "Clipboard kosong" },
+  "no_urls":        { "message": "URL tidak ditemukan. Mungkin format buka salah." },
+  "confirm_many":   { "message": "Buka banyak tab?" },
+
+  "advanced":       { "message": "Lanjutan" },
+  "filters_title_alt": { "message": "Filter" },
+
+  "report_bug":     { "message": "Laporkan bug" },
+
+  "err_clipboard_denied":      { "message": "Browser memblokir pembacaan clipboard." },
+  "err_clipboard_unavailable": { "message": "Clipboard tidak tersedia di halaman ini." },
+  "err_unknown":               { "message": "Kesalahan tidak diketahui" }
 }
