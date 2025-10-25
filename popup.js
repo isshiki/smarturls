@@ -17,8 +17,6 @@ function applyI18nTitle() {
     el.title = t(key, el.title);
   });
 }
-applyI18n();
-applyI18nTitle();
 
 // ========== UI Helpers ==========
 const $ = (sel) => document.querySelector(sel);
@@ -34,8 +32,6 @@ const toast = (msg, ok = true) => {
     }
   }, 60000); // 60s
 };
-
-
 
 // ========== Theme helpers ==========
 function applyTheme(mode) {
@@ -54,12 +50,12 @@ const defaults = {
   tpl: "[$title]($url)",
 
   // open
-  openFmt: "smart",             // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
-  openTpl: "[$title]($url)",    // custom parser pattern
+  openFmt: "smart",          // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
+  openTpl: "[$title]($url)", // custom parser pattern
 
   // common
-  source: "clipboard",          // "clipboard" | "textarea"
-  scope: "current",             // "current" | "all"
+  source: "clipboard",       // "clipboard" | "textarea"
+  scope: "current",          // "current" | "all"
   dedup: true,
   httpOnly: true,
   noPinned: false,
@@ -69,7 +65,7 @@ const defaults = {
   openLimit: 30,
 
   // ui
-  theme: "system"               // "system" | "dark" | "light"
+  theme: "system"            // "system" | "dark" | "light"
 };
 
 async function load() {
@@ -104,48 +100,89 @@ async function load() {
   $("#sort").value = cfg.sort;
   $("#desc").checked = cfg.desc;
   $("#openLimit").value = cfg.openLimit;
+
+  return cfg;
 }
 async function save(partial) { await chrome.storage.sync.set(partial); }
-load();
 
-// Save on change (lightweight)
-["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
-  $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
-});
-[["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
-  .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
-["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
-
-// theme select
-$("#theme").addEventListener("change", async (e) => {
-  const v = e.target.value;
-  applyTheme(v);
-  await save({ theme: v });
-});
-
-// source radios <-> hidden select 同期（既存コード互換のため #source を引き続き参照）
-document.querySelectorAll("input[name=sourceKind]").forEach(r => {
-  r.addEventListener("change", async (e) => {
-    if (!e.target.checked) return;
-    $("#source").value = e.target.value;
-    await save({ source: e.target.value });
-  });
-});
-
-// ====== 貼り付け欄の自動表示 ======
-function updatePasteBox() {
-  const kind = $("#source").value; // radios と同期済みの hidden select
+// ====== 貼り付け欄の表示/非表示 ======
+function updatePasteBox(forceKind) {
   const box = $("#pasteBox");
-  if (box) box.hidden = (kind !== "textarea");
+  const ta  = $("#manualInput");
+  if (!box || !ta) return;
+
+  const kind = (forceKind !== undefined ? forceKind : $("#source").value);
+  const show = (kind === "textarea");
+
+  if (show) {
+    box.removeAttribute("hidden");     // hidden 属性を必ず外す
+    box.style.display = "block";       // 念のため display も明示
+    ta.style.display = "block";
+  } else {
+    box.setAttribute("hidden", "");
+    box.style.display = "none";
+    ta.style.display = "none";
+  }
 }
 
-// 既存の radios の change に追記する場合でもOKですが、独立で動かすならこう：
-document.querySelectorAll("input[name=sourceKind]").forEach(r => {
-  r.addEventListener("change", async () => updatePasteBox());
-});
+// ====== 初期に貼り付け欄を開く（テキストが入っていたら） ======
+function initPasteBoxDefault() {
+  const ta = $("#manualInput");
+  if (!ta) return;
 
-// ページ初期化時にも反映
-updatePasteBox();
+  if (ta.value && ta.value.trim().length > 0) {
+    $("#source").value = "textarea";
+    const r = document.querySelector('input[name="sourceKind"][value="textarea"]');
+    if (r) r.checked = true;
+  }
+  updatePasteBox();
+}
+
+// ====== 初期化 ======
+async function init() {
+  applyI18n();
+  applyI18nTitle();
+
+  // 1) 設定読込を待つ（ここが重要）
+  await load();
+
+  // 2) イベントを設定
+  ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
+    $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
+  });
+  [["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
+    .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
+  ["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
+
+  // theme select
+  $("#theme").addEventListener("change", async (e) => {
+    const v = e.target.value;
+    applyTheme(v);
+    await save({ theme: v });
+  });
+
+  // source radios <-> hidden select 同期
+  document.querySelectorAll('input[name="sourceKind"]').forEach(r => {
+    r.addEventListener("change", async (e) => {
+      if (!e.target.checked) return;
+      const v = e.target.value;           // "clipboard" | "textarea"
+      $("#source").value = v;             // hidden select を同期
+      await save({ source: v });
+      updatePasteBox(v);
+    });
+  });
+
+  // 3) 表示反映（ロード後に実行するのがポイント）
+  updatePasteBox();
+  initPasteBoxDefault();   // テキストが入っていれば textarea を選択＆表示
+
+  // デバッグしたい場合は下を一時的に有効化：
+  // console.debug("init source=", $("#source").value,
+  //               "radio=", document.querySelector('input[name="sourceKind"]:checked')?.value);
+}
+
+// DOM 準備後に初期化
+document.addEventListener("DOMContentLoaded", init);
 
 // ========== Core: Tabs fetch & filters ==========
 function wildcardToRegExp(pattern) {
@@ -205,7 +242,6 @@ function formatLine(tab, cfg, idx) {
   const d = new Date();
   const localDate = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   const localTime = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-  const du = new Date(d.getTime() + d.getTimezoneOffset() * 60000);
   const utcDate = `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
   const utcTime = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
 
@@ -305,27 +341,20 @@ function extractByFormat(fmt, text, tpl) {
     while ((m = r.exec(text)) !== null) addIf(m[1]);
   } else if (fmt === "jsonl") {
     text.split(/\r?\n/).forEach(line => {
-      try {
-        const obj = JSON.parse(line);
-        addIf(obj.url);
-      } catch {}
+      try { const obj = JSON.parse(line); addIf(obj.url); } catch {}
     });
   } else if (fmt === "custom") {
     // very simple templated regex: replace $url with capture, other $tokens with non-greedy
-    // escape everything else
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     let pat = esc(tpl || "[$title]($url)");
-    // other known tokens -> non-greedy match
     const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
-    // $url -> capture
     pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
     try {
       const re = new RegExp(pat, "gi");
       let m;
       while ((m = re.exec(text)) !== null) addIf(m[1]);
     } catch {
-      // fallback to smart on invalid regex build
       return extractUrlsSmart(text);
     }
   }

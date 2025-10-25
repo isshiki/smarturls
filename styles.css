@@ -116,6 +116,25 @@ input[type="number"]{ -moz-appearance:textfield; }
 /* Details */
 details.block > summary{ cursor:pointer; list-style:none; font-weight:700; }
 details.block > summary::-webkit-details-marker{ display:none; }
+/* details の開閉インジケータ（▲▼） */
+details.block > summary{
+  position: relative;
+  padding-right: 20px;  /* 右に余白を確保 */
+}
+details.block > summary::after{
+  content: "▼";
+  position: absolute;
+  right: 2px;
+  top: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1;
+}
+details.block[open] > summary::after{
+  content: "▲";
+}
+
+#pasteBox textarea { display:block; }
 
 /* Footer */
 .footer{ display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:10px; color: var(--muted); font-size:12px; }

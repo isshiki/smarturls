@@ -117,12 +117,12 @@
 
         <!-- ソース（ラジオ） -->
         <div class="field">
-          <label class="label">Source</label>
+          <label class="label" data-i18n="source_label">Source</label>
           <div class="radios">
             <label><input type="radio" name="sourceKind" value="clipboard" checked />
               <span data-i18n="src_clipboard">Clipboard</span></label>
             <label><input type="radio" name="sourceKind" value="textarea" />
-              <span data-i18n="src_textarea">Textarea (fallback)</span></label>
+              <span data-i18n="src_textarea">Paste text</span></label>
           </div>
           <select id="source" hidden>
             <option value="clipboard">Clipboard</option>
@@ -146,7 +146,8 @@
 
         <div id="pasteBox" class="field" hidden>
           <label class="label" data-i18n="textarea_label">Paste text</label>
-          <textarea id="manualInput" placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
+          <textarea id="manualInput"
+            placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
         </div>
 
       </section>
@@ -172,7 +173,7 @@
   </div>
 
   <footer class="footer">
-    <a id="issues" href="https://github.com/isshiki/smarturls/issues" target="_blank" rel="noreferrer">
+    <a id="issues" href="https://github.com/isshiki/smarturls/issues" target="_blank" rel="noreferrer" data-i18n="report_bug">
       Report a bug
     </a>
   </footer>

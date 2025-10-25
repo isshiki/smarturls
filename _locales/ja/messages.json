@@ -1,33 +1,46 @@
 {
-  "appName": { "message": "SmartURLs - URLをコピー＆オープン" },
-  "appDesc": { "message": "タブのURL（オプションでタイトル付き）をMarkdown、HTML、TSV、JSON、またはカスタム形式でコピーできます。逆にテキストやクリップボードからURLを開くことも可能です。Smart Parserモードにより、形式を自動検出して正しく開きます。" },
-  "subtitle": { "message": "URLのコピー＆オープン" },
-  "copy_btn": { "message": "コピー" },
-  "open_btn": { "message": "オープン" },
-  "src_clipboard": { "message": "クリップボード" },
-  "src_textarea": { "message": "テキストエリア" },
-  "scope_current": { "message": "現在のウィンドウ" },
-  "scope_all": { "message": "全ウィンドウ" },
-  "opt_dedup": { "message": "重複URLを除外" },
-  "opt_http": { "message": "http/httpsのみ" },
-  "opt_nopinned": { "message": "ピン留めを除外" },
-  "advanced": { "message": "詳細設定" },
-  "custom_tpl_label": { "message": "カスタムテンプレート" },
-  "custom_tpl_tokens": { "message": "利用可能: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "exclude_label": { "message": "除外パターン" },
-  "sort_label": { "message": "並び替え" },
-  "sort_natural": { "message": "現在の順序" },
-  "sort_desc": { "message": "降順" },
-  "confirm_label": { "message": "N件を超える場合に確認" },
-  "textarea_label": { "message": "テキストエリア" },
-  "copied_n": { "message": "コピーしました：" },
-  "copy_failed": { "message": "コピーに失敗しました" },
-  "opened_n": { "message": "オープンしました：" },
-  "open_failed": { "message": "オープンに失敗しました" },
-  "empty_clip": { "message": "クリップボードが空です" },
-  "no_urls": { "message": "URLが見つかりません" },
-  "confirm_many": { "message": "大量のタブを開きます。続行しますか？" },
-  "exclude_hint": { "message": "パターンは1行に1つ（改行で区切ります）。ワイルドカードは * のみ使用できます。例: https://chatgpt.com/c/*" },
-  "filters_title": { "message": "フィルター" },
-  "opt_nopinned_hint": { "message": "ブラウザでピン留めされているタブをスキップします。" }
+  "appName":        { "message": "SmartURLs - URLをコピー＆オープン" },
+  "appDesc":        { "message": "タブのURL（オプションでタイトル付き）をMarkdown、HTML、TSV、JSON、またはカスタム形式でコピーできます。逆にテキストやクリップボードからURLを開くことも可能です。Smart Parserモードにより、形式を自動検出して正しく開きます。" },
+  "subtitle":       { "message": "URLのコピー＆オープン" },
+
+  "copy_btn":       { "message": "コピー" },
+  "open_btn":       { "message": "オープン" },
+
+  "source_label":   { "message": "取り込み元" },
+  "src_clipboard":  { "message": "クリップボード" },
+  "src_textarea":   { "message": "テキストを貼り付け" },
+
+  "scope_current":  { "message": "現在のウィンドウ" },
+  "scope_all":      { "message": "全ウィンドウ" },
+
+  "opt_dedup":      { "message": "重複URLを除外" },
+  "opt_http":       { "message": "http/httpsのみ" },
+  "opt_nopinned":   { "message": "ピン留めを除外" },
+  "opt_nopinned_hint": { "message": "ブラウザでピン留めされているタブをスキップします。" },
+
+  "advanced":       { "message": "詳細設定" },
+  "filters_title":  { "message": "フィルター" },
+
+  "custom_tpl_label":   { "message": "カスタムテンプレート" },
+  "custom_tpl_tokens":  { "message": "利用可能: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "exclude_label":  { "message": "除外パターン" },
+  "exclude_hint":   { "message": "パターンは1行に1つ（改行で区切ります）。ワイルドカードは * のみ使用できます。例: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "並び替え" },
+  "sort_natural":   { "message": "現在の順序" },
+  "sort_desc":      { "message": "降順" },
+
+  "confirm_label":  { "message": "N件を超える場合に確認" },
+  "textarea_label": { "message": "テキストを貼り付け" },
+
+  "copied_n":       { "message": "コピーしました: " },
+  "copy_failed":    { "message": "コピーに失敗しました" },
+  "opened_n":       { "message": "オープンしました: " },
+  "open_failed":    { "message": "オープンに失敗しました" },
+  "empty_clip":     { "message": "クリップボードが空です" },
+  "no_urls":        { "message": "URLが見つかりません" },
+  "confirm_many":   { "message": "大量のタブを開きます。続行しますか？" },
+
+  "report_bug":     { "message": "不具合を報告" }
 }

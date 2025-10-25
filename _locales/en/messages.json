@@ -1,33 +1,46 @@
 {
-  "appName": { "message": "SmartURLs - Copy and Open URLs" },
-  "appDesc": { "message": "Copy all URLs (with titles) as Markdown, HTML, TSV, JSON, or custom text. It also works the other way around — opening URLs from text or the clipboard, where Smart Parser mode automatically detects any format." },
-  "subtitle": { "message": "Copy & Open URLs" },
-  "copy_btn": { "message": "Copy" },
-  "open_btn": { "message": "Open" },
-  "src_clipboard": { "message": "Clipboard" },
-  "src_textarea": { "message": "Textarea" },
-  "scope_current": { "message": "Current window" },
-  "scope_all": { "message": "All windows" },
-  "opt_dedup": { "message": "Remove duplicates" },
-  "opt_http": { "message": "http/https only" },
-  "opt_nopinned": { "message": "Exclude pinned tabs" },
-  "advanced": { "message": "Advanced" },
-  "custom_tpl_label": { "message": "Custom template" },
-  "custom_tpl_tokens": { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "exclude_label": { "message": "Exclude patterns" },
-  "sort_label": { "message": "Sort by" },
-  "sort_natural": { "message": "Current order" },
-  "sort_desc": { "message": "Desc" },
-  "confirm_label": { "message": "Confirm if more than N tabs" },
-  "textarea_label": { "message": "Textarea" },
-  "copied_n": { "message": "Copied " },
-  "copy_failed": { "message": "Copy failed" },
-  "opened_n": { "message": "Opened " },
-  "open_failed": { "message": "Open failed" },
-  "empty_clip": { "message": "Clipboard is empty" },
-  "no_urls": { "message": "No URLs found" },
-  "confirm_many": { "message": "Open many tabs?" },
-  "exclude_hint": { "message": "Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*" },
-  "filters_title": { "message": "Filters" },
-  "opt_nopinned_hint": { "message": "Skip tabs that are pinned in the browser." }
+  "appName":        { "message": "SmartURLs - Copy and Open URLs" },
+  "appDesc":        { "message": "Copy all URLs (with titles) as Markdown, HTML, TSV, JSON, or custom text. It also works the other way around — opening URLs from text or the clipboard, where Smart Parser mode automatically detects any format." },
+  "subtitle":       { "message": "Copy & Open URLs" },
+
+  "copy_btn":       { "message": "Copy" },
+  "open_btn":       { "message": "Open" },
+
+  "source_label":   { "message": "Source" },
+  "src_clipboard":  { "message": "Clipboard" },
+  "src_textarea":   { "message": "Paste text" },
+
+  "scope_current":  { "message": "Current window" },
+  "scope_all":      { "message": "All windows" },
+
+  "opt_dedup":      { "message": "Remove duplicates" },
+  "opt_http":       { "message": "http/https only" },
+  "opt_nopinned":   { "message": "Exclude pinned tabs" },
+  "opt_nopinned_hint": { "message": "Skip tabs that are pinned in the browser." },
+
+  "advanced":       { "message": "Advanced" },
+  "filters_title":  { "message": "Filters" },
+
+  "custom_tpl_label":   { "message": "Custom template" },
+  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+
+  "exclude_label":  { "message": "Exclude patterns" },
+  "exclude_hint":   { "message": "Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*" },
+
+  "sort_label":     { "message": "Sort by" },
+  "sort_natural":   { "message": "Current order" },
+  "sort_desc":      { "message": "Desc" },
+
+  "confirm_label":  { "message": "Confirm if more than N tabs" },
+  "textarea_label": { "message": "Paste text" },
+
+  "copied_n":       { "message": "Copied " },
+  "copy_failed":    { "message": "Copy failed" },
+  "opened_n":       { "message": "Opened " },
+  "open_failed":    { "message": "Open failed" },
+  "empty_clip":     { "message": "Clipboard is empty" },
+  "no_urls":        { "message": "No URLs found" },
+  "confirm_many":   { "message": "Open many tabs?" },
+
+  "report_bug":     { "message": "Report a bug" }
 }
