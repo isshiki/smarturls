@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartURLs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>SmartURLs</h1>
+    <p class="subtitle" data-i18n="subtitle">Copy & Open URLs</p>
+  </header>
+
+  <section class="row">
+    <button id="btnCopy" data-i18n="copy_btn">Copy</button>
+    <select id="fmt">
+      <option value="md">Markdown [title](url)</option>
+      <option value="url">URL Only</option>
+      <option value="tsv">TSV: title\turl</option>
+      <option value="html">HTML &lt;a href&gt;</option>
+      <option value="jsonl">JSON Lines</option>
+      <option value="custom">Custom template…</option>
+    </select>
+  </section>
+
+  <section class="row">
+    <button id="btnOpen" data-i18n="open_btn">Open</button>
+    <select id="source">
+      <option value="clipboard" data-i18n="src_clipboard">Clipboard</option>
+      <option value="textarea" data-i18n="src_textarea">Textarea (Advanced)</option>
+    </select>
+  </section>
+
+  <section class="scope">
+    <label><input type="radio" name="scope" value="current" checked /> <span data-i18n="scope_current">Current window</span></label>
+    <label><input type="radio" name="scope" value="all" /> <span data-i18n="scope_all">All windows</span></label>
+  </section>
+
+  <section class="checks">
+    <label><input type="checkbox" id="chkDedup" checked /> <span data-i18n="opt_dedup">Remove duplicates</span></label>
+    <label><input type="checkbox" id="chkHttp" checked /> <span data-i18n="opt_http">http/https only</span></label>
+    <label><input type="checkbox" id="chkNoPinned" /> <span data-i18n="opt_nopinned">Exclude pinned tabs</span></label>
+    <label><input type="checkbox" id="chkExclude" /> <span data-i18n="opt_exclude">Apply exclude patterns</span></label>
+  </section>
+
+  <details id="adv">
+    <summary data-i18n="advanced">Advanced</summary>
+
+    <div class="field">
+      <label data-i18n="custom_tpl_label">Custom template</label>
+      <input id="tpl" type="text" placeholder="[$title]($url)" />
+      <p class="hint" data-i18n="custom_tpl_tokens">Tokens: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)</p>
+    </div>
+
+    <div class="field">
+      <label data-i18n="exclude_label">Exclude patterns (one per line, * and ? supported)</label>
+      <textarea id="excludeList" placeholder="https://chatgpt.com/c/*&#10;https://*.google.com/*"></textarea>
+    </div>
+
+    <div class="field">
+      <label data-i18n="sort_label">Sort by</label>
+      <select id="sort">
+        <option value="natural" data-i18n="sort_natural">Current order</option>
+        <option value="title">Title</option>
+        <option value="url">URL</option>
+        <option value="domain">Domain</option>
+      </select>
+      <label class="inline"><input type="checkbox" id="desc" /> <span data-i18n="sort_desc">Desc</span></label>
+    </div>
+
+    <div class="field">
+      <label data-i18n="confirm_label">Confirm if more than N tabs</label>
+      <input id="openLimit" type="number" min="1" value="30" />
+    </div>
+
+    <div class="field">
+      <label data-i18n="textarea_label">Textarea (fallback)</label>
+      <textarea id="manualInput" placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
+    </div>
+  </details>
+
+  <div id="toast"></div>
+
+  <footer>
+    <a id="gh" href="https://github.com/isshiki/smarturls" target="_blank" rel="noreferrer">GitHub</a>
+    <span>•</span>
+    <a id="issues" href="https://github.com/isshiki/smarturls/issues" target="_blank" rel="noreferrer">Issues</a>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
