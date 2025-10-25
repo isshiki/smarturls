@@ -13,6 +13,14 @@ function applyI18n() {
 }
 applyI18n();
 
+function applyI18nTitle() {
+  document.querySelectorAll("[data-i18n-title]").forEach(el => {
+    const key = el.getAttribute("data-i18n-title");
+    el.title = t(key, el.title);
+  });
+}
+applyI18nTitle();
+
 // ========== UI Helpers ==========
 const $ = (sel) => document.querySelector(sel);
 const toast = (msg, ok = true) => {
@@ -31,8 +39,7 @@ const defaults = {
   dedup: true,
   httpOnly: true,
   noPinned: false,
-  excludeOn: false,
-  excludeList: "https://chatgpt.com/c/*",
+  excludeList: "https://example.com/path/*",
   sort: "natural",
   desc: false,
   openLimit: 30
@@ -47,7 +54,6 @@ async function load() {
   $("#chkDedup").checked = cfg.dedup;
   $("#chkHttp").checked = cfg.httpOnly;
   $("#chkNoPinned").checked = cfg.noPinned;
-  $("#chkExclude").checked = cfg.excludeOn;
   $("#excludeList").value = cfg.excludeList;
   $("#sort").value = cfg.sort;
   $("#desc").checked = cfg.desc;
@@ -60,16 +66,16 @@ load();
 ["fmt","tpl","source","sort","openLimit"].forEach(id => {
   $( "#" + id ).addEventListener("change", e => save({[id]: e.target.value}));
 });
-[["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["chkExclude","excludeOn"],["desc","desc"]]
+[["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
   .forEach(([id,key]) => $( "#" + id ).addEventListener("change", e => save({[key]: e.target.checked})));
 ["excludeList"].forEach(id => $( "#" + id ).addEventListener("input", e => save({[id]: e.target.value})));
 document.querySelectorAll("input[name=scope]").forEach(r => r.addEventListener("change", e => save({scope: e.target.value})));
 
 // ========== Core: Tabs fetch & filters ==========
 function wildcardToRegExp(pattern) {
-  // escape regex special, then * -> .*, ? -> .
+  // escape regex special, then * -> .*
   const esc = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&")
-                     .replace(/\*/g, ".*").replace(/\?/g, ".");
+                     .replace(/\*/g, ".*");
   return new RegExp("^" + esc + "$", "i");
 }
 
@@ -161,7 +167,8 @@ $("#btnCopy").addEventListener("click", async () => {
     let tabs = await fetchTabs(cfg.scope, { httpOnly: cfg.httpOnly, noPinned: cfg.noPinned });
     if (cfg.dedup) tabs = uniqueByUrl(tabs);
     tabs = sortTabs(tabs, cfg.sort, cfg.desc);
-    if (cfg.excludeOn) tabs = tabs.filter(t => !excludeFilter(t.url, cfg.excludeList));
+    const ex = (cfg.excludeList || "").trim();
+    if (ex) tabs = tabs.filter(t => !excludeFilter(t.url, ex));
     const lines = tabs.map((t, i) => formatLine(t, cfg, i));
     await navigator.clipboard.writeText(lines.join("\n"));
     toast(t("copied_n", "Copied ") + `${lines.length}`);
@@ -227,7 +234,8 @@ $("#btnOpen").addEventListener("click", async () => {
       if (!text) { toast(t("empty_clip","Clipboard is empty"), false); return; }
     }
     let urls = extractUrls(text);
-    if (cfg.excludeOn) urls = urls.filter(u => !excludeFilter(u, cfg.excludeList));
+    const ex = (cfg.excludeList || "").trim();
+    if (ex) urls = urls.filter(u => !excludeFilter(u, ex));
     if (cfg.httpOnly) urls = urls.filter(u => /^https?:\/\//i.test(u));
     if (cfg.dedup) urls = Array.from(new Set(urls));
     if (urls.length === 0) { toast(t("no_urls","No URLs found"), false); return; }
@@ -240,8 +248,14 @@ $("#btnOpen").addEventListener("click", async () => {
     chrome.runtime.sendMessage(
       { type: "OPEN_URLS", urls, limit },
       (res) => {
-        if (res?.ok) toast(t("opened_n","Opened ") + `${res.opened}`);
-        else toast(t("open_failed","Open failed"), false);
+        if (chrome.runtime.lastError) {
+          toast(t("open_failed","Open failed") + ": " + chrome.runtime.lastError.message, false);
+        } else if (res?.ok) {
+          toast(t("opened_n","Opened ") + `${res.opened}`);
+        } else {
+          const error = res?.error || "Unknown error";
+          toast(t("open_failed","Open failed") + ": " + error, false);
+        }
       }
     );
   } catch (e) {

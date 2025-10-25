@@ -12,8 +12,18 @@
     <p class="subtitle" data-i18n="subtitle">Copy & Open URLs</p>
   </header>
 
-  <section class="row">
-    <button id="btnCopy" data-i18n="copy_btn">Copy</button>
+  <div class="actions-grid">
+    <section class="row">
+      <button id="btnCopy" data-i18n="copy_btn">📋 Copy</button>
+    </section>
+
+    <section class="row">
+      <button id="btnOpen" data-i18n="open_btn">🚀 Open</button>
+    </section>
+  </div>
+
+  <section class="block copy-options">
+    <p class="caption">Copy Format</p>
     <select id="fmt">
       <option value="md">Markdown [title](url)</option>
       <option value="url">URL Only</option>
@@ -22,10 +32,16 @@
       <option value="jsonl">JSON Lines</option>
       <option value="custom">Custom template…</option>
     </select>
+
+    <div class="field">
+      <label data-i18n="custom_tpl_label">Custom template</label>
+      <input id="tpl" type="text" placeholder="[$title]($url)" />
+      <p class="hint" data-i18n="custom_tpl_tokens">Tokens: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)</p>
+    </div>
   </section>
 
-  <section class="row">
-    <button id="btnOpen" data-i18n="open_btn">Open</button>
+  <section class="block open-options">
+    <p class="caption">Source</p>
     <select id="source">
       <option value="clipboard" data-i18n="src_clipboard">Clipboard</option>
       <option value="textarea" data-i18n="src_textarea">Textarea (Advanced)</option>
@@ -37,25 +53,20 @@
     <label><input type="radio" name="scope" value="all" /> <span data-i18n="scope_all">All windows</span></label>
   </section>
 
-  <section class="checks">
+  <section class="block filters">
+    <p class="caption">Filters</p>
     <label><input type="checkbox" id="chkDedup" checked /> <span data-i18n="opt_dedup">Remove duplicates</span></label>
     <label><input type="checkbox" id="chkHttp" checked /> <span data-i18n="opt_http">http/https only</span></label>
-    <label><input type="checkbox" id="chkNoPinned" /> <span data-i18n="opt_nopinned">Exclude pinned tabs</span></label>
-    <label><input type="checkbox" id="chkExclude" /> <span data-i18n="opt_exclude">Apply exclude patterns</span></label>
+    <label><input type="checkbox" id="chkNoPinned" /> <span data-i18n="opt_nopinned" data-i18n-title="opt_nopinned_hint">Exclude pinned tabs</span></label>
   </section>
 
   <details id="adv">
     <summary data-i18n="advanced">Advanced</summary>
 
     <div class="field">
-      <label data-i18n="custom_tpl_label">Custom template</label>
-      <input id="tpl" type="text" placeholder="[$title]($url)" />
-      <p class="hint" data-i18n="custom_tpl_tokens">Tokens: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)</p>
-    </div>
-
-    <div class="field">
       <label data-i18n="exclude_label">Exclude patterns (one per line, * and ? supported)</label>
-      <textarea id="excludeList" placeholder="https://chatgpt.com/c/*&#10;https://*.google.com/*"></textarea>
+      <textarea id="excludeList" placeholder="https://example.com/path/*"></textarea>
+      <p class="hint" data-i18n="exclude_hint">Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*</p>
     </div>
 
     <div class="field">
