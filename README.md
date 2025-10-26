@@ -58,6 +58,7 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 | Version | Date       | Notes                  |
 | ------- | ---------- | ---------------------- |
+| 1.0.1   | 2025-10-26 | Fixed $date(utc) and $time(utc) template tokens |
 | 1.0.0   | 2025-10-26 | Initial public release |
 
 ---
