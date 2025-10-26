@@ -113,6 +113,18 @@ SmartURLs can be tested locally before publishing to the Chrome Web Store.
 🗒 **Tip:**
 Always test the ZIP version before submitting — this ensures that `manifest.json` and folder paths are correctly packaged.
 
+### 📤 To Publish
+
+If you plan to publish or update the extension:
+
+1. Go to the [Chrome Web Store Developer Console](https://chrome.google.com/webstore/devconsole/)
+2. Upload your `.zip` package built from the project folder
+3. Fill out the metadata (name, description, screenshots, etc.)
+4. Submit for review
+
+🗒 **Tip:**
+Use the same version number as in `manifest.json` before uploading.
+
 ---
 
 ## ⚖️ License

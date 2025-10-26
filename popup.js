@@ -297,7 +297,9 @@ function formatLine(tab, cfg, idx) {
           : cfg.fmt === "jsonl" ? "{\"title\":\"$title\",\"url\":\"$url\"}"
           : (cfg.tpl || "[$title]($url)");
 
-  Object.entries(tokens).forEach(([k,v]) => { tpl = tpl.split(k).join(v); });
+  Object.entries(tokens)
+    .sort(([a], [b]) => b.length - a.length) // 長いキーから順に処理
+    .forEach(([k,v]) => { tpl = tpl.split(k).join(v); });
   return tpl;
 }
 
