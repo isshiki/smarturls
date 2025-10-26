@@ -1,6 +1,5 @@
 /*!
- * SmartURLs - Service Worker (sw.js)
- * Purpose: Open a (sanitized, rate-limited) list of URLs in background tabs.
+ * SmartURLs Service Worker (sw.js) - Open a (sanitized, rate-limited) list of URLs in background tabs
  *
  * Notes:
  * - Manifest V3 service worker context.

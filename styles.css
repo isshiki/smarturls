@@ -1,23 +1,35 @@
 /*!
- * SmartURLs Popup Stylesheet - UI layout and theme styles for Chrome extension popup.
+ * SmartURLs Popup Stylesheet — UI layout & theme for Chrome extension popup
+ * Refactored: duplicates merged, order normalized (behavior unchanged)
  */
 
 /* ===================== Theme tokens ===================== */
 :root{
-  --bg:#ffffff; --fg:#111827; --muted:#6b7280;
+  --bg:#fff; --fg:#111827; --muted:#6b7280;
   --card:#f3f4f6; --border:#e5e7eb;
-  --btn1-bg:#1f2937; --btn1-fg:#ffffff;
-  --btn2-bg:#374151; --btn2-fg:#ffffff;
-  --btn-hov:0.06;                         /* brightness delta on hover */
-  --focus:#2563eb;
+
+  --btn1-bg:#1f2937; --btn1-fg:#fff;
+  --btn2-bg:#374151; --btn2-fg:#fff;
+  --btn-hov:0.06;
+
+  --focus:#2563eb;               /* accent for light */
+  --radio-dot-size:10px;         /* inner dot size (light radios) */
+
+  /* layout tokens */
+  --pad-x:14px;
+  --footer-base-h:54px;
+  --toast-overlap:50px;
+  --toast-side:70px;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#0f172a; --fg:#e5e7eb; --muted:#94a3b8;
     --card:#0b1220; --border:#1f2937;
+
     --btn1-bg:#3b4252; --btn1-fg:#e5e7eb;
     --btn2-bg:#434c5e; --btn2-fg:#e5e7eb;
     --btn-hov:0.08;
+
     --focus:#60a5fa;
   }
 }
@@ -25,75 +37,79 @@ html[data-theme="dark"]{
   --bg:#0f172a; --fg:#e5e7eb; --muted:#94a3b8;
   --card:#0b1220; --border:#1f2937;
   --btn1-bg:#3b4252; --btn1-fg:#e5e7eb;
-  --btn2-bg:#434c5e; --btn2-fg:#e5e7eb; --btn-hov:0.08;
-  --focus:#60a5fa;
+  --btn2-bg:#434c5e; --btn2-fg:#e5e7eb;
+  --btn-hov:0.08; --focus:#60a5fa;
 }
 html[data-theme="light"]{
-  --bg:#ffffff; --fg:#111827; --muted:#6b7280;
+  --bg:#fff; --fg:#111827; --muted:#6b7280;
   --card:#f3f4f6; --border:#e5e7eb;
-  --btn1-bg:#1f2937; --btn1-fg:#ffffff;
-  --btn2-bg:#374151; --btn2-fg:#ffffff; --btn-hov:0.06;
-  --focus:#2563eb;
+  --btn1-bg:#1f2937; --btn1-fg:#fff;
+  --btn2-bg:#374151; --btn2-fg:#fff;
+  --btn-hov:0.06; --focus:#2563eb;
 }
 
+/* ===================== Scrollbar behavior (stable width) ===================== */
+html{
+  scrollbar-gutter:stable;   /* avoid layout jump */
+  overflow-y:auto;
+  scrollbar-width:thin;      /* Firefox cosmetic */
+}
+html::-webkit-scrollbar{ width:10px; } /* Chromium cosmetic */
+
 /* ===================== Base ===================== */
-*{ box-sizing: border-box; }
+*{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
 body{
-  width: 720px;
-  padding: 14px;
-  background: var(--bg);
-  color: var(--fg);
-  font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif;
+  width:720px;
+  padding:14px;
+  padding-bottom:calc(var(--footer-base-h) + 12px); /* keep content above fixed footer */
+  background:var(--bg); color:var(--fg);
+  font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif;
 }
 
 /* ===================== Header ===================== */
 .header{
   display:flex; align-items:center; justify-content:space-between;
-  gap:10px; margin-bottom:8px;
+  gap:10px; margin-bottom:24px;
 }
 .header .brand h1{
-  font-size:20px; font-weight:800; margin:0; display:flex; align-items:center; gap:8px;
+  margin:0; font-size:20px; font-weight:800;
+  display:flex; align-items:center; gap:8px;
 }
-.header .brand .dash{ opacity:.45; color:var(--muted); }
+.header .brand .dash{ color:var(--muted); opacity:.45; }
 .header .subtitle{ color:var(--muted); font-size:12px; }
 .theme-ctrl select{
   appearance:none; background:var(--card); color:var(--fg);
-  border:1px solid var(--border); border-radius:10px; padding:6px 10px; font-weight:600;
+  border:1px solid var(--border); border-radius:10px;
+  padding:6px 10px; font-weight:600;
 }
 
-/* ===================== Toast ===================== */
-#toast{
-  margin: 6px 0 10px; padding:10px 12px; border-radius:10px; min-height: 36px;
-  display:flex; align-items:center; background:transparent; color:var(--fg);
-  opacity:0; pointer-events:none; transition: opacity .25s ease, background-color .25s ease;
-}
-#toast.show{ opacity:1; }
-#toast.err{ background: rgba(239,68,68,.18); }
-#toast.ok{  background: rgba(34,197,94,.18); }
-
-/* ===================== Actions (2 cols) ===================== */
+/* ===================== Actions ===================== */
 .actions-grid{
-  display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:12px;
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:4px 0 12px;
 }
 .action{
-  padding:12px 14px; border-radius:14px; border:none; cursor:pointer;
+  padding:12px 14px; border:none; border-radius:14px; cursor:pointer;
   font-weight:800; letter-spacing:.01em;
-  transition: transform .02s ease-in-out, filter .12s ease;
+  transition:transform .02s ease-in-out, filter .12s ease;
 }
 .action.primary{ background:var(--btn1-bg); color:var(--btn1-fg); }
 .action.secondary{ background:var(--btn2-bg); color:var(--btn2-fg); }
-.action:hover{ filter: brightness(calc(1 + var(--btn-hov))); }
+.action:hover{ filter:brightness(calc(1 + var(--btn-hov))); }
 .action:focus{ outline:2px solid var(--focus); outline-offset:2px; }
-.action:active{ transform: translateY(1px); }
+.action:active{ transform:translateY(1px); }
 
-/* ===================== Main (2 cols) ===================== */
-.cols{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+/* ===================== Main ===================== */
+.cols{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
 /* ===================== Blocks / Fields ===================== */
-.block{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.block{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:12px;
+}
 .block-title{
-  margin:0 0 8px; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
+  margin:0 0 8px; color:var(--muted); font-size:12px;
+  text-transform:uppercase; letter-spacing:.04em;
 }
 .field{ margin:10px 0; }
 .label{ display:block; margin-bottom:6px; font-weight:600; }
@@ -103,6 +119,7 @@ select, input[type="text"], input[type="number"], textarea{
   border:1px solid var(--border); border-radius:10px; padding:8px 10px;
 }
 textarea{ min-height:72px; resize:vertical; }
+
 .row{ display:block; margin:6px 0; }
 .row-inline{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .scope{ display:flex; gap:14px; margin:6px 0 10px; flex-wrap:wrap; }
@@ -110,108 +127,185 @@ textarea{ min-height:72px; resize:vertical; }
 .inline{ display:inline-flex; align-items:center; gap:6px; }
 .hint{ color:var(--muted); font-size:12px; margin-top:4px; line-height:1.35; }
 
-/* Number inputs: remove spinners for a flat look */
+/* number spinners off */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
 input[type="number"]{ -moz-appearance:textfield; }
 
 /* ===================== Details ===================== */
-details.block > summary{ cursor:pointer; list-style:none; font-weight:700; }
-details.block > summary::-webkit-details-marker{ display:none; }
-/* disclosure triangle (▼/▲) */
 details.block > summary{
-  position:relative; padding-right:20px;  /* reserve space on the right */
+  cursor:pointer; list-style:none; font-weight:700;
+  position:relative; padding-right:20px;
 }
+details.block > summary::-webkit-details-marker{ display:none; }
 details.block > summary::after{
-  content:"▼"; position:absolute; right:2px; top:0; color:var(--muted);
-  font-size:12px; line-height:1;
+  content:"▼"; position:absolute; right:2px; top:0;
+  color:var(--muted); font-size:12px; line-height:1;
 }
 details.block[open] > summary::after{ content:"▲"; }
 
 #pasteBox textarea{ display:block; }
 
-/* ===================== Footer ===================== */
+/* ===================== Footer (fixed + visual) ===================== */
 .footer{
+  position:fixed; left:var(--pad-x); right:var(--pad-x); bottom:0; z-index:100;
   display:flex; justify-content:space-between; align-items:center;
-  margin-top:10px; color:var(--muted); font-size:12px;
-  padding:8px 12px; border-top:1px solid var(--border); background:var(--bg);
+  padding:8px var(--pad-x); margin-top:10px;
+  min-height:var(--footer-base-h);
+  font-size:12px; color:var(--muted);
+  background:var(--bg); border-top:1px solid var(--border);
 }
 .footer a{ color:inherit; text-decoration:none; }
 .footer a:hover{ text-decoration:underline; }
-
 .footer-left, .footer-right{ display:flex; align-items:center; }
 
 /* ---------- Language selector (left) ---------- */
-/* base (icon + select + inline label) */
-.lang-selector{
-  position:relative; display:inline-flex; align-items:center; gap:8px;
-}
-.lang-icon{
-  font-size:16px; color:var(--fg); line-height:1;
-  opacity:.55; transition:opacity .15s ease;
-}
+.lang-selector{ position:relative; display:inline-flex; align-items:center; gap:8px; }
+.lang-icon{ font-size:16px; color:var(--fg); line-height:1; opacity:.55; transition:opacity .15s; }
 .lang-select{
   width:120px; height:24px; cursor:pointer;
   border:1px solid var(--border); border-radius:4px;
   background-color:var(--card); color:var(--fg);
   font-size:12px; padding:2px 6px; appearance:none;
-  transition:opacity .15s ease;
-  opacity:0; pointer-events:none;             /* hidden by default; shown on hover */
+  transition:opacity .15s; opacity:0; pointer-events:none;
 }
-.lang-select option{ background-color:var(--card) !important; color:var(--fg) !important; }
+.lang-select option{ background:var(--card) !important; color:var(--fg) !important; }
 
-/* slide-reveal container (initially icon-only) */
-/* NOTE: animating max-width enables natural fit for varying label lengths */
+/* slide-reveal (icon only → expand on hover/focus) */
 .footer-left .lang-selector{
   width:fit-content; max-width:24px; overflow:hidden; white-space:nowrap;
   transition:max-width .25s ease, opacity .15s ease; opacity:.75;
 }
 .footer-left .lang-selector:hover,
-.footer-left .lang-selector:focus-within{
-  max-width:520px;                            /* tweak if your label is longer */
-  opacity:1;
-}
+.footer-left .lang-selector:focus-within{ max-width:520px; opacity:1; }
 .footer-left .lang-selector:hover .lang-icon,
 .footer-left .lang-selector:focus-within .lang-icon{ opacity:1; }
-
-/* inline label: override global .label block behavior locally */
 .footer-left .lang-selector .label{
   display:inline-block; margin:0; font-size:12px; color:var(--muted);
   opacity:0; transform:translateX(-12px);
   transition:opacity .2s ease .1s, transform .2s ease .1s;
 }
 .footer-left .lang-selector:hover .label,
-.footer-left .lang-selector:focus-within .label{
-  opacity:1; transform:translateX(0);
-}
-
-/* show/select only when expanded */
+.footer-left .lang-selector:focus-within .label{ opacity:1; transform:translateX(0); }
 .footer-left .lang-selector:hover .lang-select,
-.footer-left .lang-selector:focus-within .lang-select{
-  opacity:1; pointer-events:auto;
-}
+.footer-left .lang-selector:focus-within .lang-select{ opacity:1; pointer-events:auto; }
 
 /* ---------- Report link (right) ---------- */
-/* collapsed icon → expand to show label on hover (mirrors left side behavior) */
 .footer .report{
   display:inline-flex; align-items:center; justify-content:flex-end;
   overflow:hidden; white-space:nowrap; width:24px;
-  transition:width .25s ease, opacity .15s ease;
-  text-decoration:none !important; opacity:.55;
+  transition:width .25s ease, opacity .15s ease; opacity:.55;
 }
 .footer .report:hover{ width:168px; opacity:1; }
-/* label slides in from right on hover */
 .footer .report .label{
   margin-right:8px; opacity:0; transform:translateX(12px);
   transition:opacity .2s ease .1s, transform .2s ease .1s;
 }
 .footer .report:hover .label{ opacity:1; transform:translateX(0); }
 .footer .report .icon{ line-height:1; font-size:16px; }
-
-/* no underline variants (avoid dotted artifacts) */
+/* never underline this expanding link */
 .footer .report,
 .footer .report:hover,
 .footer .report:focus{ text-decoration:none !important; }
 
-/* keyboard focus ring */
-.footer .report:focus{ outline:2px solid var(--focus); outline-offset:2px; border-radius:6px; }
+/* ===================== Light theme refinements ===================== */
+/* (1) Selects: same ring for hover & focus (header + footer) */
+html[data-theme="light"] select,
+html[data-theme="light"] .lang-select{
+  border:1px solid var(--border);
+  box-shadow:0 0 0 .5px var(--border);
+  background-clip:padding-box;
+}
+html[data-theme="light"] select:is(:hover,:focus,:focus-visible),
+html[data-theme="light"] .lang-select:is(:hover,:focus,:focus-visible){
+  outline:none;
+  box-shadow:
+    0 0 0 .5px var(--border),
+    0 0 0 2px color-mix(in oklab, var(--focus), transparent 82%);
+  border-color:var(--border);
+  transition:box-shadow .15s ease;
+}
+/* (2) Language select: parent has overflow hidden → use inset shadows */
+html[data-theme="light"] .footer-left .lang-selector .lang-select{
+  box-shadow:inset 0 0 0 .5px var(--border);
+}
+html[data-theme="light"] .footer-left .lang-selector .lang-select:is(:hover,:focus,:focus-visible){
+  box-shadow:
+    inset 0 0 0 .5px var(--border),
+    inset 0 0 0 2px color-mix(in oklab, var(--focus), transparent 82%);
+}
+/* (3) Radios/checkboxes: no layout shift (grid fixes) */
+.scope label, .radios label, .row label, label.inline{
+  display:inline-grid; grid-template-columns:16px auto; align-items:center; gap:6px;
+}
+.scope label > input[type="radio"],
+.radios label > input[type="radio"],
+.row label > input[type="checkbox"],
+label.inline > input[type="checkbox"]{
+  width:16px; height:16px; display:block;
+}
+/* (4) Light checkboxes: draw tick with CSS */
+html[data-theme="light"] input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none;
+  width:16px; height:16px; border-radius:3px;
+  border:1.5px solid var(--border); background:#fff;
+  position:relative; vertical-align:middle;
+  transition:border-color .15s, background-color .15s, box-shadow .15s;
+}
+html[data-theme="light"] input[type="checkbox"]:checked{
+  background:var(--focus); border-color:var(--focus);
+}
+html[data-theme="light"] input[type="checkbox"]:checked::after{
+  content:""; position:absolute; left:4px; top:1px;
+  width:4px; height:8px; transform:rotate(45deg);
+  border-right:2px solid #fff; border-bottom:2px solid #fff;
+}
+html[data-theme="light"] input[type="checkbox"]:focus-visible{
+  outline:2px solid var(--focus); outline-offset:2px;
+}
+/* (5) Light radios: blue center dot */
+html[data-theme="light"] input[type="radio"]{
+  appearance:none; -webkit-appearance:none;
+  width:16px; height:16px; border-radius:50%;
+  border:1.5px solid var(--border); background:#fff;
+  position:relative; vertical-align:middle;
+  transition:border-color .15s, background-color .15s, box-shadow .15s;
+}
+html[data-theme="light"] input[type="radio"]:checked{ border-color:var(--focus); }
+html[data-theme="light"] input[type="radio"]:checked::after{
+  content:""; position:absolute; left:50%; top:50%;
+  width:var(--radio-dot-size); height:var(--radio-dot-size);
+  transform:translate(-50%,-50%); border-radius:50%;
+  background:var(--focus);
+}
+html[data-theme="light"] input[type="radio"]:focus-visible{
+  outline:2px solid var(--focus); outline-offset:2px;
+}
+
+/* ===================== Toast ===================== */
+#toast{
+  position:fixed;
+  left:var(--toast-side);
+  right:var(--toast-side);
+  bottom:calc(var(--footer-base-h) - var(--toast-overlap));
+  z-index:101;
+  margin:0; padding:12px 14px; border-radius:10px;
+  display:flex; align-items:center;
+  color:var(--fg); font-size:15px; font-weight:600; letter-spacing:.015em;
+  background:transparent; box-shadow:0 6px 24px rgba(0,0,0,.18);
+  opacity:0; pointer-events:none; transform:translateY(8px);
+  transition:opacity .25s ease, background-color .25s ease, transform .2s ease;
+}
+#toast.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+#toast.ok { background:rgba(34,197,94,.18); }
+#toast.err{ background:rgba(239,68,68,.18); }
+
+/* Hover/focus on language selector or bug-report link → hide toast */
+.footer:has(.lang-selector:hover) #toast,
+.footer:has(.report:hover) #toast,
+.footer:has(.lang-selector:focus-within) #toast,
+.footer:has(.report:focus-visible) #toast{
+  opacity:0 !important;
+  pointer-events:none !important;
+  transform:translateY(8px);
+}

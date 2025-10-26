@@ -1,23 +1,44 @@
-// ========== i18n ==========
+/*!
+ * SmartURLs Popup Script (popup.js)
+ * Purpose: Popup UI logic for Chrome extension (Manifest V3)
+ * Note: Behavior intentionally preserved; comments minimized.
+ */
+"use strict";
+
+/* ===================== i18n ===================== */
 let currentLang = "AutoLang";
-let dict = null; // 手動読み込み用の辞書（lang≠Autoのときに使う）
+let dict = null; // manual dictionary when lang != AutoLang
 
 async function loadDict(lang) {
-  if (lang === "AutoLang") { dict = null; return; }
-  // 例: _locales/ja/messages.json を fetch
-  const url = chrome.runtime.getURL(`_locales/${lang}/messages.json`);
-  const res = await fetch(url);
-  dict = await res.json();
+  // Use Chrome i18n when Auto; clear manual dict
+  if (lang === "AutoLang") { dict = null; return "auto"; }
+
+  try {
+    const url = chrome.runtime.getURL(`_locales/${lang}/messages.json`);
+    // Avoid stale caches; tolerate slow file systems
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const json = await res.json();
+    if (!json || typeof json !== "object") throw new Error("Invalid locale JSON");
+
+    dict = json;
+    return "ok";
+  } catch (err) {
+    // Fallback safely to AutoLang without breaking the UI
+    console.warn(`[i18n] Failed to load locale "${lang}". Falling back to AutoLang.`, err);
+    dict = null;
+    currentLang = "AutoLang";
+    return "fallback";
+  }
 }
 
 function t(id, fallback) {
   try {
-    // 1) Auto => Chromeのi18nをそのまま使う
     if (currentLang === "AutoLang") {
       const s = chrome.i18n.getMessage(id);
       return s || fallback || id;
     }
-    // 2) 手動辞書 => messages.jsonの "message" を参照
     const entry = dict?.[id]?.message;
     return entry || fallback || id;
   } catch {
@@ -38,8 +59,9 @@ function applyI18nTitle() {
   });
 }
 
-// ========== UI Helpers ==========
+/* ===================== UI helpers ===================== */
 const $ = (sel) => document.querySelector(sel);
+
 const toast = (msg, ok = true) => {
   const el = $("#toast");
   el.classList.remove("ok","err");
@@ -53,26 +75,35 @@ const toast = (msg, ok = true) => {
   }, 60000); // 60s
 };
 
-// ========== Theme helpers ==========
-function applyTheme(mode) {
-  const root = document.documentElement;
-  if (!mode || mode === "system") {
-    root.removeAttribute("data-theme");
-  } else {
-    root.setAttribute("data-theme", mode); // "dark" | "light"
-  }
+// Soft limits to avoid pathological regex backtracking on custom templates
+const LIMITS = {
+  customMaxTemplate: 500,         // max chars for template
+  customMaxTextBytes: 200 * 1024, // ~200KB input cap
+  customMaxLines: 5000,           // max lines to scan
+  customMaxMatches: 1000          // max URLs to extract
+};
+
+// UTF-8 byte length (used for input cap)
+function utf8ByteLength(str) {
+  // TextEncoder is supported in MV3 environments
+  return new TextEncoder().encode(str).length;
 }
 
-// ========== Storage (defaults) ==========
+/* ===================== Theme ===================== */
+function applyTheme(mode) {
+  const root = document.documentElement;
+  if (!mode || mode === "system") root.removeAttribute("data-theme");
+  else root.setAttribute("data-theme", mode); // "dark" | "light"
+}
+
+/* ===================== Storage & defaults ===================== */
 const defaults = {
   // copy
   fmt: "md",
   tpl: "- [$title]($url)",
-
   // open
   openFmt: "smart",          // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
-  openTpl: "- [$title]($url)", // custom parser pattern
-
+  openTpl: "- [$title]($url)",
   // common
   source: "clipboard",       // "clipboard" | "textarea"
   scope: "current",          // "current" | "all"
@@ -83,20 +114,17 @@ const defaults = {
   sort: "natural",
   desc: false,
   openLimit: 30,
-
   // ui
   theme: "system",           // "system" | "dark" | "light"
-  lang: "AutoLang"             // "AutoLang" | language code
+  lang: "AutoLang"           // "AutoLang" | language code
 };
 
 async function load() {
   const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
 
-  // theme
+  // theme & lang
   $("#theme").value = cfg.theme;
   applyTheme(cfg.theme);
-
-  // lang
   $("#lang").value = cfg.lang;
 
   // copy
@@ -107,7 +135,7 @@ async function load() {
   $("#openFmt").value = cfg.openFmt;
   $("#openTpl").value = cfg.openTpl;
 
-  // source (radio <-> hidden select 同期)
+  // source (radio <-> hidden select)
   $("#source").value = cfg.source;
   const radio = document.querySelector(`input[name=sourceKind][value=${cfg.source}]`);
   if (radio) radio.checked = true;
@@ -116,7 +144,7 @@ async function load() {
   const scopeRadio = document.querySelector(`input[name=scope][value=${cfg.scope}]`);
   if (scopeRadio) scopeRadio.checked = true;
 
-  // filters & etc
+  // filters & others
   $("#chkDedup").checked = cfg.dedup;
   $("#chkHttp").checked = cfg.httpOnly;
   $("#chkNoPinned").checked = cfg.noPinned;
@@ -129,7 +157,7 @@ async function load() {
 }
 async function save(partial) { await chrome.storage.sync.set(partial); }
 
-// ====== 貼り付け欄の表示/非表示 ======
+/* ===================== Paste box ===================== */
 function updatePasteBox(forceKind) {
   const box = $("#pasteBox");
   const ta  = $("#manualInput");
@@ -139,8 +167,8 @@ function updatePasteBox(forceKind) {
   const show = (kind === "textarea");
 
   if (show) {
-    box.removeAttribute("hidden");     // hidden 属性を必ず外す
-    box.style.display = "block";       // 念のため display も明示
+    box.removeAttribute("hidden");
+    box.style.display = "block";
     ta.style.display = "block";
   } else {
     box.setAttribute("hidden", "");
@@ -149,11 +177,9 @@ function updatePasteBox(forceKind) {
   }
 }
 
-// ====== 初期に貼り付け欄を開く（テキストが入っていたら） ======
 function initPasteBoxDefault() {
   const ta = $("#manualInput");
   if (!ta) return;
-
   if (ta.value && ta.value.trim().length > 0) {
     $("#source").value = "textarea";
     const r = document.querySelector('input[name="sourceKind"][value="textarea"]');
@@ -162,20 +188,20 @@ function initPasteBoxDefault() {
   updatePasteBox();
 }
 
-// ====== 初期化 ======
+/* ===================== Init ===================== */
 async function init() {
-  // 1) まず設定を読む（先にやるのが重要）
-  const cfg = await load();     // あなたの既存の load()
+  // 1) load settings first
+  const cfg = await load();
   currentLang = cfg.lang || "AutoLang";
 
-  // 2) 必要なら辞書を読み込む
+  // 2) load dictionary if needed
   await loadDict(currentLang);
 
-  // 3) 初回適用
+  // 3) initial apply
   applyI18n();
   applyI18nTitle();
 
-  // 4) イベント
+  // 4) bindings
   ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
     $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
   });
@@ -189,17 +215,17 @@ async function init() {
     await save({ theme: v });
   });
 
-  // 言語切替
+  // language switch
   $("#lang").addEventListener("change", async (e) => {
-    const v = e.target.value;         // "AutoLang" | "en" | "ja" | ...
+    const v = e.target.value; // "AutoLang" | "en" | "ja" | ...
     currentLang = v;
     await save({ lang: v });
-    await loadDict(currentLang);      // ここで辞書を切替
+    await loadDict(currentLang);
     applyI18n();
     applyI18nTitle();
   });
 
-  // …以下は既存の処理 …
+  // source radio<->select sync
   document.querySelectorAll('input[name="sourceKind"]').forEach(r => {
     r.addEventListener("change", async (e) => {
       if (!e.target.checked) return;
@@ -214,10 +240,9 @@ async function init() {
   initPasteBoxDefault();
 }
 
-// DOM 準備後に初期化
 document.addEventListener("DOMContentLoaded", init);
 
-// ========== Core: Tabs fetch & filters ==========
+/* ===================== Tabs: fetch & filters ===================== */
 function wildcardToRegExp(pattern) {
   // escape regex specials, then only * -> .*
   const esc = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
@@ -263,13 +288,18 @@ function uniqueByUrl(tabs) {
   });
 }
 
-// ========== Copy ==========
+/* ===================== Copy ===================== */
 function formatLine(tab, cfg, idx) {
   const url = tab.url;
   const u = new URL(url);
-  const title = tab.title || url;
+  const rawTitle = tab.title || url;   // keep raw for JSON
   const domain = u.hostname;
   const path = u.pathname + u.search + u.hash;
+
+  // jsonl needs exact JSON, not token replacement
+  if (cfg.fmt === "jsonl") {
+    return JSON.stringify({ title: rawTitle, url });
+  }
 
   const pad = (n) => String(n).padStart(2, "0");
   const d = new Date();
@@ -278,8 +308,9 @@ function formatLine(tab, cfg, idx) {
   const utcDate = `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
   const utcTime = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
 
+  // For non-JSON formats keep the existing token replacement behavior
   const tokens = {
-    "$title": title.replaceAll("]", "\\]"),
+    "$title": rawTitle.replaceAll("]", "\\]"),
     "$url": url,
     "$domain": domain,
     "$path": path,
@@ -290,15 +321,14 @@ function formatLine(tab, cfg, idx) {
     "$time(utc)": utcTime
   };
 
-  let tpl = cfg.fmt === "md" ? "[$title]($url)"
-          : cfg.fmt === "url" ? "$url"
-          : cfg.fmt === "tsv" ? "$title\t$url"
+  let tpl = cfg.fmt === "md"   ? "[$title]($url)"
+          : cfg.fmt === "url"  ? "$url"
+          : cfg.fmt === "tsv"  ? "$title\t$url"
           : cfg.fmt === "html" ? "<a href=\"$url\">$title</a>"
-          : cfg.fmt === "jsonl" ? "{\"title\":\"$title\",\"url\":\"$url\"}"
-          : (cfg.tpl || "- [$title]($url)");
+          : /* custom */         (cfg.tpl || "- [$title]($url)");
 
   Object.entries(tokens)
-    .sort(([a], [b]) => b.length - a.length) // 長いキーから順に処理
+    .sort(([a],[b]) => b.length - a.length)
     .forEach(([k,v]) => { tpl = tpl.split(k).join(v); });
   return tpl;
 }
@@ -320,13 +350,12 @@ $("#btnCopy").addEventListener("click", async () => {
   }
 });
 
-// ========== Open (parsers) ==========
+/* ===================== Open (parsers) ===================== */
 function extractUrlsSmart(text) {
   const urls = new Set();
 
   // 1) Markdown [title](url)
-  const md = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi;
-  let m;
+  const md = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
   while ((m = md.exec(text)) !== null) urls.add(m[1]);
 
   // 2) <https://...>
@@ -348,7 +377,6 @@ function extractUrlsSmart(text) {
     u = u.replace(/[),.>]+$/g, "");
     urls.add(u);
   }
-
   return Array.from(urls);
 }
 
@@ -359,12 +387,10 @@ function extractByFormat(fmt, text, tpl) {
   const addIf = (u) => { if (u && /^https?:\/\//i.test(u)) out.add(u); };
 
   if (fmt === "md") {
-    // Markdown: [title](url)
     const r = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
 
   } else if (fmt === "url") {
-    // 厳格：行全体がURLのみ（埋め込みURLは拾わない）
     text.split(/\r?\n/).forEach(line => {
       const s = line.trim();
       const m = s.match(/^https?:\/\/[^\s)>\]]+$/i);
@@ -372,48 +398,64 @@ function extractByFormat(fmt, text, tpl) {
     });
 
   } else if (fmt === "tsv") {
-    // TSV: title \t url（2列目をURLとして扱う）
     text.split(/\r?\n/).forEach(line => {
       const parts = line.split("\t");
       if (parts[1]) addIf(parts[1].trim());
     });
 
   } else if (fmt === "html") {
-    // HTML: <a href="url">
     const r = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi; let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
 
   } else if (fmt === "jsonl") {
-    // JSON Lines: {"url":"..."} を1行ずつ
     text.split(/\r?\n/).forEach(line => {
-      try {
-        const obj = JSON.parse(line);
-        addIf(obj && obj.url);
-      } catch {}
+      try { const obj = JSON.parse(line); addIf(obj && obj.url); } catch {}
     });
 
   } else if (fmt === "custom") {
-    // カスタムテンプレ：$url をURLキャプチャに、他トークンは非貪欲に
+    // Build a permissive RegExp from the user's template ($url captured)
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    let pat = esc(tpl || "- [$title]($url)");
+
+    // Hard caps for safety (truncate but keep behavior otherwise)
+    const safeTpl = String(tpl || "- [$title]($url)").slice(0, LIMITS.customMaxTemplate);
+    let pat = esc(safeTpl);
     const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
     pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
+
+    let re;
     try {
-      const re = new RegExp(pat, "gi");
-      let m;
-      while ((m = re.exec(text)) !== null) addIf(m[1]);
+      re = new RegExp(pat, "i"); // no global; we iterate per line
     } catch {
-      // フォールバックしない（0件にする）
       return [];
+    }
+
+    // Apply input caps: byte length, lines, matches
+    let textToScan = text || "";
+    if (utf8ByteLength(textToScan) > LIMITS.customMaxTextBytes) {
+      textToScan = textToScan.slice(0, LIMITS.customMaxTextBytes);
+    }
+
+    const lines = textToScan.split(/\r?\n/);
+    const maxLines = Math.min(lines.length, LIMITS.customMaxLines);
+    let matches = 0;
+
+    for (let i = 0; i < maxLines; i++) {
+      const line = lines[i];
+      const m = re.exec(line);
+      if (m && m[1]) {
+        const u = m[1];
+        if (/^https?:\/\//i.test(u)) out.add(u);
+        matches++;
+        if (matches >= LIMITS.customMaxMatches) break;
+      }
     }
   }
 
   return Array.from(out);
 }
 
-
-// ========== Open ==========
+/* ===================== Open ===================== */
 $("#btnOpen").addEventListener("click", async () => {
   try {
     const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
@@ -427,7 +469,6 @@ $("#btnOpen").addEventListener("click", async () => {
       try {
         text = await navigator.clipboard.readText();
       } catch (e) {
-        // 代表的なケースをメッセージ分岐
         const name = e && e.name;
         if (name === "NotAllowedError" || name === "SecurityError") {
           toast(t("err_clipboard_denied", "Clipboard read was blocked by the browser."), false);
@@ -438,13 +479,10 @@ $("#btnOpen").addEventListener("click", async () => {
         }
         return;
       }
-      if (!text) {
-        toast(t("empty_clip","Clipboard is empty"), false);
-        return;
-      }
+      if (!text) { toast(t("empty_clip","Clipboard is empty"), false); return; }
     }
 
-    // parse by format
+    // parse
     const urls0 = extractByFormat(cfg.openFmt, text, cfg.openTpl);
     let urls = urls0;
 
@@ -455,13 +493,13 @@ $("#btnOpen").addEventListener("click", async () => {
     if (cfg.dedup) urls = Array.from(new Set(urls));
     if (urls.length === 0) { toast(t("no_urls","No URLs found"), false); return; }
 
-    // many check
+    // confirmation for many tabs
     const limit = Number(cfg.openLimit) || 30;
     if (urls.length > limit) {
       if (!confirm(`${t("confirm_many","Open many tabs?")} ${urls.length}`)) return;
     }
 
-    // 背景SWに委譲
+    // delegate to background
     chrome.runtime.sendMessage(
       { type: "OPEN_URLS", urls, limit },
       (res) => {

@@ -1,9 +1,14 @@
+<!--
+  SmartURLs Popup (HTML) - Popup UI layout for Chrome extension (Manifest V3)
+-->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>SmartURLs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Hint UA that both color schemes are supported; actual theme via CSS variables -->
+  <meta name="color-scheme" content="light dark" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -12,7 +17,7 @@
       <h1>SmartURLs <span class="dash">—</span> <span class="subtitle" data-i18n="subtitle">Copy & Open URLs</span></h1>
     </div>
     <label class="theme-ctrl">
-      <select id="theme">
+      <select id="theme" aria-label="Theme">
         <option value="system" data-i18n="theme_system">System</option>
         <option value="dark"   data-i18n="theme_dark">Dark</option>
         <option value="light"  data-i18n="theme_light">Light</option>
@@ -20,23 +25,20 @@
     </label>
   </header>
 
-  <!-- ★ トーストをボタンの直上へ -->
-  <div id="toast" role="status" aria-live="polite"></div>
-
-  <!-- 2列の大ボタン -->
+  <!-- Primary actions (two columns) -->
   <div class="actions-grid">
-    <button id="btnCopy" class="action primary">📋 <span data-i18n="copy_btn">Copy</span></button>
-    <button id="btnOpen" class="action secondary">🚀 <span data-i18n="open_btn">Open</span></button>
+    <button id="btnCopy" class="action primary" type="button">📋 <span data-i18n="copy_btn">Copy</span></button>
+    <button id="btnOpen" class="action secondary" type="button">🚀 <span data-i18n="open_btn">Open</span></button>
   </div>
 
-  <!-- 2カラム本体 -->
+  <!-- Main content: two columns -->
   <div class="cols">
-    <!-- 左：コピー列 -->
+    <!-- Left: Copy column -->
     <div class="col">
       <section class="block">
         <p class="block-title">Copy</p>
 
-        <!-- ★ Scope を最上段へ移動 -->
+        <!-- Scope (first row) -->
         <div class="field">
           <label class="label" data-i18n="scope_label">Scope</label>
           <div class="scope">
@@ -49,7 +51,7 @@
 
         <div class="field">
           <label class="label" data-i18n="copy_format">Copy Format</label>
-          <select id="fmt">
+          <select id="fmt" aria-label="Copy format">
             <option value="md">Markdown [title](url)</option>
             <option value="url"  data-i18n="url_only">URL Only</option>
             <option value="tsv">TSV: title\turl</option>
@@ -60,7 +62,7 @@
         </div>
       </section>
 
-      <!-- 詳細：コピー（★ Filters をここに移動） -->
+      <!-- Copy: advanced options -->
       <details class="block">
         <summary data-i18n="advanced">Advanced</summary>
 
@@ -96,7 +98,7 @@
         <div class="field">
           <label class="label" data-i18n="sort_label">Sort by</label>
           <div class="row-inline">
-            <select id="sort">
+            <select id="sort" aria-label="Sort by">
               <option value="natural" data-i18n="sort_natural">Current order</option>
               <option value="title">Title</option>
               <option value="url">URL</option>
@@ -110,12 +112,12 @@
       </details>
     </div>
 
-    <!-- 右：オープン列 -->
+    <!-- Right: Open column -->
     <div class="col">
       <section class="block">
         <p class="block-title">Open</p>
 
-        <!-- ソース（ラジオ） -->
+        <!-- Source (radio) -->
         <div class="field">
           <label class="label" data-i18n="source_label">Source</label>
           <div class="radios">
@@ -124,16 +126,17 @@
             <label><input type="radio" name="sourceKind" value="textarea" />
               <span data-i18n="src_textarea">Paste text</span></label>
           </div>
-          <select id="source" hidden>
+          <!-- Hidden select (for compatibility with existing JS) -->
+          <select id="source" hidden aria-hidden="true">
             <option value="clipboard">Clipboard</option>
             <option value="textarea">Textarea</option>
           </select>
         </div>
 
-        <!-- オープンフォーマット -->
+        <!-- Open format -->
         <div class="field">
           <label class="label" data-i18n="open_format">Open Format</label>
-          <select id="openFmt">
+          <select id="openFmt" aria-label="Open format">
             <option value="smart" data-i18n="smart_auto">Smart (auto-detect)</option>
             <option value="md">Markdown [title](url)</option>
             <option value="url"  data-i18n="url_only">URL Only</option>
@@ -152,7 +155,7 @@
 
       </section>
 
-      <!-- 詳細：オープン -->
+      <!-- Open: advanced options -->
       <details class="block">
         <summary data-i18n="advanced">Advanced</summary>
 
@@ -174,9 +177,10 @@
 
   <footer class="footer">
     <div class="footer-left">
+      <!-- Language selector: hover-reveal (visual label + programmatic label) -->
       <div class="lang-selector">
         <span class="lang-icon" aria-hidden="true">🌐</span>
-        <select id="lang" class="lang-select">
+        <select id="lang" class="lang-select" aria-labelledby="langLabel">
           <option value="AutoLang">Auto</option>
           <option value="en">English</option>
           <option value="ja">日本語</option>
@@ -195,23 +199,24 @@
           <option value="id">Bahasa Indonesia</option>
           <option value="vi">Tiếng Việt</option>
         </select>
-        <span class="label">Auto-detect or select language</span>
+        <span id="langLabel" class="label">Auto-detect or select language</span>
       </div>
     </div>
     <div class="footer-right">
       <a id="issues"
         class="report"
         href="https://github.com/isshiki/smarturls/issues"
-        target="_blank" rel="noreferrer"
+        target="_blank" rel="noopener noreferrer"
         aria-label="Report a bug">
         <span class="label" data-i18n="report_bug">不具合を報告</span>
         <span class="icon" aria-hidden="true">📝</span>
       </a>
     </div>
+    <!-- Toast area (screen readers pick up status changes) -->
+    <div id="toast" role="status" aria-live="polite"></div>
   </footer>
 
-
-
+  <!-- External script only (no inline JS for MV3) -->
   <script src="popup.js"></script>
 </body>
 </html>
