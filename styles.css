@@ -1,17 +1,21 @@
-/* ========== Theme tokens ========== */
+/*!
+ * SmartURLs Popup Stylesheet - UI layout and theme styles for Chrome extension popup.
+ */
+
+/* ===================== Theme tokens ===================== */
 :root{
   --bg:#ffffff; --fg:#111827; --muted:#6b7280;
   --card:#f3f4f6; --border:#e5e7eb;
-  --btn1-bg:#1f2937; --btn1-fg:#ffffff;  /* ★暗めグレーで主張を抑える */
-  --btn2-bg:#374151; --btn2-fg:#ffffff;  /* ★やや明るめにしてバランス */
-  --btn-hov:0.06;                         /* hover時の明るさ差分 */
+  --btn1-bg:#1f2937; --btn1-fg:#ffffff;
+  --btn2-bg:#374151; --btn2-fg:#ffffff;
+  --btn-hov:0.06;                         /* brightness delta on hover */
   --focus:#2563eb;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#0f172a; --fg:#e5e7eb; --muted:#94a3b8;
     --card:#0b1220; --border:#1f2937;
-    --btn1-bg:#3b4252; --btn1-fg:#e5e7eb; /* ★青すぎない中性色 */
+    --btn1-bg:#3b4252; --btn1-fg:#e5e7eb;
     --btn2-bg:#434c5e; --btn2-fg:#e5e7eb;
     --btn-hov:0.08;
     --focus:#60a5fa;
@@ -32,7 +36,7 @@ html[data-theme="light"]{
   --focus:#2563eb;
 }
 
-/* ========== Base ========== */
+/* ===================== Base ===================== */
 *{ box-sizing: border-box; }
 html,body{ margin:0; padding:0; }
 body{
@@ -43,9 +47,14 @@ body{
   font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif;
 }
 
-/* Header */
-.header{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
-.header .brand h1{ font-size:20px; font-weight:800; margin:0; display:flex; align-items:center; gap:8px;}
+/* ===================== Header ===================== */
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; margin-bottom:8px;
+}
+.header .brand h1{
+  font-size:20px; font-weight:800; margin:0; display:flex; align-items:center; gap:8px;
+}
 .header .brand .dash{ opacity:.45; color:var(--muted); }
 .header .subtitle{ color:var(--muted); font-size:12px; }
 .theme-ctrl select{
@@ -53,29 +62,23 @@ body{
   border:1px solid var(--border); border-radius:10px; padding:6px 10px; font-weight:600;
 }
 
-/* トースト */
+/* ===================== Toast ===================== */
 #toast{
-  margin: 6px 0 10px;
-  padding:10px 12px;
-  border-radius:10px;
-  min-height: 36px;
-  display: flex; align-items: center;
-  background: transparent;
-  color: var(--fg);
+  margin: 6px 0 10px; padding:10px 12px; border-radius:10px; min-height: 36px;
+  display:flex; align-items:center; background:transparent; color:var(--fg);
   opacity:0; pointer-events:none; transition: opacity .25s ease, background-color .25s ease;
 }
 #toast.show{ opacity:1; }
 #toast.err{ background: rgba(239,68,68,.18); }
-#toast.ok{ background: rgba(34,197,94,.18); }
+#toast.ok{  background: rgba(34,197,94,.18); }
 
-
-/* Actions (2 cols) */
+/* ===================== Actions (2 cols) ===================== */
 .actions-grid{
   display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:12px;
 }
 .action{
-  padding: 12px 14px; border-radius: 14px; border:none; cursor:pointer;
-  font-weight: 800; letter-spacing:.01em;
+  padding:12px 14px; border-radius:14px; border:none; cursor:pointer;
+  font-weight:800; letter-spacing:.01em;
   transition: transform .02s ease-in-out, filter .12s ease;
 }
 .action.primary{ background:var(--btn1-bg); color:var(--btn1-fg); }
@@ -84,16 +87,17 @@ body{
 .action:focus{ outline:2px solid var(--focus); outline-offset:2px; }
 .action:active{ transform: translateY(1px); }
 
-/* 2-column main */
-.cols{
-  display:grid; grid-template-columns: 1fr 1fr; gap: 12px;
-}
+/* ===================== Main (2 cols) ===================== */
+.cols{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
 
-/* Blocks / Fields */
-.block{ background: var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
-.block-title{ margin: 0 0 8px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+/* ===================== Blocks / Fields ===================== */
+.block{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.block-title{
+  margin:0 0 8px; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
+}
 .field{ margin:10px 0; }
 .label{ display:block; margin-bottom:6px; font-weight:600; }
+
 select, input[type="text"], input[type="number"], textarea{
   width:100%; background:var(--bg); color:var(--fg);
   border:1px solid var(--border); border-radius:10px; padding:8px 10px;
@@ -104,211 +108,110 @@ textarea{ min-height:72px; resize:vertical; }
 .scope{ display:flex; gap:14px; margin:6px 0 10px; flex-wrap:wrap; }
 .radios{ display:flex; gap:14px; flex-wrap:wrap; }
 .inline{ display:inline-flex; align-items:center; gap:6px; }
-.hint{ color: var(--muted); font-size:12px; margin-top:4px; line-height:1.35; }
+.hint{ color:var(--muted); font-size:12px; margin-top:4px; line-height:1.35; }
 
-/* 数値入力のスピンボタンを隠してフラットに */
+/* Number inputs: remove spinners for a flat look */
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button{
-  -webkit-appearance: none; margin: 0;
-}
+input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
 input[type="number"]{ -moz-appearance:textfield; }
 
-/* Details */
+/* ===================== Details ===================== */
 details.block > summary{ cursor:pointer; list-style:none; font-weight:700; }
 details.block > summary::-webkit-details-marker{ display:none; }
-/* details の開閉インジケータ（▲▼） */
+/* disclosure triangle (▼/▲) */
 details.block > summary{
-  position: relative;
-  padding-right: 20px;  /* 右に余白を確保 */
+  position:relative; padding-right:20px;  /* reserve space on the right */
 }
 details.block > summary::after{
-  content: "▼";
-  position: absolute;
-  right: 2px;
-  top: 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1;
+  content:"▼"; position:absolute; right:2px; top:0; color:var(--muted);
+  font-size:12px; line-height:1;
 }
-details.block[open] > summary::after{
-  content: "▲";
-}
+details.block[open] > summary::after{ content:"▲"; }
 
-#pasteBox textarea { display:block; }
+#pasteBox textarea{ display:block; }
 
-/* Footer */
-/* Footer ベース - 左右に分ける */
+/* ===================== Footer ===================== */
 .footer{
   display:flex; justify-content:space-between; align-items:center;
-  margin-top:10px; color: var(--muted); font-size:12px;
-  padding:8px 12px;
-  border-top:1px solid var(--border);
-  background:var(--bg);
+  margin-top:10px; color:var(--muted); font-size:12px;
+  padding:8px 12px; border-top:1px solid var(--border); background:var(--bg);
 }
+.footer a{ color:inherit; text-decoration:none; }
+.footer a:hover{ text-decoration:underline; }
 
-.footer a{ color: inherit; text-decoration: none; }
-.footer a:hover{ text-decoration: underline; }
+.footer-left, .footer-right{ display:flex; align-items:center; }
 
-.footer-left {
-  display: flex;
-  align-items: center;
+/* ---------- Language selector (left) ---------- */
+/* base (icon + select + inline label) */
+.lang-selector{
+  position:relative; display:inline-flex; align-items:center; gap:8px;
 }
+.lang-icon{
+  font-size:16px; color:var(--fg); line-height:1;
+  opacity:.55; transition:opacity .15s ease;
+}
+.lang-select{
+  width:120px; height:24px; cursor:pointer;
+  border:1px solid var(--border); border-radius:4px;
+  background-color:var(--card); color:var(--fg);
+  font-size:12px; padding:2px 6px; appearance:none;
+  transition:opacity .15s ease;
+  opacity:0; pointer-events:none;             /* hidden by default; shown on hover */
+}
+.lang-select option{ background-color:var(--card) !important; color:var(--fg) !important; }
 
-.footer-right {
-  display: flex;
-  align-items: center;
-}
-
-/* 言語選択 */
-.lang-selector {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.lang-icon {
-  font-size: 16px;
-  opacity: 0.55;
-  transition: opacity 0.15s ease;
-  color: var(--fg);
-  position: relative;
-  z-index: 2;
-}
-
-.lang-select {
-  width: 120px;
-  height: 24px;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background-color: var(--card);
-  color: var(--fg);
-  font-size: 12px;
-  padding: 2px 6px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  transition: opacity 0.15s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.lang-selector:hover .lang-select {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* select要素のoption要素もテーマに合わせる */
-.lang-select option {
-  background-color: var(--card) !important;
-  color: var(--fg) !important;
-}
-
-.lang-selector:hover .lang-icon {
-  opacity: 1;
-}
-
-/* 報告リンク：ミニマル＋ホバー展開型 */
-.footer .report{
-  display:inline-flex;
-  align-items:center;
-  justify-content:flex-end;   /* ← アイコンを右端に寄せる */
-  overflow:hidden;
-  white-space:nowrap;
-  width:24px;                 /* ← 初期幅＝アイコン幅 */
-  transition: width .25s ease, opacity .15s ease;
-  text-decoration: none !important;
-  opacity: .55;               /* 控えめ */
-}
-.footer .report:hover{
-  width: 168px;               /* ← 展開幅（必要に応じて調整） */
-  opacity: 1;
-}
-
-/* ラベルはホバー時に“右→左”へスライドイン＋余白を確保 */
-.footer .report .label{
-  margin-right: 8px;          /* ← アイコンとのスペース（ご要望の“もう少し空ける”） */
-  opacity: 0;
-  transform: translateX(12px);/* ← 右から入ってくる */
-  transition: opacity .2s ease .1s, transform .2s ease .1s;
-}
-.footer .report:hover .label{
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* アイコンは右端固定。にじみ防止のため line-height を1に */
-.footer .report .icon{
-  line-height: 1;
-  font-size: 16px;
-}
-
-/* 下線を完全無効化（見た目の“点々”防止） */
-.footer .report,
-.footer .report:hover,
-.footer .report:focus{
-  text-decoration: none !important;
-}
-
-/* キーボード操作のフォーカスリング */
-.footer .report:focus{
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-
-/* === Footer左下：言語セレクタを「初期＝アイコンのみ → ホバーでスライド展開」に上書き === */
-/* 親ボックスを“幅24px + overflow:hidden”にして、テキストとselectを隠す */
+/* slide-reveal container (initially icon-only) */
+/* NOTE: animating max-width enables natural fit for varying label lengths */
 .footer-left .lang-selector{
-  overflow: hidden;
-  white-space: nowrap;
-  gap: 8px;                                  /* ラベルとselectの間隔を少し広げる */
-  width: 24px !important;                    /* 初期はアイコンだけ見せる */
-  transition: width .25s ease, opacity .15s ease;
-  opacity: .75;
+  width:fit-content; max-width:24px; overflow:hidden; white-space:nowrap;
+  transition:max-width .25s ease, opacity .15s ease; opacity:.75;
 }
 .footer-left .lang-selector:hover,
 .footer-left .lang-selector:focus-within{
-  width: 420px !important;                   /* 展開幅（必要に応じて調整） */
-  opacity: 1;
+  max-width:520px;                            /* tweak if your label is longer */
+  opacity:1;
 }
+.footer-left .lang-selector:hover .lang-icon,
+.footer-left .lang-selector:focus-within .lang-icon{ opacity:1; }
 
-/* ラベルはデフォルト非表示（global .label の block/margin を打ち消す） */
+/* inline label: override global .label block behavior locally */
 .footer-left .lang-selector .label{
-  display: inline-block !important;          /* ← blockを打ち消す */
-  margin: 0 !important;                      /* ← 下マージンを打ち消す */
-  font-size: 12px;
-  color: var(--muted);
-  opacity: 0;
-  transform: translateX(-12px);              /* ← 左→右にスライドイン */
-  transition: opacity .2s ease .1s, transform .2s ease .1s;
+  display:inline-block; margin:0; font-size:12px; color:var(--muted);
+  opacity:0; transform:translateX(-12px);
+  transition:opacity .2s ease .1s, transform .2s ease .1s;
 }
 .footer-left .lang-selector:hover .label,
 .footer-left .lang-selector:focus-within .label{
-  opacity: 1;
-  transform: translateX(0);
+  opacity:1; transform:translateX(0);
 }
 
-/* selectは展開時のみ操作可能に（既存ルールより強くする） */
-.footer-left .lang-selector .lang-select{
-  width: 120px;                               /* 展開幅に合わせて調整 */
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transition: opacity .15s ease;
-}
+/* show/select only when expanded */
 .footer-left .lang-selector:hover .lang-select,
 .footer-left .lang-selector:focus-within .lang-select{
-  opacity: 1 !important;
-  pointer-events: auto !important;
+  opacity:1; pointer-events:auto;
 }
 
-/* アイコンは少し淡く→ホバーで100%に */
-.footer-left .lang-selector .lang-icon{
-  opacity: .55;
-  transition: opacity .15s ease;
+/* ---------- Report link (right) ---------- */
+/* collapsed icon → expand to show label on hover (mirrors left side behavior) */
+.footer .report{
+  display:inline-flex; align-items:center; justify-content:flex-end;
+  overflow:hidden; white-space:nowrap; width:24px;
+  transition:width .25s ease, opacity .15s ease;
+  text-decoration:none !important; opacity:.55;
 }
-.footer-left .lang-selector:hover .lang-icon,
-.footer-left .lang-selector:focus-within .lang-icon{
-  opacity: 1;
+.footer .report:hover{ width:168px; opacity:1; }
+/* label slides in from right on hover */
+.footer .report .label{
+  margin-right:8px; opacity:0; transform:translateX(12px);
+  transition:opacity .2s ease .1s, transform .2s ease .1s;
 }
+.footer .report:hover .label{ opacity:1; transform:translateX(0); }
+.footer .report .icon{ line-height:1; font-size:16px; }
+
+/* no underline variants (avoid dotted artifacts) */
+.footer .report,
+.footer .report:hover,
+.footer .report:focus{ text-decoration:none !important; }
+
+/* keyboard focus ring */
+.footer .report:focus{ outline:2px solid var(--focus); outline-offset:2px; border-radius:6px; }
