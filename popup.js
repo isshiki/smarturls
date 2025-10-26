@@ -67,11 +67,11 @@ function applyTheme(mode) {
 const defaults = {
   // copy
   fmt: "md",
-  tpl: "[$title]($url)",
+  tpl: "- [$title]($url)",
 
   // open
   openFmt: "smart",          // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
-  openTpl: "[$title]($url)", // custom parser pattern
+  openTpl: "- [$title]($url)", // custom parser pattern
 
   // common
   source: "clipboard",       // "clipboard" | "textarea"
@@ -295,7 +295,7 @@ function formatLine(tab, cfg, idx) {
           : cfg.fmt === "tsv" ? "$title\t$url"
           : cfg.fmt === "html" ? "<a href=\"$url\">$title</a>"
           : cfg.fmt === "jsonl" ? "{\"title\":\"$title\",\"url\":\"$url\"}"
-          : (cfg.tpl || "[$title]($url)");
+          : (cfg.tpl || "- [$title]($url)");
 
   Object.entries(tokens)
     .sort(([a], [b]) => b.length - a.length) // 長いキーから順に処理
@@ -395,7 +395,7 @@ function extractByFormat(fmt, text, tpl) {
   } else if (fmt === "custom") {
     // カスタムテンプレ：$url をURLキャプチャに、他トークンは非貪欲に
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    let pat = esc(tpl || "[$title]($url)");
+    let pat = esc(tpl || "- [$title]($url)");
     const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
     pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
