@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filters" },
 
   "lang_label":     { "message": "Auto-detect or select language" },
+  "lang_auto":      { "message": "Auto" },
   "report_bug":     { "message": "Report a bug" },
 
   "err_clipboard_denied":      { "message": "Clipboard read was blocked by the browser." },

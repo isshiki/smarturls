@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filtros" },
 
   "lang_label":     { "message": "Detectar automaticamente ou selecionar idioma" },
+  "lang_auto":      { "message": "Auto (Automático)" },
   "report_bug":     { "message": "Reportar um bug" },
 
   "err_clipboard_denied":      { "message": "A leitura da área de transferência foi bloqueada pelo navegador." },

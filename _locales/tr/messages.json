@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filtreler" },
 
   "lang_label":     { "message": "Dili otomatik algila veya sec" },
+  "lang_auto":      { "message": "Auto (Otomatik)" },
   "report_bug":     { "message": "Hata bildir" },
 
   "err_clipboard_denied":      { "message": "Tarayıcı pano okumayı engelledi." },

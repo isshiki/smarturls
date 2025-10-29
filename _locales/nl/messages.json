@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filters" },
 
   "lang_label":     { "message": "Taal automatisch detecteren of kiezen" },
+  "lang_auto":      { "message": "Auto (Automatisch)" },
   "report_bug":     { "message": "Bug melden" },
 
   "err_clipboard_denied":      { "message": "Browser heeft klembord lezen geblokkeerd." },

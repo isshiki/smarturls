@@ -57,7 +57,8 @@
   "advanced":       { "message": "Nâng cao" },
   "filters_title_alt": { "message": "Bộ lọc" },
 
-  "lang_label":     { "message": "Tu dong phat hien hoac chon ngon ngu" },
+  "lang_label":     { "message": "Tự động phát hiện hoặc chọn ngôn ngữ" },
+  "lang_auto":      { "message": "Auto (Tự động)" },
   "report_bug":     { "message": "Báo lỗi" },
 
   "err_clipboard_denied":      { "message": "Trình duyệt đã chặn đọc clipboard." },

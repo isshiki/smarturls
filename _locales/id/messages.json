@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filter" },
 
   "lang_label":     { "message": "Deteksi otomatis atau pilih bahasa" },
+  "lang_auto":      { "message": "Auto (Otomatis)" },
   "report_bug":     { "message": "Laporkan bug" },
 
   "err_clipboard_denied":      { "message": "Browser memblokir pembacaan clipboard." },

@@ -57,7 +57,8 @@
   "advanced":       { "message": "Avanzado" },
   "filters_title_alt": { "message": "Filtros" },
 
-  "lang_label":     { "message": "Detectar automaticamente o seleccionar idioma" },
+  "lang_label":     { "message": "Detectar automáticamente o seleccionar idioma" },
+  "lang_auto":      { "message": "Auto (Automático)" },
   "report_bug":     { "message": "Reportar un error" },
 
   "err_clipboard_denied":      { "message": "La lectura del portapapeles fue bloqueada por el navegador." },

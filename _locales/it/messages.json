@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filtri" },
 
   "lang_label":     { "message": "Rileva automaticamente o seleziona la lingua" },
+  "lang_auto":      { "message": "Auto (Automatico)" },
   "report_bug":     { "message": "Segnala bug" },
 
   "err_clipboard_denied":      { "message": "Il browser ha bloccato la lettura del clipboard." },

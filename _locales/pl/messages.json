@@ -57,7 +57,8 @@
   "advanced":       { "message": "Zaawansowane" },
   "filters_title_alt": { "message": "Filtry" },
 
-  "lang_label":     { "message": "Wykryj automatycznie lub wybierz jezyk" },
+  "lang_label":     { "message": "Wykryj automatycznie lub wybierz język" },
+  "lang_auto":      { "message": "Auto (Automatyczny)" },
   "report_bug":     { "message": "Zgłoś błąd" },
 
   "err_clipboard_denied":      { "message": "Przeglądarka zablokowała czytanie schowka." },

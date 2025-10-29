@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "篩選器" },
 
   "lang_label":     { "message": "自動偵測或選擇語言" },
+  "lang_auto":      { "message": "Auto (自動)" },
   "report_bug":     { "message": "回報錯誤" },
 
   "err_clipboard_denied":      { "message": "瀏覽器阻止了剪貼簿讀取。" },

@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Фильтры" },
 
   "lang_label":     { "message": "Автоопределение или выбор языка" },
+  "lang_auto":      { "message": "Auto (Авто)" },
   "report_bug":     { "message": "Сообщить об ошибке" },
 
   "err_clipboard_denied":      { "message": "Браузер заблокировал чтение буфера обмена." },

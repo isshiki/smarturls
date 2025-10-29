@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "フィルター" },
 
   "lang_label":     { "message": "自動判定または言語を選択" },
+  "lang_auto":      { "message": "Auto (自動)" },
   "report_bug":     { "message": "不具合を報告" },
 
   "err_clipboard_denied":      { "message": "ブラウザによりクリップボードの読み取りがブロックされました。" },

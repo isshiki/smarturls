@@ -217,7 +217,7 @@ details.block[open] > summary::after{ content:"▲"; }
 .lang-selector{ position:relative; display:inline-flex; align-items:center; gap:8px; }
 .lang-icon{ font-size:16px; color:var(--fg); line-height:1; opacity:.55; transition:opacity .15s; }
 .lang-select{
-  width:120px; height:24px; cursor:pointer;
+  width:125px; height:24px; cursor:pointer;
   border:1px solid var(--border); border-radius:4px;
   background-color:var(--card); color:var(--fg);
   font-size:12px; padding:2px 6px; appearance:none;

@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "필터" },
 
   "lang_label":     { "message": "언어를 자동 감지하거나 선택" },
+  "lang_auto":      { "message": "Auto (자동)" },
   "report_bug":     { "message": "버그 보고" },
 
   "err_clipboard_denied":      { "message": "브라우저에서 클립보드 읽기를 차단했습니다." },

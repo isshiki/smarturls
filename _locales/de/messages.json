@@ -57,7 +57,8 @@
   "advanced":       { "message": "Erweitert" },
   "filters_title_alt": { "message": "Filter" },
 
-  "lang_label":     { "message": "Sprache automatisch erkennen oder auswahlen" },
+  "lang_label":     { "message": "Sprache automatisch erkennen oder auswählen" },
+  "lang_auto":      { "message": "Auto (Automatisch)" },
   "report_bug":     { "message": "Einen Fehler melden" },
 
   "err_clipboard_denied":      { "message": "Der Zugriff auf die Zwischenablage wurde vom Browser blockiert." },

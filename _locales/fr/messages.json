@@ -58,6 +58,7 @@
   "filters_title_alt": { "message": "Filtres" },
 
   "lang_label":     { "message": "Detecter automatiquement ou choisir la langue" },
+  "lang_auto":      { "message": "Auto (Automatique)" },
   "report_bug":     { "message": "Signaler un bug" },
 
   "err_clipboard_denied":      { "message": "La lecture du presse-papiers a été bloquée par le navigateur." },
