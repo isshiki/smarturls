@@ -44,6 +44,8 @@
 
   "confirm_label":  { "message": "Potwierdź przy N+ kartach" },
   "textarea_label": { "message": "Wklej tekst" },
+  "lang_label":     { "message": "Wykryj automatycznie lub wybierz jezyk" },
+
 
   "copied_n":       { "message": "Skopiowano " },
   "copy_failed":    { "message": "Kopiowanie nie powiodło się" },

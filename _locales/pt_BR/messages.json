@@ -44,6 +44,8 @@
 
   "confirm_label":  { "message": "Confirmar se mais de N abas" },
   "textarea_label": { "message": "Colar texto" },
+  "lang_label":     { "message": "Detectar automaticamente ou selecionar idioma" },
+
 
   "copied_n":       { "message": "Copiado " },
   "copy_failed":    { "message": "Cópia falhou" },

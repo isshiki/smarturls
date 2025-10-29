@@ -44,6 +44,7 @@
 
   "confirm_label":  { "message": "N件を超える場合に確認" },
   "textarea_label": { "message": "テキストを貼り付け" },
+  "lang_label":     { "message": "自動判定または言語を選択" },
 
   "copied_n":       { "message": "コピーしました: " },
   "copy_failed":    { "message": "コピーに失敗しました" },

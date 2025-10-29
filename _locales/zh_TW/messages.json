@@ -44,6 +44,8 @@
 
   "confirm_label":  { "message": "如果超過 N 個分頁則確認" },
   "textarea_label": { "message": "貼上文字" },
+  "lang_label":     { "message": "自動偵測或選擇語言" },
+
 
   "copied_n":       { "message": "已複製 " },
   "copy_failed":    { "message": "複製失敗" },

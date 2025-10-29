@@ -44,6 +44,8 @@
 
   "confirm_label":  { "message": "Bestätigen, wenn mehr als N Tabs" },
   "textarea_label": { "message": "Text einfügen" },
+  "lang_label":     { "message": "Sprache automatisch erkennen oder auswahlen" },
+
 
   "copied_n":       { "message": "Kopiert " },
   "copy_failed":    { "message": "Kopieren fehlgeschlagen" },
