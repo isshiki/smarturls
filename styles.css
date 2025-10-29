@@ -122,12 +122,20 @@ body{
   appearance:none; background:var(--card); color:var(--fg);
   border:1px solid var(--border); border-radius:10px;
   padding:6px 10px; font-weight:600;
+  margin:2px 0;
   opacity:0; pointer-events:none; transform:translateX(12px);
-  transition:opacity .2s ease .1s, transform .2s ease .1s;
+  box-sizing:border-box;
+  transition:opacity .2s ease .1s, transform .2s ease .1s, box-shadow .15s ease;
+  box-shadow:none;
+  background-clip:padding-box;
 }
 .theme-ctrl:hover select,
 .theme-ctrl:focus-within select{
   opacity:1; pointer-events:auto; transform:translateX(0);
+}
+.theme-ctrl select:is(:hover,:focus,:focus-visible){
+  outline:none;
+  box-shadow:0 0 0 2px var(--focus);
 }
 
 /* ===================== Actions ===================== */
@@ -213,7 +221,12 @@ details.block[open] > summary::after{ content:"▲"; }
   border:1px solid var(--border); border-radius:4px;
   background-color:var(--card); color:var(--fg);
   font-size:12px; padding:2px 6px; appearance:none;
-  transition:opacity .15s; opacity:0; pointer-events:none;
+  margin:2px 0;
+  box-sizing:border-box;
+  transition:opacity .15s ease, box-shadow .15s ease;
+  opacity:0; pointer-events:none;
+  box-shadow:none;
+  background-clip:padding-box;
 }
 .lang-select option{ background:var(--card) !important; color:var(--fg) !important; }
 
@@ -221,6 +234,7 @@ details.block[open] > summary::after{ content:"▲"; }
 .footer-left .lang-selector{
   width:fit-content; max-width:24px; overflow:hidden; white-space:nowrap;
   transition:max-width .25s ease, opacity .15s ease; opacity:.75;
+  padding:2px 0;
 }
 .footer-left .lang-selector:hover,
 .footer-left .lang-selector:focus-within{ max-width:520px; opacity:1; }
@@ -235,6 +249,10 @@ details.block[open] > summary::after{ content:"▲"; }
 .footer-left .lang-selector:focus-within .label{ opacity:1; transform:translateX(0); }
 .footer-left .lang-selector:hover .lang-select,
 .footer-left .lang-selector:focus-within .lang-select{ opacity:1; pointer-events:auto; }
+.lang-select:is(:hover,:focus,:focus-visible){
+  outline:none;
+  box-shadow:0 0 0 2px var(--focus);
+}
 
 /* ---------- Report link (right) ---------- */
 .footer .report{
@@ -271,14 +289,35 @@ html[data-theme="light"] .lang-select:is(:hover,:focus,:focus-visible){
   border-color:var(--border);
   transition:box-shadow .15s ease;
 }
-/* (2) Language select: parent has overflow hidden → use inset shadows */
-html[data-theme="light"] .footer-left .lang-selector .lang-select{
-  box-shadow:inset 0 0 0 .5px var(--border);
+html:not([data-theme="dark"]) .theme-ctrl select,
+html:not([data-theme="dark"]) .lang-select{
+  border:1px solid var(--border);
+  box-shadow:0 0 0 .5px var(--border);
+  background-clip:padding-box;
 }
-html[data-theme="light"] .footer-left .lang-selector .lang-select:is(:hover,:focus,:focus-visible){
+html:not([data-theme="dark"]) .theme-ctrl select:is(:hover,:focus,:focus-visible),
+html:not([data-theme="dark"]) .lang-select:is(:hover,:focus,:focus-visible){
+  outline:none;
   box-shadow:
-    inset 0 0 0 .5px var(--border),
-    inset 0 0 0 2px color-mix(in oklab, var(--focus), transparent 82%);
+    0 0 0 .5px var(--border),
+    0 0 0 2px color-mix(in oklab, var(--focus), transparent 82%);
+  border-color:var(--border);
+  transition:box-shadow .15s ease;
+}
+/* (2) Language select: parent has overflow hidden → use inset shadows */
+html[data-theme="light"] .footer-left .lang-selector .lang-select,
+html[data-theme="light"] .theme-ctrl select,
+html[data-theme="dark"] .footer-left .lang-selector .lang-select,
+html[data-theme="dark"] .theme-ctrl select{
+  /* allow outer shadow room; no base override */
+}
+html[data-theme="light"] .footer-left .lang-selector .lang-select:is(:hover,:focus,:focus-visible),
+html[data-theme="light"] .theme-ctrl select:is(:hover,:focus,:focus-visible){
+  box-shadow:0 0 0 2px color-mix(in oklab, var(--focus), transparent 82%);
+}
+html[data-theme="dark"] .footer-left .lang-selector .lang-select:is(:hover,:focus,:focus-visible),
+html[data-theme="dark"] .theme-ctrl select:is(:hover,:focus,:focus-visible){
+  box-shadow:0 0 0 2px color-mix(in oklab, var(--focus), transparent 60%);
 }
 /* (3) Radios/checkboxes: no layout shift (grid fixes) */
 .scope label, .radios label, .row label, label.inline{

@@ -6,6 +6,7 @@
   "theme_system":   { "message": "系統" },
   "theme_dark":     { "message": "深色" },
   "theme_light":    { "message": "淺色" },
+  "theme_label":    { "message": "選擇主題" },
 
   "copy_btn":       { "message": "複製" },
   "open_btn":       { "message": "開啟" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "如果超過 N 個分頁則確認" },
   "textarea_label": { "message": "貼上文字" },
-  "lang_label":     { "message": "自動偵測或選擇語言" },
-  "theme_label":    { "message": "\u9078\u64c7\u4e3b\u984c" },
-
-
 
   "copied_n":       { "message": "已複製 " },
   "copy_failed":    { "message": "複製失敗" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "進階" },
   "filters_title_alt": { "message": "篩選器" },
 
+  "lang_label":     { "message": "自動偵測或選擇語言" },
   "report_bug":     { "message": "回報錯誤" },
 
   "err_clipboard_denied":      { "message": "瀏覽器阻止了剪貼簿讀取。" },

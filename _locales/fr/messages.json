@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Système" },
   "theme_dark":     { "message": "Sombre" },
   "theme_light":    { "message": "Clair" },
+  "theme_label":    { "message": "Sélectionner le thème" },
 
   "copy_btn":       { "message": "Copier" },
   "open_btn":       { "message": "Ouvrir" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Confirmer si plus de N onglets" },
   "textarea_label": { "message": "Coller le texte" },
-  "lang_label":     { "message": "Detecter automatiquement ou choisir la langue" },
-  "theme_label":    { "message": "Choisir un th\u00e8me" },
-
-
 
   "copied_n":       { "message": "Copié " },
   "copy_failed":    { "message": "Échec de la copie" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Avancé" },
   "filters_title_alt": { "message": "Filtres" },
 
+  "lang_label":     { "message": "Detecter automatiquement ou choisir la langue" },
   "report_bug":     { "message": "Signaler un bug" },
 
   "err_clipboard_denied":      { "message": "La lecture du presse-papiers a été bloquée par le navigateur." },

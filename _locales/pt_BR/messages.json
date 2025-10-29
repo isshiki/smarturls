@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Sistema" },
   "theme_dark":     { "message": "Escuro" },
   "theme_light":    { "message": "Claro" },
+  "theme_label":    { "message": "Selecionar tema" },
 
   "copy_btn":       { "message": "Copiar" },
   "open_btn":       { "message": "Abrir" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Confirmar se mais de N abas" },
   "textarea_label": { "message": "Colar texto" },
-  "lang_label":     { "message": "Detectar automaticamente ou selecionar idioma" },
-  "theme_label":    { "message": "Selecionar tema" },
-
-
 
   "copied_n":       { "message": "Copiado " },
   "copy_failed":    { "message": "Cópia falhou" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Avançado" },
   "filters_title_alt": { "message": "Filtros" },
 
+  "lang_label":     { "message": "Detectar automaticamente ou selecionar idioma" },
   "report_bug":     { "message": "Reportar um bug" },
 
   "err_clipboard_denied":      { "message": "A leitura da área de transferência foi bloqueada pelo navegador." },

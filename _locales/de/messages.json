@@ -6,6 +6,7 @@
   "theme_system":   { "message": "System" },
   "theme_dark":     { "message": "Dunkel" },
   "theme_light":    { "message": "Hell" },
+  "theme_label":    { "message": "Design auswählen" },
 
   "copy_btn":       { "message": "Kopieren" },
   "open_btn":       { "message": "Öffnen" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Bestätigen, wenn mehr als N Tabs" },
   "textarea_label": { "message": "Text einfügen" },
-  "lang_label":     { "message": "Sprache automatisch erkennen oder auswahlen" },
-  "theme_label":    { "message": "Design ausw\u00e4hlen" },
-
-
 
   "copied_n":       { "message": "Kopiert " },
   "copy_failed":    { "message": "Kopieren fehlgeschlagen" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Erweitert" },
   "filters_title_alt": { "message": "Filter" },
 
+  "lang_label":     { "message": "Sprache automatisch erkennen oder auswahlen" },
   "report_bug":     { "message": "Einen Fehler melden" },
 
   "err_clipboard_denied":      { "message": "Der Zugriff auf die Zwischenablage wurde vom Browser blockiert." },

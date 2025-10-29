@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Sistema" },
   "theme_dark":     { "message": "Scuro" },
   "theme_light":    { "message": "Chiaro" },
+  "theme_label":    { "message": "Seleziona tema" },
 
   "copy_btn":       { "message": "Copia" },
   "open_btn":       { "message": "Apri" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Conferma per N+ schede" },
   "textarea_label": { "message": "Incolla testo" },
-  "lang_label":     { "message": "Rileva automaticamente o seleziona la lingua" },
-  "theme_label":    { "message": "Seleziona tema" },
-
-
 
   "copied_n":       { "message": "Copiato " },
   "copy_failed":    { "message": "Copia fallita" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Avanzate" },
   "filters_title_alt": { "message": "Filtri" },
 
+  "lang_label":     { "message": "Rileva automaticamente o seleziona la lingua" },
   "report_bug":     { "message": "Segnala bug" },
 
   "err_clipboard_denied":      { "message": "Il browser ha bloccato la lettura del clipboard." },

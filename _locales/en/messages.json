@@ -6,6 +6,7 @@
   "theme_system":   { "message": "System" },
   "theme_dark":     { "message": "Dark" },
   "theme_light":    { "message": "Light" },
+  "theme_label":    { "message": "Select theme" },
 
   "copy_btn":       { "message": "Copy" },
   "open_btn":       { "message": "Open" },
@@ -44,9 +45,6 @@
 
   "confirm_label":  { "message": "Confirm if more than N tabs" },
   "textarea_label": { "message": "Paste text" },
-  "lang_label":     { "message": "Auto-detect or select language" },
-  "theme_label":    { "message": "Select theme" },
-
 
   "copied_n":       { "message": "Copied " },
   "copy_failed":    { "message": "Copy failed" },
@@ -59,6 +57,7 @@
   "advanced":       { "message": "Advanced" },
   "filters_title_alt": { "message": "Filters" },
 
+  "lang_label":     { "message": "Auto-detect or select language" },
   "report_bug":     { "message": "Report a bug" },
 
   "err_clipboard_denied":      { "message": "Clipboard read was blocked by the browser." },

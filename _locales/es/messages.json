@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Sistema" },
   "theme_dark":     { "message": "Oscuro" },
   "theme_light":    { "message": "Claro" },
+  "theme_label":    { "message": "Seleccionar tema" },
 
   "copy_btn":       { "message": "Copiar" },
   "open_btn":       { "message": "Abrir" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Confirmar si hay más de N pestañas" },
   "textarea_label": { "message": "Pegar texto" },
-  "lang_label":     { "message": "Detectar automaticamente o seleccionar idioma" },
-  "theme_label":    { "message": "Seleccionar tema" },
-
-
 
   "copied_n":       { "message": "Copiado " },
   "copy_failed":    { "message": "Copia fallida" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Avanzado" },
   "filters_title_alt": { "message": "Filtros" },
 
+  "lang_label":     { "message": "Detectar automaticamente o seleccionar idioma" },
   "report_bug":     { "message": "Reportar un error" },
 
   "err_clipboard_denied":      { "message": "La lectura del portapapeles fue bloqueada por el navegador." },

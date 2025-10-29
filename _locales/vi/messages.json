@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Hệ thống" },
   "theme_dark":     { "message": "Tối" },
   "theme_light":    { "message": "Sáng" },
+  "theme_label":    { "message": "Chọn chủ đề" },
 
   "copy_btn":       { "message": "Sao chép" },
   "open_btn":       { "message": "Mở" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Xác nhận cho N+ tab" },
   "textarea_label": { "message": "Dán văn bản" },
-  "lang_label":     { "message": "Tu dong phat hien hoac chon ngon ngu" },
-  "theme_label":    { "message": "Ch\u1ecdn ch\u1ee7 \u0111\u1ec1" },
-
-
 
   "copied_n":       { "message": "Đã sao chép " },
   "copy_failed":    { "message": "Sao chép thất bại" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Nâng cao" },
   "filters_title_alt": { "message": "Bộ lọc" },
 
+  "lang_label":     { "message": "Tu dong phat hien hoac chon ngon ngu" },
   "report_bug":     { "message": "Báo lỗi" },
 
   "err_clipboard_denied":      { "message": "Trình duyệt đã chặn đọc clipboard." },

@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Sistem" },
   "theme_dark":     { "message": "Gelap" },
   "theme_light":    { "message": "Terang" },
+  "theme_label":    { "message": "Pilih tema" },
 
   "copy_btn":       { "message": "Salin" },
   "open_btn":       { "message": "Buka" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Konfirmasi untuk N+ tab" },
   "textarea_label": { "message": "Tempel teks" },
-  "lang_label":     { "message": "Deteksi otomatis atau pilih bahasa" },
-  "theme_label":    { "message": "Pilih tema" },
-
-
 
   "copied_n":       { "message": "Disalin " },
   "copy_failed":    { "message": "Salin gagal" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Lanjutan" },
   "filters_title_alt": { "message": "Filter" },
 
+  "lang_label":     { "message": "Deteksi otomatis atau pilih bahasa" },
   "report_bug":     { "message": "Laporkan bug" },
 
   "err_clipboard_denied":      { "message": "Browser memblokir pembacaan clipboard." },

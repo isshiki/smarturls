@@ -6,6 +6,7 @@
   "theme_system":   { "message": "システム" },
   "theme_dark":     { "message": "ダーク" },
   "theme_light":    { "message": "ライト" },
+  "theme_label":    { "message": "テーマを選択" },
 
   "copy_btn":       { "message": "コピー" },
   "open_btn":       { "message": "オープン" },
@@ -44,9 +45,6 @@
 
   "confirm_label":  { "message": "N件を超える場合に確認" },
   "textarea_label": { "message": "テキストを貼り付け" },
-  "lang_label":     { "message": "自動判定または言語を選択" },
-  "theme_label":    { "message": "\u30c6\u30fc\u30de\u3092\u9078\u629e" },
-
 
   "copied_n":       { "message": "コピーしました: " },
   "copy_failed":    { "message": "コピーに失敗しました" },
@@ -59,6 +57,7 @@
   "advanced":       { "message": "詳細設定" },
   "filters_title_alt": { "message": "フィルター" },
 
+  "lang_label":     { "message": "自動判定または言語を選択" },
   "report_bug":     { "message": "不具合を報告" },
 
   "err_clipboard_denied":      { "message": "ブラウザによりクリップボードの読み取りがブロックされました。" },

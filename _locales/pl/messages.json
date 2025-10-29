@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Systemowy" },
   "theme_dark":     { "message": "Ciemny" },
   "theme_light":    { "message": "Jasny" },
+  "theme_label":    { "message": "Wybierz motyw" },
 
   "copy_btn":       { "message": "Kopiuj" },
   "open_btn":       { "message": "Otwórz" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Potwierdź przy N+ kartach" },
   "textarea_label": { "message": "Wklej tekst" },
-  "lang_label":     { "message": "Wykryj automatycznie lub wybierz jezyk" },
-  "theme_label":    { "message": "Wybierz motyw" },
-
-
 
   "copied_n":       { "message": "Skopiowano " },
   "copy_failed":    { "message": "Kopiowanie nie powiodło się" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Zaawansowane" },
   "filters_title_alt": { "message": "Filtry" },
 
+  "lang_label":     { "message": "Wykryj automatycznie lub wybierz jezyk" },
   "report_bug":     { "message": "Zgłoś błąd" },
 
   "err_clipboard_denied":      { "message": "Przeglądarka zablokowała czytanie schowka." },

@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Systeem" },
   "theme_dark":     { "message": "Donker" },
   "theme_light":    { "message": "Licht" },
+  "theme_label":    { "message": "Thema selecteren" },
 
   "copy_btn":       { "message": "Kopiëren" },
   "open_btn":       { "message": "Openen" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "Bevestigen bij N+ tabbladen" },
   "textarea_label": { "message": "Tekst plakken" },
-  "lang_label":     { "message": "Taal automatisch detecteren of kiezen" },
-  "theme_label":    { "message": "Thema kiezen" },
-
-
 
   "copied_n":       { "message": "Gekopieerd " },
   "copy_failed":    { "message": "Kopiëren mislukt" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Geavanceerd" },
   "filters_title_alt": { "message": "Filters" },
 
+  "lang_label":     { "message": "Taal automatisch detecteren of kiezen" },
   "report_bug":     { "message": "Bug melden" },
 
   "err_clipboard_denied":      { "message": "Browser heeft klembord lezen geblokkeerd." },

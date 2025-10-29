@@ -6,6 +6,7 @@
   "theme_system":   { "message": "Sistem" },
   "theme_dark":     { "message": "Koyu" },
   "theme_light":    { "message": "Açık" },
+  "theme_label":    { "message": "Tema seç" },
 
   "copy_btn":       { "message": "Kopyala" },
   "open_btn":       { "message": "Aç" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "N+ sekme için onayla" },
   "textarea_label": { "message": "Metin yapıştır" },
-  "lang_label":     { "message": "Dili otomatik algila veya sec" },
-  "theme_label":    { "message": "Tema se\u00e7" },
-
-
 
   "copied_n":       { "message": "Kopyalandı " },
   "copy_failed":    { "message": "Kopyalama başarısız" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "Gelişmiş" },
   "filters_title_alt": { "message": "Filtreler" },
 
+  "lang_label":     { "message": "Dili otomatik algila veya sec" },
   "report_bug":     { "message": "Hata bildir" },
 
   "err_clipboard_denied":      { "message": "Tarayıcı pano okumayı engelledi." },

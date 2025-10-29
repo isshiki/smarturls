@@ -6,6 +6,7 @@
   "theme_system":   { "message": "시스템" },
   "theme_dark":     { "message": "어두운" },
   "theme_light":    { "message": "밝은" },
+  "theme_label":    { "message": "테마 선택" },
 
   "copy_btn":       { "message": "복사" },
   "open_btn":       { "message": "열기" },
@@ -44,10 +45,6 @@
 
   "confirm_label":  { "message": "N개 이상의 탭인 경우 확인" },
   "textarea_label": { "message": "텍스트 붙여넣기" },
-  "lang_label":     { "message": "\uc5b8\uc5b4 \uc790\ub3d9 \uac10\uc9c0 \ub610\ub294 \uc120\ud0dd" },
-  "theme_label":    { "message": "\ud14c\ub9c8 \uc120\ud0dd" },
-
-
 
   "copied_n":       { "message": "복사됨 " },
   "copy_failed":    { "message": "복사 실패" },
@@ -60,6 +57,7 @@
   "advanced":       { "message": "고급" },
   "filters_title_alt": { "message": "필터" },
 
+  "lang_label":     { "message": "언어를 자동 감지하거나 선택" },
   "report_bug":     { "message": "버그 보고" },
 
   "err_clipboard_denied":      { "message": "브라우저에서 클립보드 읽기를 차단했습니다." },
