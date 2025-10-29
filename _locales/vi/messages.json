@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Xác nhận cho N+ tab" },
   "textarea_label": { "message": "Dán văn bản" },
   "lang_label":     { "message": "Tu dong phat hien hoac chon ngon ngu" },
+  "theme_label":    { "message": "Ch\u1ecdn ch\u1ee7 \u0111\u1ec1" },
+
 
 
   "copied_n":       { "message": "Đã sao chép " },

@@ -72,6 +72,34 @@ body{
   display:flex; align-items:center; justify-content:space-between;
   gap:10px; margin-bottom:24px;
 }
+.theme-ctrl{
+  display:inline-flex; align-items:center; gap:8px;
+  flex-direction:row-reverse;
+  max-width:36px; overflow:hidden; white-space:nowrap;
+  transition:max-width .25s ease, opacity .15s ease;
+  cursor:pointer;
+}
+.theme-ctrl:focus-within,
+.theme-ctrl:hover{
+  max-width:320px; opacity:1;
+}
+.theme-icon{
+  font-size:18px; line-height:1; opacity:.65;
+  transition:opacity .15s ease;
+}
+.theme-ctrl:hover .theme-icon,
+.theme-ctrl:focus-within .theme-icon{
+  opacity:1;
+}
+.theme-label{
+  font-size:12px; color:var(--muted); margin:0;
+  opacity:0; transform:translateX(12px);
+  transition:opacity .2s ease .1s, transform .2s ease .1s;
+}
+.theme-ctrl:hover .theme-label,
+.theme-ctrl:focus-within .theme-label{
+  opacity:1; transform:translateX(0);
+}
 .header .brand{
   display:flex; align-items:center; gap:10px;
 }
@@ -94,6 +122,12 @@ body{
   appearance:none; background:var(--card); color:var(--fg);
   border:1px solid var(--border); border-radius:10px;
   padding:6px 10px; font-weight:600;
+  opacity:0; pointer-events:none; transform:translateX(12px);
+  transition:opacity .2s ease .1s, transform .2s ease .1s;
+}
+.theme-ctrl:hover select,
+.theme-ctrl:focus-within select{
+  opacity:1; pointer-events:auto; transform:translateX(0);
 }
 
 /* ===================== Actions ===================== */

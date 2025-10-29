@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Confirmar si hay más de N pestañas" },
   "textarea_label": { "message": "Pegar texto" },
   "lang_label":     { "message": "Detectar automaticamente o seleccionar idioma" },
+  "theme_label":    { "message": "Seleccionar tema" },
+
 
 
   "copied_n":       { "message": "Copiado " },

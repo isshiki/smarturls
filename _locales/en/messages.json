@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Confirm if more than N tabs" },
   "textarea_label": { "message": "Paste text" },
   "lang_label":     { "message": "Auto-detect or select language" },
+  "theme_label":    { "message": "Select theme" },
+
 
   "copied_n":       { "message": "Copied " },
   "copy_failed":    { "message": "Copy failed" },

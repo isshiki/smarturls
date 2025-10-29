@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "N+ sekme için onayla" },
   "textarea_label": { "message": "Metin yapıştır" },
   "lang_label":     { "message": "Dili otomatik algila veya sec" },
+  "theme_label":    { "message": "Tema se\u00e7" },
+
 
 
   "copied_n":       { "message": "Kopyalandı " },

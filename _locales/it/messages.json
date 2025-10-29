@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Conferma per N+ schede" },
   "textarea_label": { "message": "Incolla testo" },
   "lang_label":     { "message": "Rileva automaticamente o seleziona la lingua" },
+  "theme_label":    { "message": "Seleziona tema" },
+
 
 
   "copied_n":       { "message": "Copiato " },

@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Konfirmasi untuk N+ tab" },
   "textarea_label": { "message": "Tempel teks" },
   "lang_label":     { "message": "Deteksi otomatis atau pilih bahasa" },
+  "theme_label":    { "message": "Pilih tema" },
+
 
 
   "copied_n":       { "message": "Disalin " },

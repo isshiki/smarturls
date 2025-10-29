@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "如果超过 N 个标签页则确认" },
   "textarea_label": { "message": "粘贴文本" },
   "lang_label":     { "message": "自动检测或选择语言" },
+  "theme_label":    { "message": "\u9009\u62e9\u4e3b\u9898" },
+
 
 
   "copied_n":       { "message": "已复制 " },

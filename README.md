@@ -42,7 +42,7 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ### From Chrome Web Store
 
-1. Visit the [SmartURLs page](https://chromewebstore.google.com/detail/ekeecbnnlnmjimahpjnfdognobmabbfb)  on the Chrome Web Store
+1. Visit the [SmartURLs page](https://chromewebstore.google.com/detail/smarturls-copy-and-open-u/ekeecbnnlnmjimahpjnfdognobmabbfb)  on the Chrome Web Store
 2. Click **Add to Chrome**
 
 ### Manual (Development)

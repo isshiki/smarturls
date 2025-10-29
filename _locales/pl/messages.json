@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Potwierdź przy N+ kartach" },
   "textarea_label": { "message": "Wklej tekst" },
   "lang_label":     { "message": "Wykryj automatycznie lub wybierz jezyk" },
+  "theme_label":    { "message": "Wybierz motyw" },
+
 
 
   "copied_n":       { "message": "Skopiowano " },

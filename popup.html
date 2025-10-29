@@ -17,13 +17,15 @@
       <img class="brand-icon" src="icons/icon20.png" alt="" />
       <h1>SmartURLs <span class="version" data-version></span> <span class="dash">—</span> <span class="subtitle" data-i18n="subtitle">Copy & Open URLs</span></h1>
     </div>
-    <label class="theme-ctrl">
-      <select id="theme" aria-label="Theme">
+    <div class="theme-ctrl">
+      <span class="theme-icon" aria-hidden="true">🌗</span>
+      <select id="theme" aria-labelledby="themeLabel">
         <option value="system" data-i18n="theme_system">System</option>
         <option value="dark"   data-i18n="theme_dark">Dark</option>
         <option value="light"  data-i18n="theme_light">Light</option>
       </select>
-    </label>
+      <span id="themeLabel" class="theme-label" data-i18n="theme_label">Select theme</span>
+    </div>
   </header>
 
   <!-- Primary actions (two columns) -->

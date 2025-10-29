@@ -45,6 +45,8 @@
   "confirm_label":  { "message": "Bevestigen bij N+ tabbladen" },
   "textarea_label": { "message": "Tekst plakken" },
   "lang_label":     { "message": "Taal automatisch detecteren of kiezen" },
+  "theme_label":    { "message": "Thema kiezen" },
+
 
 
   "copied_n":       { "message": "Gekopieerd " },
