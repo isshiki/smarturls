@@ -42,7 +42,7 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ### From Chrome Web Store
 
-1. Visit the [SmartURLs listing](https://chrome.google.com/webstore/detail/smarturls/your-extension-id)
+1. Visit the [SmartURLs page](https://chromewebstore.google.com/detail/ekeecbnnlnmjimahpjnfdognobmabbfb)  on the Chrome Web Store
 2. Click **Add to Chrome**
 
 ### Manual (Development)
@@ -137,5 +137,5 @@ Licensed under the [Apache License 2.0](LICENSE).
 
 ## 💬 Feedback
 
-* Report bugs or suggestions via [GitHub Issues](https://github.com/isshiki/smarturls/issues)
+* Report bugs or suggestions via [GitHub Issues](https://github.com/isshiki/SmartURLs/issues)
 * Pull requests are always welcome

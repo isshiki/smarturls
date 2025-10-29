@@ -72,9 +72,21 @@ body{
   display:flex; align-items:center; justify-content:space-between;
   gap:10px; margin-bottom:24px;
 }
+.header .brand{
+  display:flex; align-items:center; gap:10px;
+}
 .header .brand h1{
   margin:0; font-size:20px; font-weight:800;
-  display:flex; align-items:center; gap:8px;
+  display:flex; align-items:baseline; gap:8px;
+  line-height:1;
+}
+.header .brand-icon{
+  width:20px; height:20px; border-radius:4px;
+  flex-shrink:0;
+}
+.header .brand .version{
+  font-size:12px; color:var(--muted); font-weight:600;
+  letter-spacing:.02em;
 }
 .header .brand .dash{ color:var(--muted); opacity:.45; }
 .header .subtitle{ color:var(--muted); font-size:12px; }

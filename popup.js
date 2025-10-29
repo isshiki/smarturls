@@ -75,6 +75,17 @@ const toast = (msg, ok = true) => {
   }, 60000); // 60s
 };
 
+function applyVersionBadge() {
+  const el = document.querySelector("[data-version]");
+  if (!el || !chrome.runtime?.getManifest) return;
+  try {
+    const version = chrome.runtime.getManifest().version;
+    if (version) el.textContent = `${version}`;
+  } catch (err) {
+    console.warn("[popup] Failed to render version badge", err);
+  }
+}
+
 // Soft limits to avoid pathological regex backtracking on custom templates
 const LIMITS = {
   customMaxTemplate: 500,         // max chars for template
@@ -200,6 +211,7 @@ async function init() {
   // 3) initial apply
   applyI18n();
   applyI18nTitle();
+  applyVersionBadge();
 
   // 4) bindings
   ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
