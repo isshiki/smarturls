@@ -8,7 +8,13 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ---
 
+## Screenshots
+
 ![SmartURLs Screenshot](./screenshots/screenshot1.png)
+
+| Advanced Options | Dark Theme |
+|:----------------:|:-----------:|
+| ![Advanced Options](screenshots/screenshot2.png) | ![Dark Theme](screenshots/screenshot4.png) |
 
 ---
 
