@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Copy and Open URLs" },
-  "appDesc":        { "message": "Copy and open URLs easily. Export links in multiple formats or open them from text or clipboard." },
+  "app_name":       { "message": "SmartURLs - Copy and Open URLs" },
+  "app_desc":       { "message": "Copy and open URLs easily. Export links in multiple formats or open them from text or clipboard." },
   "subtitle":       { "message": "Copy & Open URLs" },
 
   "theme_system":   { "message": "System" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Remove duplicates" },
   "opt_http":           { "message": "http/https only" },
   "opt_nopinned":       { "message": "Exclude [pinned] tabs" },
-  "opt_nopinned_hint":  { "message": "Skip tabs that are pinned in the browser." },
+  "opt_nopinned_hint":  { "message": "Skip tabs that are pinned in the browser" },
   "exclude_label":      { "message": "Exclude patterns" },
   "exclude_hint":       { "message": "Enter one pattern per line (separate by new lines). Use * as a wildcard. Example: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "No URLs found. The open format may be invalid." },
   "confirm_many":   { "message": "Open many tabs?" },
 
-  "advanced":       { "message": "Advanced" },
+  "advanced":          { "message": "Advanced" },
   "filters_title_alt": { "message": "Filters" },
+
+  "shortcuts_title":       { "message": "Keyboard Shortcuts" },
+  "shortcuts_copy_suffix": { "message": "Copy URLs" },
+  "shortcuts_open_suffix": { "message": "Open URLs" },
+  "shortcut_not_set":      { "message": "Not set" },
+  "shortcuts_config":      { "message": "Configure" },
+  "shortcuts_config_hint": { "message": "Opens Chrome's keyboard shortcut settings" },
+
+  "commands_copy_from_tabs":      { "message": "Copy URLs from tabs" },
+  "commands_open_from_clipboard": { "message": "Open URLs from clipboard" },
 
   "lang_label":     { "message": "Auto-detect or select language" },
   "lang_auto":      { "message": "Auto" },

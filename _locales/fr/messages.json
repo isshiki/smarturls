@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Copier et Ouvrir les URLs" },
-  "appDesc":        { "message": "Copiez toutes les URLs (avec titres) en Markdown, HTML, TSV, JSON ou texte personnalisé. Cela fonctionne aussi dans l'autre sens — ouvrant les URLs depuis du texte ou le presse-papiers, où le mode Smart Parser détecte automatiquement tout format." },
+  "app_name":       { "message": "SmartURLs - Copier et Ouvrir les URLs" },
+  "app_desc":       { "message": "Copiez toutes les URLs (avec titres) en Markdown, HTML, TSV, JSON ou texte personnalisé. Cela fonctionne aussi dans l'autre sens — ouvrant les URLs depuis du texte ou le presse-papiers, où le mode Smart Parser détecte automatiquement tout format." },
   "subtitle":       { "message": "Copier et Ouvrir les URLs" },
 
   "theme_system":   { "message": "Système" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Supprimer les doublons" },
   "opt_http":           { "message": "http/https seulement" },
   "opt_nopinned":       { "message": "Exclure les onglets [épinglés]" },
-  "opt_nopinned_hint":  { "message": "Ignorer les onglets épinglés dans le navigateur." },
+  "opt_nopinned_hint":  { "message": "Ignorer les onglets épinglés dans le navigateur" },
   "exclude_label":      { "message": "Motifs d'exclusion" },
   "exclude_hint":       { "message": "Entrez un motif par ligne (séparés par des nouvelles lignes). Utilisez * comme joker. Exemple : https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "Aucune URL trouvée. Le format d'ouverture peut être invalide." },
   "confirm_many":   { "message": "Ouvrir beaucoup d'onglets ?" },
 
-  "advanced":       { "message": "Avancé" },
+  "advanced":          { "message": "Avancé" },
   "filters_title_alt": { "message": "Filtres" },
+
+  "shortcuts_title":       { "message": "Raccourcis clavier" },
+  "shortcuts_copy_suffix": { "message": "Copier les URLs" },
+  "shortcuts_open_suffix": { "message": "Ouvrir les URLs" },
+  "shortcut_not_set":      { "message": "Non configuré" },
+  "shortcuts_config":      { "message": "Configurer" },
+  "shortcuts_config_hint": { "message": "Ouvre les paramètres des raccourcis Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Copier les URL des onglets" },
+  "commands_open_from_clipboard": { "message": "Ouvrir les URL du presse-papiers" },
 
   "lang_label":     { "message": "Detecter automatiquement ou choisir la langue" },
   "lang_auto":      { "message": "Auto (Automatique)" },

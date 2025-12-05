@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - URL Kopyalama ve Açma" },
-  "appDesc":        { "message": "Tüm URL'leri (başlıklar dahil) Markdown, HTML, TSV, JSON veya özel metin olarak kopyalar. Ayrıca metin veya panodan URL açabilir, Smart Parser modu tüm formatları otomatik olarak algılar." },
+  "app_name":       { "message": "SmartURLs - URL Kopyalama ve Açma" },
+  "app_desc":       { "message": "Tüm URL'leri (başlıklar dahil) Markdown, HTML, TSV, JSON veya özel metin olarak kopyalar. Ayrıca metin veya panodan URL açabilir, Smart Parser modu tüm formatları otomatik olarak algılar." },
   "subtitle":       { "message": "URL Kopyalama ve Açma" },
 
   "theme_system":   { "message": "Sistem" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Çiftleri kaldır" },
   "opt_http":           { "message": "Sadece http/https" },
   "opt_nopinned":       { "message": "[Sabitlenmiş] sekmeleri hariç tut" },
-  "opt_nopinned_hint":  { "message": "Tarayıcıdaki sabitlenmiş sekmeleri atlar." },
+  "opt_nopinned_hint":  { "message": "Tarayıcıdaki sabitlenmiş sekmeleri atlar" },
   "exclude_label":      { "message": "Hariç tutma desenleri" },
   "exclude_hint":       { "message": "Her satırda bir desen (yeni satırla ayrılmış). *'ı joker olarak kullan. Örnek: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "URL bulunamadı. Açma formatı yanlış olabilir." },
   "confirm_many":   { "message": "Çok fazla sekme aç?" },
 
-  "advanced":       { "message": "Gelişmiş" },
+  "advanced":          { "message": "Gelişmiş" },
   "filters_title_alt": { "message": "Filtreler" },
+
+  "shortcuts_title":       { "message": "Klavye kısayolları" },
+  "shortcuts_copy_suffix": { "message": "URL'leri Kopyala" },
+  "shortcuts_open_suffix": { "message": "URL'leri Aç" },
+  "shortcut_not_set":      { "message": "Ayarlanmadı" },
+  "shortcuts_config":      { "message": "Yapılandır" },
+  "shortcuts_config_hint": { "message": "Chrome kısayol ayarlarını aç" },
+  
+  "commands_copy_from_tabs":      { "message": "Sekmelerden URL kopyala" },
+  "commands_open_from_clipboard": { "message": "Panodan URL aç" },
 
   "lang_label":     { "message": "Dili otomatik algila veya sec" },
   "lang_auto":      { "message": "Auto (Otomatik)" },

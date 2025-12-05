@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Copiar y Abrir URLs" },
-  "appDesc":        { "message": "Copia todas las URLs (con títulos) como Markdown, HTML, TSV, JSON o texto personalizado. También funciona al revés: abriendo URLs desde texto o el portapapeles, donde el modo Smart Parser detecta automáticamente cualquier formato." },
+  "app_name":       { "message": "SmartURLs - Copiar y Abrir URLs" },
+  "app_desc":       { "message": "Copia todas las URLs (con títulos) como Markdown, HTML, TSV, JSON o texto personalizado. También funciona al revés: abriendo URLs desde texto o el portapapeles, donde el modo Smart Parser detecta automáticamente cualquier formato." },
   "subtitle":       { "message": "Copiar y Abrir URLs" },
 
   "theme_system":   { "message": "Sistema" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Eliminar duplicados" },
   "opt_http":           { "message": "Solo http/https" },
   "opt_nopinned":       { "message": "Excluir pestañas [fijadas]" },
-  "opt_nopinned_hint":  { "message": "Omitir pestañas que están fijadas en el navegador." },
+  "opt_nopinned_hint":  { "message": "Omitir pestañas que están fijadas en el navegador" },
   "exclude_label":      { "message": "Patrones de exclusión" },
   "exclude_hint":       { "message": "Ingresa un patrón por línea (separados por nuevas líneas). Usa * como comodín. Ejemplo: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "No se encontraron URLs. El formato de apertura puede ser inválido." },
   "confirm_many":   { "message": "¿Abrir muchas pestañas?" },
 
-  "advanced":       { "message": "Avanzado" },
+  "advanced":          { "message": "Avanzado" },
   "filters_title_alt": { "message": "Filtros" },
+
+  "shortcuts_title":       { "message": "Atajos de teclado" },
+  "shortcuts_copy_suffix": { "message": "Copiar URLs" },
+  "shortcuts_open_suffix": { "message": "Abrir URLs" },
+  "shortcut_not_set":      { "message": "No configurado" },
+  "shortcuts_config":      { "message": "Configurar" },
+  "shortcuts_config_hint": { "message": "Abre la configuración de atajos de Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Copiar URLs de pestañas" },
+  "commands_open_from_clipboard": { "message": "Abrir URLs desde portapapeles" },
 
   "lang_label":     { "message": "Detectar automáticamente o seleccionar idioma" },
   "lang_auto":      { "message": "Auto (Automático)" },

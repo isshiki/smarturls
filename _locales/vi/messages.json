@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Sao chép và Mở URL" },
-  "appDesc":        { "message": "Sao chép tất cả URL (bao gồm tiêu đề) ở định dạng Markdown, HTML, TSV, JSON hoặc văn bản tùy chỉnh. Cũng có thể mở URL từ văn bản hoặc clipboard, với chế độ Smart Parser tự động phát hiện tất cả định dạng." },
+  "app_name":       { "message": "SmartURLs - Sao chép và Mở URL" },
+  "app_desc":       { "message": "Sao chép tất cả URL (bao gồm tiêu đề) ở định dạng Markdown, HTML, TSV, JSON hoặc văn bản tùy chỉnh. Cũng có thể mở URL từ văn bản hoặc clipboard, với chế độ Smart Parser tự động phát hiện tất cả định dạng." },
   "subtitle":       { "message": "Sao chép và Mở URL" },
 
   "theme_system":   { "message": "Hệ thống" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Loại bỏ trùng lặp" },
   "opt_http":           { "message": "Chỉ http/https" },
   "opt_nopinned":       { "message": "Loại trừ tab [được ghim]" },
-  "opt_nopinned_hint":  { "message": "Bỏ qua các tab được ghim trong trình duyệt." },
+  "opt_nopinned_hint":  { "message": "Bỏ qua các tab được ghim trong trình duyệt" },
   "exclude_label":      { "message": "Mẫu loại trừ" },
   "exclude_hint":       { "message": "Một mẫu mỗi dòng (phân tách bằng dòng mới). Sử dụng * làm ký tự đại diện. Ví dụ: https://chatgpt.com/c/*" },
 
@@ -54,10 +54,20 @@
   "no_urls":        { "message": "Không tìm thấy URL. Có thể định dạng mở sai." },
   "confirm_many":   { "message": "Mở nhiều tab?" },
 
-  "advanced":       { "message": "Nâng cao" },
+  "advanced":          { "message": "Nâng cao" },
   "filters_title_alt": { "message": "Bộ lọc" },
 
-  "lang_label":     { "message": "Tự động phát hiện hoặc chọn ngôn ngữ" },
+  "shortcuts_title":       { "message": "Phím tắt" },
+  "shortcuts_copy_suffix": { "message": "Sao chép URL" },
+  "shortcuts_open_suffix": { "message": "Mở URL" },
+  "shortcut_not_set":      { "message": "Chưa thiết lập" },
+  "shortcuts_config":      { "message": "Cấu hình" },
+  "shortcuts_config_hint": { "message": "Mở cài đặt phím tắt Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Sao chép URL từ tab" },
+  "commands_open_from_clipboard": { "message": "Mở URL từ clipboard" },
+
+  "lang_label":     { "message": "Tự động phát hiện hoặc ngôn ngữ" },
   "lang_auto":      { "message": "Auto (Tự động)" },
   "report_bug":     { "message": "Báo lỗi" },
 

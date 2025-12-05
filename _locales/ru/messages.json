@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Копирование и открытие URL" },
-  "appDesc":        { "message": "Копирует все URL (включая заголовки) в формате Markdown, HTML, TSV, JSON или пользовательском тексте. Также может открывать URL из текста или буфера обмена, с режимом Smart Parser, который автоматически распознает все форматы." },
+  "app_name":       { "message": "SmartURLs - Копирование и открытие URL" },
+  "app_desc":       { "message": "Копирует все URL (включая заголовки) в формате Markdown, HTML, TSV, JSON или пользовательском тексте. Также может открывать URL из текста или буфера обмена, с режимом Smart Parser, который автоматически распознает все форматы." },
   "subtitle":       { "message": "Копирование и открытие URL" },
 
   "theme_system":   { "message": "Системная" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Удалить дубликаты" },
   "opt_http":           { "message": "Только http/https" },
   "opt_nopinned":       { "message": "Исключить [закрепленные] вкладки" },
-  "opt_nopinned_hint":  { "message": "Пропускает закрепленные вкладки в браузере." },
+  "opt_nopinned_hint":  { "message": "Пропускает закрепленные вкладки в браузере" },
   "exclude_label":      { "message": "Шаблоны исключения" },
   "exclude_hint":       { "message": "Один шаблон на строку (разделенные новой строкой). Используйте * как подстановочный знак. Пример: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "URL не найдены. Возможно, неправильный формат открытия." },
   "confirm_many":   { "message": "Открыть много вкладок?" },
 
-  "advanced":       { "message": "Расширенные" },
+  "advanced":          { "message": "Расширенные" },
   "filters_title_alt": { "message": "Фильтры" },
+
+  "shortcuts_title":       { "message": "Сочетания клавиш" },
+  "shortcuts_copy_suffix": { "message": "Копировать URL" },
+  "shortcuts_open_suffix": { "message": "Открыть URL" },
+  "shortcut_not_set":      { "message": "Не настроено" },
+  "shortcuts_config":      { "message": "Настроить" },
+  "shortcuts_config_hint": { "message": "Открыть настройки сочетаний клавиш Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Копировать URL из вкладок" },
+  "commands_open_from_clipboard": { "message": "Открыть URL из буфера обмена" },
 
   "lang_label":     { "message": "Автоопределение или выбор языка" },
   "lang_auto":      { "message": "Auto (Авто)" },

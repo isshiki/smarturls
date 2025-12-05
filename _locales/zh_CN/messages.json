@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - 复制和打开 URL" },
-  "appDesc":        { "message": "将所有 URL（带标题）复制为 Markdown、HTML、TSV、JSON 或自定义文本。它也可以反向工作——从文本或剪贴板打开 URL，其中智能解析器模式自动检测任何格式。" },
+  "app_name":       { "message": "SmartURLs - 复制和打开 URL" },
+  "app_desc":       { "message": "将所有 URL（带标题）复制为 Markdown、HTML、TSV、JSON 或自定义文本。它也可以反向工作——从文本或剪贴板打开 URL，其中智能解析器模式自动检测任何格式。" },
   "subtitle":       { "message": "复制和打开 URL" },
 
   "theme_system":   { "message": "系统" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "移除重复项" },
   "opt_http":           { "message": "仅 http/https" },
   "opt_nopinned":       { "message": "排除 [固定] 标签页" },
-  "opt_nopinned_hint":  { "message": "跳过浏览器中固定的标签页。" },
+  "opt_nopinned_hint":  { "message": "跳过浏览器中固定的标签页" },
   "exclude_label":      { "message": "排除模式" },
   "exclude_hint":       { "message": "每行输入一个模式（用换行符分隔）。使用 * 作为通配符。示例：https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "未找到 URL。打开格式可能无效。" },
   "confirm_many":   { "message": "打开许多标签页？" },
 
-  "advanced":       { "message": "高级" },
+  "advanced":          { "message": "高级" },
   "filters_title_alt": { "message": "过滤器" },
+
+  "shortcuts_title":       { "message": "键盘快捷键" },
+  "shortcuts_copy_suffix": { "message": "复制网址" },
+  "shortcuts_open_suffix": { "message": "打开网址" },
+  "shortcut_not_set":      { "message": "未设置" },
+  "shortcuts_config":      { "message": "配置" },
+  "shortcuts_config_hint": { "message": "打开 Chrome 快捷键设置" },
+  
+  "commands_copy_from_tabs":      { "message": "从标签页复制 URL" },
+  "commands_open_from_clipboard": { "message": "从剪贴板打开 URL" },
 
   "lang_label":     { "message": "自动检测或选择语言" },
   "lang_auto":      { "message": "Auto (自动)" },

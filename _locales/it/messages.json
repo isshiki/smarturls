@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Copia e Apri URL" },
-  "appDesc":        { "message": "Copia tutti gli URL (inclusi i titoli) in formato Markdown, HTML, TSV, JSON o testo personalizzato. Può anche aprire URL da testo o clipboard, con modalità Smart Parser che rileva automaticamente tutti i formati." },
+  "app_name":       { "message": "SmartURLs - Copia e Apri URL" },
+  "app_desc":       { "message": "Copia tutti gli URL (inclusi i titoli) in formato Markdown, HTML, TSV, JSON o testo personalizzato. Può anche aprire URL da testo o clipboard, con modalità Smart Parser che rileva automaticamente tutti i formati." },
   "subtitle":       { "message": "Copia e Apri URL" },
 
   "theme_system":   { "message": "Sistema" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Rimuovi duplicati" },
   "opt_http":           { "message": "Solo http/https" },
   "opt_nopinned":       { "message": "Escludi schede [fissate]" },
-  "opt_nopinned_hint":  { "message": "Salta le schede fissate nel browser." },
+  "opt_nopinned_hint":  { "message": "Salta le schede fissate nel browser" },
   "exclude_label":      { "message": "Pattern di esclusione" },
   "exclude_hint":       { "message": "Un pattern per riga (separati da nuova riga). Usa * come jolly. Esempio: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "URL non trovati. Potrebbe essere un formato di apertura errato." },
   "confirm_many":   { "message": "Aprire molte schede?" },
 
-  "advanced":       { "message": "Avanzate" },
+  "advanced":          { "message": "Avanzate" },
   "filters_title_alt": { "message": "Filtri" },
+
+  "shortcuts_title":       { "message": "Scorciatoie da tastiera" },
+  "shortcuts_copy_suffix": { "message": "Copia URL" },
+  "shortcuts_open_suffix": { "message": "Apri URL" },
+  "shortcut_not_set":      { "message": "Non configurato" },
+  "shortcuts_config":      { "message": "Configura" },
+  "shortcuts_config_hint": { "message": "Apri impostazioni scorciatoie Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Copia URL dalle schede" },
+  "commands_open_from_clipboard": { "message": "Apri URL dagli appunti" },
 
   "lang_label":     { "message": "Rileva automaticamente o seleziona la lingua" },
   "lang_auto":      { "message": "Auto (Automatico)" },

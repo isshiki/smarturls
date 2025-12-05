@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - URLs kopieren und öffnen" },
-  "appDesc":        { "message": "Kopieren Sie alle URLs (mit Titeln) als Markdown, HTML, TSV, JSON oder benutzerdefinierten Text. Es funktioniert auch umgekehrt — URLs aus Text oder der Zwischenablage öffnen, wobei der Smart Parser-Modus automatisch jedes Format erkennt." },
+  "app_name":       { "message": "SmartURLs - URLs kopieren und öffnen" },
+  "app_desc":       { "message": "Kopieren Sie alle URLs (mit Titeln) als Markdown, HTML, TSV, JSON oder benutzerdefinierten Text. Es funktioniert auch umgekehrt — URLs aus Text oder der Zwischenablage öffnen, wobei der Smart Parser-Modus automatisch jedes Format erkennt." },
   "subtitle":       { "message": "URLs kopieren und öffnen" },
 
   "theme_system":   { "message": "System" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Duplikate entfernen" },
   "opt_http":           { "message": "Nur http/https" },
   "opt_nopinned":       { "message": "[Angeheftete] Tabs ausschließen" },
-  "opt_nopinned_hint":  { "message": "Angeheftete Tabs im Browser überspringen." },
+  "opt_nopinned_hint":  { "message": "Angeheftete Tabs im Browser überspringen" },
   "exclude_label":      { "message": "Ausschlussmuster" },
   "exclude_hint":       { "message": "Geben Sie ein Muster pro Zeile ein (getrennt durch neue Zeilen). Verwenden Sie * als Platzhalter. Beispiel: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "Keine URLs gefunden. Das Öffnungsformat ist möglicherweise ungültig." },
   "confirm_many":   { "message": "Viele Tabs öffnen?" },
 
-  "advanced":       { "message": "Erweitert" },
+  "advanced":          { "message": "Erweitert" },
   "filters_title_alt": { "message": "Filter" },
+
+  "shortcuts_title":       { "message": "Tastenkombinationen" },
+  "shortcuts_copy_suffix": { "message": "URLs kopieren" },
+  "shortcuts_open_suffix": { "message": "URLs öffnen" },
+  "shortcut_not_set":      { "message": "Nicht konfiguriert" },
+  "shortcuts_config":      { "message": "Konfigurieren" },
+  "shortcuts_config_hint": { "message": "Öffnet die Chrome-Tastenkombinationseinstellungen" },
+  
+  "commands_copy_from_tabs":      { "message": "URLs aus Tabs kopieren" },
+  "commands_open_from_clipboard": { "message": "URLs aus Zwischenablage öffnen" },
 
   "lang_label":     { "message": "Sprache automatisch erkennen oder auswählen" },
   "lang_auto":      { "message": "Auto (Automatisch)" },

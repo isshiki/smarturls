@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Copiar e Abrir URLs" },
-  "appDesc":        { "message": "Copie todas as URLs (com títulos) como Markdown, HTML, TSV, JSON ou texto personalizado. Também funciona ao contrário — abrindo URLs de texto ou da área de transferência, onde o modo Smart Parser detecta automaticamente qualquer formato." },
+  "app_name":       { "message": "SmartURLs - Copiar e Abrir URLs" },
+  "app_desc":       { "message": "Copie todas as URLs (com títulos) como Markdown, HTML, TSV, JSON ou texto personalizado. Também funciona ao contrário — abrindo URLs de texto ou da área de transferência, onde o modo Smart Parser detecta automaticamente qualquer formato." },
   "subtitle":       { "message": "Copiar e Abrir URLs" },
 
   "theme_system":   { "message": "Sistema" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Remover duplicatas" },
   "opt_http":           { "message": "Apenas http/https" },
   "opt_nopinned":       { "message": "Excluir abas [fixadas]" },
-  "opt_nopinned_hint":  { "message": "Pular abas que estão fixadas no navegador." },
+  "opt_nopinned_hint":  { "message": "Pular abas que estão fixadas no navegador" },
   "exclude_label":      { "message": "Padrões de exclusão" },
   "exclude_hint":       { "message": "Digite um padrão por linha (separados por novas linhas). Use * como curinga. Exemplo: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "Nenhuma URL encontrada. O formato de abertura pode ser inválido." },
   "confirm_many":   { "message": "Abrir muitas abas?" },
 
-  "advanced":       { "message": "Avançado" },
+  "advanced":          { "message": "Avançado" },
   "filters_title_alt": { "message": "Filtros" },
+
+  "shortcuts_title":       { "message": "Atalhos de teclado" },
+  "shortcuts_copy_suffix": { "message": "Copiar URLs" },
+  "shortcuts_open_suffix": { "message": "Abrir URLs" },
+  "shortcut_not_set":      { "message": "Não configurado" },
+  "shortcuts_config":      { "message": "Configurar" },
+  "shortcuts_config_hint": { "message": "Abre as configurações de atalhos do Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Copiar URLs das abas" },
+  "commands_open_from_clipboard": { "message": "Abrir URLs da área de transferência" },
 
   "lang_label":     { "message": "Detectar automaticamente ou selecionar idioma" },
   "lang_auto":      { "message": "Auto (Automático)" },

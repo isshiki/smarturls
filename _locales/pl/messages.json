@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Kopiowanie i Otwieranie URL" },
-  "appDesc":        { "message": "Kopiuje wszystkie URL (w tym tytuły) w formacie Markdown, HTML, TSV, JSON lub niestandardowym tekście. Może również otwierać URL z tekstu lub schowka, z trybem Smart Parser, który automatycznie wykrywa wszystkie formaty." },
+  "app_name":       { "message": "SmartURLs - Kopiowanie i Otwieranie URL" },
+  "app_desc":       { "message": "Kopiuje wszystkie URL (w tym tytuły) w formacie Markdown, HTML, TSV, JSON lub niestandardowym tekście. Może również otwierać URL z tekstu lub schowka, z trybem Smart Parser, który automatycznie wykrywa wszystkie formaty." },
   "subtitle":       { "message": "Kopiowanie i Otwieranie URL" },
 
   "theme_system":   { "message": "Systemowy" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Usuń duplikaty" },
   "opt_http":           { "message": "Tylko http/https" },
   "opt_nopinned":       { "message": "Wyklucz [przypięte] karty" },
-  "opt_nopinned_hint":  { "message": "Pomija przypięte karty w przeglądarce." },
+  "opt_nopinned_hint":  { "message": "Pomija przypięte karty w przeglądarce" },
   "exclude_label":      { "message": "Wzorce wykluczenia" },
   "exclude_hint":       { "message": "Jeden wzorzec na wiersz (rozdzielone nową linią). Użyj * jako symbolu wieloznacznego. Przykład: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "Nie znaleziono URL. Możliwy błędny format otwierania." },
   "confirm_many":   { "message": "Otworzyć wiele kart?" },
 
-  "advanced":       { "message": "Zaawansowane" },
+  "advanced":          { "message": "Zaawansowane" },
   "filters_title_alt": { "message": "Filtry" },
+
+  "shortcuts_title":       { "message": "Skróty klawiszowe" },
+  "shortcuts_copy_suffix": { "message": "Kopiuj URL" },
+  "shortcuts_open_suffix": { "message": "Otwórz URL" },
+  "shortcut_not_set":      { "message": "Nie skonfigurowano" },
+  "shortcuts_config":      { "message": "Konfiguruj" },
+  "shortcuts_config_hint": { "message": "Otwórz ustawienia skrótów Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Kopiuj URL z kart" },
+  "commands_open_from_clipboard": { "message": "Otwórz URL ze schowka" },
 
   "lang_label":     { "message": "Wykryj automatycznie lub wybierz język" },
   "lang_auto":      { "message": "Auto (Automatyczny)" },

@@ -30,8 +30,14 @@
 
   <!-- Primary actions (two columns) -->
   <div class="actions-grid">
-    <button id="btnCopy" class="action primary" type="button">📋 <span data-i18n="copy_btn">Copy</span></button>
-    <button id="btnOpen" class="action secondary" type="button">🚀 <span data-i18n="open_btn">Open</span></button>
+    <button id="btnCopy" class="action primary" type="button">
+      📋 <span data-i18n="copy_btn">Copy</span>
+      <span class="action-shortcut-hint" id="copyShortcutHint"></span>
+    </button>
+    <button id="btnOpen" class="action secondary" type="button">
+      🚀 <span data-i18n="open_btn">Open</span>
+      <span class="action-shortcut-hint" id="openShortcutHint"></span>
+    </button>
   </div>
 
   <!-- Main content: two columns -->
@@ -112,6 +118,21 @@
             </label>
           </div>
         </div>
+
+        <div class="field">
+          <h3 class="shortcut-heading">
+            <span class="shortcut-heading-main" data-i18n="shortcuts_title">Keyboard Shortcuts</span>
+            <span class="shortcut-heading-separator"> — </span>
+            <span class="shortcut-heading-sub" data-i18n="shortcuts_copy_suffix">Copy URLs</span>
+          </h3>
+          <div class="shortcut-controls">
+            <span class="shortcut-pill" id="copyShortcutDisplay">-</span>
+            <button type="button" class="shortcut-config-btn" id="copyShortcutConfigure"
+                    data-i18n="shortcuts_config"
+                    data-i18n-title="shortcuts_config_hint"
+                    title="Opens Chrome's keyboard shortcut settings">Configure in Chrome</button>
+          </div>
+        </div>
       </details>
     </div>
 
@@ -174,6 +195,21 @@
           <label class="label" data-i18n="confirm_label">Confirm if more than N tabs</label>
           <input id="openLimit" type="number" min="1" value="30" />
         </div>
+
+        <div class="field">
+          <h3 class="shortcut-heading">
+            <span class="shortcut-heading-main" data-i18n="shortcuts_title">Keyboard Shortcuts</span>
+            <span class="shortcut-heading-separator"> — </span>
+            <span class="shortcut-heading-sub" data-i18n="shortcuts_open_suffix">Open URLs</span>
+          </h3>
+          <div class="shortcut-controls">
+            <span class="shortcut-pill" id="openShortcutDisplay">-</span>
+            <button type="button" class="shortcut-config-btn" id="openShortcutConfigure"
+                    data-i18n="shortcuts_config"
+                    data-i18n-title="shortcuts_config_hint"
+                    title="Opens Chrome's keyboard shortcut settings">Configure in Chrome</button>
+          </div>
+        </div>
       </details>
     </div>
   </div>
@@ -220,6 +256,7 @@
   </footer>
 
   <!-- External script only (no inline JS for MV3) -->
+  <script src="actions.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

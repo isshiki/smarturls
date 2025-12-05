@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - URLをコピー＆オープン" },
-  "appDesc":        { "message": "タブのURL（オプションでタイトル付き）をMarkdown、HTML、TSV、JSON、またはカスタム形式でコピーできます。逆にテキストやクリップボードからURLを開くことも可能です。スマート解析モードにより、形式を自動検出して正しく開きます。" },
+  "app_name":       { "message": "SmartURLs - URLをコピー＆オープン" },
+  "app_desc":       { "message": "タブのURL（オプションでタイトル付き）をMarkdown、HTML、TSV、JSON、またはカスタム形式でコピーできます。逆にテキストやクリップボードからURLを開くことも可能です。スマート解析モードにより、形式を自動検出して正しく開きます。" },
   "subtitle":       { "message": "URLのコピー＆オープン" },
 
   "theme_system":   { "message": "システム" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "重複URLを除外" },
   "opt_http":           { "message": "http/httpsのみ" },
   "opt_nopinned":       { "message": "［固定］を除外" },
-  "opt_nopinned_hint":  { "message": "ブラウザで［固定］されているタブをスキップします。" },
+  "opt_nopinned_hint":  { "message": "ブラウザで［固定］されているタブをスキップします" },
   "exclude_label":      { "message": "除外パターン" },
   "exclude_hint":       { "message": "パターンは1行に1つ（改行で区切ります）。ワイルドカードは * のみ使用できます。例: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "URLが見つかりません。オープン形式が正しくない可能性があります" },
   "confirm_many":   { "message": "大量のタブを開きます。続行しますか？" },
 
-  "advanced":       { "message": "詳細設定" },
+  "advanced":          { "message": "詳細設定" },
   "filters_title_alt": { "message": "フィルター" },
+
+  "shortcuts_title":       { "message": "キーボードショートカット" },
+  "shortcuts_copy_suffix": { "message": "URLをコピー" },
+  "shortcuts_open_suffix": { "message": "URLを開く" },
+  "shortcut_not_set":      { "message": "未設定" },
+  "shortcuts_config":      { "message": "設定する" },
+  "shortcuts_config_hint": { "message": "Chromeのショートカット設定画面を開きます" },
+
+  "commands_copy_from_tabs":      { "message": "タブのURLをコピー" },
+  "commands_open_from_clipboard": { "message": "クリップボードからURLを開く" },
 
   "lang_label":     { "message": "自動判定または言語を選択" },
   "lang_auto":      { "message": "Auto (自動)" },

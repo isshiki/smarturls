@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - Salin dan Buka URL" },
-  "appDesc":        { "message": "Menyalin semua URL (termasuk judul) dalam format Markdown, HTML, TSV, JSON, atau teks kustom. Juga dapat membuka URL dari teks atau clipboard, dengan mode Smart Parser yang secara otomatis mendeteksi semua format." },
+  "app_name":       { "message": "SmartURLs - Salin dan Buka URL" },
+  "app_desc":       { "message": "Menyalin semua URL (termasuk judul) dalam format Markdown, HTML, TSV, JSON, atau teks kustom. Juga dapat membuka URL dari teks atau clipboard, dengan mode Smart Parser yang secara otomatis mendeteksi semua format." },
   "subtitle":       { "message": "Salin dan Buka URL" },
 
   "theme_system":   { "message": "Sistem" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Hapus duplikat" },
   "opt_http":           { "message": "Hanya http/https" },
   "opt_nopinned":       { "message": "Kecualikan tab [disematkan]" },
-  "opt_nopinned_hint":  { "message": "Melewati tab yang disematkan di browser." },
+  "opt_nopinned_hint":  { "message": "Melewati tab yang disematkan di browser" },
   "exclude_label":      { "message": "Pola pengecualian" },
   "exclude_hint":       { "message": "Satu pola per baris (dipisahkan oleh baris baru). Gunakan * sebagai wildcard. Contoh: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "URL tidak ditemukan. Mungkin format buka salah." },
   "confirm_many":   { "message": "Buka banyak tab?" },
 
-  "advanced":       { "message": "Lanjutan" },
+  "advanced":          { "message": "Lanjutan" },
   "filters_title_alt": { "message": "Filter" },
+
+  "shortcuts_title":       { "message": "Pintasan keyboard" },
+  "shortcuts_copy_suffix": { "message": "Salin URL" },
+  "shortcuts_open_suffix": { "message": "Buka URL" },
+  "shortcut_not_set":      { "message": "Tidak diatur" },
+  "shortcuts_config":      { "message": "Konfigurasi" },
+  "shortcuts_config_hint": { "message": "Buka pengaturan pintasan Chrome" },
+  
+  "commands_copy_from_tabs":      { "message": "Salin URL dari tab" },
+  "commands_open_from_clipboard": { "message": "Buka URL dari clipboard" },
 
   "lang_label":     { "message": "Deteksi otomatis atau pilih bahasa" },
   "lang_auto":      { "message": "Auto (Otomatis)" },

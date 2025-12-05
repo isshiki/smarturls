@@ -86,20 +86,6 @@ function applyVersionBadge() {
   }
 }
 
-// Soft limits to avoid pathological regex backtracking on custom templates
-const LIMITS = {
-  customMaxTemplate: 500,         // max chars for template
-  customMaxTextBytes: 200 * 1024, // ~200KB input cap
-  customMaxLines: 5000,           // max lines to scan
-  customMaxMatches: 1000          // max URLs to extract
-};
-
-// UTF-8 byte length (used for input cap)
-function utf8ByteLength(str) {
-  // TextEncoder is supported in MV3 environments
-  return new TextEncoder().encode(str).length;
-}
-
 /* ===================== Theme ===================== */
 function applyTheme(mode) {
   const root = document.documentElement;
@@ -107,28 +93,8 @@ function applyTheme(mode) {
   else root.setAttribute("data-theme", mode); // "dark" | "light"
 }
 
-/* ===================== Storage & defaults ===================== */
-const defaults = {
-  // copy
-  fmt: "md",
-  tpl: "- [$title]($url)",
-  // open
-  openFmt: "smart",          // "smart" | "md" | "url" | "tsv" | "html" | "jsonl" | "custom"
-  openTpl: "- [$title]($url)",
-  // common
-  source: "clipboard",       // "clipboard" | "textarea"
-  scope: "current",          // "current" | "all"
-  dedup: true,
-  httpOnly: true,
-  noPinned: false,
-  excludeList: "",
-  sort: "natural",
-  desc: false,
-  openLimit: 30,
-  // ui
-  theme: "system",           // "system" | "dark" | "light"
-  lang: "AutoLang"           // "AutoLang" | language code
-};
+/* ===================== Storage & Config ===================== */
+const isMac = navigator.platform.toLowerCase().includes("mac");
 
 async function load() {
   const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
@@ -235,6 +201,7 @@ async function init() {
     await loadDict(currentLang);
     applyI18n();
     applyI18nTitle();
+    await displayCurrentShortcuts(); // Update shortcut displays with new language
   });
 
   // source radio<->select sync
@@ -248,231 +215,103 @@ async function init() {
     });
   });
 
+  // scope radio sync
+  document.querySelectorAll('input[name="scope"]').forEach(r => {
+    r.addEventListener("change", async (e) => {
+      if (!e.target.checked) return;
+      const v = e.target.value;
+      await save({ scope: v });
+    });
+  });
+
+  // Keyboard shortcuts: display current bindings and add configure handlers
+  await displayCurrentShortcuts();
+
+  // Add click handlers for "Configure in Chrome" buttons
+  const copyConfigureBtn = $("#copyShortcutConfigure");
+  const openConfigureBtn = $("#openShortcutConfigure");
+
+  if (copyConfigureBtn) {
+    copyConfigureBtn.addEventListener("click", () => {
+      chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+    });
+  }
+
+  if (openConfigureBtn) {
+    openConfigureBtn.addEventListener("click", () => {
+      chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+    });
+  }
+
   updatePasteBox();
   initPasteBoxDefault();
 }
 
+/**
+ * Display current keyboard shortcuts from chrome.commands API
+ * Populates the Copy and Open shortcut displays separately
+ * Also updates the shortcut hints on the main action buttons
+ */
+async function displayCurrentShortcuts() {
+  const copyDisplay = $("#copyShortcutDisplay");
+  const openDisplay = $("#openShortcutDisplay");
+
+  if (!copyDisplay || !openDisplay) return;
+
+  try {
+    const commands = await chrome.commands.getAll();
+
+    // Find Copy and Open commands
+    const copyCmd = commands.find(c => c.name === 'copy-smart-url');
+    const openCmd = commands.find(c => c.name === 'open-smart-url');
+
+    // Get i18n "Not set" text (fallback to English)
+    const notSetText = t('shortcut_not_set', 'Not set');
+
+    // Update displays in advanced section
+    copyDisplay.textContent = copyCmd?.shortcut || notSetText;
+    openDisplay.textContent = openCmd?.shortcut || notSetText;
+
+    // Update shortcut hints on main action buttons
+    const copyHint = $("#copyShortcutHint");
+    const openHint = $("#openShortcutHint");
+
+    if (copyHint) {
+      copyHint.textContent = copyCmd?.shortcut || '';
+    }
+
+    if (openHint) {
+      openHint.textContent = openCmd?.shortcut || '';
+    }
+
+  } catch (err) {
+    console.warn('[popup] Failed to load shortcuts:', err);
+    copyDisplay.textContent = '-';
+    openDisplay.textContent = '-';
+  }
+}
+
 document.addEventListener("DOMContentLoaded", init);
 
-/* ===================== Tabs: fetch & filters ===================== */
-function wildcardToRegExp(pattern) {
-  // escape regex specials, then only * -> .*
-  const esc = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
-  return new RegExp("^" + esc + "$", "i");
-}
-function excludeFilter(url, patterns) {
-  if (!patterns) return false;
-  const list = patterns.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
-  return list.some(p => wildcardToRegExp(p).test(url));
-}
-async function fetchTabs(scope, { httpOnly, noPinned }) {
-  let tabs = [];
-  if (scope === "all") {
-    const wins = await chrome.windows.getAll({ populate: true });
-    wins.forEach(w => { if (w.tabs) tabs.push(...w.tabs); });
-  } else {
-    tabs = await chrome.tabs.query({ currentWindow: true });
-  }
-  return tabs.filter(t => {
-    if (noPinned && t.pinned) return false;
-    if (!t.url) return false;
-    if (httpOnly && !/^https?:\/\//i.test(t.url)) return false;
-    return true;
-  });
-}
-function sortTabs(tabs, key, desc) {
-  if (key === "natural") return tabs;
-  const cmp = (a, b) => {
-    const av = key === "domain" ? (new URL(a.url)).hostname : (key === "url" ? a.url : (a.title || ""));
-    const bv = key === "domain" ? (new URL(b.url)).hostname : (key === "url" ? b.url : (b.title || ""));
-    return av.localeCompare(bv);
-  };
-  const s = [...tabs].sort(cmp);
-  return desc ? s.reverse() : s;
-}
-function uniqueByUrl(tabs) {
-  const seen = new Set();
-  return tabs.filter(t => {
-    const u = t.url;
-    if (seen.has(u)) return false;
-    seen.add(u);
-    return true;
-  });
-}
-
-/* ===================== Copy ===================== */
-function formatLine(tab, cfg, idx) {
-  const url = tab.url;
-  const u = new URL(url);
-  const rawTitle = tab.title || url;   // keep raw for JSON
-  const domain = u.hostname;
-  const path = u.pathname + u.search + u.hash;
-
-  // jsonl needs exact JSON, not token replacement
-  if (cfg.fmt === "jsonl") {
-    return JSON.stringify({ title: rawTitle, url });
-  }
-
-  const pad = (n) => String(n).padStart(2, "0");
-  const d = new Date();
-  const localDate = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  const localTime = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-  const utcDate = `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
-  const utcTime = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
-
-  // For non-JSON formats keep the existing token replacement behavior
-  const tokens = {
-    "$title": rawTitle.replaceAll("]", "\\]"),
-    "$url": url,
-    "$domain": domain,
-    "$path": path,
-    "$idx": (idx + 1).toString(),
-    "$date": localDate,
-    "$time": localTime,
-    "$date(utc)": utcDate,
-    "$time(utc)": utcTime
-  };
-
-  let tpl = cfg.fmt === "md"   ? "[$title]($url)"
-          : cfg.fmt === "url"  ? "$url"
-          : cfg.fmt === "tsv"  ? "$title\t$url"
-          : cfg.fmt === "html" ? "<a href=\"$url\">$title</a>"
-          : /* custom */         (cfg.tpl || "- [$title]($url)");
-
-  Object.entries(tokens)
-    .sort(([a],[b]) => b.length - a.length)
-    .forEach(([k,v]) => { tpl = tpl.split(k).join(v); });
-  return tpl;
-}
-
+/* ===================== Copy Button ===================== */
 $("#btnCopy").addEventListener("click", async () => {
   try {
-    const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
-    let tabs = await fetchTabs(cfg.scope, { httpOnly: cfg.httpOnly, noPinned: cfg.noPinned });
-    if (cfg.dedup) tabs = uniqueByUrl(tabs);
-    tabs = sortTabs(tabs, cfg.sort, cfg.desc);
-    const ex = (cfg.excludeList || "").trim();
-    if (ex) tabs = tabs.filter(t => !excludeFilter(t.url, ex));
-    const lines = tabs.map((t, i) => formatLine(t, cfg, i));
-    await navigator.clipboard.writeText(lines.join("\n"));
-    toast(t("copied_n", "Copied ") + `${lines.length}`);
+    // Use shared prepareCopyData function
+    const { text, count } = await prepareCopyData();
+    await navigator.clipboard.writeText(text);
+    toast(t("copied_n", "Copied ") + `${count}`);
   } catch (e) {
     console.error(e);
     toast(t("copy_failed", "Copy failed"), false);
   }
 });
 
-/* ===================== Open (parsers) ===================== */
-function extractUrlsSmart(text) {
-  const urls = new Set();
-
-  // 1) Markdown [title](url)
-  const md = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
-  while ((m = md.exec(text)) !== null) urls.add(m[1]);
-
-  // 2) <https://...>
-  const angle = /<\s*(https?:\/\/[^>\s]+)\s*>/gi;
-  while ((m = angle.exec(text)) !== null) urls.add(m[1]);
-
-  // 3) HTML <a href="...">
-  const ahref = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi;
-  while ((m = ahref.exec(text)) !== null) urls.add(m[1]);
-
-  // 4) JSON Lines {"url":"..."}
-  const jsonl = /"url"\s*:\s*"(https?:\/\/[^"]+)"/gi;
-  while ((m = jsonl.exec(text)) !== null) urls.add(m[1]);
-
-  // 5) bare URLs
-  const bare = /https?:\/\/[^\s)\]>]+/gi;
-  while ((m = bare.exec(text)) !== null) {
-    let u = m[0];
-    u = u.replace(/[),.>]+$/g, "");
-    urls.add(u);
-  }
-  return Array.from(urls);
-}
-
-function extractByFormat(fmt, text, tpl) {
-  if (fmt === "smart") return extractUrlsSmart(text);
-
-  const out = new Set();
-  const addIf = (u) => { if (u && /^https?:\/\//i.test(u)) out.add(u); };
-
-  if (fmt === "md") {
-    const r = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi; let m;
-    while ((m = r.exec(text)) !== null) addIf(m[1]);
-
-  } else if (fmt === "url") {
-    text.split(/\r?\n/).forEach(line => {
-      const s = line.trim();
-      const m = s.match(/^https?:\/\/[^\s)>\]]+$/i);
-      if (m) addIf(m[0]);
-    });
-
-  } else if (fmt === "tsv") {
-    text.split(/\r?\n/).forEach(line => {
-      const parts = line.split("\t");
-      if (parts[1]) addIf(parts[1].trim());
-    });
-
-  } else if (fmt === "html") {
-    const r = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi; let m;
-    while ((m = r.exec(text)) !== null) addIf(m[1]);
-
-  } else if (fmt === "jsonl") {
-    text.split(/\r?\n/).forEach(line => {
-      try { const obj = JSON.parse(line); addIf(obj && obj.url); } catch {}
-    });
-
-  } else if (fmt === "custom") {
-    // Build a permissive RegExp from the user's template ($url captured)
-    const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-    // Hard caps for safety (truncate but keep behavior otherwise)
-    const safeTpl = String(tpl || "- [$title]($url)").slice(0, LIMITS.customMaxTemplate);
-    let pat = esc(safeTpl);
-    const otherTokens = ["$title","$domain","$path","$idx","$date","$time","$date(utc)","$time(utc)"];
-    otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
-    pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
-
-    let re;
-    try {
-      re = new RegExp(pat, "i"); // no global; we iterate per line
-    } catch {
-      return [];
-    }
-
-    // Apply input caps: byte length, lines, matches
-    let textToScan = text || "";
-    if (utf8ByteLength(textToScan) > LIMITS.customMaxTextBytes) {
-      textToScan = textToScan.slice(0, LIMITS.customMaxTextBytes);
-    }
-
-    const lines = textToScan.split(/\r?\n/);
-    const maxLines = Math.min(lines.length, LIMITS.customMaxLines);
-    let matches = 0;
-
-    for (let i = 0; i < maxLines; i++) {
-      const line = lines[i];
-      const m = re.exec(line);
-      if (m && m[1]) {
-        const u = m[1];
-        if (/^https?:\/\//i.test(u)) out.add(u);
-        matches++;
-        if (matches >= LIMITS.customMaxMatches) break;
-      }
-    }
-  }
-
-  return Array.from(out);
-}
-
-/* ===================== Open ===================== */
+/* ===================== Open Button ===================== */
 $("#btnOpen").addEventListener("click", async () => {
   try {
     const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
 
-    // source
+    // Get text from source
     let text = "";
     const sourceKind = $("#source").value;
     if (sourceKind === "textarea") {
@@ -494,24 +333,21 @@ $("#btnOpen").addEventListener("click", async () => {
       if (!text) { toast(t("empty_clip","Clipboard is empty"), false); return; }
     }
 
-    // parse
-    const urls0 = extractByFormat(cfg.openFmt, text, cfg.openTpl);
-    let urls = urls0;
+    // Use shared prepareOpenUrls function
+    const { urls, count } = await prepareOpenUrls(text, cfg);
 
-    // filters
-    const ex = (cfg.excludeList || "").trim();
-    if (ex) urls = urls.filter(u => !excludeFilter(u, ex));
-    if (cfg.httpOnly) urls = urls.filter(u => /^https?:\/\//i.test(u));
-    if (cfg.dedup) urls = Array.from(new Set(urls));
-    if (urls.length === 0) { toast(t("no_urls","No URLs found"), false); return; }
-
-    // confirmation for many tabs
-    const limit = Number(cfg.openLimit) || 30;
-    if (urls.length > limit) {
-      if (!confirm(`${t("confirm_many","Open many tabs?")} ${urls.length}`)) return;
+    if (count === 0) {
+      toast(t("no_urls","No URLs found"), false);
+      return;
     }
 
-    // delegate to background
+    // Confirmation for many tabs
+    const limit = Number(cfg.openLimit) || 30;
+    if (count > limit) {
+      if (!confirm(`${t("confirm_many","Open many tabs?")} ${count}`)) return;
+    }
+
+    // Delegate to background service worker
     chrome.runtime.sendMessage(
       { type: "OPEN_URLS", urls, limit },
       (res) => {

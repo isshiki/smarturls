@@ -1,16 +1,32 @@
 {
   "manifest_version": 3,
-  "name": "__MSG_appName__",
+  "name": "__MSG_app_name__",
   "short_name": "SmartURLs",
-  "version": "1.2.0",
-  "description": "__MSG_appDesc__",
+  "version": "1.3.0",
+  "description": "__MSG_app_desc__",
   "default_locale": "en",
   "action": {
     "default_title": "SmartURLs",
     "default_popup": "popup.html"
   },
   "background": { "service_worker": "sw.js" },
-  "permissions": ["tabs", "clipboardRead", "clipboardWrite", "storage"],
+  "commands": {
+    "copy-smart-url": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U",
+        "mac": "Command+Shift+U"
+      },
+      "description": "__MSG_commands_copy_from_tabs__"
+    },
+    "open-smart-url": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V",
+        "mac": "Command+Shift+V"
+      },
+      "description": "__MSG_commands_open_from_clipboard__"
+    }
+  },
+  "permissions": ["tabs", "clipboardRead", "clipboardWrite", "storage", "notifications", "offscreen"],
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",

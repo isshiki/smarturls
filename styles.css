@@ -143,6 +143,7 @@ body{
   display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:4px 0 12px;
 }
 .action{
+  position:relative; /* for absolute positioning of shortcut hint */
   padding:12px 14px; border:none; border-radius:14px; cursor:pointer;
   font-weight:800; letter-spacing:.01em;
   transition:transform .02s ease-in-out, filter .12s ease;
@@ -152,6 +153,18 @@ body{
 .action:hover{ filter:brightness(calc(1 + var(--btn-hov))); }
 .action:focus{ outline:2px solid var(--focus); outline-offset:2px; }
 .action:active{ transform:translateY(1px); }
+
+/* Keyboard shortcut hint on main action buttons */
+.action-shortcut-hint{
+  position:absolute;
+  right:12px;
+  bottom:6px;
+  font-size:9px;
+  font-weight:400;
+  opacity:0.3;
+  pointer-events:none; /* don't interfere with button clicks */
+  letter-spacing:0.03em;
+}
 
 /* ===================== Main ===================== */
 .cols{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
@@ -393,4 +406,73 @@ html[data-theme="light"] input[type="radio"]:focus-visible{
   opacity:0 !important;
   pointer-events:none !important;
   transform:translateY(8px);
+}
+
+/* ===================== Keyboard Shortcuts (Chrome Commands) ===================== */
+
+/* Shortcut heading */
+.shortcut-heading {
+  margin: 0 0 12px 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.4;
+}
+
+.shortcut-heading-main {
+  color: var(--fg);
+}
+
+.shortcut-heading-separator {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.shortcut-heading-sub {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Shortcut controls container */
+.shortcut-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Shortcut pill (displays current shortcut) */
+.shortcut-pill {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  min-width: 120px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Configure button (grey pill style) */
+.shortcut-config-btn {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.shortcut-config-btn:hover {
+  background: var(--bg);
+  border-color: var(--focus);
+  color: var(--fg);
 }

@@ -35,6 +35,14 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 * Automatically detects text format
 * Optional confirmation before opening many tabs
 
+### ⌨️ Keyboard Shortcuts
+
+* **System-wide shortcuts** that work even when the popup is closed
+* **Copy URLs** from tabs with a single keystroke (default: Ctrl+Shift+U / Cmd+Shift+U on Mac)
+* **Open URLs** from clipboard with a single keystroke (default: Ctrl+Shift+V / Cmd+Shift+V on Mac)
+* Configure custom shortcuts via `chrome://extensions/shortcuts`
+* Shortcuts displayed in popup for easy reference
+
 ### 🎨 Appearance & Settings
 
 * **Themes:** System / Dark / Light
@@ -64,9 +72,10 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 | Version | Date       | Notes                  |
 | ------- | ---------- | ---------------------- |
+| 1.3.0   | 2025-12-05 | Added keyboard shortcut support |
 | 1.2.0   | 2025-10-30 | UI improvements |
 | 1.1.0   | 2025-10-26 | UI improvements and security enhancements |
-| 1.0.1   | 2025-10-26 | Fixed $date(utc) and $time(utc) template tokens |
+| 1.0.1   | 2025-10-26 | Fixed \$date(utc) and \$time(utc) template tokens |
 | 1.0.0   | 2025-10-26 | Initial public release |
 
 ---
@@ -77,18 +86,27 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ```text
 smarturls/
-├── manifest.json
-├── popup.html
+├── manifest.json              # Extension core config
+│
+├── popup.html                 # UI: popup window
 ├── popup.js
 ├── styles.css
-├── sw.js
-├── build.ps1
-├── build.bat
-├── _locales/
+│
+├── actions.js                 # Shared logic (copy/open logic)
+├── sw.js                      # Service worker (background logic)
+├── offscreen.html             # Clipboard bridge
+├── offscreen.js
+│
+├── _locales/                  # Internationalization
 │   ├── en/
 │   ├── ja/
-│   └── ... (14 more)
-├── icons/
+│   └── … (14 more)
+│
+├── icons/                     # App icons
+│
+├── build.ps1                  # Build scripts
+├── build.bat
+│
 └── README.md
 ```
 

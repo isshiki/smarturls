@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - 複製和開啟 URL" },
-  "appDesc":        { "message": "將所有 URL（帶標題）複製為 Markdown、HTML、TSV、JSON 或自訂文字。它也可以反向工作——從文字或剪貼簿開啟 URL，其中智慧解析器模式自動偵測任何格式。" },
+  "app_name":       { "message": "SmartURLs - 複製和開啟 URL" },
+  "app_desc":       { "message": "將所有 URL（帶標題）複製為 Markdown、HTML、TSV、JSON 或自訂文字。它也可以反向工作——從文字或剪貼簿開啟 URL，其中智慧解析器模式自動偵測任何格式。" },
   "subtitle":       { "message": "複製和開啟 URL" },
 
   "theme_system":   { "message": "系統" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "移除重複項目" },
   "opt_http":           { "message": "僅 http/https" },
   "opt_nopinned":       { "message": "排除 [固定] 分頁" },
-  "opt_nopinned_hint":  { "message": "跳過瀏覽器中固定的分頁。" },
+  "opt_nopinned_hint":  { "message": "跳過瀏覽器中固定的分頁" },
   "exclude_label":      { "message": "排除模式" },
   "exclude_hint":       { "message": "每行輸入一個模式（用換行符分隔）。使用 * 作為萬用字元。範例：https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "未找到 URL。開啟格式可能無效。" },
   "confirm_many":   { "message": "開啟許多分頁？" },
 
-  "advanced":       { "message": "進階" },
+  "advanced":          { "message": "進階" },
   "filters_title_alt": { "message": "篩選器" },
+
+  "shortcuts_title":       { "message": "鍵盤快速鍵" },
+  "shortcuts_copy_suffix": { "message": "複製網址" },
+  "shortcuts_open_suffix": { "message": "開啟網址" },
+  "shortcut_not_set":      { "message": "未設定" },
+  "shortcuts_config":      { "message": "設定" },
+  "shortcuts_config_hint": { "message": "開啟 Chrome 快速鍵設定" },
+  
+  "commands_copy_from_tabs":      { "message": "從分頁複製 URL" },
+  "commands_open_from_clipboard": { "message": "從剪貼簿開啟 URL" },
 
   "lang_label":     { "message": "自動偵測或選擇語言" },
   "lang_auto":      { "message": "Auto (自動)" },

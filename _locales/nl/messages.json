@@ -1,6 +1,6 @@
 {
-  "appName":        { "message": "SmartURLs - URL's Kopiëren en Openen" },
-  "appDesc":        { "message": "Kopieert alle URL's (inclusief titels) in Markdown, HTML, TSV, JSON of aangepaste tekst. Kan ook URL's openen vanuit tekst of klembord, met Smart Parser-modus die automatisch alle formaten detecteert." },
+  "app_name":       { "message": "SmartURLs - URL's Kopiëren en Openen" },
+  "app_desc":       { "message": "Kopieert alle URL's (inclusief titels) in Markdown, HTML, TSV, JSON of aangepaste tekst. Kan ook URL's openen vanuit tekst of klembord, met Smart Parser-modus die automatisch alle formaten detecteert." },
   "subtitle":       { "message": "URL's Kopiëren en Openen" },
 
   "theme_system":   { "message": "Systeem" },
@@ -35,7 +35,7 @@
   "opt_dedup":          { "message": "Duplicaten verwijderen" },
   "opt_http":           { "message": "Alleen http/https" },
   "opt_nopinned":       { "message": "[Vastgezette] tabbladen uitsluiten" },
-  "opt_nopinned_hint":  { "message": "Slaat vastgezette tabbladen in de browser over." },
+  "opt_nopinned_hint":  { "message": "Slaat vastgezette tabbladen in de browser over" },
   "exclude_label":      { "message": "Uitsluitingspatronen" },
   "exclude_hint":       { "message": "Eén patroon per regel (gescheiden door nieuwe regel). Gebruik * als wildcard. Voorbeeld: https://chatgpt.com/c/*" },
 
@@ -54,8 +54,18 @@
   "no_urls":        { "message": "Geen URL's gevonden. Mogelijk verkeerd openingsformaat." },
   "confirm_many":   { "message": "Veel tabbladen openen?" },
 
-  "advanced":       { "message": "Geavanceerd" },
+  "advanced":          { "message": "Geavanceerd" },
   "filters_title_alt": { "message": "Filters" },
+
+  "shortcuts_title":       { "message": "Sneltoetsen" },
+  "shortcuts_copy_suffix": { "message": "URL's kopiëren" },
+  "shortcuts_open_suffix": { "message": "URL's openen" },
+  "shortcut_not_set":      { "message": "Niet geconfigureerd" },
+  "shortcuts_config":      { "message": "Configureren" },
+  "shortcuts_config_hint": { "message": "Open Chrome sneltoetsen-instellingen" },
+  
+  "commands_copy_from_tabs":      { "message": "URL's van tabbladen kopiëren" },
+  "commands_open_from_clipboard": { "message": "URL's van klembord openen" },
 
   "lang_label":     { "message": "Taal automatisch detecteren of kiezen" },
   "lang_auto":      { "message": "Auto (Automatisch)" },
