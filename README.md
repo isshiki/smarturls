@@ -80,6 +80,32 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ---
 
+## ❓ FAQ
+
+### Linux Notification Behavior
+
+**Q: Why do I see a notification popup when using keyboard shortcuts on Linux?**
+
+When you use keyboard shortcuts (Ctrl+Shift+U or Ctrl+Shift+V) on Linux, you may see a small notification popup appear. This is normal behavior and not a bug.
+
+**Why this happens:**
+
+- Linux desktop environments (GNOME, KDE, Xfce, etc.) control how Chrome extension notifications are displayed
+- SmartURLs uses notifications to confirm that actions completed successfully
+- The extension itself cannot control whether or how the notification popup appears — this is determined by your Linux system
+
+**To disable notification popups:**
+
+If you prefer not to see these popups, you can disable Chrome notifications in your Linux system settings:
+
+- **GNOME:** Settings → Notifications → Google Chrome (toggle off)
+- **KDE:** System Settings → Notifications → Applications → Google Chrome (configure or disable)
+- **Xfce:** Settings → Notifications → Applications (configure Chrome)
+
+The keyboard shortcuts will continue to work normally even with notifications disabled.
+
+---
+
 ## 🛠️ Development
 
 ### Project Structure
