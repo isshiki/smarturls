@@ -23,7 +23,9 @@
       "Bash(fi)",
       "Bash(if [ $missing -eq 0 ])",
       "Bash(then echo \"✓ All critical keys present in en locale\")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File build.ps1)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []

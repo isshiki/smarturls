@@ -19,14 +19,27 @@ New-Item $build -ItemType Directory | Out-Null
 if (-not (Test-Path $dist)) { New-Item $dist -ItemType Directory | Out-Null }
 
 # Files and folders to include in the build
+# Organized by purpose (matches README.md structure)
 $includePaths = @(
+  # Extension config
   "manifest.json",
-  "icons",
-  "_locales",
+
+  # UI layer
   "popup.html",
   "popup.js",
   "styles.css",
+
+  # Core logic
+  "actions.js",
   "sw.js",
+  "offscreen.html",
+  "offscreen.js",
+
+  # Localization & assets
+  "_locales",
+  "icons",
+
+  # Documentation
   "LICENSE"
 )
 
@@ -50,4 +63,4 @@ Push-Location $build
 Compress-Archive -Path * -DestinationPath $zipPath -Force
 Pop-Location
 
-Write-Host "✅ Build completed successfully: $zipPath"
+Write-Host "!!! Build completed successfully: $zipPath"
