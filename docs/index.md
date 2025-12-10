@@ -1,8 +1,3 @@
----
-layout: default
-title: SmartURLs Documentation
----
-
 # 🌐 SmartURLs Documentation
 
 Welcome to the official documentation for **SmartURLs** — a lightweight and flexible URL copying tool designed for developers, writers, researchers, and anyone who works with links.

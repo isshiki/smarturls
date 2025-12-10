@@ -4,8 +4,89 @@
     <meta charset="utf-8">
     <title>{{ page.title | default: "SmartURLs Documentation" }}</title>
     <link rel="icon" href="{{ "/favicon.png" | relative_url }}" type="image/png">
+
+    <style>
+      /* --- Base Layout --- */
+      body {
+        margin: 0;
+        padding: 2rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        background: #eef7ff; /* very light blue */
+        color: #0a1a2f;      /* deep navy */
+      }
+
+      /* --- Center content & add gentle shadow --- */
+      .content-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 2rem 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 60, 120, 0.15);
+      }
+
+      /* --- Headings --- */
+      h1, h2, h3, h4 {
+        color: #004c99; /* strong blue */
+      }
+      h1 {
+        border-bottom: 3px solid #66a3ff;
+        padding-bottom: .3rem;
+      }
+
+      /* --- Links --- */
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      a:hover {
+        color: #004080;
+        text-decoration: underline;
+      }
+
+      /* --- Code blocks --- */
+      pre, code {
+        background: #e6f0ff; /* soft blue code background */
+        border-radius: 6px;
+      }
+      pre {
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 4px solid #4d94ff;
+      }
+
+      /* --- Tables --- */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th {
+        background: #cce0ff;
+        padding: 8px;
+        border: 1px solid #99c2ff;
+      }
+      td {
+        padding: 8px;
+        border: 1px solid #c2d6ff;
+      }
+
+      /* --- Horizontal rule --- */
+      hr {
+        border: 0;
+        height: 2px;
+        background: #b3ccff;
+        margin: 2rem 0;
+      }
+    </style>
+
   </head>
+
   <body>
-    {{ content }}
+    <div class="content-wrapper">
+      {{ content }}
+    </div>
   </body>
 </html>
