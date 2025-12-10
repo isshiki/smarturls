@@ -82,13 +82,13 @@ I blocchi condizionali consentono ai modelli di produrre determinati testi **sol
 🔹 **Parametro singolo**
 
 ```text
-{{q=v: ... }}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **Parametri multipli (condizione AND)**
 
 ```text
-{{q=v,t: ... }}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 All'interno di un blocco condizionale:
@@ -138,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **Modello**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Output**
@@ -252,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 Mostra ID video solo quando presente
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 Genera URL miniatura
@@ -266,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 Modello:
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Incorpora miniatura Markdown
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 Timestamp (se disponibile)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 Output:
@@ -292,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 Condizionale multi-parametro
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 Output:

@@ -82,13 +82,13 @@ Các khối có điều kiện cho phép mẫu xuất ra văn bản nhất đị
 🔹 **Tham số đơn**
 
 ```text
-{{q=v: ... }}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **Nhiều tham số (điều kiện VÀ)**
 
 ```text
-{{q=v,t: ... }}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 Bên trong khối có điều kiện:
@@ -138,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **Mẫu**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Đầu ra**
@@ -252,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 Hiển thị ID video chỉ khi có
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 Tạo URL hình thu nhỏ
@@ -266,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 Mẫu:
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Nhúng hình thu nhỏ Markdown
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 Dấu thời gian (nếu có)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 Đầu ra:
@@ -292,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 Điều kiện đa tham số
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 Đầu ra:

@@ -82,13 +82,13 @@ Os blocos condicionais permitem que os modelos produzam determinado texto **some
 🔹 **Parâmetro único**
 
 ```text
-{{q=v: ... }}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **Múltiplos parâmetros (condição E)**
 
 ```text
-{{q=v,t: ... }}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 Dentro de um bloco condicional:
@@ -138,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **Modelo**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Saída**
@@ -252,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 Mostrar ID do vídeo somente quando presente
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 Gerar URL da miniatura
@@ -266,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 Modelo:
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Incorporar miniatura Markdown
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 Timestamp (se disponível)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 Saída:
@@ -292,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 Condicional multi-parâmetro
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 Saída:

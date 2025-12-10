@@ -82,13 +82,13 @@ Les blocs conditionnels permettent aux modèles de produire certains textes **un
 🔹 **Paramètre unique**
 
 ```text
-{{q=v: ... }}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **Paramètres multiples (condition ET)**
 
 ```text
-{{q=v,t: ... }}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 À l'intérieur d'un bloc conditionnel :
@@ -138,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **Modèle**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Sortie**
@@ -252,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 Afficher l'ID de vidéo uniquement lorsqu'il est présent
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 Générer l'URL de la vignette
@@ -266,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 Modèle :
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Intégrer une vignette Markdown
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 Horodatage (si disponible)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 Sortie :
@@ -292,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 Conditionnel multi-paramètres
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 Sortie :

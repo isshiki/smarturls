@@ -82,13 +82,13 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 🔹 **단일 매개변수**
 
 ```text
-{{q=v: ... }}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **다중 매개변수 (AND 조건)**
 
 ```text
-{{q=v,t: ... }}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 조건부 블록 내에서:
@@ -138,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **템플릿**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **출력**
@@ -252,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 동영상 ID가 있을 때만 표시
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 썸네일 URL 생성
@@ -266,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 템플릿:
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Markdown 썸네일 삽입
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 타임스탬프 (가능한 경우)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 출력:
@@ -292,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 다중 매개변수 조건
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 출력:

@@ -82,17 +82,13 @@ Conditional blocks allow templates to output certain text **only if specific que
 🔹 **Single parameter**
 
 ```text
-{% raw %}
-{{q=v: ... }}
-{% endraw %}
+{% raw %}{{q=v: ... }}{% endraw %}
 ```
 
 🔸 **Multiple parameters (AND condition)**
 
 ```text
-{% raw %}
-{{q=v,t: ... }}
-{% endraw %}
+{% raw %}{{q=v,t: ... }}{% endraw %}
 ```
 
 Inside a conditional block:
@@ -142,7 +138,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 🛠 **Template**
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Output**
@@ -256,7 +252,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 #### 5.5.1 Show Video ID only when present
 
 ```text
-{{q=v:Video ID: $v$nl}}$title$nl$url
+{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.2 Generate Thumbnail URL
@@ -270,19 +266,19 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 Template:
 
 ```text
-{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}$title$nl$url
+{% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
 #### 5.5.3 Markdown Thumbnail Embed
 
 ```text
-{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}[$title]($url)
+{% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
 ### 5.6 Timestamp (if available)
 
 ```text
-{{q=t:Timestamp: $t sec$nl}}$title$nl$url
+{% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
 Output:
@@ -296,7 +292,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ### 5.7 Multi-parameter Conditional
 
 ```text
-{{q=v,t:Video: $v ($t sec)$nl}}$url
+{% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
 Output:

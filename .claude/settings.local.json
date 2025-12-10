@@ -25,7 +25,8 @@
       "Bash(then echo \"✓ All critical keys present in en locale\")",
       "Bash(ls:*)",
       "Bash(powershell -ExecutionPolicy Bypass -File build.ps1)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []
