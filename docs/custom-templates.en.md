@@ -82,13 +82,17 @@ Conditional blocks allow templates to output certain text **only if specific que
 🔹 **Single parameter**
 
 ```text
+{% raw %}
 {{q=v: ... }}
+{% endraw %}
 ```
 
 🔸 **Multiple parameters (AND condition)**
 
 ```text
+{% raw %}
 {{q=v,t: ... }}
+{% endraw %}
 ```
 
 Inside a conditional block:
