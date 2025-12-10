@@ -10,67 +10,67 @@ Click a language to open its documentation.
 
 ### 🇺🇸 English
 
-* [Custom Template Guide](./custom-templates.en.md)
+* [Custom Template Guide](https://isshiki.github.io/SmartURLs/custom-templates.en)
 
 ### 🇩🇪 Deutsch (German)
 
-* [Benutzerdefinierte Vorlagen-Anleitung](./custom-templates.de.md)
+* [Benutzerdefinierte Vorlagen-Anleitung](https://isshiki.github.io/SmartURLs/custom-templates.de)
 
 ### 🇪🇸 Español (Spanish)
 
-* [Guía de plantillas personalizadas](./custom-templates.es.md)
+* [Guía de plantillas personalizadas](https://isshiki.github.io/SmartURLs/custom-templates.es)
 
 ### 🇫🇷 Français (French)
 
-* [Guide des modèles personnalisés](./custom-templates.fr.md)
+* [Guide des modèles personnalisés](https://isshiki.github.io/SmartURLs/custom-templates.fr)
 
 ### 🇮🇩 Bahasa Indonesia (Indonesian)
 
-* [Panduan Template Kustom](./custom-templates.id.md)
+* [Panduan Template Kustom](https://isshiki.github.io/SmartURLs/custom-templates.id)
 
 ### 🇮🇹 Italiano (Italian)
 
-* [Guida ai modelli personalizzati](./custom-templates.it.md)
+* [Guida ai modelli personalizzati](https://isshiki.github.io/SmartURLs/custom-templates.it)
 
 ### 🇯🇵 日本語 (Japanese)
 
-* [カスタムテンプレートガイド](./custom-templates.ja.md)
+* [カスタムテンプレートガイド](https://isshiki.github.io/SmartURLs/custom-templates.ja)
 
 ### 🇰🇷 한국어 (Korean)
 
-* [커스텀 템플릿 가이드](./custom-templates.ko.md)
+* [커스텀 템플릿 가이드](https://isshiki.github.io/SmartURLs/custom-templates.ko)
 
 ### 🇳🇱 Nederlands (Dutch)
 
-* [Handleiding aangepaste sjablonen](./custom-templates.nl.md)
+* [Handleiding aangepaste sjablonen](https://isshiki.github.io/SmartURLs/custom-templates.nl)
 
 ### 🇵🇱 Polski (Polish)
 
-* [Przewodnik po szablonach niestandardowych](./custom-templates.pl.md)
+* [Przewodnik po szablonach niestandardowych](https://isshiki.github.io/SmartURLs/custom-templates.pl)
 
 ### 🇵🇹 Português – Brasil (pt_BR)
 
-* [Guia de modelos personalizados](./custom-templates.pt_BR.md)
+* [Guia de modelos personalizados](https://isshiki.github.io/SmartURLs/custom-templates.pt_BR)
 
 ### 🇷🇺 Русский (Russian)
 
-* [Руководство по пользовательским шаблонам](./custom-templates.ru.md)
+* [Руководство по пользовательским шаблонам](https://isshiki.github.io/SmartURLs/custom-templates.ru)
 
 ### 🇹🇷 Türkçe (Turkish)
 
-* [Özel Şablon Kılavuzu](./custom-templates.tr.md)
+* [Özel Şablon Kılavuzu](https://isshiki.github.io/SmartURLs/custom-templates.tr)
 
 ### 🇻🇳 Tiếng Việt (Vietnamese)
 
-* [Hướng dẫn mẫu tùy chỉnh](./custom-templates.vi.md)
+* [Hướng dẫn mẫu tùy chỉnh](https://isshiki.github.io/SmartURLs/custom-templates.vi)
 
 ### 🇨🇳 简体中文 (Simplified Chinese)
 
-* [自定义模板指南](./custom-templates.zh_CN.md)
+* [自定义模板指南](https://isshiki.github.io/SmartURLs/custom-templates.zh_CN)
 
 ### 🇹🇼 繁體中文 (Traditional Chinese)
 
-* [自訂範本指南](./custom-templates.zh_TW.md)
+* [自訂範本指南](https://isshiki.github.io/SmartURLs/custom-templates.zh_TW)
 
 ## 📄 Document Structure
 

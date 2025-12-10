@@ -52,6 +52,20 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ---
 
+## 📘 Documentation
+
+SmartURLs has full multi-language documentation for the Custom Template System (v1.4.0+).
+
+- 🌐 **Documentation Home**  
+  <https://isshiki.github.io/SmartURLs/>
+
+- 🇺🇸 **English: Custom Template Guide**  
+  <https://isshiki.github.io/SmartURLs/custom-templates.en>
+
+- 🌏 Documentation available in 16 languages (Japanese, Spanish, German, Korean, Chinese, and more)
+
+---
+
 ## 📦 Installation
 
 ### From Chrome Web Store
