@@ -67,7 +67,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 | Token | Output        |
-| -- | - |
+| ----- | ------------- |
 | `$v`  | `bmC-FwibsZg` |
 | `$t`  | `123`         |
 
@@ -100,103 +100,77 @@ Inside a conditional block:
 
 If conditions are not met, the entire block is removed from output.
 
-## 4. Template Examples
+## 4. Template Examples & Patterns
 
 Templates are written as *one line*, but may output multiple lines via `$nl`.
 
-### 4.1 Markdown: Title + URL
+Example URL and title used in this section:
 
-🛠 🛠 **Template**
+📘 **Title**
 
 ```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.1 Markdown: Title + URL
+
+🛠 **Template**
+
+```template
 $title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown List Item
 
 🛠 **Template**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Output**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube Video ID (only if present)
 
 🛠 **Template**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 If `v=` is missing:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Filename-style Heading
-
-🛠 **Template**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Output**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Log Format (domain + path)
-
-🛠 **Template**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Output**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Practical Template Patterns
-
-Below are ready-to-use patterns for Markdown, logs, YouTube utilities, and conditional formatting.
-
-Example URL used:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Generate YouTube Thumbnail URL
+### 4.4 Generate YouTube Thumbnail URL
 
 Based on the known YouTube thumbnail pattern:
 
@@ -204,76 +178,148 @@ Based on the known YouTube thumbnail pattern:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Template:
+🛠 **Template**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Embed YouTube Thumbnail (Markdown)
+💬 **Output**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Embed YouTube Thumbnail (Markdown)
+
+🛠 **Template**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Timestamp (if available)
+💬 **Output**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Timestamp (if available)
+
+🛠 **Template**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Multi-parameter Conditional
+### 4.7 Multi-parameter Conditional
 
-```text
+🛠 **Template**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalist
+### 4.8 Log Format (domain + path)
 
-```text
+🛠 **Template**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Output**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Filename-style Heading
+
+🛠 **Template**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Output**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalist
+
+🛠 **Template**
+
+```template
 $title — $url
 ```
 
-### 5.6 Daily Log Entry
+💬 **Output**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Daily Log Entry
+
+🛠 **Template**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Filename-style Summary
+💬 **Output**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Multi-line with Separator
+### 4.12 Multi-line with Separator
 
-```text
+🛠 **Template**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Limitations
+💬 **Output**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Limitations
 
 SmartURLs intentionally stays simple.
 
 ❌ SmartURLs `DOES NOT`:
 
-* Parse webpage content
+* Parse webpage content (SmartURLs does NOT have permission to access or read HTML pages)
 * Read metadata or thumbnails
 * Execute JavaScript on the page
 * Extract OG tags, authors, or descriptions
@@ -289,10 +335,12 @@ SmartURLs intentionally stays simple.
 
 This ensures consistent behavior across all websites.
 
-## 7. Version Compatibility
+## 6. Version Compatibility
 
 These features are available in: **SmartURLs v1.4.0 and later**
 
-## 8. Feedback
+## 7. Feedback
 
-For feature requests or questions, please open an issue on GitHub.
+For feature requests or questions, please open an issue here:
+
+<https://github.com/isshiki/SmartURLs/issues>
