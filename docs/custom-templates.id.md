@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Ringkasan Issue GitHub
+### 4.4 Heading bergaya nama file (menggunakan $basename)
 
 🛠 **Template**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Output**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Output**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Contoh URL yang digunakan:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Markdown Klasik
-
-```text
-$title$nl$url
-```
-
-Output:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Daftar Markdown
-
-```text
-- [$title]($url)
-```
-
-Output:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Log Domain + Path
-
-```text
-[$domain] $path$nl$url
-```
-
-Output:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 Ringkasan Gaya Issue GitHub
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Output:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 Utilitas YouTube
-
-#### 5.5.1 Tampilkan ID video hanya jika ada
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Hasilkan URL Thumbnail
+### 5.1 Hasilkan URL Thumbnail
 
 Berdasarkan pola thumbnail YouTube yang dikenal:
 
@@ -269,13 +210,13 @@ Template:
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Sematkan Thumbnail Markdown
+### 5.2 Sematkan Thumbnail Markdown
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Timestamp (jika tersedia)
+### 5.3 Timestamp (jika tersedia)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Kondisional Multi-parameter
+### 5.4 Kondisional Multi-parameter
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Minimalis
+### 5.5 Minimalis
 
 ```text
 $title — $url
 ```
 
-### 5.9 Entri Log Harian
+### 5.6 Entri Log Harian
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Ringkasan Gaya Nama File
+### 5.7 Ringkasan Gaya Nama File
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Multi-baris dengan Pemisah
+### 5.8 Multi-baris dengan Pemisah
 
 ```text
 $title$nl$url$nl$nl$domain

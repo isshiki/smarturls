@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Сводка проблемы GitHub
+### 4.4 Заголовок в стиле имени файла (с использованием $basename)
 
 🛠 **Шаблон**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Вывод**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Вывод**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Классический Markdown
-
-```text
-$title$nl$url
-```
-
-Вывод:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Список Markdown
-
-```text
-- [$title]($url)
-```
-
-Вывод:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Журнал домена + пути
-
-```text
-[$domain] $path$nl$url
-```
-
-Вывод:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 Сводка в стиле проблемы GitHub
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Вывод:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 Утилиты YouTube
-
-#### 5.5.1 Показать ID видео только когда присутствует
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Сгенерировать URL миниатюры
+### 5.1 Сгенерировать URL миниатюры
 
 На основе известного шаблона миниатюр YouTube:
 
@@ -269,13 +210,13 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Встроить миниатюру Markdown
+### 5.2 Встроить миниатюру Markdown
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Временная метка (если доступна)
+### 5.3 Временная метка (если доступна)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Многопараметровое условие
+### 5.4 Многопараметровое условие
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Минималистичный
+### 5.5 Минималистичный
 
 ```text
 $title — $url
 ```
 
-### 5.9 Ежедневная запись журнала
+### 5.6 Ежедневная запись журнала
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Сводка в стиле имени файла
+### 5.7 Сводка в стиле имени файла
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Многострочный с разделителем
+### 5.8 Многострочный с разделителем
 
 ```text
 $title$nl$url$nl$nl$domain

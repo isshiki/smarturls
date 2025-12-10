@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHubイシューの概要
+### 4.4 ファイル名スタイルの見出し（$basenameを使用）
 
 🛠 **テンプレート**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **出力**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **出力**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 クラシックMarkdown
-
-```text
-$title$nl$url
-```
-
-出力:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdownリスト
-
-```text
-- [$title]($url)
-```
-
-出力:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 ドメイン + パスログ
-
-```text
-[$domain] $path$nl$url
-```
-
-出力:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHubイシュースタイルの概要
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-出力:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTubeユーティリティ
-
-#### 5.5.1 動画IDが存在する場合のみ表示
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 サムネイルURLを生成
+### 5.1 サムネイルURLを生成
 
 既知のYouTubeサムネイルパターンに基づく:
 
@@ -269,13 +210,13 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Markdownサムネイルを埋め込む
+### 5.2 Markdownサムネイルを埋め込む
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 タイムスタンプ(利用可能な場合)
+### 5.3 タイムスタンプ(利用可能な場合)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 複数パラメータ条件
+### 5.4 複数パラメータ条件
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 ミニマリスト
+### 5.5 ミニマリスト
 
 ```text
 $title — $url
 ```
 
-### 5.9 日次ログエントリ
+### 5.6 日次ログエントリ
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 ファイル名スタイルの概要
+### 5.7 ファイル名スタイルの概要
 
 ```text
 $basename — $title
 ```
 
-### 5.11 セパレータ付き複数行
+### 5.8 セパレータ付き複数行
 
 ```text
 $title$nl$url$nl$nl$domain

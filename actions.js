@@ -103,16 +103,56 @@ function formatLine(tab, cfg, idx) {
     const now = new Date();
     const utcNow = new Date(now.toISOString());
 
-    return tpl
+    // Extract basename (last path segment)
+    const pathSegments = u.pathname.split('/').filter(Boolean);
+    const basename = pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : '';
+
+    // Extract query parameters
+    const queryParams = {};
+    u.searchParams.forEach((value, key) => {
+      queryParams[key] = value;
+    });
+
+    // PHASE 1: Process conditional blocks {{q=...: ...}}
+    // Must be done FIRST before other token replacements
+    let result = tpl.replace(/\{\{q=([A-Za-z0-9_,]+):(.*?)\}\}/gs, (match, keys, content) => {
+      const requiredKeys = keys.split(',').map(k => k.trim());
+      const allExist = requiredKeys.every(key => key in queryParams && queryParams[key] !== '');
+
+      if (!allExist) return ''; // Remove block if conditions not met
+
+      // Expand content with query param tokens from this block
+      let expanded = content;
+      requiredKeys.forEach(key => {
+        // Use negative lookahead to prevent matching inside longer identifiers
+        const regex = new RegExp('\\$' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![A-Za-z0-9_])', 'g');
+        expanded = expanded.replace(regex, queryParams[key]);
+      });
+      return expanded;
+    });
+
+    // PHASE 2: Replace query parameter tokens (outside conditional blocks)
+    for (const [key, value] of Object.entries(queryParams)) {
+      // Use negative lookahead to prevent matching inside longer identifiers
+      const regex = new RegExp('\\$' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![A-Za-z0-9_])', 'g');
+      result = result.replace(regex, value);
+    }
+
+    // PHASE 3: Replace standard tokens
+    result = result
       .replace(/\$title/g, title)
       .replace(/\$url/g, url)
       .replace(/\$domain/g, u.hostname)
       .replace(/\$path/g, u.pathname)
+      .replace(/\$basename/g, basename)
+      .replace(/\$nl/g, '\n')
       .replace(/\$idx/g, String(idx + 1))
       .replace(/\$date\(utc\)/g, utcNow.toISOString().split('T')[0])
       .replace(/\$time\(utc\)/g, utcNow.toISOString().split('T')[1].split('.')[0])
       .replace(/\$date/g, now.toLocaleDateString())
       .replace(/\$time/g, now.toLocaleTimeString());
+
+    return result;
   } catch {
     return tpl.replace(/\$title/g, title).replace(/\$url/g, url);
   }
@@ -195,7 +235,9 @@ function extractByFormat(fmt, text, tpl) {
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const safeTpl = String(tpl || "- [$title]($url)").slice(0, LIMITS.customMaxTemplate);
     let pat = esc(safeTpl);
-    const otherTokens = ["$title", "$domain", "$path", "$idx", "$date", "$time", "$date(utc)", "$time(utc)"];
+    const otherTokens = ["$title", "$domain", "$path", "$basename", "$idx", "$date", "$time", "$date(utc)", "$time(utc)"];
+    // Handle $nl as a newline in the pattern
+    pat = pat.split(esc("$nl")).join("\\n");
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
     pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
 

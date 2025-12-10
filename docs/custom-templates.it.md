@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Riepilogo issue GitHub
+### 4.4 Intestazione stile nome file (usando $basename)
 
 🛠 **Modello**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Output**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Output**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ URL di esempio utilizzato:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Markdown classico
-
-```text
-$title$nl$url
-```
-
-Output:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Elenco Markdown
-
-```text
-- [$title]($url)
-```
-
-Output:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Log dominio + percorso
-
-```text
-[$domain] $path$nl$url
-```
-
-Output:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 Riepilogo stile issue GitHub
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Output:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 Utilità YouTube
-
-#### 5.5.1 Mostra ID video solo quando presente
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Genera URL miniatura
+### 5.1 Genera URL miniatura
 
 Basato sul modello di miniatura YouTube noto:
 
@@ -269,13 +210,13 @@ Modello:
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Incorpora miniatura Markdown
+### 5.2 Incorpora miniatura Markdown
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Timestamp (se disponibile)
+### 5.3 Timestamp (se disponibile)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Condizionale multi-parametro
+### 5.4 Condizionale multi-parametro
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Minimalista
+### 5.5 Minimalista
 
 ```text
 $title — $url
 ```
 
-### 5.9 Voce log giornaliera
+### 5.6 Voce log giornaliera
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Riepilogo stile nome file
+### 5.7 Riepilogo stile nome file
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Multi-riga con separatore
+### 5.8 Multi-riga con separatore
 
 ```text
 $title$nl$url$nl$nl$domain

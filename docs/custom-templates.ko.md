@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHub 이슈 요약
+### 4.4 파일 이름 스타일 제목 ($basename 사용)
 
 🛠 **템플릿**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **출력**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **출력**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Markdown, 로그, YouTube 유틸리티 및 조건부 서식을 위한 즉시 사
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 클래식 Markdown
-
-```text
-$title$nl$url
-```
-
-출력:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdown 리스트
-
-```text
-- [$title]($url)
-```
-
-출력:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 도메인 + 경로 로그
-
-```text
-[$domain] $path$nl$url
-```
-
-출력:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHub 이슈 스타일 요약
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-출력:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTube 유틸리티
-
-#### 5.5.1 동영상 ID가 있을 때만 표시
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 썸네일 URL 생성
+### 5.1 썸네일 URL 생성
 
 알려진 YouTube 썸네일 패턴 기반:
 
@@ -269,13 +210,13 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Markdown 썸네일 삽입
+### 5.2 Markdown 썸네일 삽입
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 타임스탬프 (가능한 경우)
+### 5.3 타임스탬프 (가능한 경우)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 다중 매개변수 조건
+### 5.4 다중 매개변수 조건
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 미니멀리스트
+### 5.5 미니멀리스트
 
 ```text
 $title — $url
 ```
 
-### 5.9 일일 로그 항목
+### 5.6 일일 로그 항목
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 파일명 스타일 요약
+### 5.7 파일명 스타일 요약
 
 ```text
 $basename — $title
 ```
 
-### 5.11 구분자가 있는 여러 줄
+### 5.8 구분자가 있는 여러 줄
 
 ```text
 $title$nl$url$nl$nl$domain

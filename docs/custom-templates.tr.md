@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHub Issue Özeti
+### 4.4 Dosya adı tarzı başlık ($basename kullanarak)
 
 🛠 **Şablon**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Çıktı**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Çıktı**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Kullanılan örnek URL:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Klasik Markdown
-
-```text
-$title$nl$url
-```
-
-Çıktı:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdown Listesi
-
-```text
-- [$title]($url)
-```
-
-Çıktı:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Alan Adı + Yol Günlüğü
-
-```text
-[$domain] $path$nl$url
-```
-
-Çıktı:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHub Issue Tarzı Özet
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Çıktı:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTube Yardımcı Programları
-
-#### 5.5.1 Video ID'sini yalnızca mevcutsa göster
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Küçük Resim URL'si Oluştur
+### 5.1 Küçük Resim URL'si Oluştur
 
 Bilinen YouTube küçük resim desenine dayalı:
 
@@ -269,13 +210,13 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Markdown Küçük Resmi Yerleştir
+### 5.2 Markdown Küçük Resmi Yerleştir
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Zaman Damgası (varsa)
+### 5.3 Zaman Damgası (varsa)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Çok Parametreli Koşul
+### 5.4 Çok Parametreli Koşul
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Minimalist
+### 5.5 Minimalist
 
 ```text
 $title — $url
 ```
 
-### 5.9 Günlük Günlük Girişi
+### 5.6 Günlük Günlük Girişi
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Dosya Adı Tarzı Özet
+### 5.7 Dosya Adı Tarzı Özet
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Ayırıcılı Çok Satırlı
+### 5.8 Ayırıcılı Çok Satırlı
 
 ```text
 $title$nl$url$nl$nl$domain

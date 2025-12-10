@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHub Issue 摘要
+### 4.4 文件名样式标题（使用 $basename）
 
 🛠 **模板**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **输出**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **输出**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 经典 Markdown
-
-```text
-$title$nl$url
-```
-
-输出：
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdown 列表
-
-```text
-- [$title]($url)
-```
-
-输出：
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 域名 + 路径日志
-
-```text
-[$domain] $path$nl$url
-```
-
-输出：
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHub Issue 样式摘要
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-输出：
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTube 工具
-
-#### 5.5.1 仅在存在时显示视频 ID
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 生成缩略图 URL
+### 5.1 生成缩略图 URL
 
 基于已知的 YouTube 缩略图模式：
 
@@ -269,13 +210,13 @@ https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 嵌入 Markdown 缩略图
+### 5.2 嵌入 Markdown 缩略图
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 时间戳（如果可用）
+### 5.3 时间戳（如果可用）
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 多参数条件
+### 5.4 多参数条件
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 极简主义
+### 5.5 极简主义
 
 ```text
 $title — $url
 ```
 
-### 5.9 每日日志条目
+### 5.6 每日日志条目
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 文件名样式摘要
+### 5.7 文件名样式摘要
 
 ```text
 $basename — $title
 ```
 
-### 5.11 带分隔符的多行
+### 5.8 带分隔符的多行
 
 ```text
 $title$nl$url$nl$nl$domain

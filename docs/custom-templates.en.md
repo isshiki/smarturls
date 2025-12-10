@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHub Issue Summary
+### 4.4 Filename-style Heading
 
 🛠 **Template**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Output**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Output**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Example URL used:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Classic Markdown
-
-```text
-$title$nl$url
-```
-
-Output:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdown List
-
-```text
-- [$title]($url)
-```
-
-Output:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Domain + Path Log
-
-```text
-[$domain] $path$nl$url
-```
-
-Output:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHub Issue-style Summary
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Output:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTube Utilities
-
-#### 5.5.1 Show Video ID only when present
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Generate Thumbnail URL
+### 5.1 Generate YouTube Thumbnail URL
 
 Based on the known YouTube thumbnail pattern:
 
@@ -269,13 +210,13 @@ Template:
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Markdown Thumbnail Embed
+### 5.2 Embed YouTube Thumbnail (Markdown)
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Timestamp (if available)
+### 5.3 Timestamp (if available)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Multi-parameter Conditional
+### 5.4 Multi-parameter Conditional
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Minimalist
+### 5.5 Minimalist
 
 ```text
 $title — $url
 ```
 
-### 5.9 Daily Log Entry
+### 5.6 Daily Log Entry
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Filename-style Summary
+### 5.7 Filename-style Summary
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Multi-line with Separator
+### 5.8 Multi-line with Separator
 
 ```text
 $title$nl$url$nl$nl$domain

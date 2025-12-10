@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 GitHub issue-samenvatting
+### 4.4 Bestandsnaam-stijl kop (met $basename)
 
 🛠 **Sjabloon**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Uitvoer**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Uitvoer**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Gebruikte voorbeeld-URL:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Klassiek Markdown
-
-```text
-$title$nl$url
-```
-
-Uitvoer:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Markdown-lijst
-
-```text
-- [$title]($url)
-```
-
-Uitvoer:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Domein + Pad Log
-
-```text
-[$domain] $path$nl$url
-```
-
-Uitvoer:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 GitHub issue-stijl samenvatting
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Uitvoer:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 YouTube-hulpprogramma's
-
-#### 5.5.1 Toon video-ID alleen wanneer aanwezig
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Genereer thumbnail-URL
+### 5.1 Genereer thumbnail-URL
 
 Gebaseerd op het bekende YouTube-thumbnailpatroon:
 
@@ -269,13 +210,13 @@ Sjabloon:
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Markdown-thumbnail insluiten
+### 5.2 Markdown-thumbnail insluiten
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Tijdstempel (indien beschikbaar)
+### 5.3 Tijdstempel (indien beschikbaar)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Multi-parameter voorwaardelijk
+### 5.4 Multi-parameter voorwaardelijk
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Minimalistisch
+### 5.5 Minimalistisch
 
 ```text
 $title — $url
 ```
 
-### 5.9 Dagelijkse logvermelding
+### 5.6 Dagelijkse logvermelding
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Bestandsnaam-stijl samenvatting
+### 5.7 Bestandsnaam-stijl samenvatting
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Meerdere regels met scheidingsteken
+### 5.8 Meerdere regels met scheidingsteken
 
 ```text
 $title$nl$url$nl$nl$domain

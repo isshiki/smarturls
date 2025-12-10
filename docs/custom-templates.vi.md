@@ -156,12 +156,12 @@ Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Tóm tắt Issue GitHub
+### 4.4 Tiêu đề kiểu tên tệp (sử dụng $basename)
 
 🛠 **Mẫu**
 
 ```text
-## ${$basename}: $title$nl$url
+## $basename: $title$nl$url
 ```
 
 💬 **Đầu ra**
@@ -182,7 +182,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg
 💬 **Đầu ra**
 
 ```text
-[youtube.com] /watch
+[www.youtube.com] /watch
 https://www.youtube.com/watch?v=bmC-FwibsZg
 ```
 
@@ -196,66 +196,7 @@ Ví dụ URL được sử dụng:
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.1 Markdown cổ điển
-
-```text
-$title$nl$url
-```
-
-Đầu ra:
-
-```text
-Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.2 Danh sách Markdown
-
-```text
-- [$title]($url)
-```
-
-Đầu ra:
-
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
-```
-
-### 5.3 Nhật ký Tên miền + Đường dẫn
-
-```text
-[$domain] $path$nl$url
-```
-
-Đầu ra:
-
-```text
-[youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.4 Tóm tắt kiểu Issue GitHub
-
-```text
-## ${$basename}: $title$nl$url
-```
-
-Đầu ra:
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.5 Tiện ích YouTube
-
-#### 5.5.1 Hiển thị ID video chỉ khi có
-
-```text
-{% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
-```
-
-#### 5.5.2 Tạo URL hình thu nhỏ
+### 5.1 Tạo URL hình thu nhỏ
 
 Dựa trên mẫu hình thu nhỏ YouTube đã biết:
 
@@ -269,13 +210,13 @@ Mẫu:
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-#### 5.5.3 Nhúng hình thu nhỏ Markdown
+### 5.2 Nhúng hình thu nhỏ Markdown
 
 ```text
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.6 Dấu thời gian (nếu có)
+### 5.3 Dấu thời gian (nếu có)
 
 ```text
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
@@ -289,7 +230,7 @@ Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.7 Điều kiện đa tham số
+### 5.4 Điều kiện đa tham số
 
 ```text
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
@@ -302,25 +243,25 @@ Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.8 Tối giản
+### 5.5 Tối giản
 
 ```text
 $title — $url
 ```
 
-### 5.9 Mục nhật ký hàng ngày
+### 5.6 Mục nhật ký hàng ngày
 
 ```text
 - [$title]($url) — $date $time
 ```
 
-### 5.10 Tóm tắt kiểu tên tệp
+### 5.7 Tóm tắt kiểu tên tệp
 
 ```text
 $basename — $title
 ```
 
-### 5.11 Nhiều dòng với dấu phân cách
+### 5.8 Nhiều dòng với dấu phân cách
 
 ```text
 $title$nl$url$nl$nl$domain
