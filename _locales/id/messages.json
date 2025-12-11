@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Lihat daftar lengkap." },
   "tplTooLongSuffix":      { "message": " — terlalu panjang" },
   "open_tpl_label":     { "message": "Template kustom untuk membuka" },
-  "same_tokens_hint":   { "message": "Menggunakan token yang sama dengan salin: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "same_tokens_hint":   { "message": "Gunakan jenis token yang sama dengan Salin, mis.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (baris baru), …" },
 
   "filters_title":      { "message": "Filter" },
   "opt_dedup":          { "message": "Hapus duplikat" },

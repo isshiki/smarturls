@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Tam listeyi gör." },
   "tplTooLongSuffix":      { "message": " — çok uzun" },
   "open_tpl_label":     { "message": "Açma için özel şablon" },
-  "same_tokens_hint":   { "message": "Kopyalama ile aynı tokenleri kullanır: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "same_tokens_hint":   { "message": "Kopyalama ile aynı token türlerini kullanın, örn.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (yeni satır), …" },
 
   "filters_title":      { "message": "Filtreler" },
   "opt_dedup":          { "message": "Çiftleri kaldır" },

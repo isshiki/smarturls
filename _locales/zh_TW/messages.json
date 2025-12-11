@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "查看完整清單。" },
   "tplTooLongSuffix":      { "message": " — 過長" },
   "open_tpl_label":     { "message": "開啟自訂範本" },
-  "same_tokens_hint":   { "message": "使用與複製相同的權杖：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "same_tokens_hint":   { "message": "使用與複製相同類型的權杖，例如：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (換行), …" },
 
   "filters_title":      { "message": "篩選器" },
   "opt_dedup":          { "message": "移除重複項目" },

@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Zie volledige lijst." },
   "tplTooLongSuffix":      { "message": " — te lang" },
   "open_tpl_label":     { "message": "Aangepaste sjabloon voor openen" },
-  "same_tokens_hint":   { "message": "Gebruikt dezelfde tokens als kopiëren: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "same_tokens_hint":   { "message": "Gebruik dezelfde soorten tokens als Kopiëren, bijv.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nieuwe regel), …" },
 
   "filters_title":      { "message": "Filters" },
   "opt_dedup":          { "message": "Duplicaten verwijderen" },

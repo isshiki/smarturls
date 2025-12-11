@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Zobacz pełną listę." },
   "tplTooLongSuffix":      { "message": " — za długi" },
   "open_tpl_label":     { "message": "Niestandardowy szablon do otwierania" },
-  "same_tokens_hint":   { "message": "Używa tych samych tokenów co kopiowanie: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "same_tokens_hint":   { "message": "Używaj tych samych typów tokenów co Kopiowanie, np.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nowa linia), …" },
 
   "filters_title":      { "message": "Filtry" },
   "opt_dedup":          { "message": "Usuń duplikaty" },
