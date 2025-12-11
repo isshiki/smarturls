@@ -58,16 +58,14 @@ SmartURLs dapat mengekstrak parameter query langsung dari URL.
 $<param>
 ```
 
-📄 **Contoh**
-
-URL:
+🔗 **Contoh URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 | Token | Output        |
-| -- | - |
+| ----- | ------------- |
 | `$v`  | `bmC-FwibsZg` |
 | `$t`  | `123`         |
 
@@ -100,103 +98,77 @@ Di dalam blok kondisional:
 
 Jika kondisi tidak terpenuhi, seluruh blok dihapus dari output.
 
-## 4. Contoh Template
+## 4. Contoh & Pola Template
 
 Template ditulis sebagai *satu baris*, tetapi dapat menghasilkan beberapa baris melalui `$nl`.
+
+Contoh URL dan judul yang digunakan di bagian ini:
+
+📘 **Judul**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Judul + URL
 
 🛠 **Template**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Item Daftar Markdown
 
 🛠 **Template**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Output**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 ID Video YouTube (hanya jika ada)
 
 🛠 **Template**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Jika `v=` tidak ada:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Heading bergaya nama file (menggunakan $basename)
-
-🛠 **Template**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Output**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Format Log (domain + path)
-
-🛠 **Template**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Output**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Pola Template Praktis
-
-Berikut adalah pola siap pakai untuk Markdown, log, utilitas YouTube, dan pemformatan kondisional.
-
-Contoh URL yang digunakan:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Hasilkan URL Thumbnail
+### 4.4 Hasilkan URL Thumbnail YouTube
 
 Berdasarkan pola thumbnail YouTube yang dikenal:
 
@@ -204,76 +176,148 @@ Berdasarkan pola thumbnail YouTube yang dikenal:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Template:
+🛠 **Template**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Sematkan Thumbnail Markdown
+💬 **Output**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Sematkan Thumbnail YouTube (Markdown)
+
+🛠 **Template**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Timestamp (jika tersedia)
+💬 **Output**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Timestamp (jika tersedia)
+
+🛠 **Template**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Kondisional Multi-parameter
+### 4.7 Kondisional Multi-parameter
 
-```text
+🛠 **Template**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalis
+### 4.8 Format Log (domain + path)
 
-```text
+🛠 **Template**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Output**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Heading bergaya nama file (menggunakan $basename)
+
+🛠 **Template**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Output**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalis
+
+🛠 **Template**
+
+```template
 $title — $url
 ```
 
-### 5.6 Entri Log Harian
+💬 **Output**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Entri Log Harian
+
+🛠 **Template**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Ringkasan Gaya Nama File
+💬 **Output**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Multi-baris dengan Pemisah
+### 4.12 Multi-baris dengan Pemisah
 
-```text
+🛠 **Template**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Keterbatasan
+💬 **Output**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Keterbatasan
 
 SmartURLs sengaja tetap sederhana.
 
 ❌ SmartURLs `TIDAK`:
 
-* Mengurai konten halaman web
+* Mengurai konten halaman web (SmartURLs TIDAK memiliki izin untuk mengakses atau membaca halaman HTML)
 * Membaca metadata atau thumbnail
 * Menjalankan JavaScript di halaman
 * Mengekstrak tag OG, penulis, atau deskripsi
@@ -289,10 +333,12 @@ SmartURLs sengaja tetap sederhana.
 
 Ini memastikan perilaku konsisten di semua situs web.
 
-## 7. Kompatibilitas Versi
+## 6. Kompatibilitas Versi
 
 Fitur-fitur ini tersedia di: **SmartURLs v1.4.0 dan yang lebih baru**
 
-## 8. Umpan Balik
+## 7. Umpan Balik
 
-Untuk permintaan fitur atau pertanyaan, silakan buka issue di GitHub.
+Untuk permintaan fitur atau pertanyaan, silakan buka issue di sini:
+
+<https://github.com/isshiki/SmartURLs/issues>

@@ -58,16 +58,14 @@ SmartURLs kann Query-Parameter direkt aus der URL extrahieren.
 $<param>
 ```
 
-📄 **Beispiel**
-
-URL:
+🔗 **Beispiel-URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 | Token | Ausgabe       |
-| -- | - |
+| ----- | ------------- |
 | `$v`  | `bmC-FwibsZg` |
 | `$t`  | `123`         |
 
@@ -100,103 +98,77 @@ Innerhalb eines bedingten Blocks:
 
 Wenn die Bedingungen nicht erfüllt sind, wird der gesamte Block aus der Ausgabe entfernt.
 
-## 4. Vorlagenbeispiele
+## 4. Vorlagenbeispiele & Muster
 
 Vorlagen werden als *eine Zeile* geschrieben, können aber über `$nl` mehrere Zeilen ausgeben.
+
+Beispiel-URL und -Titel, die in diesem Abschnitt verwendet werden:
+
+📘 **Titel**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Titel + URL
 
 🛠 **Vorlage**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Ausgabe**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown-Listenelement
 
 🛠 **Vorlage**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Ausgabe**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube-Video-ID (nur wenn vorhanden)
 
 🛠 **Vorlage**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Ausgabe**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Wenn `v=` fehlt:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Dateiname-Stil-Überschrift (mit $basename)
-
-🛠 **Vorlage**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Ausgabe**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Log-Format (Domain + Pfad)
-
-🛠 **Vorlage**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Ausgabe**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Praktische Vorlagenmuster
-
-Nachfolgend finden Sie gebrauchsfertige Muster für Markdown, Logs, YouTube-Utilities und bedingte Formatierung.
-
-Verwendete Beispiel-URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Thumbnail-URL generieren
+### 4.4 YouTube-Thumbnail-URL generieren
 
 Basierend auf dem bekannten YouTube-Thumbnail-Muster:
 
@@ -204,76 +176,148 @@ Basierend auf dem bekannten YouTube-Thumbnail-Muster:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Vorlage:
+🛠 **Vorlage**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Markdown-Thumbnail einbetten
+💬 **Ausgabe**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Markdown-Thumbnail einbetten
+
+🛠 **Vorlage**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Zeitstempel (falls verfügbar)
+💬 **Ausgabe**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Zeitstempel (falls verfügbar)
+
+🛠 **Vorlage**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Ausgabe:
+💬 **Ausgabe**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Multi-Parameter-Bedingung
+### 4.7 Multi-Parameter-Bedingung
 
-```text
+🛠 **Vorlage**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Ausgabe:
+💬 **Ausgabe**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalistisch
+### 4.8 Log-Format (Domain + Pfad)
 
-```text
+🛠 **Vorlage**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Ausgabe**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Dateiname-Stil-Überschrift
+
+🛠 **Vorlage**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Ausgabe**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalistisch
+
+🛠 **Vorlage**
+
+```template
 $title — $url
 ```
 
-### 5.6 Täglicher Log-Eintrag
+💬 **Ausgabe**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Täglicher Log-Eintrag
+
+🛠 **Vorlage**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Dateiname-Stil-Zusammenfassung
+💬 **Ausgabe**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Mehrzeilig mit Trennzeichen
+### 4.12 Mehrzeilig mit Trennzeichen
 
-```text
+🛠 **Vorlage**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Einschränkungen
+💬 **Ausgabe**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Einschränkungen
 
 SmartURLs bleibt absichtlich einfach.
 
 ❌ SmartURLs macht `NICHT`:
 
-* Webseiteninhalte parsen
+* Webseiteninhalte parsen (SmartURLs hat KEINE Berechtigung, auf HTML-Seiten zuzugreifen oder diese zu lesen)
 * Metadaten oder Thumbnails lesen
 * JavaScript auf der Seite ausführen
 * OG-Tags, Autoren oder Beschreibungen extrahieren
@@ -289,10 +333,12 @@ SmartURLs bleibt absichtlich einfach.
 
 Dies gewährleistet konsistentes Verhalten auf allen Webseiten.
 
-## 7. Versionskompatibilität
+## 6. Versionskompatibilität
 
 Diese Funktionen sind verfügbar in: **SmartURLs v1.4.0 und später**
 
-## 8. Feedback
+## 7. Feedback
 
-Für Feature-Anfragen oder Fragen öffnen Sie bitte ein Issue auf GitHub.
+Für Feature-Anfragen oder Fragen öffnen Sie bitte ein Issue hier:
+
+<https://github.com/isshiki/SmartURLs/issues>

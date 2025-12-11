@@ -100,103 +100,77 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 如果不滿足條件，整個區塊將從輸出中刪除。
 
-## 4. 範本範例
+## 4. 範本範例和模式
 
 範本寫成*一行*，但可以透過 `$nl` 輸出多行。
+
+本節中使用的範例 URL 和標題：
+
+📘 **標題**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: 標題 + URL
 
 🛠 **範本**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **輸出**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown 清單項目
 
 🛠 **範本**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **輸出**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube 影片 ID（僅在存在時）
 
 🛠 **範本**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **輸出**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 如果缺少 `v=`：
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 檔案名稱樣式標題（使用 $basename）
-
-🛠 **範本**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **輸出**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 日誌格式（網域 + 路徑）
-
-🛠 **範本**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **輸出**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. 實用範本模式
-
-以下是用於 Markdown、日誌、YouTube 工具和條件格式化的即用模式。
-
-使用的範例 URL：
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 產生縮圖 URL
+### 4.4 產生 YouTube 縮圖 URL
 
 基於已知的 YouTube 縮圖模式：
 
@@ -204,76 +178,148 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-範本：
+🛠 **範本**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 嵌入 Markdown 縮圖
+💬 **輸出**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 嵌入 YouTube 縮圖 (Markdown)
+
+🛠 **範本**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 時間戳記（如果可用）
+💬 **輸出**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 時間戳記（如果可用）
+
+🛠 **範本**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-輸出：
+💬 **輸出**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 多參數條件
+### 4.7 多參數條件
 
-```text
+🛠 **範本**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-輸出：
+💬 **輸出**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 極簡主義
+### 4.8 日誌格式（網域 + 路徑）
 
-```text
+🛠 **範本**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **輸出**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 檔案名稱樣式標題
+
+🛠 **範本**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **輸出**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 極簡主義
+
+🛠 **範本**
+
+```template
 $title — $url
 ```
 
-### 5.6 每日日誌條目
+💬 **輸出**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 每日日誌條目
+
+🛠 **範本**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 檔案名稱樣式摘要
+💬 **輸出**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 帶分隔符的多行
+### 4.12 帶分隔符的多行
 
-```text
+🛠 **範本**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. 限制
+💬 **輸出**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. 限制
 
 SmartURLs 有意保持簡單。
 
 ❌ SmartURLs `不會`：
 
-* 解析網頁內容
+* 解析網頁內容（SmartURLs 沒有存取或讀取 HTML 頁面的權限）
 * 讀取中繼資料或縮圖
 * 在頁面上執行 JavaScript
 * 擷取 OG 標籤、作者或描述
@@ -289,10 +335,12 @@ SmartURLs 有意保持簡單。
 
 這確保了在所有網站上的一致行為。
 
-## 7. 版本相容性
+## 6. 版本相容性
 
 這些功能適用於：**SmartURLs v1.4.0 及更高版本**
 
-## 8. 回饋
+## 7. 回饋
 
-如有功能請求或問題，請在 GitHub 上開 issue。
+如有功能請求或問題，請在 GitHub 上開 issue：
+
+<https://github.com/isshiki/SmartURLs/issues>

@@ -27,13 +27,13 @@ SmartURLs replaces tokens based strictly on tab metadata and the current URL.
 
 To show how tokens expand, these examples use:
 
-📘 **Title**
+📘 **Example Title**
 
 ```text
 Why the Moon?
 ```
 
-🔗 **URL**
+🔗 **Example URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg
@@ -58,9 +58,7 @@ SmartURLs can extract query parameters directly from the URL.
 $<param>
 ```
 
-📄 **Example**
-
-URL:
+🔗 **Example URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123

@@ -58,9 +58,7 @@ SmartURLs는 URL에서 직접 쿼리 매개변수를 추출할 수 있습니다.
 $<param>
 ```
 
-📄 **예시**
-
-URL:
+🔗 **URL 예시**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
@@ -100,103 +98,77 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 조건이 충족되지 않으면 전체 블록이 출력에서 제거됩니다.
 
-## 4. 템플릿 예시
+## 4. 템플릿 예시 및 패턴
 
 템플릿은 *한 줄*로 작성되지만 `$nl`을 통해 여러 줄을 출력할 수 있습니다.
+
+이 섹션에서 사용되는 예시 URL과 제목:
+
+📘 **제목**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: 제목 + URL
 
 🛠 **템플릿**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **출력**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown 리스트 항목
 
 🛠 **템플릿**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **출력**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube 동영상 ID (존재할 때만)
 
 🛠 **템플릿**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **출력**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 `v=`가 없으면:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 파일 이름 스타일 제목 ($basename 사용)
-
-🛠 **템플릿**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **출력**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 로그 형식 (도메인 + 경로)
-
-🛠 **템플릿**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **출력**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. 실용적인 템플릿 패턴
-
-Markdown, 로그, YouTube 유틸리티 및 조건부 서식을 위한 즉시 사용 가능한 패턴입니다.
-
-사용된 예시 URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 썸네일 URL 생성
+### 4.4 YouTube 썸네일 URL 생성
 
 알려진 YouTube 썸네일 패턴 기반:
 
@@ -204,76 +176,148 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-템플릿:
+🛠 **템플릿**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Markdown 썸네일 삽입
+💬 **출력**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 YouTube 썸네일 삽입 (Markdown)
+
+🛠 **템플릿**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 타임스탬프 (가능한 경우)
+💬 **출력**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 타임스탬프 (가능한 경우)
+
+🛠 **템플릿**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-출력:
+💬 **출력**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 다중 매개변수 조건
+### 4.7 다중 매개변수 조건
 
-```text
+🛠 **템플릿**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-출력:
+💬 **출력**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 미니멀리스트
+### 4.8 로그 형식 (도메인 + 경로)
 
-```text
+🛠 **템플릿**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **출력**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 파일 이름 스타일 제목
+
+🛠 **템플릿**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **출력**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 미니멀리스트
+
+🛠 **템플릿**
+
+```template
 $title — $url
 ```
 
-### 5.6 일일 로그 항목
+💬 **출력**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 일일 로그 항목
+
+🛠 **템플릿**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 파일명 스타일 요약
+💬 **출력**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 구분자가 있는 여러 줄
+### 4.12 구분자가 있는 여러 줄
 
-```text
+🛠 **템플릿**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. 제한사항
+💬 **출력**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. 제한사항
 
 SmartURLs는 의도적으로 단순하게 유지됩니다.
 
 ❌ SmartURLs가 `하지 않는 것`:
 
-* 웹페이지 내용 구문 분석
+* 웹페이지 내용 구문 분석 (SmartURLs는 HTML 페이지에 액세스하거나 읽을 권한이 없습니다)
 * 메타데이터 또는 썸네일 읽기
 * 페이지에서 JavaScript 실행
 * OG 태그, 작성자 또는 설명 추출
@@ -289,10 +333,12 @@ SmartURLs는 의도적으로 단순하게 유지됩니다.
 
 이것은 모든 웹사이트에서 일관된 동작을 보장합니다.
 
-## 7. 버전 호환성
+## 6. 버전 호환성
 
 이 기능은 다음에서 사용할 수 있습니다: **SmartURLs v1.4.0 이상**
 
-## 8. 피드백
+## 7. 피드백
 
-기능 요청이나 질문이 있으면 GitHub에서 이슈를 열어주세요.
+기능 요청이나 질문이 있으면 여기에서 이슈를 열어주세요:
+
+<https://github.com/isshiki/SmartURLs/issues>

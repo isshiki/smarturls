@@ -58,9 +58,7 @@ SmartURLs может извлекать параметры запроса неп
 $<param>
 ```
 
-📄 **Пример**
-
-URL:
+🔗 **Пример URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
@@ -100,103 +98,77 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Если условия не выполняются, весь блок удаляется из вывода.
 
-## 4. Примеры шаблонов
+## 4. Примеры и паттерны шаблонов
 
 Шаблоны пишутся как *одна строка*, но могут выводить несколько строк через `$nl`.
+
+Пример URL и заголовка, использованных в этом разделе:
+
+📘 **Заголовок**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Заголовок + URL
 
 🛠 **Шаблон**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Вывод**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Элемент списка Markdown
 
 🛠 **Шаблон**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Вывод**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 ID видео YouTube (только если присутствует)
 
 🛠 **Шаблон**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Вывод**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Если `v=` отсутствует:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Заголовок в стиле имени файла (с использованием $basename)
-
-🛠 **Шаблон**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Вывод**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Формат журнала (домен + путь)
-
-🛠 **Шаблон**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Вывод**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Практичные шаблоны
-
-Ниже приведены готовые шаблоны для Markdown, журналов, утилит YouTube и условного форматирования.
-
-Используемый пример URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Сгенерировать URL миниатюры
+### 4.4 Сгенерировать URL миниатюры YouTube
 
 На основе известного шаблона миниатюр YouTube:
 
@@ -204,76 +176,148 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Шаблон:
+🛠 **Шаблон**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Встроить миниатюру Markdown
+💬 **Вывод**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Встроить миниатюру YouTube (Markdown)
+
+🛠 **Шаблон**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Временная метка (если доступна)
+💬 **Вывод**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Временная метка (если доступна)
+
+🛠 **Шаблон**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Вывод:
+💬 **Вывод**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Многопараметровое условие
+### 4.7 Многопараметровое условие
 
-```text
+🛠 **Шаблон**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Вывод:
+💬 **Вывод**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Минималистичный
+### 4.8 Формат журнала (домен + путь)
 
-```text
+🛠 **Шаблон**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Вывод**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Заголовок в стиле имени файла
+
+🛠 **Шаблон**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Вывод**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Минималистичный
+
+🛠 **Шаблон**
+
+```template
 $title — $url
 ```
 
-### 5.6 Ежедневная запись журнала
+💬 **Вывод**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Ежедневная запись журнала
+
+🛠 **Шаблон**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Сводка в стиле имени файла
+💬 **Вывод**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Многострочный с разделителем
+### 4.12 Многострочный с разделителем
 
-```text
+🛠 **Шаблон**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Ограничения
+💬 **Вывод**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Ограничения
 
 SmartURLs намеренно остается простым.
 
 ❌ SmartURLs `НЕ`:
 
-* Анализирует содержимое веб-страниц
+* Анализирует содержимое веб-страниц (SmartURLs НЕ имеет разрешения на доступ или чтение HTML-страниц)
 * Читает метаданные или миниатюры
 * Выполняет JavaScript на странице
 * Извлекает теги OG, авторов или описания
@@ -289,10 +333,12 @@ SmartURLs намеренно остается простым.
 
 Это обеспечивает согласованное поведение на всех веб-сайтах.
 
-## 7. Совместимость версий
+## 6. Совместимость версий
 
 Эти функции доступны в: **SmartURLs v1.4.0 и более поздних версиях**
 
-## 8. Обратная связь
+## 7. Обратная связь
 
-Для запросов функций или вопросов, пожалуйста, откройте issue на GitHub.
+Для запросов функций или вопросов, пожалуйста, откройте issue здесь:
+
+<https://github.com/isshiki/SmartURLs/issues>

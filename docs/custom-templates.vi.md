@@ -100,103 +100,77 @@ Bên trong khối có điều kiện:
 
 Nếu điều kiện không được đáp ứng, toàn bộ khối sẽ bị xóa khỏi đầu ra.
 
-## 4. Ví dụ về mẫu
+## 4. Ví dụ về mẫu và mẫu thực tế
 
 Các mẫu được viết dưới dạng *một dòng*, nhưng có thể xuất ra nhiều dòng thông qua `$nl`.
+
+Ví dụ URL và tiêu đề được sử dụng trong phần này:
+
+📘 **Tiêu đề**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Tiêu đề + URL
 
 🛠 **Mẫu**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Đầu ra**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Mục danh sách Markdown
 
 🛠 **Mẫu**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Đầu ra**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 ID video YouTube (chỉ khi có)
 
 🛠 **Mẫu**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Đầu ra**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Nếu thiếu `v=`:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Tiêu đề kiểu tên tệp (sử dụng $basename)
-
-🛠 **Mẫu**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Đầu ra**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Định dạng nhật ký (tên miền + đường dẫn)
-
-🛠 **Mẫu**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Đầu ra**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Mẫu thực tế
-
-Dưới đây là các mẫu sẵn sàng sử dụng cho Markdown, nhật ký, tiện ích YouTube và định dạng có điều kiện.
-
-Ví dụ URL được sử dụng:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Tạo URL hình thu nhỏ
+### 4.4 Tạo URL hình thu nhỏ YouTube
 
 Dựa trên mẫu hình thu nhỏ YouTube đã biết:
 
@@ -204,76 +178,148 @@ Dựa trên mẫu hình thu nhỏ YouTube đã biết:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Mẫu:
+🛠 **Mẫu**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Nhúng hình thu nhỏ Markdown
+💬 **Đầu ra**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Nhúng hình thu nhỏ YouTube (Markdown)
+
+🛠 **Mẫu**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Dấu thời gian (nếu có)
+💬 **Đầu ra**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Dấu thời gian (nếu có)
+
+🛠 **Mẫu**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Đầu ra:
+💬 **Đầu ra**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Điều kiện đa tham số
+### 4.7 Điều kiện đa tham số
 
-```text
+🛠 **Mẫu**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Đầu ra:
+💬 **Đầu ra**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Tối giản
+### 4.8 Định dạng nhật ký (tên miền + đường dẫn)
 
-```text
+🛠 **Mẫu**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Đầu ra**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Tiêu đề kiểu tên tệp
+
+🛠 **Mẫu**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Đầu ra**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Tối giản
+
+🛠 **Mẫu**
+
+```template
 $title — $url
 ```
 
-### 5.6 Mục nhật ký hàng ngày
+💬 **Đầu ra**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Mục nhật ký hàng ngày
+
+🛠 **Mẫu**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Tóm tắt kiểu tên tệp
+💬 **Đầu ra**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Nhiều dòng với dấu phân cách
+### 4.12 Nhiều dòng với dấu phân cách
 
-```text
+🛠 **Mẫu**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Giới hạn
+💬 **Đầu ra**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Giới hạn
 
 SmartURLs cố tình giữ đơn giản.
 
 ❌ SmartURLs `KHÔNG`:
 
-* Phân tích nội dung trang web
+* Phân tích nội dung trang web (SmartURLs KHÔNG có quyền truy cập hoặc đọc trang HTML)
 * Đọc siêu dữ liệu hoặc hình thu nhỏ
 * Thực thi JavaScript trên trang
 * Trích xuất thẻ OG, tác giả hoặc mô tả
@@ -289,10 +335,12 @@ SmartURLs cố tình giữ đơn giản.
 
 Điều này đảm bảo hành vi nhất quán trên tất cả các trang web.
 
-## 7. Khả năng tương thích phiên bản
+## 6. Khả năng tương thích phiên bản
 
 Các tính năng này có sẵn trong: **SmartURLs v1.4.0 trở lên**
 
-## 8. Phản hồi
+## 7. Phản hồi
 
-Đối với yêu cầu tính năng hoặc câu hỏi, vui lòng mở issue trên GitHub.
+Đối với yêu cầu tính năng hoặc câu hỏi, vui lòng mở issue trên GitHub:
+
+<https://github.com/isshiki/SmartURLs/issues>

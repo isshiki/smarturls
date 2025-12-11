@@ -58,9 +58,7 @@ SmartURLs może wyodrębniać parametry zapytania bezpośrednio z adresu URL.
 $<param>
 ```
 
-📄 **Przykład**
-
-URL:
+🔗 **Przykładowy URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
@@ -100,103 +98,77 @@ Wewnątrz bloku warunkowego:
 
 Jeśli warunki nie są spełnione, cały blok jest usuwany z wyjścia.
 
-## 4. Przykłady szablonów
+## 4. Przykłady i wzorce szablonów
 
 Szablony są zapisywane jako *jedna linia*, ale mogą generować wiele linii przez `$nl`.
+
+Przykładowy adres URL i tytuł użyte w tej sekcji:
+
+📘 **Tytuł**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Tytuł + URL
 
 🛠 **Szablon**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Wyjście**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Element listy Markdown
 
 🛠 **Szablon**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Wyjście**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 Identyfikator filmu YouTube (tylko jeśli jest obecny)
 
 🛠 **Szablon**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Wyjście**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Jeśli brakuje `v=`:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Nagłówek w stylu nazwy pliku (z $basename)
-
-🛠 **Szablon**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Wyjście**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Format dziennika (domena + ścieżka)
-
-🛠 **Szablon**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Wyjście**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Praktyczne wzorce szablonów
-
-Poniżej znajdują się gotowe wzorce dla Markdown, dzienników, narzędzi YouTube i formatowania warunkowego.
-
-Użyty przykładowy adres URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Wygeneruj adres URL miniatury
+### 4.4 Wygeneruj adres URL miniatury YouTube
 
 Na podstawie znanego wzorca miniatur YouTube:
 
@@ -204,76 +176,148 @@ Na podstawie znanego wzorca miniatur YouTube:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Szablon:
+🛠 **Szablon**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Osadź miniaturę Markdown
+💬 **Wyjście**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Osadź miniaturę YouTube (Markdown)
+
+🛠 **Szablon**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Znacznik czasu (jeśli dostępny)
+💬 **Wyjście**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Znacznik czasu (jeśli dostępny)
+
+🛠 **Szablon**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Wyjście:
+💬 **Wyjście**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Warunek wieloparametrowy
+### 4.7 Warunek wieloparametrowy
 
-```text
+🛠 **Szablon**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Wyjście:
+💬 **Wyjście**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalistyczny
+### 4.8 Format dziennika (domena + ścieżka)
 
-```text
+🛠 **Szablon**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Wyjście**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Nagłówek w stylu nazwy pliku
+
+🛠 **Szablon**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Wyjście**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalistyczny
+
+🛠 **Szablon**
+
+```template
 $title — $url
 ```
 
-### 5.6 Wpis dziennika dziennego
+💬 **Wyjście**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Wpis dziennika dziennego
+
+🛠 **Szablon**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Podsumowanie w stylu nazwy pliku
+💬 **Wyjście**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Wiele linii z separatorem
+### 4.12 Wiele linii z separatorem
 
-```text
+🛠 **Szablon**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Ograniczenia
+💬 **Wyjście**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Ograniczenia
 
 SmartURLs celowo pozostaje prosty.
 
 ❌ SmartURLs `NIE`:
 
-* Analizuje zawartości stron internetowych
+* Analizuje zawartości stron internetowych (SmartURLs NIE ma uprawnień do dostępu ani odczytu stron HTML)
 * Czyta metadanych ani miniatur
 * Wykonuje JavaScript na stronie
 * Wyodrębnia tagów OG, autorów ani opisów
@@ -289,10 +333,12 @@ SmartURLs celowo pozostaje prosty.
 
 Zapewnia to spójne zachowanie na wszystkich stronach internetowych.
 
-## 7. Zgodność wersji
+## 6. Zgodność wersji
 
 Te funkcje są dostępne w: **SmartURLs v1.4.0 i nowszych**
 
-## 8. Opinie
+## 7. Opinie
 
-W przypadku próśb o funkcje lub pytań otwórz problem na GitHub.
+W przypadku próśb o funkcje lub pytań otwórz problem tutaj:
+
+<https://github.com/isshiki/SmartURLs/issues>

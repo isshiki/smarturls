@@ -100,103 +100,77 @@ Koşullu bir blok içinde:
 
 Koşullar karşılanmazsa, bloğun tamamı çıktıdan kaldırılır.
 
-## 4. Şablon Örnekleri
+## 4. Şablon Örnekleri ve Kalıpları
 
 Şablonlar *tek satır* olarak yazılır, ancak `$nl` aracılığıyla birden çok satır çıkarabilir.
+
+Bu bölümde kullanılan örnek URL ve başlık:
+
+📘 **Başlık**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Başlık + URL
 
 🛠 **Şablon**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Çıktı**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown Liste Öğesi
 
 🛠 **Şablon**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Çıktı**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube Video ID'si (yalnızca mevcutsa)
 
 🛠 **Şablon**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Çıktı**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 `v=` eksikse:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Dosya adı tarzı başlık ($basename kullanarak)
-
-🛠 **Şablon**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Çıktı**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Günlük Formatı (alan adı + yol)
-
-🛠 **Şablon**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Çıktı**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Pratik Şablon Kalıpları
-
-Aşağıda Markdown, günlükler, YouTube yardımcı programları ve koşullu biçimlendirme için kullanıma hazır kalıplar bulunmaktadır.
-
-Kullanılan örnek URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Küçük Resim URL'si Oluştur
+### 4.4 YouTube Küçük Resim URL'si Oluştur
 
 Bilinen YouTube küçük resim desenine dayalı:
 
@@ -204,76 +178,148 @@ Bilinen YouTube küçük resim desenine dayalı:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Şablon:
+🛠 **Şablon**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Markdown Küçük Resmi Yerleştir
+💬 **Çıktı**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 YouTube Küçük Resmi Yerleştir (Markdown)
+
+🛠 **Şablon**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Zaman Damgası (varsa)
+💬 **Çıktı**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Zaman Damgası (varsa)
+
+🛠 **Şablon**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Çıktı:
+💬 **Çıktı**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Çok Parametreli Koşul
+### 4.7 Çok Parametreli Koşul
 
-```text
+🛠 **Şablon**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Çıktı:
+💬 **Çıktı**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalist
+### 4.8 Günlük Formatı (alan adı + yol)
 
-```text
+🛠 **Şablon**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Çıktı**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Dosya adı tarzı başlık
+
+🛠 **Şablon**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Çıktı**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalist
+
+🛠 **Şablon**
+
+```template
 $title — $url
 ```
 
-### 5.6 Günlük Günlük Girişi
+💬 **Çıktı**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Günlük Günlük Girişi
+
+🛠 **Şablon**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Dosya Adı Tarzı Özet
+💬 **Çıktı**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Ayırıcılı Çok Satırlı
+### 4.12 Ayırıcılı Çok Satırlı
 
-```text
+🛠 **Şablon**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Sınırlamalar
+💬 **Çıktı**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Sınırlamalar
 
 SmartURLs kasıtlı olarak basit kalır.
 
 ❌ SmartURLs `YAPMAZ`:
 
-* Web sayfası içeriğini ayrıştırma
+* Web sayfası içeriğini ayrıştırma (SmartURLs'nin HTML sayfalarına erişme veya okuma izni YOKTUR)
 * Meta verileri veya küçük resimleri okuma
 * Sayfada JavaScript yürütme
 * OG etiketlerini, yazarları veya açıklamaları çıkarma
@@ -289,10 +335,12 @@ SmartURLs kasıtlı olarak basit kalır.
 
 Bu, tüm web sitelerinde tutarlı davranış sağlar.
 
-## 7. Sürüm Uyumluluğu
+## 6. Sürüm Uyumluluğu
 
 Bu özellikler şurada kullanılabilir: **SmartURLs v1.4.0 ve sonrası**
 
-## 8. Geri Bildirim
+## 7. Geri Bildirim
 
-Özellik istekleri veya sorular için lütfen GitHub'da bir issue açın.
+Özellik istekleri veya sorular için lütfen GitHub'da bir issue açın:
+
+<https://github.com/isshiki/SmartURLs/issues>

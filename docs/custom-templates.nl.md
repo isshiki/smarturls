@@ -100,103 +100,77 @@ Binnen een voorwaardelijk blok:
 
 Als aan de voorwaarden niet wordt voldaan, wordt het hele blok uit de uitvoer verwijderd.
 
-## 4. Sjabloonvoorbeelden
+## 4. Sjabloonvoorbeelden en patronen
 
 Sjablonen worden geschreven als *één regel*, maar kunnen meerdere regels uitvoeren via `$nl`.
+
+Voorbeeld URL en titel gebruikt in deze sectie:
+
+📘 **Titel**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Titel + URL
 
 🛠 **Sjabloon**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Uitvoer**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Markdown lijstitem
 
 🛠 **Sjabloon**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Uitvoer**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 YouTube video-ID (alleen indien aanwezig)
 
 🛠 **Sjabloon**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Uitvoer**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Als `v=` ontbreekt:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Bestandsnaam-stijl kop (met $basename)
-
-🛠 **Sjabloon**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Uitvoer**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Logformaat (domein + pad)
-
-🛠 **Sjabloon**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Uitvoer**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Praktische sjabloonpatronen
-
-Hieronder staan gebruiksklare patronen voor Markdown, logs, YouTube-hulpprogramma's en voorwaardelijke opmaak.
-
-Gebruikte voorbeeld-URL:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Genereer thumbnail-URL
+### 4.4 Genereer YouTube thumbnail-URL
 
 Gebaseerd op het bekende YouTube-thumbnailpatroon:
 
@@ -204,76 +178,148 @@ Gebaseerd op het bekende YouTube-thumbnailpatroon:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Sjabloon:
+🛠 **Sjabloon**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Markdown-thumbnail insluiten
+💬 **Uitvoer**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Markdown-thumbnail insluiten
+
+🛠 **Sjabloon**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Tijdstempel (indien beschikbaar)
+💬 **Uitvoer**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Tijdstempel (indien beschikbaar)
+
+🛠 **Sjabloon**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Uitvoer:
+💬 **Uitvoer**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Multi-parameter voorwaardelijk
+### 4.7 Multi-parameter voorwaardelijk
 
-```text
+🛠 **Sjabloon**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Uitvoer:
+💬 **Uitvoer**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalistisch
+### 4.8 Logformaat (domein + pad)
 
-```text
+🛠 **Sjabloon**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Uitvoer**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Bestandsnaam-stijl kop
+
+🛠 **Sjabloon**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Uitvoer**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalistisch
+
+🛠 **Sjabloon**
+
+```template
 $title — $url
 ```
 
-### 5.6 Dagelijkse logvermelding
+💬 **Uitvoer**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Dagelijkse logvermelding
+
+🛠 **Sjabloon**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Bestandsnaam-stijl samenvatting
+💬 **Uitvoer**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Meerdere regels met scheidingsteken
+### 4.12 Meerdere regels met scheidingsteken
 
-```text
+🛠 **Sjabloon**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Beperkingen
+💬 **Uitvoer**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Beperkingen
 
 SmartURLs blijft opzettelijk eenvoudig.
 
 ❌ SmartURLs doet `NIET`:
 
-* Webpagina-inhoud parseren
+* Webpagina-inhoud parseren (SmartURLs heeft GEEN toestemming om HTML-pagina's te openen of te lezen)
 * Metadata of thumbnails lezen
 * JavaScript op de pagina uitvoeren
 * OG-tags, auteurs of beschrijvingen extraheren
@@ -289,10 +335,12 @@ SmartURLs blijft opzettelijk eenvoudig.
 
 Dit zorgt voor consistent gedrag op alle websites.
 
-## 7. Versiecompatibiliteit
+## 6. Versiecompatibiliteit
 
 Deze functies zijn beschikbaar in: **SmartURLs v1.4.0 en later**
 
-## 8. Feedback
+## 7. Feedback
 
-Voor functieverzoeken of vragen kunt u een issue openen op GitHub.
+Voor functieverzoeken of vragen kunt u een issue openen op GitHub:
+
+<https://github.com/isshiki/SmartURLs/issues>

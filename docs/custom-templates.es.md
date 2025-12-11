@@ -58,16 +58,14 @@ SmartURLs puede extraer parámetros de consulta directamente de la URL.
 $<param>
 ```
 
-📄 **Ejemplo**
-
-URL:
+🔗 **Ejemplo de URL**
 
 ```text
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 | Token | Salida        |
-| -- | - |
+| ----- | ------------- |
 | `$v`  | `bmC-FwibsZg` |
 | `$t`  | `123`         |
 
@@ -100,103 +98,77 @@ Dentro de un bloque condicional:
 
 Si no se cumplen las condiciones, el bloque completo se elimina de la salida.
 
-## 4. Ejemplos de plantillas
+## 4. Ejemplos de plantillas y patrones
 
 Las plantillas se escriben como *una línea*, pero pueden generar múltiples líneas a través de `$nl`.
+
+Ejemplo de URL y título usados en esta sección:
+
+📘 **Título**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Título + URL
 
 🛠 **Plantilla**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Salida**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Elemento de lista Markdown
 
 🛠 **Plantilla**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Salida**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 ID de video de YouTube (solo si está presente)
 
 🛠 **Plantilla**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Salida**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Si falta `v=`:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Encabezado estilo nombre de archivo (usando $basename)
-
-🛠 **Plantilla**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Salida**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Formato de registro (dominio + ruta)
-
-🛠 **Plantilla**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Salida**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Patrones de plantillas prácticas
-
-A continuación se muestran patrones listos para usar para Markdown, registros, utilidades de YouTube y formato condicional.
-
-URL de ejemplo utilizada:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Generar URL de miniatura
+### 4.4 Generar URL de miniatura de YouTube
 
 Basado en el patrón conocido de miniaturas de YouTube:
 
@@ -204,76 +176,148 @@ Basado en el patrón conocido de miniaturas de YouTube:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Plantilla:
+🛠 **Plantilla**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Incrustar miniatura Markdown
+💬 **Salida**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Incrustar miniatura de YouTube (Markdown)
+
+🛠 **Plantilla**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Marca de tiempo (si está disponible)
+💬 **Salida**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Marca de tiempo (si está disponible)
+
+🛠 **Plantilla**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Salida:
+💬 **Salida**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Condicional de múltiples parámetros
+### 4.7 Condicional de múltiples parámetros
 
-```text
+🛠 **Plantilla**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Salida:
+💬 **Salida**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalista
+### 4.8 Formato de registro (dominio + ruta)
 
-```text
+🛠 **Plantilla**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Salida**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Encabezado estilo nombre de archivo
+
+🛠 **Plantilla**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Salida**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalista
+
+🛠 **Plantilla**
+
+```template
 $title — $url
 ```
 
-### 5.6 Entrada de registro diaria
+💬 **Salida**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Entrada de registro diaria
+
+🛠 **Plantilla**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Resumen estilo nombre de archivo
+💬 **Salida**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Multilínea con separador
+### 4.12 Multilínea con separador
 
-```text
+🛠 **Plantilla**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Limitaciones
+💬 **Salida**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Limitaciones
 
 SmartURLs se mantiene intencionalmente simple.
 
 ❌ SmartURLs `NO`:
 
-* Analiza contenido de páginas web
+* Analiza contenido de páginas web (SmartURLs NO tiene permiso para acceder o leer páginas HTML)
 * Lee metadatos o miniaturas
 * Ejecuta JavaScript en la página
 * Extrae etiquetas OG, autores o descripciones
@@ -289,10 +333,12 @@ SmartURLs se mantiene intencionalmente simple.
 
 Esto asegura un comportamiento consistente en todos los sitios web.
 
-## 7. Compatibilidad de versiones
+## 6. Compatibilidad de versiones
 
 Estas funciones están disponibles en: **SmartURLs v1.4.0 y posterior**
 
-## 8. Comentarios
+## 7. Comentarios
 
-Para solicitudes de funciones o preguntas, abra un issue en GitHub.
+Para solicitudes de funciones o preguntas, abra un issue aquí:
+
+<https://github.com/isshiki/SmartURLs/issues>

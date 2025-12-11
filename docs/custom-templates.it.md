@@ -100,103 +100,77 @@ All'interno di un blocco condizionale:
 
 Se le condizioni non sono soddisfatte, l'intero blocco viene rimosso dall'output.
 
-## 4. Esempi di modelli
+## 4. Esempi di modelli e modelli pratici
 
 I modelli sono scritti come *una riga*, ma possono produrre più righe tramite `$nl`.
+
+Esempio di URL e titolo usati in questa sezione:
+
+📘 **Titolo**
+
+```text
+Why the Moon?
+```
+
+🔗 **URL**
+
+```text
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
 
 ### 4.1 Markdown: Titolo + URL
 
 🛠 **Modello**
 
-```text
+```template
 $title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 ### 4.2 Elemento elenco Markdown
 
 🛠 **Modello**
 
-```text
+```template
 - [$title]($url)
 ```
 
 💬 **Output**
 
-```text
-- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg)
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
 ```
 
 ### 4.3 ID video YouTube (solo se presente)
 
 🛠 **Modello**
 
-```text
+```template
 {% raw %}{{q=v:Video ID: $v$nl}}{% endraw %}$title$nl$url
 ```
 
 💬 **Output**
 
-```text
+```output
 Video ID: bmC-FwibsZg
 Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
 Se `v=` manca:
 
-```text
+```output
 Why the Moon?
 https://example.com/page
 ```
 
-### 4.4 Intestazione stile nome file (usando $basename)
-
-🛠 **Modello**
-
-```text
-## $basename: $title$nl$url
-```
-
-💬 **Output**
-
-```text
-## watch: Why the Moon?
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-### 4.5 Formato log (dominio + percorso)
-
-🛠 **Modello**
-
-```text
-[$domain] $path$nl$url
-```
-
-💬 **Output**
-
-```text
-[www.youtube.com] /watch
-https://www.youtube.com/watch?v=bmC-FwibsZg
-```
-
-## 5. Modelli pratici
-
-Di seguito sono riportati modelli pronti all'uso per Markdown, log, utilità YouTube e formattazione condizionale.
-
-URL di esempio utilizzato:
-
-```text
-https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-```
-
-### 5.1 Genera URL miniatura
+### 4.4 Genera URL miniatura YouTube
 
 Basato sul modello di miniatura YouTube noto:
 
@@ -204,76 +178,148 @@ Basato sul modello di miniatura YouTube noto:
 https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg
 ```
 
-Modello:
+🛠 **Modello**
 
-```text
+```template
 {% raw %}{{q=v:Thumbnail: https://img.youtube.com/vi/$v/maxresdefault.jpg$nl}}{% endraw %}$title$nl$url
 ```
 
-### 5.2 Incorpora miniatura Markdown
+💬 **Output**
 
-```text
+```output
+Thumbnail: https://img.youtube.com/vi/bmC-FwibsZg/maxresdefault.jpg
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.5 Incorpora miniatura YouTube (Markdown)
+
+🛠 **Modello**
+
+```template
 {% raw %}{{q=v:![thumb](https://img.youtube.com/vi/$v/mqdefault.jpg)$nl}}{% endraw %}[$title]($url)
 ```
 
-### 5.3 Timestamp (se disponibile)
+💬 **Output**
 
-```text
+```output
+![thumb](https://img.youtube.com/vi/bmC-FwibsZg/mqdefault.jpg)
+[Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123)
+```
+
+### 4.6 Timestamp (se disponibile)
+
+🛠 **Modello**
+
+```template
 {% raw %}{{q=t:Timestamp: $t sec$nl}}{% endraw %}$title$nl$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Timestamp: 123 sec
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.4 Condizionale multi-parametro
+### 4.7 Condizionale multi-parametro
 
-```text
+🛠 **Modello**
+
+```template
 {% raw %}{{q=v,t:Video: $v ($t sec)$nl}}{% endraw %}$url
 ```
 
-Output:
+💬 **Output**
 
-```text
+```output
 Video: bmC-FwibsZg (123 sec)
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ```
 
-### 5.5 Minimalista
+### 4.8 Formato log (dominio + percorso)
 
-```text
+🛠 **Modello**
+
+```template
+[$domain] $path$nl$url
+```
+
+💬 **Output**
+
+```output
+[www.youtube.com] /watch
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.9 Intestazione stile nome file
+
+🛠 **Modello**
+
+```template
+## $basename: $title$nl$url
+```
+
+💬 **Output**
+
+```output
+## watch: Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.10 Minimalista
+
+🛠 **Modello**
+
+```template
 $title — $url
 ```
 
-### 5.6 Voce log giornaliera
+💬 **Output**
 
-```text
+```output
+Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+```
+
+### 4.11 Voce log giornaliera
+
+🛠 **Modello**
+
+```template
 - [$title]($url) — $date $time
 ```
 
-### 5.7 Riepilogo stile nome file
+💬 **Output**
 
-```text
-$basename — $title
+```output
+- [Why the Moon?](https://www.youtube.com/watch?v=bmC-FwibsZg&t=123) — 2025-01-12 14:03:55
 ```
 
-### 5.8 Multi-riga con separatore
+### 4.12 Multi-riga con separatore
 
-```text
+🛠 **Modello**
+
+```template
 $title$nl$url$nl$nl$domain
 ```
 
-## 6. Limitazioni
+💬 **Output**
+
+```output
+Why the Moon?
+https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
+
+www.youtube.com
+```
+
+## 5. Limitazioni
 
 SmartURLs rimane intenzionalmente semplice.
 
 ❌ SmartURLs `NON`:
 
-* Analizza il contenuto delle pagine web
+* Analizza il contenuto delle pagine web (SmartURLs NON ha il permesso di accedere o leggere pagine HTML)
 * Legge metadati o miniature
 * Esegue JavaScript sulla pagina
 * Estrae tag OG, autori o descrizioni
@@ -289,10 +335,12 @@ SmartURLs rimane intenzionalmente semplice.
 
 Questo garantisce un comportamento coerente su tutti i siti web.
 
-## 7. Compatibilità versione
+## 6. Compatibilità versione
 
 Queste funzionalità sono disponibili in: **SmartURLs v1.4.0 e successive**
 
-## 8. Feedback
+## 7. Feedback
 
-Per richieste di funzionalità o domande, apri un issue su GitHub.
+Per richieste di funzionalità o domande, apri un issue su GitHub:
+
+<https://github.com/isshiki/SmartURLs/issues>
