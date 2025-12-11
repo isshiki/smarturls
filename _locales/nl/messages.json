@@ -26,9 +26,10 @@
   "json_lines":     { "message": "JSON gegevens" },
   "opt_custom":     { "message": "Aangepaste sjabloon…" },
 
-  "custom_tpl_label":   { "message": "Aangepaste sjabloon" },
-  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "tplTooLongSuffix":   { "message": " — te lang" },
+  "custom_tpl_label":      { "message": "Aangepaste sjabloon" },
+  "custom_tpl_tokens":     { "message": "Tokens: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (nieuwe regel), …" },
+  "custom_tpl_tokens_link":{ "message": "Zie volledige lijst." },
+  "tplTooLongSuffix":      { "message": " — te lang" },
   "open_tpl_label":     { "message": "Aangepaste sjabloon voor openen" },
   "same_tokens_hint":   { "message": "Gebruikt dezelfde tokens als kopiëren: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

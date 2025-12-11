@@ -26,9 +26,10 @@
   "json_lines":     { "message": "Dữ liệu JSON" },
   "opt_custom":     { "message": "Mẫu tùy chỉnh…" },
 
-  "custom_tpl_label":   { "message": "Mẫu tùy chỉnh" },
-  "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "tplTooLongSuffix":   { "message": " — quá dài" },
+  "custom_tpl_label":      { "message": "Mẫu tùy chỉnh" },
+  "custom_tpl_tokens":     { "message": "Token: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (xuống dòng), …" },
+  "custom_tpl_tokens_link":{ "message": "Xem danh sách đầy đủ." },
+  "tplTooLongSuffix":      { "message": " — quá dài" },
   "open_tpl_label":     { "message": "Mẫu tùy chỉnh để mở" },
   "same_tokens_hint":   { "message": "Sử dụng cùng token với sao chép: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

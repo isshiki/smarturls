@@ -52,7 +52,7 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 
 ---
 
-## 📘 Documentation
+## 📘 Documentation - Custom Template System
 
 SmartURLs has full multi-language documentation for the Custom Template System (v1.4.0+).
 
@@ -86,6 +86,7 @@ SmartURLs has full multi-language documentation for the Custom Template System (
 
 | Version | Date       | Notes                  |
 | ------- | ---------- | ---------------------- |
+| 1.4.0   | 2025-12-11 | Custom Template System enhancements |
 | 1.3.0   | 2025-12-05 | Added keyboard shortcut support |
 | 1.2.0   | 2025-10-30 | UI improvements |
 | 1.1.0   | 2025-10-26 | UI improvements and security enhancements |

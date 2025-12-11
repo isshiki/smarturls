@@ -26,9 +26,10 @@
   "json_lines":     { "message": "Data JSON" },
   "opt_custom":     { "message": "Template kustom…" },
 
-  "custom_tpl_label":   { "message": "Template kustom" },
-  "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "tplTooLongSuffix":   { "message": " — terlalu panjang" },
+  "custom_tpl_label":      { "message": "Template kustom" },
+  "custom_tpl_tokens":     { "message": "Token: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (baris baru), …" },
+  "custom_tpl_tokens_link":{ "message": "Lihat daftar lengkap." },
+  "tplTooLongSuffix":      { "message": " — terlalu panjang" },
   "open_tpl_label":     { "message": "Template kustom untuk membuka" },
   "same_tokens_hint":   { "message": "Menggunakan token yang sama dengan salin: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

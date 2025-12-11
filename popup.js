@@ -59,6 +59,44 @@ function applyI18nTitle() {
   });
 }
 
+/* ===================== Help link URL mapping ===================== */
+const HELP_URLS = {
+  en: "https://isshiki.github.io/SmartURLs/custom-templates.en",
+  ja: "https://isshiki.github.io/SmartURLs/custom-templates.ja",
+  ko: "https://isshiki.github.io/SmartURLs/custom-templates.ko",
+  es: "https://isshiki.github.io/SmartURLs/custom-templates.es",
+  fr: "https://isshiki.github.io/SmartURLs/custom-templates.fr",
+  de: "https://isshiki.github.io/SmartURLs/custom-templates.de",
+  it: "https://isshiki.github.io/SmartURLs/custom-templates.it",
+  pt_BR: "https://isshiki.github.io/SmartURLs/custom-templates.pt_BR",
+  ru: "https://isshiki.github.io/SmartURLs/custom-templates.ru",
+  nl: "https://isshiki.github.io/SmartURLs/custom-templates.nl",
+  pl: "https://isshiki.github.io/SmartURLs/custom-templates.pl",
+  tr: "https://isshiki.github.io/SmartURLs/custom-templates.tr",
+  vi: "https://isshiki.github.io/SmartURLs/custom-templates.vi",
+  id: "https://isshiki.github.io/SmartURLs/custom-templates.id",
+  zh_CN: "https://isshiki.github.io/SmartURLs/custom-templates.zh_CN",
+  zh_TW: "https://isshiki.github.io/SmartURLs/custom-templates.zh_TW"
+};
+
+function getEffectiveLang() {
+  // Get the effective language code
+  if (currentLang !== "AutoLang") return currentLang;
+  // When AutoLang, get the browser's UI language
+  const uiLang = chrome.i18n.getUILanguage(); // e.g., "en", "ja", "pt-BR"
+  // Normalize to our locale code format (pt-BR -> pt_BR)
+  return uiLang.replace("-", "_");
+}
+
+function updateHelpLink() {
+  const helpLink = $("#custom-tpl-help");
+  if (!helpLink) return;
+
+  const effectiveLang = getEffectiveLang();
+  const url = HELP_URLS[effectiveLang] || HELP_URLS.en; // Fallback to English
+  helpLink.href = url;
+}
+
 /* ===================== UI helpers ===================== */
 const $ = (sel) => document.querySelector(sel);
 
@@ -178,6 +216,7 @@ async function init() {
   applyI18n();
   applyI18nTitle();
   applyVersionBadge();
+  updateHelpLink(); // Set help link URL based on current language
 
   // 4) bindings
   ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
@@ -219,6 +258,8 @@ async function init() {
     await displayCurrentShortcuts(); // Update shortcut displays with new language
     // Update template warning to reflect new language
     if (checkTplLength) checkTplLength();
+    // Update help link URL to reflect new language
+    updateHelpLink();
   });
 
   // source radio<->select sync

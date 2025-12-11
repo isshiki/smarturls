@@ -26,10 +26,11 @@
   "json_lines":     { "message": "JSON Data" },
   "opt_custom":     { "message": "Custom template…" },
 
-  "custom_tpl_label":   { "message": "Custom template" },
-  "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
-  "tplTooLongSuffix":   { "message": " — too long" },
-  "open_tpl_label":     { "message": "Open custom template" },
+  "custom_tpl_label":      { "message": "Custom template" },
+  "custom_tpl_tokens":     { "message": "Tokens: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (newline), …" },
+  "custom_tpl_tokens_link":{ "message": "See full list." },
+  "tplTooLongSuffix":      { "message": " — too long" },
+  "open_tpl_label":        { "message": "Open custom template" },
   "same_tokens_hint":   { "message": "Use the same tokens as copy: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 
   "filters_title":      { "message": "Filters" },
