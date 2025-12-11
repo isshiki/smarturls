@@ -26,6 +26,8 @@ SmartURLs mengganti token berdasarkan metadata tab dan URL saat ini.
 
 > ⚠️ **Catatan tentang `$nl`**: Token `$nl` dapat digunakan dalam template kustom **Salin** untuk menyisipkan pemisah baris ke dalam teks yang dihasilkan. Namun, ini **tidak didukung** dalam template kustom di sisi **Buka dari teks**, yang memproses input baris per baris. Karena ini, template yang menggunakan `$nl` di sisi Salin tidak akan berperilaku sama jika Anda menggunakannya kembali sebagai template kustom buka. Jika Anda ingin Salin dan Buka berbagi template yang sama, hindari `$nl` dalam template buka atau gunakan mode **Pintar (deteksi otomatis)** sebagai gantinya.
 
+> ⚠️ **Catatan tentang `$title(html)`**: Token `$title(html)` hanya didukung dalam template kustom **Salin**. Ini digunakan untuk menyisipkan versi escape HTML dari judul halaman ke dalam teks yang dihasilkan. Ini **tidak didukung** dalam template kustom di sisi **Buka dari teks**. Jika Anda menggunakan kembali template yang berisi `$title(html)` sebagai template kustom buka, token ini tidak akan diproses. Untuk template buka, gunakan `$title` sebagai gantinya.
+
 ### Contoh URL dan Judul yang Digunakan di Atas
 
 Untuk menunjukkan bagaimana token diperluas, contoh ini menggunakan:
@@ -74,6 +76,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Jika parameter tidak ada, nilainya menjadi string kosong.
 
+> ⚠️ **Catatan tentang token parameter query**: Token parameter query seperti `$v`, `$id`, `$tag`, dll. hanya dievaluasi dalam template kustom **Salin**. Token ini memungkinkan Anda untuk menyisipkan atau memformat nilai yang diambil dari string query URL dalam output yang disalin. Token ini **tidak dievaluasi** dalam template kustom di sisi **Buka dari teks**. Template kustom buka dari teks tidak membaca atau memfilter berdasarkan parameter query; mereka hanya menggunakan pola untuk menemukan `$url` dalam teks yang ditempel.
+
 ## 3. Blok Kondisional
 
 Blok kondisional memungkinkan template menghasilkan teks tertentu **hanya jika parameter query tertentu ada**.
@@ -100,6 +104,8 @@ Di dalam blok kondisional:
 * Tidak ada `else` yang tersedia
 
 Jika kondisi tidak terpenuhi, seluruh blok dihapus dari output.
+
+> ⚠️ **Catatan tentang blok kondisional**: Blok kondisional seperti `{{q=v: ...}}` atau `{{q=v,t: ...}}` hanya didukung dalam template kustom **Salin**. Mereka memungkinkan Anda untuk menyertakan atau menghilangkan bagian output tergantung pada parameter query URL. Blok kondisional **tidak didukung** untuk template kustom di sisi **Buka dari teks**. Template buka dari teks tidak mengevaluasi kondisi ini dan tidak dapat memfilter URL mana yang dibuka berdasarkan kondisi tersebut. Jika Anda perlu mengontrol URL mana yang akan dibuka, gunakan pemfilteran dalam teks sumber atau gunakan mode **Pintar (deteksi otomatis)** sebagai gantinya.
 
 ## 4. Contoh & Pola Template
 

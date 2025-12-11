@@ -74,6 +74,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 If a parameter does not exist, its value becomes an empty string.
 
+> ⚠️ **Note about Query Parameter Tokens**: Query parameter tokens such as `$v`, `$id`, `$tag`, etc. are only evaluated in **Copy** custom templates. They allow you to insert or format values taken from the URL's query string in the copied output. These tokens are **not evaluated** in custom templates on the **Open from text** side. Open-from-text custom templates do not read or filter by query parameters; they only use the pattern to locate `$url` in the pasted text.
+
 ## 3. Conditional Blocks
 
 Conditional blocks allow templates to output certain text **only if specific query parameters are present**.
@@ -100,6 +102,8 @@ Inside a conditional block:
 * No `else` is available
 
 If conditions are not met, the entire block is removed from output.
+
+> ⚠️ **Note about Conditional Blocks**: Conditional blocks such as `{{q=v: ...}}` or `{{q=v,t: ...}}` are only supported in **Copy** custom templates. They let you include or omit parts of the output depending on URL query parameters. Conditional blocks are **not supported** for custom templates on the **Open from text** side. Open-from-text templates do not evaluate these conditions and cannot filter which URLs are opened based on them. If you need to control which URLs to open, use filtering in the source text or use the Smart (auto-detect) mode instead.
 
 ## 4. Template Examples & Patterns
 
@@ -339,6 +343,8 @@ Rock & Roll <Best Hits>
 **Why use `$title(html)`?**
 
 Without HTML escaping, special characters like `&`, `<`, `>` in titles could break HTML parsing or create security issues. The `$title(html)` token converts these to safe HTML entities (`&amp;`, `&lt;`, `&gt;`).
+
+> ⚠️ **Note about `$title(html)`**: The `$title(html)` token is only supported in **Copy** custom templates. It is used to insert an HTML-escaped version of the page title in the generated text. It is **not supported** in custom templates on the **Open from text** side. If you reuse a template that contains `$title(html)` as an Open custom template, this token will not be processed. For Open templates, use `$title` instead.
 
 ## 5. Limitations
 

@@ -26,6 +26,8 @@ SmartURLs thay thế token dựa trên siêu dữ liệu tab và URL hiện tạ
 
 > ⚠️ **Lưu ý về `$nl`**: Token `$nl` có thể được sử dụng trong các mẫu tùy chỉnh **Sao chép** để chèn ngắt dòng vào văn bản được tạo. Tuy nhiên, nó **không được hỗ trợ** trong các mẫu tùy chỉnh ở phía **Mở từ văn bản**, vốn xử lý đầu vào từng dòng một. Vì lý do này, một mẫu sử dụng `$nl` ở phía Sao chép sẽ không hoạt động giống nhau nếu bạn tái sử dụng nó làm mẫu tùy chỉnh mở. Nếu bạn muốn Sao chép và Mở chia sẻ cùng một mẫu, hãy tránh `$nl` trong mẫu mở hoặc sử dụng chế độ **Thông minh (tự động phát hiện)** thay thế.
 
+> ⚠️ **Lưu ý về `$title(html)`**: Token `$title(html)` chỉ được hỗ trợ trong các mẫu tùy chỉnh **Sao chép**. Nó được sử dụng để chèn phiên bản escape HTML của tiêu đề trang vào văn bản được tạo. Nó **không được hỗ trợ** trong các mẫu tùy chỉnh ở phía **Mở từ văn bản**. Nếu bạn tái sử dụng mẫu có chứa `$title(html)` làm mẫu tùy chỉnh mở, token này sẽ không được xử lý. Đối với các mẫu mở, hãy sử dụng `$title` thay thế.
+
 ### Ví dụ URL và Tiêu đề được sử dụng ở trên
 
 Để cho thấy cách token mở rộng, các ví dụ này sử dụng:
@@ -76,6 +78,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Nếu tham số không tồn tại, giá trị của nó trở thành chuỗi rỗng.
 
+> ⚠️ **Lưu ý về token tham số truy vấn**: Các token tham số truy vấn như `$v`, `$id`, `$tag`, v.v. chỉ được đánh giá trong các mẫu tùy chỉnh **Sao chép**. Chúng cho phép bạn chèn hoặc định dạng các giá trị lấy từ chuỗi truy vấn của URL vào đầu ra được sao chép. Các token này **không được đánh giá** trong các mẫu tùy chỉnh ở phía **Mở từ văn bản**. Các mẫu tùy chỉnh mở từ văn bản không đọc hoặc lọc theo tham số truy vấn; chúng chỉ sử dụng mẫu để định vị `$url` trong văn bản được dán.
+
 ## 3. Khối có điều kiện
 
 Các khối có điều kiện cho phép mẫu xuất ra văn bản nhất định **chỉ khi có các tham số truy vấn cụ thể**.
@@ -102,6 +106,8 @@ Bên trong khối có điều kiện:
 * Không có `else`
 
 Nếu điều kiện không được đáp ứng, toàn bộ khối sẽ bị xóa khỏi đầu ra.
+
+> ⚠️ **Lưu ý về khối có điều kiện**: Các khối có điều kiện như `{{q=v: ...}}` hoặc `{{q=v,t: ...}}` chỉ được hỗ trợ trong các mẫu tùy chỉnh **Sao chép**. Chúng cho phép bạn bao gồm hoặc loại trừ các phần của đầu ra tùy thuộc vào tham số truy vấn URL. Các khối có điều kiện **không được hỗ trợ** cho các mẫu tùy chỉnh ở phía **Mở từ văn bản**. Các mẫu mở từ văn bản không đánh giá các điều kiện này và không thể lọc URL nào được mở dựa trên chúng. Nếu bạn cần kiểm soát URL nào sẽ mở, hãy sử dụng bộ lọc trong văn bản nguồn hoặc sử dụng chế độ **Thông minh (tự động phát hiện)** thay thế.
 
 ## 4. Ví dụ về mẫu và mẫu thực tế
 

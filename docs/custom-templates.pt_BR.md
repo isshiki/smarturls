@@ -26,6 +26,8 @@ O SmartURLs substitui tokens estritamente com base nos metadados da guia e na UR
 
 > ⚠️ **Nota sobre `$nl`**: O token `$nl` pode ser usado em modelos personalizados de **Copiar** para inserir quebras de linha no texto gerado. No entanto, ele **não é suportado** em modelos personalizados do lado **Abrir do texto**, que processa a entrada linha por linha. Por causa disso, um modelo que usa `$nl` no lado Copiar não se comportará da mesma maneira se você o reutilizar como modelo personalizado de Abrir. Se você deseja que Copiar e Abrir compartilhem o mesmo modelo, evite `$nl` no modelo de Abrir ou use o modo **Inteligente (detecção automática)** em vez disso.
 
+> ⚠️ **Nota sobre `$title(html)`**: O token `$title(html)` é suportado apenas em modelos personalizados de **Copiar**. Ele é usado para inserir uma versão com escape HTML do título da página no texto gerado. **Não é suportado** em modelos personalizados do lado **Abrir do texto**. Se você reutilizar um modelo que contém `$title(html)` como modelo personalizado de Abrir, este token não será processado. Para modelos de Abrir, use `$title` em vez disso.
+
 ### Exemplo de URL e título usados acima
 
 Para mostrar como os tokens se expandem, estes exemplos usam:
@@ -74,6 +76,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Se um parâmetro não existir, seu valor se torna uma string vazia.
 
+> ⚠️ **Nota sobre tokens de parâmetros de consulta**: Tokens de parâmetros de consulta como `$v`, `$id`, `$tag`, etc. são avaliados apenas em modelos personalizados de **Copiar**. Eles permitem que você insira ou formate valores extraídos da string de consulta da URL na saída copiada. Esses tokens **não são avaliados** em modelos personalizados do lado **Abrir do texto**. Modelos personalizados de abrir do texto não leem ou filtram por parâmetros de consulta; eles usam apenas o padrão para localizar `$url` no texto colado.
+
 ## 3. Blocos condicionais
 
 Os blocos condicionais permitem que os modelos produzam determinado texto **somente se parâmetros de consulta específicos estiverem presentes**.
@@ -100,6 +104,8 @@ Dentro de um bloco condicional:
 * Nenhum `else` está disponível
 
 Se as condições não forem atendidas, o bloco inteiro é removido da saída.
+
+> ⚠️ **Nota sobre blocos condicionais**: Blocos condicionais como `{{q=v: ...}}` ou `{{q=v,t: ...}}` são suportados apenas em modelos personalizados de **Copiar**. Eles permitem que você inclua ou omita partes da saída dependendo dos parâmetros de consulta da URL. Blocos condicionais **não são suportados** para modelos personalizados do lado **Abrir do texto**. Modelos de abrir do texto não avaliam essas condições e não podem filtrar quais URLs são abertas com base nelas. Se você precisa controlar quais URLs abrir, use filtragem no texto de origem ou use o modo **Inteligente (detecção automática)** em vez disso.
 
 ## 4. Exemplos e padrões de modelos
 

@@ -26,6 +26,8 @@ SmartURLs vervangt tokens strikt gebaseerd op tabmetadata en de huidige URL.
 
 > ⚠️ **Opmerking over `$nl`**: Het `$nl`-token kan worden gebruikt in **Kopiëren** aangepaste sjablonen om regeleinden in te voegen in de gegenereerde tekst. Het wordt echter **niet ondersteund** in aangepaste sjablonen aan de **Openen vanuit tekst**-kant, die invoer regel voor regel verwerkt. Hierdoor zal een sjabloon die `$nl` aan de Kopiëren-kant gebruikt, zich niet hetzelfde gedragen als u het hergebruikt als een aangepaste openingssjabloon. Als u wilt dat Kopiëren en Openen dezelfde sjabloon delen, vermijd dan `$nl` in de openingssjabloon of gebruik in plaats daarvan de **Slimme (automatische detectie)**-modus.
 
+> ⚠️ **Opmerking over `$title(html)`**: Het `$title(html)`-token wordt alleen ondersteund in **Kopiëren** aangepaste sjablonen. Het wordt gebruikt om een HTML-ge-escaped versie van de paginatitel in te voegen in de gegenereerde tekst. Het wordt **niet ondersteund** in aangepaste sjablonen aan de **Openen vanuit tekst**-kant. Als u een sjabloon die `$title(html)` bevat hergebruikt als een aangepaste openingssjabloon, wordt dit token niet verwerkt. Gebruik voor openingssjablonen in plaats daarvan `$title`.
+
 ### Voorbeeld URL en titel hierboven gebruikt
 
 Om te laten zien hoe tokens zich uitbreiden, gebruiken deze voorbeelden:
@@ -76,6 +78,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Als een parameter niet bestaat, wordt de waarde een lege string.
 
+> ⚠️ **Opmerking over queryparameter-tokens**: Queryparameter-tokens zoals `$v`, `$id`, `$tag`, enz. worden alleen geëvalueerd in **Kopiëren** aangepaste sjablonen. Ze stellen u in staat waarden uit de querystring van de URL in te voegen of te formatteren in de gekopieerde uitvoer. Deze tokens worden **niet geëvalueerd** in aangepaste sjablonen aan de **Openen vanuit tekst**-kant. Aangepaste sjablonen voor openen vanuit tekst lezen of filteren niet op queryparameters; ze gebruiken alleen het patroon om `$url` te vinden in de geplakte tekst.
+
 ## 3. Voorwaardelijke blokken
 
 Voorwaardelijke blokken stellen sjablonen in staat om bepaalde tekst **alleen uit te voeren als specifieke queryparameters aanwezig zijn**.
@@ -102,6 +106,8 @@ Binnen een voorwaardelijk blok:
 * Geen `else` beschikbaar
 
 Als aan de voorwaarden niet wordt voldaan, wordt het hele blok uit de uitvoer verwijderd.
+
+> ⚠️ **Opmerking over voorwaardelijke blokken**: Voorwaardelijke blokken zoals `{{q=v: ...}}` of `{{q=v,t: ...}}` worden alleen ondersteund in **Kopiëren** aangepaste sjablonen. Ze stellen u in staat delen van de uitvoer op te nemen of weg te laten afhankelijk van URL-queryparameters. Voorwaardelijke blokken worden **niet ondersteund** voor aangepaste sjablonen aan de **Openen vanuit tekst**-kant. Sjablonen voor openen vanuit tekst evalueren deze voorwaarden niet en kunnen niet filteren welke URL's worden geopend op basis hiervan. Als u moet bepalen welke URL's te openen, gebruik dan filtering in de brontekst of gebruik in plaats daarvan de **Slimme (automatische detectie)**-modus.
 
 ## 4. Sjabloonvoorbeelden en patronen
 

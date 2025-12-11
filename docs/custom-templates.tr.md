@@ -26,6 +26,8 @@ SmartURLs, belirteçleri kesinlikle sekme meta verilerine ve geçerli URL'ye gö
 
 > ⚠️ **`$nl` hakkında not**: `$nl` belirteci, oluşturulan metne satır sonları eklemek için **Kopyalama** özel şablonlarında kullanılabilir. Ancak, girdiyi satır satır işleyen **Metinden aç** tarafındaki özel şablonlarda **desteklenmez**. Bu nedenle, Kopyalama tarafında `$nl` kullanan bir şablon, onu açma özel şablonu olarak yeniden kullanırsanız aynı şekilde davranmaz. Kopyalama ve Açma'nın aynı şablonu paylaşmasını istiyorsanız, açma şablonunda `$nl`'den kaçının veya bunun yerine **Akıllı (otomatik algılama)** modunu kullanın.
 
+> ⚠️ **`$title(html)` hakkında not**: `$title(html)` belirteci yalnızca **Kopyalama** özel şablonlarında desteklenir. Oluşturulan metne HTML ile kaçışlı sayfa başlığı eklemek için kullanılır. **Metinden aç** tarafındaki özel şablonlarda **desteklenmez**. `$title(html)` içeren bir şablonu açma özel şablonu olarak yeniden kullanırsanız, bu belirteç işlenmez. Açma şablonları için bunun yerine `$title` kullanın.
+
 ### Yukarıda Kullanılan Örnek URL ve Başlık
 
 Belirteçlerin nasıl genişlediğini göstermek için bu örnekler şunları kullanır:
@@ -76,6 +78,8 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Bir parametre mevcut değilse, değeri boş bir dize olur.
 
+> ⚠️ **Sorgu parametresi belirteçleri hakkında not**: `$v`, `$id`, `$tag` vb. gibi sorgu parametresi belirteçleri yalnızca **Kopyalama** özel şablonlarında değerlendirilir. URL'nin sorgu dizesinden alınan değerleri kopyalanan çıktıya eklemenize veya biçimlendirmenize olanak tanır. Bu belirteçler **Metinden aç** tarafındaki özel şablonlarda **değerlendirilmez**. Metinden aç özel şablonları sorgu parametrelerini okumaz veya filtrelemez; yalnızca yapıştırılan metinde `$url`'yi bulmak için deseni kullanırlar.
+
 ## 3. Koşullu Bloklar
 
 Koşullu bloklar, şablonların **yalnızca belirli sorgu parametreleri mevcutsa** belirli metni çıkarmasına olanak tanır.
@@ -102,6 +106,8 @@ Koşullu bir blok içinde:
 * `else` kullanılamaz
 
 Koşullar karşılanmazsa, bloğun tamamı çıktıdan kaldırılır.
+
+> ⚠️ **Koşullu bloklar hakkında not**: `{{q=v: ...}}` veya `{{q=v,t: ...}}` gibi koşullu bloklar yalnızca **Kopyalama** özel şablonlarında desteklenir. URL sorgu parametrelerine bağlı olarak çıktının bölümlerini eklemenize veya çıkarmanıza olanak tanır. Koşullu bloklar **Metinden aç** tarafındaki özel şablonlarda **desteklenmez**. Metinden aç şablonları bu koşulları değerlendirmez ve bunlara göre hangi URL'lerin açılacağını filtreleyemez. Hangi URL'lerin açılacağını kontrol etmeniz gerekiyorsa, kaynak metinde filtreleme kullanın veya bunun yerine **Akıllı (otomatik algılama)** modunu kullanın.
 
 ## 4. Şablon Örnekleri ve Kalıpları
 
