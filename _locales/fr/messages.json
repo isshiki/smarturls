@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Modèle personnalisé…" },
 
   "custom_tpl_label":      { "message": "Modèle personnalisé" },
-  "custom_tpl_tokens":     { "message": "Jetons : $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (nouvelle ligne), …" },
+  "custom_tpl_tokens":     { "message": "Jetons : $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nouvelle ligne), …" },
   "custom_tpl_tokens_link":{ "message": "Voir la liste complète." },
   "tplTooLongSuffix":      { "message": " — trop long" },
   "open_tpl_label":        { "message": "Modèle personnalisé d'ouverture" },

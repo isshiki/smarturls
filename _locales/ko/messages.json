@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "사용자 정의 템플릿…" },
 
   "custom_tpl_label":      { "message": "사용자 정의 템플릿" },
-  "custom_tpl_tokens":     { "message": "토큰: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (줄바꿈), …" },
+  "custom_tpl_tokens":     { "message": "토큰: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (줄바꿈), …" },
   "custom_tpl_tokens_link":{ "message": "전체 목록 보기." },
   "tplTooLongSuffix":      { "message": " — 너무 깁니다" },
   "open_tpl_label":        { "message": "열기용 사용자 정의 템플릿" },

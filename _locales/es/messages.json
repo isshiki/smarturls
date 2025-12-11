@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Plantilla personalizada…" },
 
   "custom_tpl_label":      { "message": "Plantilla personalizada" },
-  "custom_tpl_tokens":     { "message": "Tokens: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (nueva línea), …" },
+  "custom_tpl_tokens":     { "message": "Tokens: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nueva línea), …" },
   "custom_tpl_tokens_link":{ "message": "Ver lista completa." },
   "tplTooLongSuffix":      { "message": " — demasiado largo" },
   "open_tpl_label":        { "message": "Plantilla personalizada de apertura" },

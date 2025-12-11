@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "自定义模板…" },
 
   "custom_tpl_label":      { "message": "自定义模板" },
-  "custom_tpl_tokens":     { "message": "令牌：$title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (换行), …" },
+  "custom_tpl_tokens":     { "message": "令牌：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (换行), …" },
   "custom_tpl_tokens_link":{ "message": "查看完整列表。" },
   "tplTooLongSuffix":      { "message": " — 过长" },
   "open_tpl_label":     { "message": "打开自定义模板" },

@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Modello personalizzato…" },
 
   "custom_tpl_label":      { "message": "Modello personalizzato" },
-  "custom_tpl_tokens":     { "message": "Token: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (nuova riga), …" },
+  "custom_tpl_tokens":     { "message": "Token: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nuova riga), …" },
   "custom_tpl_tokens_link":{ "message": "Vedi lista completa." },
   "tplTooLongSuffix":      { "message": " — troppo lungo" },
   "open_tpl_label":     { "message": "Modello personalizzato per apertura" },

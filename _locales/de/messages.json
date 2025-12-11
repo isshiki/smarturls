@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Benutzerdefinierte Vorlage…" },
 
   "custom_tpl_label":      { "message": "Benutzerdefinierte Vorlage" },
-  "custom_tpl_tokens":     { "message": "Tokens: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (Zeilenumbruch), …" },
+  "custom_tpl_tokens":     { "message": "Tokens: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (Zeilenumbruch), …" },
   "custom_tpl_tokens_link":{ "message": "Vollständige Liste anzeigen." },
   "tplTooLongSuffix":      { "message": " — zu lang" },
   "open_tpl_label":     { "message": "Benutzerdefinierte Öffnungsvorlage" },

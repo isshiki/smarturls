@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Пользовательский шаблон…" },
 
   "custom_tpl_label":      { "message": "Пользовательский шаблон" },
-  "custom_tpl_tokens":     { "message": "Токены: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (новая строка), …" },
+  "custom_tpl_tokens":     { "message": "Токены: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (новая строка), …" },
   "custom_tpl_tokens_link":{ "message": "Посмотреть полный список." },
   "tplTooLongSuffix":      { "message": " — слишком длинный" },
   "open_tpl_label":     { "message": "Пользовательский шаблон для открытия" },

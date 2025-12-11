@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Özel şablon…" },
 
   "custom_tpl_label":      { "message": "Özel şablon" },
-  "custom_tpl_tokens":     { "message": "Tokenler: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (yeni satır), …" },
+  "custom_tpl_tokens":     { "message": "Tokenler: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (yeni satır), …" },
   "custom_tpl_tokens_link":{ "message": "Tam listeyi gör." },
   "tplTooLongSuffix":      { "message": " — çok uzun" },
   "open_tpl_label":     { "message": "Açma için özel şablon" },

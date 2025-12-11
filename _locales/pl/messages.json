@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "Niestandardowy szablon…" },
 
   "custom_tpl_label":      { "message": "Niestandardowy szablon" },
-  "custom_tpl_tokens":     { "message": "Tokeny: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (nowa linia), …" },
+  "custom_tpl_tokens":     { "message": "Tokeny: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nowa linia), …" },
   "custom_tpl_tokens_link":{ "message": "Zobacz pełną listę." },
   "tplTooLongSuffix":      { "message": " — za długi" },
   "open_tpl_label":     { "message": "Niestandardowy szablon do otwierania" },

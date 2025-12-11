@@ -27,7 +27,7 @@
   "opt_custom":     { "message": "カスタムテンプレート…" },
 
   "custom_tpl_label":      { "message": "カスタムテンプレート" },
-  "custom_tpl_tokens":     { "message": "トークン: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (改行), …" },
+  "custom_tpl_tokens":     { "message": "トークン: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (改行), …" },
   "custom_tpl_tokens_link":{ "message": "全リストを見る。" },
   "tplTooLongSuffix":      { "message": " — 長すぎです" },
   "open_tpl_label":        { "message": "オープン用カスタムテンプレート" },
