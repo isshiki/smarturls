@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "Modèle personnalisé" },
   "custom_tpl_tokens":  { "message": "Jetons : $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — trop long" },
   "open_tpl_label":     { "message": "Modèle personnalisé d'ouverture" },
   "same_tokens_hint":   { "message": "Utilisez les mêmes jetons que pour la copie : $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

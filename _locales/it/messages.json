@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "Modello personalizzato" },
   "custom_tpl_tokens":  { "message": "Token: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — troppo lungo" },
   "open_tpl_label":     { "message": "Modello personalizzato per apertura" },
   "same_tokens_hint":   { "message": "Usa gli stessi token della copia: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

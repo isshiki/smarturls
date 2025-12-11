@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "Özel şablon" },
   "custom_tpl_tokens":  { "message": "Tokenler: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — çok uzun" },
   "open_tpl_label":     { "message": "Açma için özel şablon" },
   "same_tokens_hint":   { "message": "Kopyalama ile aynı tokenleri kullanır: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

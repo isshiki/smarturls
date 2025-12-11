@@ -187,10 +187,13 @@ async function init() {
   // Template length warning
   const tplInput = $("#tpl");
   const tplWarning = $("#tpl-warning");
+  let checkTplLength = null; // Store reference for language change updates
   if (tplInput && tplWarning) {
-    const checkTplLength = () => {
+    checkTplLength = () => {
       const len = tplInput.value.length;
-      tplWarning.textContent = len > 2500 ? " — too long" : "";
+      // Get suffix dynamically to reflect current language
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      tplWarning.textContent = len > 2500 ? warnSuffix : "";
     };
     tplInput.addEventListener("input", checkTplLength);
     checkTplLength(); // Check initial value
@@ -214,6 +217,8 @@ async function init() {
     applyI18n();
     applyI18nTitle();
     await displayCurrentShortcuts(); // Update shortcut displays with new language
+    // Update template warning to reflect new language
+    if (checkTplLength) checkTplLength();
   });
 
   // source radio<->select sync

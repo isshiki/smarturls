@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "自訂範本" },
   "custom_tpl_tokens":  { "message": "權杖：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — 過長" },
   "open_tpl_label":     { "message": "開啟自訂範本" },
   "same_tokens_hint":   { "message": "使用與複製相同的權杖：$$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

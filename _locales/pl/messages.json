@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "Niestandardowy szablon" },
   "custom_tpl_tokens":  { "message": "Tokeny: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — za długi" },
   "open_tpl_label":     { "message": "Niestandardowy szablon do otwierania" },
   "same_tokens_hint":   { "message": "Używa tych samych tokenów co kopiowanie: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 

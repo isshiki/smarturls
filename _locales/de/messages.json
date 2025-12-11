@@ -28,6 +28,7 @@
 
   "custom_tpl_label":   { "message": "Benutzerdefinierte Vorlage" },
   "custom_tpl_tokens":  { "message": "Tokens: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
+  "tplTooLongSuffix":   { "message": " — zu lang" },
   "open_tpl_label":     { "message": "Benutzerdefinierte Öffnungsvorlage" },
   "same_tokens_hint":   { "message": "Verwenden Sie die gleichen Tokens wie beim Kopieren: $$title, $$url, $$domain, $$path, $$idx, $$date, $$time, $$date(utc), $$time(utc)" },
 
