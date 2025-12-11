@@ -301,7 +301,7 @@ Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 🛠 **Sjabloon**
 
 ```template
-$title$nl$url$nl$nl$domain
+$title$nl$url$nl---$nl$domain
 ```
 
 💬 **Uitvoer**
@@ -309,7 +309,7 @@ $title$nl$url$nl$nl$domain
 ```output
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-
+---
 www.youtube.com
 ```
 

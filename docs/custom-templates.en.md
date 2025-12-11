@@ -299,7 +299,7 @@ Why the Moon? — https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 🛠 **Template**
 
 ```template
-$title$nl$url$nl$nl$domain
+$title$nl$url$nl---$nl$domain
 ```
 
 💬 **Output**
@@ -307,7 +307,7 @@ $title$nl$url$nl$nl$domain
 ```output
 Why the Moon?
 https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
-
+---
 www.youtube.com
 ```
 
