@@ -33,6 +33,11 @@ async function loadDict(lang) {
   }
 }
 
+function unescapeDollar(s) {
+  // Convert $$ -> $ to match Chrome i18n behavior
+  return s.replace(/\$\$/g, "$");
+}
+
 function t(id, fallback) {
   try {
     if (currentLang === "AutoLang") {
@@ -40,7 +45,9 @@ function t(id, fallback) {
       return s || fallback || id;
     }
     const entry = dict?.[id]?.message;
-    return entry || fallback || id;
+    if (!entry) return fallback || id;
+    // Apply same $$ escaping as Chrome i18n
+    return unescapeDollar(entry);
   } catch {
     return fallback || id;
   }
