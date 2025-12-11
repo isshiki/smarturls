@@ -24,6 +24,8 @@ SmartURLs vervangt tokens strikt gebaseerd op tabmetadata en de huidige URL.
 | `$time(utc)` | UTC-tijd                            | `05:03:55`                                    |
 | `$nl`        | Voegt een nieuwe regel in           | *(produceert regeleinden in uitvoer)*         |
 
+> ⚠️ **Opmerking over `$nl`**: Het `$nl`-token kan worden gebruikt in **Kopiëren** aangepaste sjablonen om regeleinden in te voegen in de gegenereerde tekst. Het wordt echter **niet ondersteund** in aangepaste sjablonen aan de **Openen vanuit tekst**-kant, die invoer regel voor regel verwerkt. Hierdoor zal een sjabloon die `$nl` aan de Kopiëren-kant gebruikt, zich niet hetzelfde gedragen als u het hergebruikt als een aangepaste openingssjabloon. Als u wilt dat Kopiëren en Openen dezelfde sjabloon delen, vermijd dan `$nl` in de openingssjabloon of gebruik in plaats daarvan de **Slimme (automatische detectie)**-modus.
+
 ### Voorbeeld URL en titel hierboven gebruikt
 
 Om te laten zien hoe tokens zich uitbreiden, gebruiken deze voorbeelden:

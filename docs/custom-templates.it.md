@@ -24,6 +24,8 @@ SmartURLs sostituisce i token basandosi strettamente sui metadati della scheda e
 | `$time(utc)` | Ora UTC                          | `05:03:55`                                    |
 | `$nl`        | Inserisce un'interruzione di riga| *(produce interruzioni di riga nell'output)*  |
 
+> ⚠️ **Nota su `$nl`**: Il token `$nl` può essere utilizzato nei modelli personalizzati di **Copia** per inserire interruzioni di riga nel testo generato. Tuttavia, **non è supportato** nei modelli personalizzati del lato **Apri da testo**, che elabora l'input riga per riga. Per questo motivo, un modello che utilizza `$nl` sul lato Copia non si comporterà allo stesso modo se lo si riutilizza come modello personalizzato di apertura. Se si desidera che Copia e Apri condividano lo stesso modello, evitare `$nl` nel modello di apertura o utilizzare la modalità **Intelligente (rilevamento automatico)** invece.
+
 ### Esempio di URL e titolo usati sopra
 
 Per mostrare come i token si espandono, questi esempi usano:

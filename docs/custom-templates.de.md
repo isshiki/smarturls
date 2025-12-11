@@ -24,6 +24,8 @@ SmartURLs ersetzt Tokens ausschließlich basierend auf Tab-Metadaten und der akt
 | `$time(utc)` | UTC-Zeit                        | `05:03:55`                                    |
 | `$nl`        | Fügt einen Zeilenumbruch ein    | *(erzeugt Zeilenumbrüche in der Ausgabe)*    |
 
+> ⚠️ **Hinweis zu `$nl`**: Das `$nl`-Token kann in **Kopieren**-benutzerdefinierten Vorlagen verwendet werden, um Zeilenumbrüche in den generierten Text einzufügen. Es wird jedoch **nicht unterstützt** in benutzerdefinierten Vorlagen auf der **Aus Text öffnen**-Seite, die Eingaben zeilenweise verarbeitet. Aus diesem Grund verhält sich eine Vorlage, die `$nl` auf der Kopieren-Seite verwendet, nicht gleich, wenn Sie sie als benutzerdefinierte Öffnungsvorlage wiederverwenden. Wenn Sie möchten, dass Kopieren und Öffnen dieselbe Vorlage teilen, vermeiden Sie `$nl` in der Öffnungsvorlage oder verwenden Sie stattdessen den **Intelligenten (automatische Erkennung)**-Modus.
+
 ### Beispiel-URL und -Titel von oben
 
 Um zu zeigen, wie Tokens expandiert werden, verwenden diese Beispiele:

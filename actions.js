@@ -247,10 +247,13 @@ function extractByFormat(fmt, text, tpl) {
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const safeTpl = String(tpl || "- [$title]($url)").slice(0, LIMITS.customMaxTemplate);
     let pat = esc(safeTpl);
+    // Feature parity with Copy custom template tokens
+    // These tokens act as wildcards in the pattern to match any content
     const otherTokens = ["$title", "$domain", "$path", "$basename", "$idx", "$date", "$time", "$date(utc)", "$time(utc)"];
     // Handle $nl as a newline in the pattern
     pat = pat.split(esc("$nl")).join("\\n");
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
+    // $url is the only token that captures (extracts the URL from matched text)
     pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
 
     let re;

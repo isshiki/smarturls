@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "全リストを見る。" },
   "tplTooLongSuffix":      { "message": " — 長すぎです" },
   "open_tpl_label":        { "message": "オープン用カスタムテンプレート" },
-  "same_tokens_hint":   { "message": "コピーと同じ種類のトークンが使えます（例）：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (改行), …" },
+  "same_tokens_hint":   { "message": "コピーと同じ種類のトークンが使えます（例）：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 
   "filters_title":      { "message": "フィルター" },
   "opt_dedup":          { "message": "重複URLを除外" },

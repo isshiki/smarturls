@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Посмотреть полный список." },
   "tplTooLongSuffix":      { "message": " — слишком длинный" },
   "open_tpl_label":     { "message": "Пользовательский шаблон для открытия" },
-  "same_tokens_hint":   { "message": "Используйте те же типы токенов, что и Копирование, напр.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (новая строка), …" },
+  "same_tokens_hint":   { "message": "Используйте те же типы токенов, что и Копирование, напр.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 
   "filters_title":      { "message": "Фильтры" },
   "opt_dedup":          { "message": "Удалить дубликаты" },

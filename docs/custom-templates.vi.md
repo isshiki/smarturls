@@ -24,6 +24,8 @@ SmartURLs thay thế token dựa trên siêu dữ liệu tab và URL hiện tạ
 | `$time(utc)` | Giờ UTC                           | `05:03:55`                                    |
 | `$nl`        | Chèn dòng mới                     | *(tạo ngắt dòng trong đầu ra)*               |
 
+> ⚠️ **Lưu ý về `$nl`**: Token `$nl` có thể được sử dụng trong các mẫu tùy chỉnh **Sao chép** để chèn ngắt dòng vào văn bản được tạo. Tuy nhiên, nó **không được hỗ trợ** trong các mẫu tùy chỉnh ở phía **Mở từ văn bản**, vốn xử lý đầu vào từng dòng một. Vì lý do này, một mẫu sử dụng `$nl` ở phía Sao chép sẽ không hoạt động giống nhau nếu bạn tái sử dụng nó làm mẫu tùy chỉnh mở. Nếu bạn muốn Sao chép và Mở chia sẻ cùng một mẫu, hãy tránh `$nl` trong mẫu mở hoặc sử dụng chế độ **Thông minh (tự động phát hiện)** thay thế.
+
 ### Ví dụ URL và Tiêu đề được sử dụng ở trên
 
 Để cho thấy cách token mở rộng, các ví dụ này sử dụng:

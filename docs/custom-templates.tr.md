@@ -24,6 +24,8 @@ SmartURLs, belirteçleri kesinlikle sekme meta verilerine ve geçerli URL'ye gö
 | `$time(utc)` | UTC saati                         | `05:03:55`                                    |
 | `$nl`        | Yeni satır ekler                  | *(çıktıda satır sonları üretir)*             |
 
+> ⚠️ **`$nl` hakkında not**: `$nl` belirteci, oluşturulan metne satır sonları eklemek için **Kopyalama** özel şablonlarında kullanılabilir. Ancak, girdiyi satır satır işleyen **Metinden aç** tarafındaki özel şablonlarda **desteklenmez**. Bu nedenle, Kopyalama tarafında `$nl` kullanan bir şablon, onu açma özel şablonu olarak yeniden kullanırsanız aynı şekilde davranmaz. Kopyalama ve Açma'nın aynı şablonu paylaşmasını istiyorsanız, açma şablonunda `$nl`'den kaçının veya bunun yerine **Akıllı (otomatik algılama)** modunu kullanın.
+
 ### Yukarıda Kullanılan Örnek URL ve Başlık
 
 Belirteçlerin nasıl genişlediğini göstermek için bu örnekler şunları kullanır:

@@ -31,7 +31,7 @@
   "custom_tpl_tokens_link":{ "message": "Xem danh sách đầy đủ." },
   "tplTooLongSuffix":      { "message": " — quá dài" },
   "open_tpl_label":     { "message": "Mẫu tùy chỉnh để mở" },
-  "same_tokens_hint":   { "message": "Sử dụng cùng loại token với Sao chép, ví dụ: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (xuống dòng), …" },
+  "same_tokens_hint":   { "message": "Sử dụng cùng loại token với Sao chép, ví dụ: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 
   "filters_title":      { "message": "Bộ lọc" },
   "opt_dedup":          { "message": "Loại bỏ trùng lặp" },

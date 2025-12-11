@@ -24,6 +24,8 @@ SmartURLs mengganti token berdasarkan metadata tab dan URL saat ini.
 | `$time(utc)` | Waktu UTC                        | `05:03:55`                                    |
 | `$nl`        | Menyisipkan baris baru           | *(menghasilkan pemisah baris dalam output)*  |
 
+> ⚠️ **Catatan tentang `$nl`**: Token `$nl` dapat digunakan dalam template kustom **Salin** untuk menyisipkan pemisah baris ke dalam teks yang dihasilkan. Namun, ini **tidak didukung** dalam template kustom di sisi **Buka dari teks**, yang memproses input baris per baris. Karena ini, template yang menggunakan `$nl` di sisi Salin tidak akan berperilaku sama jika Anda menggunakannya kembali sebagai template kustom buka. Jika Anda ingin Salin dan Buka berbagi template yang sama, hindari `$nl` dalam template buka atau gunakan mode **Pintar (deteksi otomatis)** sebagai gantinya.
+
 ### Contoh URL dan Judul yang Digunakan di Atas
 
 Untuk menunjukkan bagaimana token diperluas, contoh ini menggunakan:

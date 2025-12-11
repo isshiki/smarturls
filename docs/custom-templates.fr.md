@@ -24,6 +24,8 @@ SmartURLs remplace les tokens strictement basés sur les métadonnées de l'ongl
 | `$time(utc)` | Heure UTC                        | `05:03:55`                                    |
 | `$nl`        | Insère un saut de ligne          | *(produit des sauts de ligne en sortie)*     |
 
+> ⚠️ **Note sur `$nl`** : Le token `$nl` peut être utilisé dans les modèles personnalisés de **Copie** pour insérer des sauts de ligne dans le texte généré. Cependant, il n'est **pas pris en charge** dans les modèles personnalisés du côté **Ouvrir depuis le texte**, qui traite l'entrée ligne par ligne. Pour cette raison, un modèle qui utilise `$nl` du côté Copie ne se comportera pas de la même manière si vous le réutilisez comme modèle personnalisé d'ouverture. Si vous souhaitez que Copie et Ouvrir partagent le même modèle, évitez `$nl` dans le modèle d'ouverture ou utilisez le mode **Intelligent (détection automatique)** à la place.
+
 ### Exemple d'URL et de titre utilisés ci-dessus
 
 Pour montrer comment les tokens se développent, ces exemples utilisent :

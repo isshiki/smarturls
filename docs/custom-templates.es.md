@@ -24,6 +24,8 @@ SmartURLs reemplaza tokens basándose estrictamente en los metadatos de la pesta
 | `$time(utc)` | Hora UTC                         | `05:03:55`                                    |
 | `$nl`        | Inserta un salto de línea        | *(produce saltos de línea en la salida)*     |
 
+> ⚠️ **Nota sobre `$nl`**: El token `$nl` se puede usar en plantillas personalizadas de **Copiar** para insertar saltos de línea en el texto generado. Sin embargo, **no es compatible** con plantillas personalizadas del lado de **Abrir desde texto**, que procesa la entrada línea por línea. Debido a esto, una plantilla que usa `$nl` en el lado de Copiar no se comportará de la misma manera si la reutiliza como plantilla personalizada de Abrir. Si desea que Copiar y Abrir compartan la misma plantilla, evite `$nl` en la plantilla de Abrir o use el modo **Inteligente (detección automática)** en su lugar.
+
 ### Ejemplo de URL y título usados arriba
 
 Para mostrar cómo se expanden los tokens, estos ejemplos usan:

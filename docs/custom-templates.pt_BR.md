@@ -24,6 +24,8 @@ O SmartURLs substitui tokens estritamente com base nos metadados da guia e na UR
 | `$time(utc)` | Hora UTC                          | `05:03:55`                                    |
 | `$nl`        | Insere uma quebra de linha        | *(produz quebras de linha na saída)*         |
 
+> ⚠️ **Nota sobre `$nl`**: O token `$nl` pode ser usado em modelos personalizados de **Copiar** para inserir quebras de linha no texto gerado. No entanto, ele **não é suportado** em modelos personalizados do lado **Abrir do texto**, que processa a entrada linha por linha. Por causa disso, um modelo que usa `$nl` no lado Copiar não se comportará da mesma maneira se você o reutilizar como modelo personalizado de Abrir. Se você deseja que Copiar e Abrir compartilhem o mesmo modelo, evite `$nl` no modelo de Abrir ou use o modo **Inteligente (detecção automática)** em vez disso.
+
 ### Exemplo de URL e título usados acima
 
 Para mostrar como os tokens se expandem, estes exemplos usam:

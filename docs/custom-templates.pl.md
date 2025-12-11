@@ -24,6 +24,8 @@ SmartURLs zastępuje tokeny ściśle na podstawie metadanych karty i bieżącego
 | `$time(utc)` | Czas UTC                         | `05:03:55`                                    |
 | `$nl`        | Wstawia nową linię               | *(generuje łamanie linii na wyjściu)*        |
 
+> ⚠️ **Uwaga dotycząca `$nl`**: Token `$nl` może być używany w niestandardowych szablonach **Kopiowania** do wstawiania łamań linii w generowanym tekście. Jednak **nie jest obsługiwany** w niestandardowych szablonach po stronie **Otwórz z tekstu**, która przetwarza dane wejściowe wiersz po wierszu. Z tego powodu szablon używający `$nl` po stronie Kopiowania nie będzie zachowywał się tak samo, jeśli użyjesz go ponownie jako niestandardowego szablonu otwierania. Jeśli chcesz, aby Kopiowanie i Otwieranie współdzieliły ten sam szablon, unikaj `$nl` w szablonie otwierania lub zamiast tego użyj trybu **Inteligentny (automatyczne wykrywanie)**.
+
 ### Przykładowy adres URL i tytuł użyte powyżej
 
 Aby pokazać, jak rozwijają się tokeny, w tych przykładach używamy:

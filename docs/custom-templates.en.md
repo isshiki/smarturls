@@ -24,6 +24,8 @@ SmartURLs replaces tokens based strictly on tab metadata and the current URL.
 | `$time(utc)` | UTC time                    | `05:03:55`                                    |
 | `$nl`        | Inserts a newline           | *(produces line breaks in output)*            |
 
+> ⚠️ **Note about `$nl`**: The `$nl` token can be used in **Copy** custom templates to insert line breaks into the generated text. However, it is **not supported** in custom templates on the **Open from text** side, which processes input line by line. Because of this, a template that uses `$nl` on the Copy side will not behave the same way if you reuse it as an Open custom template. If you want Copy and Open to share the same template, avoid `$nl` in the Open template or use the **Smart (auto-detect)** mode instead.
+
 ### Example URL and Title Used Above
 
 To show how tokens expand, these examples use:
