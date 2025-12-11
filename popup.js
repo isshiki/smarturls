@@ -183,6 +183,18 @@ async function init() {
   ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
     $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
   });
+
+  // Template length warning
+  const tplInput = $("#tpl");
+  const tplWarning = $("#tpl-warning");
+  if (tplInput && tplWarning) {
+    const checkTplLength = () => {
+      const len = tplInput.value.length;
+      tplWarning.textContent = len > 2500 ? " — too long" : "";
+    };
+    tplInput.addEventListener("input", checkTplLength);
+    checkTplLength(); // Check initial value
+  }
   [["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
     .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
   ["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));

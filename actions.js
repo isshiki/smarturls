@@ -14,6 +14,17 @@ const LIMITS = {
   customMaxMatches: 1000
 };
 
+/* ===================== HTML Escaping ===================== */
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 /* ===================== Defaults ===================== */
 
 const defaults = {
@@ -94,7 +105,7 @@ function formatLine(tab, cfg, idx) {
   if (cfg.fmt === "md") tpl = "[" + title + "](" + url + ")";
   else if (cfg.fmt === "url") tpl = url;
   else if (cfg.fmt === "tsv") tpl = title + "\t" + url;
-  else if (cfg.fmt === "html") tpl = '<a href="' + url + '">' + title + '</a>';
+  else if (cfg.fmt === "html") tpl = '<a href="' + escapeHtml(url) + '">' + escapeHtml(title) + '</a>';
   else if (cfg.fmt === "jsonl") tpl = JSON.stringify({ title, url });
   else if (cfg.fmt === "custom") tpl = cfg.tpl;
 
@@ -140,6 +151,7 @@ function formatLine(tab, cfg, idx) {
 
     // PHASE 3: Replace standard tokens
     result = result
+      .replace(/\$title\(html\)/g, escapeHtml(title))
       .replace(/\$title/g, title)
       .replace(/\$url/g, url)
       .replace(/\$domain/g, u.hostname)
@@ -154,7 +166,7 @@ function formatLine(tab, cfg, idx) {
 
     return result;
   } catch {
-    return tpl.replace(/\$title/g, title).replace(/\$url/g, url);
+    return tpl.replace(/\$title\(html\)/g, escapeHtml(title)).replace(/\$title/g, title).replace(/\$url/g, url);
   }
 }
 

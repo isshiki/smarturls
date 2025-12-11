@@ -76,8 +76,10 @@
         <summary data-i18n="advanced">Advanced</summary>
 
         <div class="field">
-          <label class="label" data-i18n="custom_tpl_label">Custom template</label>
-          <input id="tpl" type="text" placeholder="- [$title]($url)" />
+          <label class="label">
+            <span data-i18n="custom_tpl_label">Custom template</span><span id="tpl-warning"></span>
+          </label>
+          <input id="tpl" type="text" maxlength="3000" placeholder="- [$title]($url)" />
           <p class="hint" data-i18n="custom_tpl_tokens">
             Available: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)
           </p>
