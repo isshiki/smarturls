@@ -9,10 +9,11 @@ SmartURLs sengaja dibuat ringan. Ini **tidak pernah membaca konten halaman web**
 
 SmartURLs mengganti token berdasarkan metadata tab dan URL saat ini.
 
-| Token        | Deskripsi                        | Contoh Output                                 |
-| ------------ | -------------------------------- | --------------------------------------------- |
-| `$title`     | Judul halaman di tab             | `Why the Moon?`                               |
-| `$url`       | URL lengkap                      | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Deskripsi                                                                                                                  | Contoh Output                                                                           |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `$title`       | Judul halaman di tab                                                                                                       | `Why the Moon?`                                                                         |
+| `$title(html)` | Judul halaman yang di-escape HTML (mengonversi `&`, `<`, `>`, `"`, `'` menjadi entitas). Aman untuk tag/atribut HTML. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(untuk judul: "Rock & Roll \<Best Hits>")* |
+| `$url`         | URL lengkap                                                                                                                | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Hanya hostname                   | `www.youtube.com`                             |
 | `$path`      | Bagian path dari URL             | `/watch`                                      |
 | `$basename`  | Segmen terakhir dari path        | `watch`                                       |

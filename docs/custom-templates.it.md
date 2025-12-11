@@ -9,10 +9,11 @@ SmartURLs è intenzionalmente leggero. **Non legge mai il contenuto delle pagine
 
 SmartURLs sostituisce i token basandosi strettamente sui metadati della scheda e sull'URL corrente.
 
-| Token        | Descrizione                      | Esempio di output                             |
-| ------------ | -------------------------------- | --------------------------------------------- |
-| `$title`     | Titolo della pagina nella scheda | `Why the Moon?`                               |
-| `$url`       | URL completo                     | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Descrizione                                                                                                                  | Esempio di output                                                                       |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `$title`       | Titolo della pagina nella scheda                                                                                             | `Why the Moon?`                                                                         |
+| `$title(html)` | Titolo di pagina con escape HTML (converte `&`, `<`, `>`, `"`, `'` in entità). Sicuro per tag/attributi HTML. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(per titolo: "Rock & Roll \<Best Hits>")* |
+| `$url`         | URL completo                                                                                                                 | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Solo hostname                    | `www.youtube.com`                             |
 | `$path`      | Parte del percorso dell'URL      | `/watch`                                      |
 | `$basename`  | Ultimo segmento del percorso     | `watch`                                       |

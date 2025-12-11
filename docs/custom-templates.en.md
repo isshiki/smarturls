@@ -9,10 +9,11 @@ SmartURLs is intentionally lightweight. It **never reads webpage contents** and 
 
 SmartURLs replaces tokens based strictly on tab metadata and the current URL.
 
-| Token        | Description                 | Example Output                                |
-| ------------ | --------------------------- | --------------------------------------------- |
-| `$title`     | Page title shown in the tab | `Why the Moon?`                               |
-| `$url`       | Full URL                    | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Description                                                                                                    | Example Output                                                                     |
+| -------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$title`       | Page title shown in the tab                                                                                    | `Why the Moon?`                                                                    |
+| `$title(html)` | HTML-escaped page title (converts `&`, `<`, `>`, `"`, `'` to entities). Safe for use in HTML tags/attributes. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(for title: "Rock & Roll \<Best Hits>")* |
+| `$url`         | Full URL                                                                                                       | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                      |
 | `$domain`    | Hostname only               | `www.youtube.com`                             |
 | `$path`      | Path part of the URL        | `/watch`                                      |
 | `$basename`  | Last segment of the path    | `watch`                                       |
@@ -310,6 +311,32 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 ---
 www.youtube.com
 ```
+
+### 4.13 HTML Link with Safe Title
+
+When generating HTML output, use `$title(html)` to safely escape special characters.
+
+📘 **Example Title** (with special characters)
+
+```text
+Rock & Roll <Best Hits>
+```
+
+🛠 **Template**
+
+```template
+<a href="$url" title="$title(html)">$title(html)</a>
+```
+
+💬 **Output**
+
+```output
+<a href="https://example.com/music" title="Rock &amp; Roll &lt;Best Hits&gt;">Rock &amp; Roll &lt;Best Hits&gt;</a>
+```
+
+**Why use `$title(html)`?**
+
+Without HTML escaping, special characters like `&`, `<`, `>` in titles could break HTML parsing or create security issues. The `$title(html)` token converts these to safe HTML entities (`&amp;`, `&lt;`, `&gt;`).
 
 ## 5. Limitations
 

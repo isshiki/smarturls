@@ -9,10 +9,11 @@ SmartURLs kasıtlı olarak hafiftir. **Web sayfası içeriğini asla okumaz** ve
 
 SmartURLs, belirteçleri kesinlikle sekme meta verilerine ve geçerli URL'ye göre değiştirir.
 
-| Belirteç     | Açıklama                          | Örnek Çıktı                                   |
-| ------------ | --------------------------------- | --------------------------------------------- |
-| `$title`     | Sekmede gösterilen sayfa başlığı  | `Why the Moon?`                               |
-| `$url`       | Tam URL                           | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Belirteç       | Açıklama                                                                                                                 | Örnek Çıktı                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `$title`       | Sekmede gösterilen sayfa başlığı                                                                                         | `Why the Moon?`                                                                         |
+| `$title(html)` | HTML ile kaçışlı sayfa başlığı (`&`, `<`, `>`, `"`, `'` karakterlerini varlıklara dönüştürür). HTML etiketleri/öznitelikleri için güvenli. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(başlık için: "Rock & Roll \<Best Hits>")* |
+| `$url`         | Tam URL                                                                                                                  | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Yalnızca ana bilgisayar adı       | `www.youtube.com`                             |
 | `$path`      | URL'nin yol kısmı                 | `/watch`                                      |
 | `$basename`  | Yolun son segmenti                | `watch`                                       |

@@ -9,10 +9,11 @@ SmartURLs ist absichtlich leichtgewichtig. Es **liest niemals Webseiteninhalte**
 
 SmartURLs ersetzt Tokens ausschließlich basierend auf Tab-Metadaten und der aktuellen URL.
 
-| Token        | Beschreibung                    | Beispielausgabe                               |
-| ------------ | ------------------------------- | --------------------------------------------- |
-| `$title`     | Seitentitel im Tab              | `Why the Moon?`                               |
-| `$url`       | Vollständige URL                | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Beschreibung                                                                                                        | Beispielausgabe                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `$title`       | Seitentitel im Tab                                                                                                  | `Why the Moon?`                                                                         |
+| `$title(html)` | HTML-escaped Seitentitel (konvertiert `&`, `<`, `>`, `"`, `'` in Entitäten). Sicher für HTML-Tags/-Attribute. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(für Titel: "Rock & Roll \<Best Hits>")* |
+| `$url`         | Vollständige URL                                                                                                    | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Nur Hostname                    | `www.youtube.com`                             |
 | `$path`      | Pfad-Teil der URL               | `/watch`                                      |
 | `$basename`  | Letztes Segment des Pfads       | `watch`                                       |

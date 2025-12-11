@@ -9,10 +9,11 @@ SmartURLs cố tình nhẹ. Nó **không bao giờ đọc nội dung trang web**
 
 SmartURLs thay thế token dựa trên siêu dữ liệu tab và URL hiện tại.
 
-| Token        | Mô tả                             | Ví dụ đầu ra                                  |
-| ------------ | --------------------------------- | --------------------------------------------- |
-| `$title`     | Tiêu đề trang hiển thị trong tab  | `Why the Moon?`                               |
-| `$url`       | URL đầy đủ                        | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Mô tả                                                                                                                      | Ví dụ đầu ra                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `$title`       | Tiêu đề trang hiển thị trong tab                                                                                          | `Why the Moon?`                                                                         |
+| `$title(html)` | Tiêu đề trang được escape HTML (chuyển đổi `&`, `<`, `>`, `"`, `'` thành thực thể). An toàn cho thẻ/thuộc tính HTML. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(cho tiêu đề: "Rock & Roll \<Best Hits>")* |
+| `$url`         | URL đầy đủ                                                                                                                 | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Chỉ tên máy chủ                   | `www.youtube.com`                             |
 | `$path`      | Phần đường dẫn của URL            | `/watch`                                      |
 | `$basename`  | Phân đoạn cuối cùng của đường dẫn | `watch`                                       |

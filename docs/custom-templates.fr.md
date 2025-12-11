@@ -9,10 +9,11 @@ SmartURLs est intentionnellement léger. Il **ne lit jamais le contenu des pages
 
 SmartURLs remplace les tokens strictement basés sur les métadonnées de l'onglet et l'URL actuelle.
 
-| Token        | Description                      | Exemple de sortie                             |
-| ------------ | -------------------------------- | --------------------------------------------- |
-| `$title`     | Titre de la page dans l'onglet   | `Why the Moon?`                               |
-| `$url`       | URL complète                     | `https://www.youtube.com/watch?v=bmC-FwibsZg` |
+| Token          | Description                                                                                                                  | Exemple de sortie                                                                       |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `$title`       | Titre de la page dans l'onglet                                                                                               | `Why the Moon?`                                                                         |
+| `$title(html)` | Titre de page échappé HTML (convertit `&`, `<`, `>`, `"`, `'` en entités). Sûr pour utilisation dans les balises/attributs HTML. | `Rock &amp; Roll &lt;Best Hits&gt;`<br>*(pour titre : "Rock & Roll \<Best Hits>")* |
+| `$url`         | URL complète                                                                                                                 | `https://www.youtube.com/watch?v=bmC-FwibsZg`                                           |
 | `$domain`    | Nom d'hôte uniquement            | `www.youtube.com`                             |
 | `$path`      | Partie chemin de l'URL           | `/watch`                                      |
 | `$basename`  | Dernier segment du chemin        | `watch`                                       |
