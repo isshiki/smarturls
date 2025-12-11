@@ -24,9 +24,9 @@ SmartURLs reemplaza tokens basándose estrictamente en los metadatos de la pesta
 | `$time(utc)` | Hora UTC                         | `05:03:55`                                    |
 | `$nl`        | Inserta un salto de línea        | *(produce saltos de línea en la salida)*     |
 
-> ⚠️ **Nota sobre `$nl`**: El token `$nl` se puede usar en plantillas personalizadas de **Copiar** para insertar saltos de línea en el texto generado. Sin embargo, **no es compatible** con plantillas personalizadas del lado de **Abrir desde texto**, que procesa la entrada línea por línea. Debido a esto, una plantilla que usa `$nl` en el lado de Copiar no se comportará de la misma manera si la reutiliza como plantilla personalizada de Abrir. Si desea que Copiar y Abrir compartan la misma plantilla, evite `$nl` en la plantilla de Abrir o use el modo **Inteligente (detección automática)** en su lugar.
+> ⚠️ **Nota sobre `$nl`**: Solo compatible con plantillas personalizadas de Copiar. No se puede usar en plantillas personalizadas de Abrir desde texto. Si desea reutilizar la misma plantilla tanto para Copiar como para Abrir, evite `$nl` en la plantilla de Abrir o use el modo Inteligente (detección automática) en su lugar.
 
-> ⚠️ **Nota sobre `$title(html)`**: El token `$title(html)` solo es compatible con plantillas personalizadas de **Copiar**. Se utiliza para insertar una versión con escape HTML del título de la página en el texto generado. **No es compatible** con plantillas personalizadas del lado de **Abrir desde texto**. Si reutiliza una plantilla que contiene `$title(html)` como plantilla personalizada de Abrir, este token no se procesará. Para plantillas de Abrir, use `$title` en su lugar.
+> ⚠️ **Nota sobre `$title(html)`**: Solo compatible con plantillas personalizadas de Copiar. Las plantillas personalizadas de Abrir desde texto no procesan este token. Para plantillas de Abrir, use `$title` en su lugar.
 
 ### Ejemplo de URL y título usados arriba
 
@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Si un parámetro no existe, su valor se convierte en una cadena vacía.
 
-> ⚠️ **Nota sobre tokens de parámetros de consulta**: Los tokens de parámetros de consulta como `$v`, `$id`, `$tag`, etc. solo se evalúan en plantillas personalizadas de **Copiar**. Permiten insertar o formatear valores tomados de la cadena de consulta de la URL en la salida copiada. Estos tokens **no se evalúan** en plantillas personalizadas del lado de **Abrir desde texto**. Las plantillas personalizadas de abrir desde texto no leen ni filtran por parámetros de consulta; solo usan el patrón para localizar `$url` en el texto pegado.
+> ⚠️ **Nota sobre tokens de parámetros de consulta**: Los tokens de parámetros de consulta (por ejemplo `$v`, `$id`, `$tag`, etc.) se evalúan solo en plantillas personalizadas de Copiar. No se evalúan en plantillas personalizadas de Abrir desde texto, por lo que no los use en plantillas de Abrir.
 
 ## 3. Bloques condicionales
 
@@ -105,7 +105,7 @@ Dentro de un bloque condicional:
 
 Si no se cumplen las condiciones, el bloque completo se elimina de la salida.
 
-> ⚠️ **Nota sobre bloques condicionales**: Los bloques condicionales como `{{q=v: ...}}` o `{{q=v,t: ...}}` solo son compatibles con plantillas personalizadas de **Copiar**. Permiten incluir u omitir partes de la salida según los parámetros de consulta de la URL. Los bloques condicionales **no son compatibles** con plantillas personalizadas del lado de **Abrir desde texto**. Las plantillas de abrir desde texto no evalúan estas condiciones y no pueden filtrar qué URL se abren en función de ellas. Si necesita controlar qué URL abrir, use filtrado en el texto fuente o use el modo **Inteligente (detección automática)** en su lugar.
+> ⚠️ **Nota sobre bloques condicionales**: Los bloques condicionales (por ejemplo `{{q=v: ...}}`) están disponibles solo en plantillas personalizadas de Copiar. No funcionan en plantillas personalizadas de Abrir desde texto. Si necesita filtrado flexible al abrir URL, use el modo Inteligente (detección automática) en su lugar.
 
 ## 4. Ejemplos de plantillas y patrones
 

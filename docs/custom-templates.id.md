@@ -24,9 +24,9 @@ SmartURLs mengganti token berdasarkan metadata tab dan URL saat ini.
 | `$time(utc)` | Waktu UTC                        | `05:03:55`                                    |
 | `$nl`        | Menyisipkan baris baru           | *(menghasilkan pemisah baris dalam output)*  |
 
-> ⚠️ **Catatan tentang `$nl`**: Token `$nl` dapat digunakan dalam template kustom **Salin** untuk menyisipkan pemisah baris ke dalam teks yang dihasilkan. Namun, ini **tidak didukung** dalam template kustom di sisi **Buka dari teks**, yang memproses input baris per baris. Karena ini, template yang menggunakan `$nl` di sisi Salin tidak akan berperilaku sama jika Anda menggunakannya kembali sebagai template kustom buka. Jika Anda ingin Salin dan Buka berbagi template yang sama, hindari `$nl` dalam template buka atau gunakan mode **Pintar (deteksi otomatis)** sebagai gantinya.
+> ⚠️ **Catatan tentang `$nl`**: Hanya didukung dalam template kustom Salin. Tidak dapat digunakan dalam template kustom Buka dari teks. Jika Anda ingin menggunakan kembali template yang sama untuk Salin dan Buka, hindari `$nl` dalam template buka atau gunakan mode Pintar (deteksi otomatis) sebagai gantinya.
 
-> ⚠️ **Catatan tentang `$title(html)`**: Token `$title(html)` hanya didukung dalam template kustom **Salin**. Ini digunakan untuk menyisipkan versi escape HTML dari judul halaman ke dalam teks yang dihasilkan. Ini **tidak didukung** dalam template kustom di sisi **Buka dari teks**. Jika Anda menggunakan kembali template yang berisi `$title(html)` sebagai template kustom buka, token ini tidak akan diproses. Untuk template buka, gunakan `$title` sebagai gantinya.
+> ⚠️ **Catatan tentang `$title(html)`**: Hanya didukung dalam template kustom Salin. Template kustom Buka dari teks tidak memproses token ini. Untuk template buka, gunakan `$title` sebagai gantinya.
 
 ### Contoh URL dan Judul yang Digunakan di Atas
 
@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Jika parameter tidak ada, nilainya menjadi string kosong.
 
-> ⚠️ **Catatan tentang token parameter query**: Token parameter query seperti `$v`, `$id`, `$tag`, dll. hanya dievaluasi dalam template kustom **Salin**. Token ini memungkinkan Anda untuk menyisipkan atau memformat nilai yang diambil dari string query URL dalam output yang disalin. Token ini **tidak dievaluasi** dalam template kustom di sisi **Buka dari teks**. Template kustom buka dari teks tidak membaca atau memfilter berdasarkan parameter query; mereka hanya menggunakan pola untuk menemukan `$url` dalam teks yang ditempel.
+> ⚠️ **Catatan tentang token parameter query**: Token parameter query (misalnya `$v`, `$id`, `$tag`, dll.) hanya dievaluasi dalam template kustom Salin. Mereka tidak dievaluasi dalam template kustom Buka dari teks, jadi jangan gunakan dalam template buka.
 
 ## 3. Blok Kondisional
 
@@ -105,7 +105,7 @@ Di dalam blok kondisional:
 
 Jika kondisi tidak terpenuhi, seluruh blok dihapus dari output.
 
-> ⚠️ **Catatan tentang blok kondisional**: Blok kondisional seperti `{{q=v: ...}}` atau `{{q=v,t: ...}}` hanya didukung dalam template kustom **Salin**. Mereka memungkinkan Anda untuk menyertakan atau menghilangkan bagian output tergantung pada parameter query URL. Blok kondisional **tidak didukung** untuk template kustom di sisi **Buka dari teks**. Template buka dari teks tidak mengevaluasi kondisi ini dan tidak dapat memfilter URL mana yang dibuka berdasarkan kondisi tersebut. Jika Anda perlu mengontrol URL mana yang akan dibuka, gunakan pemfilteran dalam teks sumber atau gunakan mode **Pintar (deteksi otomatis)** sebagai gantinya.
+> ⚠️ **Catatan tentang blok kondisional**: Blok kondisional (misalnya `{{q=v: ...}}`) hanya tersedia dalam template kustom Salin. Mereka tidak berfungsi dalam template kustom Buka dari teks. Jika Anda memerlukan pemfilteran fleksibel saat membuka URL, gunakan mode Pintar (deteksi otomatis) sebagai gantinya.
 
 ## 4. Contoh & Pola Template
 

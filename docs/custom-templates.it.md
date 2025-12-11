@@ -24,9 +24,9 @@ SmartURLs sostituisce i token basandosi strettamente sui metadati della scheda e
 | `$time(utc)` | Ora UTC                          | `05:03:55`                                    |
 | `$nl`        | Inserisce un'interruzione di riga| *(produce interruzioni di riga nell'output)*  |
 
-> ⚠️ **Nota su `$nl`**: Il token `$nl` può essere utilizzato nei modelli personalizzati di **Copia** per inserire interruzioni di riga nel testo generato. Tuttavia, **non è supportato** nei modelli personalizzati del lato **Apri da testo**, che elabora l'input riga per riga. Per questo motivo, un modello che utilizza `$nl` sul lato Copia non si comporterà allo stesso modo se lo si riutilizza come modello personalizzato di apertura. Se si desidera che Copia e Apri condividano lo stesso modello, evitare `$nl` nel modello di apertura o utilizzare la modalità **Intelligente (rilevamento automatico)** invece.
+> ⚠️ **Nota su `$nl`**: Supportato solo nei modelli personalizzati di Copia. Non può essere utilizzato nei modelli personalizzati Apri da testo. Se si desidera riutilizzare lo stesso modello sia per Copia che per Apri, evitare `$nl` nel modello di apertura o utilizzare la modalità Intelligente (rilevamento automatico) invece.
 
-> ⚠️ **Nota su `$title(html)`**: Il token `$title(html)` è supportato solo nei modelli personalizzati di **Copia**. Viene utilizzato per inserire una versione con escape HTML del titolo della pagina nel testo generato. **Non è supportato** nei modelli personalizzati del lato **Apri da testo**. Se si riutilizza un modello che contiene `$title(html)` come modello personalizzato di apertura, questo token non verrà elaborato. Per i modelli di apertura, utilizzare invece `$title`.
+> ⚠️ **Nota su `$title(html)`**: Supportato solo nei modelli personalizzati di Copia. I modelli personalizzati Apri da testo non elaborano questo token. Per i modelli di apertura, utilizzare invece `$title`.
 
 ### Esempio di URL e titolo usati sopra
 
@@ -78,7 +78,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Se un parametro non esiste, il suo valore diventa una stringa vuota.
 
-> ⚠️ **Nota sui token dei parametri query**: I token dei parametri query come `$v`, `$id`, `$tag`, ecc. vengono valutati solo nei modelli personalizzati di **Copia**. Consentono di inserire o formattare valori presi dalla stringa di query dell'URL nell'output copiato. Questi token **non vengono valutati** nei modelli personalizzati del lato **Apri da testo**. I modelli personalizzati di apertura da testo non leggono né filtrano per parametri query; utilizzano solo il modello per individuare `$url` nel testo incollato.
+> ⚠️ **Nota sui token dei parametri query**: I token dei parametri query (ad esempio `$v`, `$id`, `$tag`, ecc.) vengono valutati solo nei modelli personalizzati di Copia. Non vengono valutati nei modelli personalizzati Apri da testo, quindi non utilizzarli nei modelli di apertura.
 
 ## 3. Blocchi condizionali
 
@@ -107,7 +107,7 @@ All'interno di un blocco condizionale:
 
 Se le condizioni non sono soddisfatte, l'intero blocco viene rimosso dall'output.
 
-> ⚠️ **Nota sui blocchi condizionali**: I blocchi condizionali come `{{q=v: ...}}` o `{{q=v,t: ...}}` sono supportati solo nei modelli personalizzati di **Copia**. Consentono di includere o omettere parti dell'output a seconda dei parametri query dell'URL. I blocchi condizionali **non sono supportati** per i modelli personalizzati del lato **Apri da testo**. I modelli di apertura da testo non valutano queste condizioni e non possono filtrare quali URL vengono aperti in base ad esse. Se è necessario controllare quali URL aprire, utilizzare il filtro nel testo di origine o utilizzare la modalità **Intelligente (rilevamento automatico)** invece.
+> ⚠️ **Nota sui blocchi condizionali**: I blocchi condizionali (ad esempio `{{q=v: ...}}`) sono disponibili solo nei modelli personalizzati di Copia. Non funzionano nei modelli personalizzati Apri da testo. Se è necessario un filtro flessibile durante l'apertura di URL, utilizzare la modalità Intelligente (rilevamento automatico) invece.
 
 ## 4. Esempi di modelli e modelli pratici
 

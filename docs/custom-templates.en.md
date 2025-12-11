@@ -24,7 +24,7 @@ SmartURLs replaces tokens based strictly on tab metadata and the current URL.
 | `$time(utc)` | UTC time                    | `05:03:55`                                    |
 | `$nl`        | Inserts a newline           | *(produces line breaks in output)*            |
 
-> ⚠️ **Note about `$nl`**: The `$nl` token can be used in **Copy** custom templates to insert line breaks into the generated text. However, it is **not supported** in custom templates on the **Open from text** side, which processes input line by line. Because of this, a template that uses `$nl` on the Copy side will not behave the same way if you reuse it as an Open custom template. If you want Copy and Open to share the same template, avoid `$nl` in the Open template or use the **Smart (auto-detect)** mode instead.
+> ⚠️ **Note about `$nl`**: Only supported in Copy custom templates. Cannot be used in Open from text custom templates. If you want to reuse the same template for both Copy and Open, avoid `$nl` in the Open template or use Smart (auto-detect) mode instead.
 
 ### Example URL and Title Used Above
 
@@ -74,7 +74,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 If a parameter does not exist, its value becomes an empty string.
 
-> ⚠️ **Note about Query Parameter Tokens**: Query parameter tokens such as `$v`, `$id`, `$tag`, etc. are only evaluated in **Copy** custom templates. They allow you to insert or format values taken from the URL's query string in the copied output. These tokens are **not evaluated** in custom templates on the **Open from text** side. Open-from-text custom templates do not read or filter by query parameters; they only use the pattern to locate `$url` in the pasted text.
+> ⚠️ **Note about Query Parameter Tokens**: Query parameter tokens (for example `$v`, `$id`, `$tag`, etc.) are evaluated only in Copy custom templates. They are not evaluated in Open-from-text custom templates, so do not use them in Open templates.
 
 ## 3. Conditional Blocks
 
@@ -103,7 +103,7 @@ Inside a conditional block:
 
 If conditions are not met, the entire block is removed from output.
 
-> ⚠️ **Note about Conditional Blocks**: Conditional blocks such as `{{q=v: ...}}` or `{{q=v,t: ...}}` are only supported in **Copy** custom templates. They let you include or omit parts of the output depending on URL query parameters. Conditional blocks are **not supported** for custom templates on the **Open from text** side. Open-from-text templates do not evaluate these conditions and cannot filter which URLs are opened based on them. If you need to control which URLs to open, use filtering in the source text or use the Smart (auto-detect) mode instead.
+> ⚠️ **Note about Conditional Blocks**: Conditional blocks (for example `{{q=v: ...}}`) are available only in Copy custom templates. They do not work in Open-from-text custom templates. If you need flexible filtering when opening URLs, use the Smart (auto-detect) mode instead.
 
 ## 4. Template Examples & Patterns
 
@@ -344,7 +344,7 @@ Rock & Roll <Best Hits>
 
 Without HTML escaping, special characters like `&`, `<`, `>` in titles could break HTML parsing or create security issues. The `$title(html)` token converts these to safe HTML entities (`&amp;`, `&lt;`, `&gt;`).
 
-> ⚠️ **Note about `$title(html)`**: The `$title(html)` token is only supported in **Copy** custom templates. It is used to insert an HTML-escaped version of the page title in the generated text. It is **not supported** in custom templates on the **Open from text** side. If you reuse a template that contains `$title(html)` as an Open custom template, this token will not be processed. For Open templates, use `$title` instead.
+> ⚠️ **Note about `$title(html)`**: Only supported in Copy custom templates. Open-from-text custom templates do not process this token. For Open templates, use `$title` instead.
 
 ## 5. Limitations
 

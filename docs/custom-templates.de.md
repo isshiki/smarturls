@@ -24,9 +24,9 @@ SmartURLs ersetzt Tokens ausschließlich basierend auf Tab-Metadaten und der akt
 | `$time(utc)` | UTC-Zeit                        | `05:03:55`                                    |
 | `$nl`        | Fügt einen Zeilenumbruch ein    | *(erzeugt Zeilenumbrüche in der Ausgabe)*    |
 
-> ⚠️ **Hinweis zu `$nl`**: Das `$nl`-Token kann in **Kopieren**-benutzerdefinierten Vorlagen verwendet werden, um Zeilenumbrüche in den generierten Text einzufügen. Es wird jedoch **nicht unterstützt** in benutzerdefinierten Vorlagen auf der **Aus Text öffnen**-Seite, die Eingaben zeilenweise verarbeitet. Aus diesem Grund verhält sich eine Vorlage, die `$nl` auf der Kopieren-Seite verwendet, nicht gleich, wenn Sie sie als benutzerdefinierte Öffnungsvorlage wiederverwenden. Wenn Sie möchten, dass Kopieren und Öffnen dieselbe Vorlage teilen, vermeiden Sie `$nl` in der Öffnungsvorlage oder verwenden Sie stattdessen den **Intelligenten (automatische Erkennung)**-Modus.
+> ⚠️ **Hinweis zu `$nl`**: Wird nur in Kopieren-benutzerdefinierten Vorlagen unterstützt. Kann nicht in Aus Text öffnen-benutzerdefinierten Vorlagen verwendet werden. Wenn Sie dieselbe Vorlage sowohl für Kopieren als auch für Öffnen wiederverwenden möchten, vermeiden Sie `$nl` in der Öffnungsvorlage oder verwenden Sie stattdessen den Intelligenten (automatische Erkennung)-Modus.
 
-> ⚠️ **Hinweis zu `$title(html)`**: Das `$title(html)`-Token wird nur in **Kopieren**-benutzerdefinierten Vorlagen unterstützt. Es wird verwendet, um eine HTML-escaped Version des Seitentitels in den generierten Text einzufügen. Es wird **nicht unterstützt** in benutzerdefinierten Vorlagen auf der **Aus Text öffnen**-Seite. Wenn Sie eine Vorlage, die `$title(html)` enthält, als benutzerdefinierte Öffnungsvorlage wiederverwenden, wird dieses Token nicht verarbeitet. Verwenden Sie für Öffnungsvorlagen stattdessen `$title`.
+> ⚠️ **Hinweis zu `$title(html)`**: Wird nur in Kopieren-benutzerdefinierten Vorlagen unterstützt. Aus Text öffnen-benutzerdefinierte Vorlagen verarbeiten dieses Token nicht. Verwenden Sie für Öffnungsvorlagen stattdessen `$title`.
 
 ### Beispiel-URL und -Titel von oben
 
@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Wenn ein Parameter nicht existiert, wird sein Wert zu einem leeren String.
 
-> ⚠️ **Hinweis zu Query-Parameter-Tokens**: Query-Parameter-Tokens wie `$v`, `$id`, `$tag`, etc. werden nur in **Kopieren**-benutzerdefinierten Vorlagen ausgewertet. Sie ermöglichen es Ihnen, Werte aus dem Query-String der URL in die kopierte Ausgabe einzufügen oder zu formatieren. Diese Tokens werden **nicht ausgewertet** in benutzerdefinierten Vorlagen auf der **Aus Text öffnen**-Seite. Benutzerdefinierte Vorlagen zum Öffnen aus Text lesen oder filtern nicht nach Query-Parametern; sie verwenden nur das Muster, um `$url` im eingefügten Text zu finden.
+> ⚠️ **Hinweis zu Query-Parameter-Tokens**: Query-Parameter-Tokens (zum Beispiel `$v`, `$id`, `$tag`, etc.) werden nur in Kopieren-benutzerdefinierten Vorlagen ausgewertet. Sie werden nicht in Aus Text öffnen-benutzerdefinierten Vorlagen ausgewertet, verwenden Sie sie daher nicht in Öffnungsvorlagen.
 
 ## 3. Bedingte Blöcke
 
@@ -105,7 +105,7 @@ Innerhalb eines bedingten Blocks:
 
 Wenn die Bedingungen nicht erfüllt sind, wird der gesamte Block aus der Ausgabe entfernt.
 
-> ⚠️ **Hinweis zu bedingten Blöcken**: Bedingte Blöcke wie `{{q=v: ...}}` oder `{{q=v,t: ...}}` werden nur in **Kopieren**-benutzerdefinierten Vorlagen unterstützt. Sie ermöglichen es Ihnen, Teile der Ausgabe abhängig von URL-Query-Parametern einzuschließen oder auszuschließen. Bedingte Blöcke werden **nicht unterstützt** für benutzerdefinierte Vorlagen auf der **Aus Text öffnen**-Seite. Vorlagen zum Öffnen aus Text werten diese Bedingungen nicht aus und können nicht filtern, welche URLs basierend darauf geöffnet werden. Wenn Sie steuern müssen, welche URLs geöffnet werden, verwenden Sie Filterung im Quelltext oder verwenden Sie stattdessen den **Intelligenten (automatische Erkennung)**-Modus.
+> ⚠️ **Hinweis zu bedingten Blöcken**: Bedingte Blöcke (zum Beispiel `{{q=v: ...}}`) sind nur in Kopieren-benutzerdefinierten Vorlagen verfügbar. Sie funktionieren nicht in Aus Text öffnen-benutzerdefinierten Vorlagen. Wenn Sie flexible Filterung beim Öffnen von URLs benötigen, verwenden Sie stattdessen den Intelligenten (automatische Erkennung)-Modus.
 
 ## 4. Vorlagenbeispiele & Muster
 

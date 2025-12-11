@@ -24,9 +24,9 @@ SmartURLs remplace les tokens strictement basés sur les métadonnées de l'ongl
 | `$time(utc)` | Heure UTC                        | `05:03:55`                                    |
 | `$nl`        | Insère un saut de ligne          | *(produit des sauts de ligne en sortie)*     |
 
-> ⚠️ **Note sur `$nl`** : Le token `$nl` peut être utilisé dans les modèles personnalisés de **Copie** pour insérer des sauts de ligne dans le texte généré. Cependant, il n'est **pas pris en charge** dans les modèles personnalisés du côté **Ouvrir depuis le texte**, qui traite l'entrée ligne par ligne. Pour cette raison, un modèle qui utilise `$nl` du côté Copie ne se comportera pas de la même manière si vous le réutilisez comme modèle personnalisé d'ouverture. Si vous souhaitez que Copie et Ouvrir partagent le même modèle, évitez `$nl` dans le modèle d'ouverture ou utilisez le mode **Intelligent (détection automatique)** à la place.
+> ⚠️ **Note sur `$nl`** : Pris en charge uniquement dans les modèles personnalisés de Copie. Ne peut pas être utilisé dans les modèles personnalisés d'Ouvrir depuis le texte. Si vous souhaitez réutiliser le même modèle pour Copie et Ouvrir, évitez `$nl` dans le modèle d'ouverture ou utilisez le mode Intelligent (détection automatique) à la place.
 
-> ⚠️ **Note sur `$title(html)`** : Le token `$title(html)` est uniquement pris en charge dans les modèles personnalisés de **Copie**. Il est utilisé pour insérer une version échappée HTML du titre de la page dans le texte généré. Il n'est **pas pris en charge** dans les modèles personnalisés du côté **Ouvrir depuis le texte**. Si vous réutilisez un modèle qui contient `$title(html)` comme modèle personnalisé d'ouverture, ce token ne sera pas traité. Pour les modèles d'ouverture, utilisez plutôt `$title`.
+> ⚠️ **Note sur `$title(html)`** : Pris en charge uniquement dans les modèles personnalisés de Copie. Les modèles personnalisés d'Ouvrir depuis le texte ne traitent pas ce token. Pour les modèles d'ouverture, utilisez plutôt `$title`.
 
 ### Exemple d'URL et de titre utilisés ci-dessus
 
@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Si un paramètre n'existe pas, sa valeur devient une chaîne vide.
 
-> ⚠️ **Note sur les tokens de paramètres de requête** : Les tokens de paramètres de requête tels que `$v`, `$id`, `$tag`, etc. sont uniquement évalués dans les modèles personnalisés de **Copie**. Ils vous permettent d'insérer ou de formater des valeurs extraites de la chaîne de requête de l'URL dans la sortie copiée. Ces tokens ne sont **pas évalués** dans les modèles personnalisés du côté **Ouvrir depuis le texte**. Les modèles personnalisés d'ouverture depuis le texte ne lisent ni ne filtrent par paramètres de requête ; ils utilisent uniquement le modèle pour localiser `$url` dans le texte collé.
+> ⚠️ **Note sur les tokens de paramètres de requête** : Les tokens de paramètres de requête (par exemple `$v`, `$id`, `$tag`, etc.) sont évalués uniquement dans les modèles personnalisés de Copie. Ils ne sont pas évalués dans les modèles personnalisés d'Ouvrir depuis le texte, ne les utilisez donc pas dans les modèles d'ouverture.
 
 ## 3. Blocs conditionnels
 
@@ -105,7 +105,7 @@ Les blocs conditionnels permettent aux modèles de produire certains textes **un
 
 Si les conditions ne sont pas remplies, le bloc entier est supprimé de la sortie.
 
-> ⚠️ **Note sur les blocs conditionnels** : Les blocs conditionnels tels que `{{q=v: ...}}` ou `{{q=v,t: ...}}` sont uniquement pris en charge dans les modèles personnalisés de **Copie**. Ils vous permettent d'inclure ou d'omettre des parties de la sortie en fonction des paramètres de requête de l'URL. Les blocs conditionnels ne sont **pas pris en charge** pour les modèles personnalisés du côté **Ouvrir depuis le texte**. Les modèles d'ouverture depuis le texte n'évaluent pas ces conditions et ne peuvent pas filtrer quelles URL sont ouvertes en fonction de celles-ci. Si vous devez contrôler quelles URL ouvrir, utilisez le filtrage dans le texte source ou utilisez le mode **Intelligent (détection automatique)** à la place.
+> ⚠️ **Note sur les blocs conditionnels** : Les blocs conditionnels (par exemple `{{q=v: ...}}`) sont disponibles uniquement dans les modèles personnalisés de Copie. Ils ne fonctionnent pas dans les modèles personnalisés d'Ouvrir depuis le texte. Si vous avez besoin d'un filtrage flexible lors de l'ouverture d'URL, utilisez le mode Intelligent (détection automatique) à la place.
 
 ## 4. Exemples de modèles et motifs
 

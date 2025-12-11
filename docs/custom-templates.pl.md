@@ -24,9 +24,9 @@ SmartURLs zastępuje tokeny ściśle na podstawie metadanych karty i bieżącego
 | `$time(utc)` | Czas UTC                         | `05:03:55`                                    |
 | `$nl`        | Wstawia nową linię               | *(generuje łamanie linii na wyjściu)*        |
 
-> ⚠️ **Uwaga dotycząca `$nl`**: Token `$nl` może być używany w niestandardowych szablonach **Kopiowania** do wstawiania łamań linii w generowanym tekście. Jednak **nie jest obsługiwany** w niestandardowych szablonach po stronie **Otwórz z tekstu**, która przetwarza dane wejściowe wiersz po wierszu. Z tego powodu szablon używający `$nl` po stronie Kopiowania nie będzie zachowywał się tak samo, jeśli użyjesz go ponownie jako niestandardowego szablonu otwierania. Jeśli chcesz, aby Kopiowanie i Otwieranie współdzieliły ten sam szablon, unikaj `$nl` w szablonie otwierania lub zamiast tego użyj trybu **Inteligentny (automatyczne wykrywanie)**.
+> ⚠️ **Uwaga dotycząca `$nl`**: Obsługiwany tylko w niestandardowych szablonach Kopiowania. Nie może być używany w niestandardowych szablonach Otwórz z tekstu. Jeśli chcesz ponownie użyć tego samego szablonu dla Kopiowania i Otwierania, unikaj `$nl` w szablonie otwierania lub użyj trybu Inteligentny (automatyczne wykrywanie).
 
-> ⚠️ **Uwaga dotycząca `$title(html)`**: Token `$title(html)` jest obsługiwany tylko w niestandardowych szablonach **Kopiowania**. Jest używany do wstawiania wersji tytułu strony z escapowaniem HTML do generowanego tekstu. **Nie jest obsługiwany** w niestandardowych szablonach po stronie **Otwórz z tekstu**. Jeśli ponownie użyjesz szablonu zawierającego `$title(html)` jako niestandardowego szablonu otwierania, ten token nie zostanie przetworzony. W przypadku szablonów otwierania użyj zamiast tego `$title`.
+> ⚠️ **Uwaga dotycząca `$title(html)`**: Obsługiwany tylko w niestandardowych szablonach Kopiowania. Niestandardowe szablony Otwórz z tekstu nie przetwarzają tego tokenu. W przypadku szablonów otwierania użyj zamiast tego `$title`.
 
 ### Przykładowy adres URL i tytuł użyte powyżej
 
@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 
 Jeśli parametr nie istnieje, jego wartość staje się pustym ciągiem znaków.
 
-> ⚠️ **Uwaga dotycząca tokenów parametrów zapytania**: Tokeny parametrów zapytania, takie jak `$v`, `$id`, `$tag` itp., są oceniane tylko w niestandardowych szablonach **Kopiowania**. Umożliwiają wstawianie lub formatowanie wartości pobranych z ciągu zapytania URL do skopiowanego wyjścia. Te tokeny **nie są oceniane** w niestandardowych szablonach po stronie **Otwórz z tekstu**. Niestandardowe szablony otwierania z tekstu nie odczytują ani nie filtrują według parametrów zapytania; używają tylko wzorca do zlokalizowania `$url` w wklejonym tekście.
+> ⚠️ **Uwaga dotycząca tokenów parametrów zapytania**: Tokeny parametrów zapytania (na przykład `$v`, `$id`, `$tag` itp.) są oceniane tylko w niestandardowych szablonach Kopiowania. Nie są oceniane w niestandardowych szablonach Otwórz z tekstu, więc nie używaj ich w szablonach otwierania.
 
 ## 3. Bloki warunkowe
 
@@ -105,7 +105,7 @@ Wewnątrz bloku warunkowego:
 
 Jeśli warunki nie są spełnione, cały blok jest usuwany z wyjścia.
 
-> ⚠️ **Uwaga dotycząca bloków warunkowych**: Bloki warunkowe, takie jak `{{q=v: ...}}` lub `{{q=v,t: ...}}`, są obsługiwane tylko w niestandardowych szablonach **Kopiowania**. Umożliwiają dołączanie lub pomijanie części wyjścia w zależności od parametrów zapytania URL. Bloki warunkowe **nie są obsługiwane** w niestandardowych szablonach po stronie **Otwórz z tekstu**. Szablony otwierania z tekstu nie oceniają tych warunków i nie mogą filtrować, które adresy URL są otwierane na ich podstawie. Jeśli musisz kontrolować, które adresy URL otworzyć, użyj filtrowania w tekście źródłowym lub zamiast tego użyj trybu **Inteligentny (automatyczne wykrywanie)**.
+> ⚠️ **Uwaga dotycząca bloków warunkowych**: Bloki warunkowe (na przykład `{{q=v: ...}}`) są dostępne tylko w niestandardowych szablonach Kopiowania. Nie działają w niestandardowych szablonach Otwórz z tekstu. Jeśli potrzebujesz elastycznego filtrowania podczas otwierania adresów URL, użyj trybu Inteligentny (automatyczne wykrywanie).
 
 ## 4. Przykłady i wzorce szablonów
 
