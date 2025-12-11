@@ -195,7 +195,10 @@ textarea{ min-height:72px; resize:vertical; }
 .hint{ color:var(--muted); font-size:12px; margin-top:4px; line-height:1.35; }
 
 /* Template length warning */
-#tpl-warning{
+#tpl-warning,
+#openTpl-warning,
+#excludeList-warning,
+#manualInput-warning{
   margin-left:8px;
   color:#c62828;
   font-size:0.85em;

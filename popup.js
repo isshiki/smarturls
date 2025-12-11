@@ -219,9 +219,30 @@ async function init() {
   updateHelpLink(); // Set help link URL based on current language
 
   // 4) bindings
-  ["fmt","tpl","sort","openLimit","openFmt","openTpl"].forEach(id => {
+  ["fmt","tpl","sort","openFmt","openTpl"].forEach(id => {
     $("#" + id).addEventListener("change", e => save({[id]: e.target.value}));
   });
+
+  // OpenLimit with clamping (1-999, default 30)
+  const openLimitInput = $("#openLimit");
+  function clampOpenLimit() {
+    let v = Number(openLimitInput.value);
+    // Fallback for empty/NaN
+    if (!Number.isFinite(v)) v = 30;
+    // Clamp to range
+    if (v < 1) v = 1;
+    if (v > 999) v = 999;
+    // Update displayed value
+    openLimitInput.value = v;
+    return v;
+  }
+  if (openLimitInput) {
+    openLimitInput.addEventListener("input", clampOpenLimit);
+    openLimitInput.addEventListener("change", () => {
+      const v = clampOpenLimit();
+      save({ openLimit: v });
+    });
+  }
 
   // Template length warning
   const tplInput = $("#tpl");
@@ -232,11 +253,57 @@ async function init() {
       const len = tplInput.value.length;
       // Get suffix dynamically to reflect current language
       const warnSuffix = t("tplTooLongSuffix", " — too long");
-      tplWarning.textContent = len > 2500 ? warnSuffix : "";
+      tplWarning.textContent = len > 1800 ? warnSuffix : "";
     };
     tplInput.addEventListener("input", checkTplLength);
     checkTplLength(); // Check initial value
   }
+
+  // Open template length warning
+  const openTplInput = $("#openTpl");
+  const openTplWarning = $("#openTpl-warning");
+  let checkOpenTplLength = null; // Store reference for language change updates
+  if (openTplInput && openTplWarning) {
+    checkOpenTplLength = () => {
+      const len = openTplInput.value.length;
+      // Get suffix dynamically to reflect current language
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      openTplWarning.textContent = len > 800 ? warnSuffix : "";
+    };
+    openTplInput.addEventListener("input", checkOpenTplLength);
+    checkOpenTplLength(); // Check initial value
+  }
+
+  // Exclude list length warning
+  const excludeListInput = $("#excludeList");
+  const excludeListWarning = $("#excludeList-warning");
+  let checkExcludeListLength = null; // Store reference for language change updates
+  if (excludeListInput && excludeListWarning) {
+    checkExcludeListLength = () => {
+      const len = excludeListInput.value.length;
+      // Get suffix dynamically to reflect current language
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      excludeListWarning.textContent = len > 3800 ? warnSuffix : "";
+    };
+    excludeListInput.addEventListener("input", checkExcludeListLength);
+    checkExcludeListLength(); // Check initial value
+  }
+
+  // Manual input length warning
+  const manualInput = $("#manualInput");
+  const manualInputWarning = $("#manualInput-warning");
+  let checkManualInputLength = null; // Store reference for language change updates
+  if (manualInput && manualInputWarning) {
+    checkManualInputLength = () => {
+      const len = manualInput.value.length;
+      // Get suffix dynamically to reflect current language
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      manualInputWarning.textContent = len > 99800 ? warnSuffix : "";
+    };
+    manualInput.addEventListener("input", checkManualInputLength);
+    checkManualInputLength(); // Check initial value
+  }
+
   [["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
     .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
   ["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
@@ -256,8 +323,11 @@ async function init() {
     applyI18n();
     applyI18nTitle();
     await displayCurrentShortcuts(); // Update shortcut displays with new language
-    // Update template warning to reflect new language
+    // Update template warnings to reflect new language
     if (checkTplLength) checkTplLength();
+    if (checkOpenTplLength) checkOpenTplLength();
+    if (checkExcludeListLength) checkExcludeListLength();
+    if (checkManualInputLength) checkManualInputLength();
     // Update help link URL to reflect new language
     updateHelpLink();
   });

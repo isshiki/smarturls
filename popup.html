@@ -79,7 +79,7 @@
           <label class="label">
             <span data-i18n="custom_tpl_label">Custom template</span><span id="tpl-warning"></span>
           </label>
-          <input id="tpl" type="text" maxlength="3000" placeholder="- [$title]($url)" />
+          <input id="tpl" type="text" maxlength="2000" placeholder="- [$title]($url)" />
           <p class="hint">
             <span data-i18n="custom_tpl_tokens">Tokens: $title, $url, $domain, $path, $basename, $idx, $date, $time, $nl (newline), …</span>
             <a id="custom-tpl-help" href="#" target="_blank" rel="noreferrer" data-i18n="custom_tpl_tokens_link">See full list.</a>
@@ -99,8 +99,10 @@
         </div>
 
         <div class="field">
-          <label class="label" data-i18n="exclude_label">Exclude patterns</label>
-          <textarea id="excludeList" placeholder="https://example.com/path/*"></textarea>
+          <label class="label">
+            <span data-i18n="exclude_label">Exclude patterns</span><span id="excludeList-warning"></span>
+          </label>
+          <textarea id="excludeList" maxlength="4000" placeholder="https://example.com/path/*"></textarea>
           <p class="hint" data-i18n="exclude_hint">
             Enter one pattern per line (separate by new lines). Use * as a wildcard.
             Example: https://chatgpt.com/path/*
@@ -175,8 +177,10 @@
         </div>
 
         <div id="pasteBox" class="field" hidden>
-          <label class="label" data-i18n="textarea_label">Paste text</label>
-          <textarea id="manualInput"
+          <label class="label">
+            <span data-i18n="textarea_label">Paste text</span><span id="manualInput-warning"></span>
+          </label>
+          <textarea id="manualInput" maxlength="100000"
             placeholder="[Example](https://example.com)&#10;<https://example.org>"></textarea>
         </div>
 
@@ -187,8 +191,10 @@
         <summary data-i18n="advanced">Advanced</summary>
 
         <div class="field">
-          <label class="label" data-i18n="open_tpl_label">Open custom template</label>
-          <input id="openTpl" type="text" placeholder="- [$title]($url)" />
+          <label class="label">
+            <span data-i18n="open_tpl_label">Open custom template</span><span id="openTpl-warning"></span>
+          </label>
+          <input id="openTpl" type="text" maxlength="1000" placeholder="- [$title]($url)" />
           <p class="hint" data-i18n="same_tokens_hint">
             Use the same tokens as copy: $title, $url, $domain, $path, $idx, $date, $time, $date(utc), $time(utc)
           </p>
@@ -196,7 +202,7 @@
 
         <div class="field">
           <label class="label" data-i18n="confirm_label">Confirm if more than N tabs</label>
-          <input id="openLimit" type="number" min="1" value="30" />
+          <input id="openLimit" type="number" min="1" max="999" value="30" />
         </div>
 
         <div class="field">
