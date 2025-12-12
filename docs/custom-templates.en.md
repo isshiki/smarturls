@@ -26,6 +26,8 @@ SmartURLs replaces tokens based strictly on tab metadata and the current URL.
 
 > ⚠️ **Note about `$nl`**: Only supported in Copy custom templates. Cannot be used in Open from text custom templates. If you want to reuse the same template for both Copy and Open, avoid `$nl` in the Open template or use Smart (auto-detect) mode instead.
 
+> ⚠️ **Note about `$title(html)`**: Only supported in Copy custom templates. Open-from-text custom templates do not process this token. For Open templates, use `$title` instead.
+
 ### Example URL and Title Used Above
 
 To show how tokens expand, these examples use:
@@ -343,8 +345,6 @@ Rock & Roll <Best Hits>
 **Why use `$title(html)`?**
 
 Without HTML escaping, special characters like `&`, `<`, `>` in titles could break HTML parsing or create security issues. The `$title(html)` token converts these to safe HTML entities (`&amp;`, `&lt;`, `&gt;`).
-
-> ⚠️ **Note about `$title(html)`**: Only supported in Copy custom templates. Open-from-text custom templates do not process this token. For Open templates, use `$title` instead.
 
 ## 5. Limitations
 
