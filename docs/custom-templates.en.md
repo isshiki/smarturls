@@ -320,32 +320,6 @@ https://www.youtube.com/watch?v=bmC-FwibsZg&t=123
 www.youtube.com
 ```
 
-### 4.13 HTML Link with Safe Title
-
-When generating HTML output, use `$title(html)` to safely escape special characters.
-
-📘 **Example Title** (with special characters)
-
-```text
-Rock & Roll <Best Hits>
-```
-
-🛠 **Template**
-
-```template
-<a href="$url" title="$title(html)">$title(html)</a>
-```
-
-💬 **Output**
-
-```output
-<a href="https://example.com/music" title="Rock &amp; Roll &lt;Best Hits&gt;">Rock &amp; Roll &lt;Best Hits&gt;</a>
-```
-
-**Why use `$title(html)`?**
-
-Without HTML escaping, special characters like `&`, `<`, `>` in titles could break HTML parsing or create security issues. The `$title(html)` token converts these to safe HTML entities (`&amp;`, `&lt;`, `&gt;`).
-
 ## 5. Limitations
 
 SmartURLs intentionally stays simple.
