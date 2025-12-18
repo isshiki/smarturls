@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "Przeglądarka zablokowała czytanie schowka." },
   "err_clipboard_unavailable": { "message": "Schowek niedostępny na tej stronie." },
-  "err_unknown":               { "message": "Nieznany błąd" }
+  "err_unknown":               { "message": "Nieznany błąd" },
+
+  "protocol_restrict_label":    { "message": "Ogranicz protokoły" },
+  "protocol_allowed_label":     { "message": "Dozwolone:" },
+  "protocol_allowed_placeholder": { "message": "np., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Określ dozwolone protokoły oddzielone przecinkami (np., http, https, file). Wyłącz, aby zezwolić na wszystkie." },
+  "opened_skipped_suffix":      { "message": " (Pominięto: {count} / filtrowanie protokołu)" },
+  "opened_failed_suffix":       { "message": " (Nie udało się: {count})" }
 }

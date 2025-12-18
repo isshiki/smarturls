@@ -65,6 +65,12 @@ function applyI18nTitle() {
     el.title = t(key, el.title);
   });
 }
+function applyI18nPlaceholder() {
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    el.placeholder = t(key, el.placeholder);
+  });
+}
 
 /* ===================== Help link URL mapping ===================== */
 const HELP_URLS = {
@@ -168,12 +174,18 @@ async function load() {
 
   // filters & others
   $("#chkDedup").checked = cfg.dedup;
-  $("#chkHttp").checked = cfg.httpOnly;
+  $("#chkCopyProtocolRestrict").checked = cfg.copyProtocolRestrict;
+  $("#copyProtocolAllowed").value = cfg.copyProtocolAllowed;
+  updateProtocolInputState("copy");
   $("#chkNoPinned").checked = cfg.noPinned;
   $("#excludeList").value = cfg.excludeList;
   $("#sort").value = cfg.sort;
   $("#desc").checked = cfg.desc;
   $("#openLimit").value = cfg.openLimit;
+
+  $("#chkOpenProtocolRestrict").checked = cfg.openProtocolRestrict;
+  $("#openProtocolAllowed").value = cfg.openProtocolAllowed;
+  updateProtocolInputState("open");
 
   return cfg;
 }
@@ -210,6 +222,27 @@ function initPasteBoxDefault() {
   updatePasteBox();
 }
 
+/* ===================== Protocol Input State ===================== */
+
+/**
+ * Update protocol input field enabled state based on checkbox
+ * @param {string} side - "copy" or "open"
+ */
+function updateProtocolInputState(side) {
+  const checkbox = $(`#chk${side === "copy" ? "Copy" : "Open"}ProtocolRestrict`);
+  const input = $(`#${side}ProtocolAllowed`);
+
+  if (!checkbox || !input) return;
+
+  if (checkbox.checked) {
+    input.disabled = false;
+    input.style.opacity = "1";
+  } else {
+    input.disabled = true;
+    input.style.opacity = "0.5";
+  }
+}
+
 /* ===================== Init ===================== */
 async function init() {
   // 1) load settings first
@@ -222,6 +255,7 @@ async function init() {
   // 3) initial apply
   applyI18n();
   applyI18nTitle();
+  applyI18nPlaceholder();
   applyVersionBadge();
   updateHelpLink(); // Set help link URL based on current language
 
@@ -311,9 +345,19 @@ async function init() {
     checkManualInputLength(); // Check initial value
   }
 
-  [["chkDedup","dedup"],["chkHttp","httpOnly"],["chkNoPinned","noPinned"],["desc","desc"]]
+  [["chkDedup","dedup"],["chkNoPinned","noPinned"],["desc","desc"],
+   ["chkCopyProtocolRestrict","copyProtocolRestrict"],
+   ["chkOpenProtocolRestrict","openProtocolRestrict"]]
     .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
-  ["excludeList"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
+  ["excludeList","copyProtocolAllowed","openProtocolAllowed"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
+
+  $("#chkCopyProtocolRestrict").addEventListener("change", () => {
+    updateProtocolInputState("copy");
+  });
+
+  $("#chkOpenProtocolRestrict").addEventListener("change", () => {
+    updateProtocolInputState("open");
+  });
 
   $("#theme").addEventListener("change", async (e) => {
     const v = e.target.value;
@@ -329,6 +373,7 @@ async function init() {
     await loadDict(currentLang);
     applyI18n();
     applyI18nTitle();
+    applyI18nPlaceholder();
     await displayCurrentShortcuts(); // Update shortcut displays with new language
     // Update template warnings to reflect new language
     if (checkTplLength) checkTplLength();
@@ -469,7 +514,7 @@ $("#btnOpen").addEventListener("click", async () => {
     }
 
     // Use shared prepareOpenUrls function
-    const { urls, count } = await prepareOpenUrls(text, cfg);
+    const { urls, count, skippedByProtocol } = await prepareOpenUrls(text, cfg);
 
     if (count === 0) {
       toast(t("no_urls","No URLs found"), false);
@@ -489,7 +534,22 @@ $("#btnOpen").addEventListener("click", async () => {
         if (chrome.runtime.lastError) {
           toast(t("open_failed","Open failed") + ": " + chrome.runtime.lastError.message, false);
         } else if (res?.ok) {
-          toast(t("opened_n","Opened ") + `${res.opened}`);
+          let message = t("opened_n","Opened ") + `${res.opened}`;
+
+          if (skippedByProtocol > 0) {
+            const suffix = t("opened_skipped_suffix", ` (Skipped: ${skippedByProtocol} / protocol filtered)`)
+              .replace("{count}", skippedByProtocol);
+            message += suffix;
+          }
+
+          const totalFailed = (res.rejectedBySecurityBoundary || 0) + (res.failed || 0);
+          if (totalFailed > 0) {
+            const suffix = t("opened_failed_suffix", ` (Failed: ${totalFailed})`)
+              .replace("{count}", totalFailed);
+            message += suffix;
+          }
+
+          toast(message);
         } else {
           const error = res?.error || "Unknown error";
           toast(t("open_failed","Open failed") + ": " + error, false);

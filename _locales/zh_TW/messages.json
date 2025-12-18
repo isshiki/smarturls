@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "瀏覽器阻止了剪貼簿讀取。" },
   "err_clipboard_unavailable": { "message": "此頁面上剪貼簿不可用。" },
-  "err_unknown":               { "message": "未知錯誤" }
+  "err_unknown":               { "message": "未知錯誤" },
+
+  "protocol_restrict_label":    { "message": "限制協議" },
+  "protocol_allowed_label":     { "message": "允許:" },
+  "protocol_allowed_placeholder": { "message": "例如: http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "指定允許的協議，用逗號分隔（例如: http, https, file）。關閉以允許所有協議。" },
+  "opened_skipped_suffix":      { "message": " (已跳過: {count} / 協議過濾)" },
+  "opened_failed_suffix":       { "message": " (失敗: {count})" }
 }

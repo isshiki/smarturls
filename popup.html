@@ -87,15 +87,30 @@
         </div>
 
         <div class="field">
-          <label class="label">Filters</label>
+          <label class="label" data-i18n="filters_title">Filters</label>
           <label class="row"><input type="checkbox" id="chkDedup" checked />
             <span data-i18n="opt_dedup">Remove duplicate URLs</span></label>
-          <label class="row"><input type="checkbox" id="chkHttp" checked />
-            <span data-i18n="opt_http">http/https only</span></label>
           <label class="row"><input type="checkbox" id="chkNoPinned" />
             <span data-i18n="opt_nopinned" data-i18n-title="opt_nopinned_hint" title="">
               Exclude [Pinned] tabs
             </span></label>
+          <label class="row">
+            <input type="checkbox" id="chkCopyProtocolRestrict" checked />
+            <span data-i18n="protocol_restrict_label">Restrict protocols</span>
+          </label>
+          <label class="row" style="margin-left: 1.5em;">
+            <span data-i18n="protocol_allowed_label">Allowed:</span>
+            <input
+              type="text"
+              id="copyProtocolAllowed"
+              value="http,https,file"
+              style="flex: 1; margin-left: 4px; min-width: 0;"
+              data-i18n-placeholder="protocol_allowed_placeholder"
+              data-i18n-title="protocol_allowed_hint"
+              placeholder="e.g., http, https, file, chrome, view-source"
+              title="Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all."
+            />
+          </label>
         </div>
 
         <div class="field">
@@ -203,6 +218,27 @@
         <div class="field">
           <label class="label" data-i18n="confirm_label">Confirm if more than N tabs</label>
           <input id="openLimit" type="number" min="1" max="999" value="30" />
+        </div>
+
+        <div class="field">
+          <label class="label" data-i18n="filters_title">Filters</label>
+          <label class="row">
+            <input type="checkbox" id="chkOpenProtocolRestrict" checked />
+            <span data-i18n="protocol_restrict_label">Restrict protocols</span>
+          </label>
+          <label class="row" style="margin-left: 1.5em;">
+            <span data-i18n="protocol_allowed_label">Allowed:</span>
+            <input
+              type="text"
+              id="openProtocolAllowed"
+              value="http,https,file"
+              style="flex: 1; margin-left: 4px; min-width: 0;"
+              data-i18n-placeholder="protocol_allowed_placeholder"
+              data-i18n-title="protocol_allowed_hint"
+              placeholder="e.g., http, https, file, chrome, view-source"
+              title="Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all."
+            />
+          </label>
         </div>
 
         <div class="field">

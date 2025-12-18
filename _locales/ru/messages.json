@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "Браузер заблокировал чтение буфера обмена." },
   "err_clipboard_unavailable": { "message": "Буфер обмена недоступен на этой странице." },
-  "err_unknown":               { "message": "Неизвестная ошибка" }
+  "err_unknown":               { "message": "Неизвестная ошибка" },
+
+  "protocol_restrict_label":    { "message": "Ограничить протоколы" },
+  "protocol_allowed_label":     { "message": "Разрешено:" },
+  "protocol_allowed_placeholder": { "message": "напр., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Укажите разрешенные протоколы через запятую (напр., http, https, file). Отключите для разрешения всех." },
+  "opened_skipped_suffix":      { "message": " (Пропущено: {count} / фильтрация протокола)" },
+  "opened_failed_suffix":       { "message": " (Не удалось: {count})" }
 }

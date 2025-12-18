@@ -35,7 +35,10 @@ const defaults = {
   source: "clipboard",
   scope: "current",
   dedup: true,
-  httpOnly: true,
+  copyProtocolRestrict: true,
+  copyProtocolAllowed: "http,https,file",
+  openProtocolRestrict: true,
+  openProtocolAllowed: "http,https,file",
   noPinned: false,
   excludeList: "",
   sort: "natural",
@@ -58,7 +61,60 @@ function excludeFilter(url, patterns) {
   return list.some(p => wildcardToRegExp(p).test(url));
 }
 
-async function fetchTabs(scope, { httpOnly, noPinned }) {
+/**
+ * Parse and normalize user-provided protocol allowlist string
+ * @param {string} input - Comma-separated protocol list (e.g., "http, https, file:")
+ * @returns {Set<string>} - Normalized protocol set (e.g., Set(["http:", "https:", "file:"]))
+ */
+function parseProtocolAllowlist(input) {
+  if (!input || typeof input !== 'string') return new Set();
+
+  const entries = input.split(',');
+  const normalized = new Set();
+
+  // RFC-like scheme validation regex: start with letter, then letters/digits/+/.-
+  const schemePattern = /^[a-z][a-z0-9+.-]*$/i;
+
+  for (const entry of entries) {
+    let scheme = entry.trim().toLowerCase();
+    if (!scheme) continue;
+
+    // Remove trailing colon if present
+    if (scheme.endsWith(':')) {
+      scheme = scheme.slice(0, -1);
+    }
+
+    // Validate scheme format
+    if (!schemePattern.test(scheme)) {
+      console.warn(`[actions] Invalid protocol scheme ignored: "${entry}"`);
+      continue;
+    }
+
+    // Add normalized form with colon
+    normalized.add(scheme + ':');
+  }
+
+  return normalized;
+}
+
+/**
+ * Check if a URL's protocol is in the allowed set
+ * @param {string} url - URL to check
+ * @param {Set<string>} allowedProtocols - Set of allowed protocols (e.g., Set(["http:", "https:"]))
+ * @returns {boolean} - True if URL protocol is allowed, false otherwise
+ */
+function isProtocolAllowed(url, allowedProtocols) {
+  if (!allowedProtocols || allowedProtocols.size === 0) return false; // Empty allowlist = block all (safest)
+
+  try {
+    const parsed = new URL(String(url));
+    return allowedProtocols.has(parsed.protocol);
+  } catch {
+    return false; // Invalid URL
+  }
+}
+
+async function fetchTabs(scope, { copyProtocolRestrict, copyProtocolAllowed, noPinned }) {
   let tabs = [];
   if (scope === "all") {
     const wins = await chrome.windows.getAll({ populate: true });
@@ -69,7 +125,10 @@ async function fetchTabs(scope, { httpOnly, noPinned }) {
   return tabs.filter(t => {
     if (noPinned && t.pinned) return false;
     if (!t.url) return false;
-    if (httpOnly && !/^https?:\/\//i.test(t.url)) return false;
+    if (copyProtocolRestrict) {
+      const allowed = parseProtocolAllowlist(copyProtocolAllowed);
+      if (!isProtocolAllowed(t.url, allowed)) return false;
+    }
     return true;
   });
 }
@@ -296,7 +355,11 @@ function extractByFormat(fmt, text, tpl) {
 async function prepareCopyData(config = null) {
   const cfg = config || Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
 
-  let tabs = await fetchTabs(cfg.scope, { httpOnly: cfg.httpOnly, noPinned: cfg.noPinned });
+  let tabs = await fetchTabs(cfg.scope, {
+    copyProtocolRestrict: cfg.copyProtocolRestrict,
+    copyProtocolAllowed: cfg.copyProtocolAllowed,
+    noPinned: cfg.noPinned
+  });
   if (cfg.dedup) tabs = uniqueByUrl(tabs);
   tabs = sortTabs(tabs, cfg.sort, cfg.desc);
 
@@ -319,14 +382,22 @@ async function prepareOpenUrls(text, config = null) {
   // Parse URLs
   const urls0 = extractByFormat(cfg.openFmt, text, cfg.openTpl);
   let urls = urls0;
+  let skippedByProtocol = 0;
 
   // Apply filters
   const ex = (cfg.excludeList || "").trim();
   if (ex) urls = urls.filter(u => !excludeFilter(u, ex));
-  if (cfg.httpOnly) urls = urls.filter(u => /^https?:\/\//i.test(u));
+
+  if (cfg.openProtocolRestrict) {
+    const allowed = parseProtocolAllowlist(cfg.openProtocolAllowed);
+    const beforeCount = urls.length;
+    urls = urls.filter(u => isProtocolAllowed(u, allowed));
+    skippedByProtocol = beforeCount - urls.length;
+  }
+
   if (cfg.dedup) urls = Array.from(new Set(urls));
 
-  return { urls, count: urls.length };
+  return { urls, count: urls.length, skippedByProtocol };
 }
 
 /* ===================== Exports ===================== */
@@ -343,6 +414,8 @@ if (typeof module !== 'undefined' && module.exports) {
     excludeFilter,
     formatLine,
     extractByFormat,
-    extractUrlsSmart
+    extractUrlsSmart,
+    parseProtocolAllowlist,
+    isProtocolAllowed
   };
 }

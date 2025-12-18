@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "Tarayıcı pano okumayı engelledi." },
   "err_clipboard_unavailable": { "message": "Bu sayfada pano kullanılamıyor." },
-  "err_unknown":               { "message": "Bilinmeyen hata" }
+  "err_unknown":               { "message": "Bilinmeyen hata" },
+
+  "protocol_restrict_label":    { "message": "Protokolleri kısıtla" },
+  "protocol_allowed_label":     { "message": "İzin verilen:" },
+  "protocol_allowed_placeholder": { "message": "örn., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Virgülle ayrılmış izin verilen protokolleri belirtin (örn., http, https, file). Tümüne izin vermek için KAPATIN." },
+  "opened_skipped_suffix":      { "message": " (Atlanan: {count} / protokol filtresi)" },
+  "opened_failed_suffix":       { "message": " (Başarısız: {count})" }
 }

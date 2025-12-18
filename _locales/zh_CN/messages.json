@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "浏览器阻止了剪贴板读取。" },
   "err_clipboard_unavailable": { "message": "此页面上剪贴板不可用。" },
-  "err_unknown":               { "message": "未知错误" }
+  "err_unknown":               { "message": "未知错误" },
+
+  "protocol_restrict_label":    { "message": "限制协议" },
+  "protocol_allowed_label":     { "message": "允许:" },
+  "protocol_allowed_placeholder": { "message": "例如: http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "指定允许的协议，用逗号分隔（例如: http, https, file）。关闭以允许所有协议。" },
+  "opened_skipped_suffix":      { "message": " (已跳过: {count} / 协议过滤)" },
+  "opened_failed_suffix":       { "message": " (失败: {count})" }
 }

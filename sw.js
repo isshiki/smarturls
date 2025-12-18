@@ -55,7 +55,10 @@ function delay(ms) {
 async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
   // Normalize and sanitize input
   const allUrls = Array.isArray(urls) ? urls.map(String) : [];
+
+  // Apply security boundary (http/https only)
   const safeUrls = allUrls.filter(isSafeHttpUrl);
+  const rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
 
   // Cap limit defensively
   const requestedLimit = Number.isFinite(Number(limit)) ? Number(limit) : MAX_OPEN_TABS;
@@ -63,6 +66,7 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
   const toOpen = safeUrls.slice(0, finalLimit);
 
   let opened = 0;
+  let failed = 0;
 
   for (const url of toOpen) {
     try {
@@ -70,6 +74,7 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
       opened += 1;
     } catch (e) {
       console.warn('[SW] Failed to open tab:', url, e);
+      failed += 1;
     }
     await delay(OPEN_DELAY_MS);
   }
@@ -77,6 +82,8 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
   return {
     ok: true,
     opened,
+    rejectedBySecurityBoundary,
+    failed,
     requested: allUrls.length,
     accepted: safeUrls.length,
     limitedTo: finalLimit,
@@ -192,7 +199,7 @@ async function handleOpenCommand() {
       return;
     }
 
-    const { urls, count } = await prepareOpenUrls(text);
+    const { urls, count, skippedByProtocol } = await prepareOpenUrls(text);
 
     if (count === 0) {
       await chrome.notifications.create('open-no-urls', {
@@ -209,11 +216,29 @@ async function handleOpenCommand() {
     const response = await openUrlsInTabs(urls, MAX_OPEN_TABS);
 
     if (response?.ok) {
+      // Build compact status message
+      let message = chrome.i18n.getMessage('opened_n') + response.opened;
+
+      // Add protocol skip count (user's allowlist filtered these out)
+      if (skippedByProtocol > 0) {
+        const suffix = chrome.i18n.getMessage('opened_skipped_suffix')
+          .replace('{count}', skippedByProtocol);
+        message += suffix;
+      }
+
+      // Add failure count (security boundary rejected + chrome.tabs.create failed)
+      const totalFailed = response.rejectedBySecurityBoundary + response.failed;
+      if (totalFailed > 0) {
+        const suffix = chrome.i18n.getMessage('opened_failed_suffix')
+          .replace('{count}', totalFailed);
+        message += suffix;
+      }
+
       await chrome.notifications.create('open-success', {
         type: 'basic',
         iconUrl: 'icons/icon128.png',
         title: 'SmartURLs - Open',
-        message: `Opened ${response.opened} tab(s)`,
+        message,
         priority: 1
       });
       console.log(`[SW] Open succeeded: ${response.opened} tabs`);

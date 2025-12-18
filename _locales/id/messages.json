@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "Browser memblokir pembacaan clipboard." },
   "err_clipboard_unavailable": { "message": "Clipboard tidak tersedia di halaman ini." },
-  "err_unknown":               { "message": "Kesalahan tidak diketahui" }
+  "err_unknown":               { "message": "Kesalahan tidak diketahui" },
+
+  "protocol_restrict_label":    { "message": "Batasi protokol" },
+  "protocol_allowed_label":     { "message": "Diizinkan:" },
+  "protocol_allowed_placeholder": { "message": "mis., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Tentukan protokol yang diizinkan dipisahkan koma (mis., http, https, file). Matikan untuk mengizinkan semua." },
+  "opened_skipped_suffix":      { "message": " (Dilewati: {count} / filter protokol)" },
+  "opened_failed_suffix":       { "message": " (Gagal: {count})" }
 }

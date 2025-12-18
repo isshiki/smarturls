@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "La lecture du presse-papiers a été bloquée par le navigateur." },
   "err_clipboard_unavailable": { "message": "Le presse-papiers n'est pas disponible sur cette page." },
-  "err_unknown":               { "message": "Erreur inconnue" }
+  "err_unknown":               { "message": "Erreur inconnue" },
+
+  "protocol_restrict_label":    { "message": "Restreindre les protocoles" },
+  "protocol_allowed_label":     { "message": "Autorisés :" },
+  "protocol_allowed_placeholder": { "message": "ex., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Spécifiez les protocoles autorisés séparés par des virgules (ex., http, https, file). Désactivez pour tout autoriser." },
+  "opened_skipped_suffix":      { "message": " (Ignorés : {count} / filtré par protocole)" },
+  "opened_failed_suffix":       { "message": " (Échoués : {count})" }
 }

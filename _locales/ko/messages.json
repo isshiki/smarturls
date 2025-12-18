@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "브라우저에서 클립보드 읽기를 차단했습니다." },
   "err_clipboard_unavailable": { "message": "이 페이지에서 클립보드를 사용할 수 없습니다." },
-  "err_unknown":               { "message": "알 수 없는 오류" }
+  "err_unknown":               { "message": "알 수 없는 오류" },
+
+  "protocol_restrict_label":    { "message": "프로토콜 제한" },
+  "protocol_allowed_label":     { "message": "허용:" },
+  "protocol_allowed_placeholder": { "message": "예: http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "쉼표로 구분하여 허용된 프로토콜을 지정하세요(예: http, https, file). 모두 허용하려면 끄세요." },
+  "opened_skipped_suffix":      { "message": " (건너뜀: {count} / 프로토콜 필터링)" },
+  "opened_failed_suffix":       { "message": " (실패: {count})" }
 }

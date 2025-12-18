@@ -75,5 +75,12 @@
 
   "err_clipboard_denied":      { "message": "Clipboard read was blocked by the browser." },
   "err_clipboard_unavailable": { "message": "Clipboard is unavailable on this page." },
-  "err_unknown":               { "message": "Unknown error" }
+  "err_unknown":               { "message": "Unknown error" },
+
+  "protocol_restrict_label":    { "message": "Restrict protocols" },
+  "protocol_allowed_label":     { "message": "Allowed:" },
+  "protocol_allowed_placeholder": { "message": "e.g., http, https, file, chrome, view-source" },
+  "protocol_allowed_hint":      { "message": "Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all." },
+  "opened_skipped_suffix":      { "message": " (Skipped: {count} / protocol filtered)" },
+  "opened_failed_suffix":       { "message": " (Failed: {count})" }
 }
