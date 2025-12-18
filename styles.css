@@ -198,7 +198,9 @@ textarea{ min-height:72px; resize:vertical; }
 #tpl-warning,
 #openTpl-warning,
 #excludeList-warning,
-#manualInput-warning{
+#manualInput-warning,
+#copyProtocolAllowed-warning,
+#openProtocolAllowed-warning{
   margin-left:8px;
   color:#c62828;
   font-size:0.85em;

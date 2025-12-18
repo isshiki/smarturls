@@ -345,6 +345,34 @@ async function init() {
     checkManualInputLength(); // Check initial value
   }
 
+  // Copy protocol allowlist length warning
+  const copyProtocolInput = $("#copyProtocolAllowed");
+  const copyProtocolWarning = $("#copyProtocolAllowed-warning");
+  let checkCopyProtocolLength = null;
+  if (copyProtocolInput && copyProtocolWarning) {
+    checkCopyProtocolLength = () => {
+      const len = copyProtocolInput.value.length;
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      copyProtocolWarning.textContent = len > 100 ? warnSuffix : "";
+    };
+    copyProtocolInput.addEventListener("input", checkCopyProtocolLength);
+    checkCopyProtocolLength(); // Check initial value
+  }
+
+  // Open protocol allowlist length warning
+  const openProtocolInput = $("#openProtocolAllowed");
+  const openProtocolWarning = $("#openProtocolAllowed-warning");
+  let checkOpenProtocolLength = null;
+  if (openProtocolInput && openProtocolWarning) {
+    checkOpenProtocolLength = () => {
+      const len = openProtocolInput.value.length;
+      const warnSuffix = t("tplTooLongSuffix", " — too long");
+      openProtocolWarning.textContent = len > 100 ? warnSuffix : "";
+    };
+    openProtocolInput.addEventListener("input", checkOpenProtocolLength);
+    checkOpenProtocolLength(); // Check initial value
+  }
+
   [["chkDedup","dedup"],["chkNoPinned","noPinned"],["desc","desc"],
    ["chkCopyProtocolRestrict","copyProtocolRestrict"],
    ["chkOpenProtocolRestrict","openProtocolRestrict"]]
@@ -380,6 +408,8 @@ async function init() {
     if (checkOpenTplLength) checkOpenTplLength();
     if (checkExcludeListLength) checkExcludeListLength();
     if (checkManualInputLength) checkManualInputLength();
+    if (checkCopyProtocolLength) checkCopyProtocolLength();
+    if (checkOpenProtocolLength) checkOpenProtocolLength();
     // Update help link URL to reflect new language
     updateHelpLink();
   });
