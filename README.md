@@ -25,8 +25,9 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 * Export tab URLs as **Markdown**, **HTML**, **TSV**, **JSON**, or **custom templates**
 * Include **page titles** for better readability
 * Choose scope: **current window** or **all windows**
-* Filter options: remove duplicates, HTTP/HTTPS only, skip pinned tabs
+* Filter options: remove duplicates, protocol restrictions, skip pinned tabs
 * Exclude URLs using **wildcard patterns**
+* **Protocol allowlist**: Control which URL schemes to include (https, http, file, etc.)
 
 ### 🚀 Open URLs
 
@@ -34,6 +35,8 @@ Copy all tab URLs in multiple formats, or open URLs directly from text or your c
 * Supports various formats (Markdown, HTML, JSON, TSV, plain text, etc.)
 * Automatically detects text format
 * Optional confirmation before opening many tabs
+* **Protocol restrictions**: Safety-first filtering for opened URLs
+* Status feedback distinguishes skipped vs. failed URLs with protocol names
 
 ### ⌨️ Keyboard Shortcuts
 
@@ -86,6 +89,7 @@ SmartURLs has full multi-language documentation for the Custom Template System (
 
 | Version | Date       | Notes                  |
 | ------- | ---------- | ---------------------- |
+| 1.5.0   | 2025-12-19 | Protocol restrictions for copy/open with detailed status feedback |
 | 1.4.0   | 2025-12-11 | Custom Template System enhancements |
 | 1.3.0   | 2025-12-05 | Added keyboard shortcut support |
 | 1.2.0   | 2025-10-30 | UI improvements |
