@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtreler" },
   "opt_dedup":          { "message": "Çiftleri kaldır" },
-  "opt_http":           { "message": "Sadece http/https" },
   "opt_nopinned":       { "message": "[Sabitlenmiş] sekmeleri hariç tut" },
   "opt_nopinned_hint":  { "message": "Tarayıcıdaki sabitlenmiş sekmeleri atlar" },
   "exclude_label":      { "message": "Hariç tutma desenleri" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Çok fazla sekme aç?" },
 
   "advanced":          { "message": "Gelişmiş" },
-  "filters_title_alt": { "message": "Filtreler" },
 
   "shortcuts_title":       { "message": "Klavye kısayolları" },
   "shortcuts_copy_suffix": { "message": "URL'leri Kopyala" },

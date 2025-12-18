@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filters" },
   "opt_dedup":          { "message": "Duplicaten verwijderen" },
-  "opt_http":           { "message": "Alleen http/https" },
   "opt_nopinned":       { "message": "[Vastgezette] tabbladen uitsluiten" },
   "opt_nopinned_hint":  { "message": "Slaat vastgezette tabbladen in de browser over" },
   "exclude_label":      { "message": "Uitsluitingspatronen" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Veel tabbladen openen?" },
 
   "advanced":          { "message": "Geavanceerd" },
-  "filters_title_alt": { "message": "Filters" },
 
   "shortcuts_title":       { "message": "Sneltoetsen" },
   "shortcuts_copy_suffix": { "message": "URL's kopiëren" },

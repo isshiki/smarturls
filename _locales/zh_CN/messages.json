@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "过滤器" },
   "opt_dedup":          { "message": "移除重复项" },
-  "opt_http":           { "message": "仅 http/https" },
   "opt_nopinned":       { "message": "排除 [固定] 标签页" },
   "opt_nopinned_hint":  { "message": "跳过浏览器中固定的标签页" },
   "exclude_label":      { "message": "排除模式" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "打开许多标签页？" },
 
   "advanced":          { "message": "高级" },
-  "filters_title_alt": { "message": "过滤器" },
 
   "shortcuts_title":       { "message": "键盘快捷键" },
   "shortcuts_copy_suffix": { "message": "复制网址" },

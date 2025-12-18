@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtros" },
   "opt_dedup":          { "message": "Remover duplicatas" },
-  "opt_http":           { "message": "Apenas http/https" },
   "opt_nopinned":       { "message": "Excluir abas [fixadas]" },
   "opt_nopinned_hint":  { "message": "Pular abas que estão fixadas no navegador" },
   "exclude_label":      { "message": "Padrões de exclusão" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Abrir muitas abas?" },
 
   "advanced":          { "message": "Avançado" },
-  "filters_title_alt": { "message": "Filtros" },
 
   "shortcuts_title":       { "message": "Atalhos de teclado" },
   "shortcuts_copy_suffix": { "message": "Copiar URLs" },

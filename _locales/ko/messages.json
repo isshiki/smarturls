@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "필터" },
   "opt_dedup":          { "message": "중복 제거" },
-  "opt_http":           { "message": "http/https만" },
   "opt_nopinned":       { "message": "[고정된] 탭 제외" },
   "opt_nopinned_hint":  { "message": "브라우저에서 고정된 탭을 건너뜁니다" },
   "exclude_label":      { "message": "제외 패턴" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "많은 탭을 열겠습니까?" },
 
   "advanced":          { "message": "고급" },
-  "filters_title_alt": { "message": "필터" },
 
   "shortcuts_title":       { "message": "키보드 단축키" },
   "shortcuts_copy_suffix": { "message": "URL 복사" },

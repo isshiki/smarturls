@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "篩選器" },
   "opt_dedup":          { "message": "移除重複項目" },
-  "opt_http":           { "message": "僅 http/https" },
   "opt_nopinned":       { "message": "排除 [固定] 分頁" },
   "opt_nopinned_hint":  { "message": "跳過瀏覽器中固定的分頁" },
   "exclude_label":      { "message": "排除模式" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "開啟許多分頁？" },
 
   "advanced":          { "message": "進階" },
-  "filters_title_alt": { "message": "篩選器" },
 
   "shortcuts_title":       { "message": "鍵盤快速鍵" },
   "shortcuts_copy_suffix": { "message": "複製網址" },

@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtry" },
   "opt_dedup":          { "message": "Usuń duplikaty" },
-  "opt_http":           { "message": "Tylko http/https" },
   "opt_nopinned":       { "message": "Wyklucz [przypięte] karty" },
   "opt_nopinned_hint":  { "message": "Pomija przypięte karty w przeglądarce" },
   "exclude_label":      { "message": "Wzorce wykluczenia" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Otworzyć wiele kart?" },
 
   "advanced":          { "message": "Zaawansowane" },
-  "filters_title_alt": { "message": "Filtry" },
 
   "shortcuts_title":       { "message": "Skróty klawiszowe" },
   "shortcuts_copy_suffix": { "message": "Kopiuj URL" },

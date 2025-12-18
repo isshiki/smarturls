@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Bộ lọc" },
   "opt_dedup":          { "message": "Loại bỏ trùng lặp" },
-  "opt_http":           { "message": "Chỉ http/https" },
   "opt_nopinned":       { "message": "Loại trừ tab [được ghim]" },
   "opt_nopinned_hint":  { "message": "Bỏ qua các tab được ghim trong trình duyệt" },
   "exclude_label":      { "message": "Mẫu loại trừ" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Mở nhiều tab?" },
 
   "advanced":          { "message": "Nâng cao" },
-  "filters_title_alt": { "message": "Bộ lọc" },
 
   "shortcuts_title":       { "message": "Phím tắt" },
   "shortcuts_copy_suffix": { "message": "Sao chép URL" },

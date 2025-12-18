@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtres" },
   "opt_dedup":          { "message": "Supprimer les doublons" },
-  "opt_http":           { "message": "http/https seulement" },
   "opt_nopinned":       { "message": "Exclure les onglets [épinglés]" },
   "opt_nopinned_hint":  { "message": "Ignorer les onglets épinglés dans le navigateur" },
   "exclude_label":      { "message": "Motifs d'exclusion" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Ouvrir beaucoup d'onglets ?" },
 
   "advanced":          { "message": "Avancé" },
-  "filters_title_alt": { "message": "Filtres" },
 
   "shortcuts_title":       { "message": "Raccourcis clavier" },
   "shortcuts_copy_suffix": { "message": "Copier les URLs" },

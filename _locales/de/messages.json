@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filter" },
   "opt_dedup":          { "message": "Duplikate entfernen" },
-  "opt_http":           { "message": "Nur http/https" },
   "opt_nopinned":       { "message": "[Angeheftete] Tabs ausschließen" },
   "opt_nopinned_hint":  { "message": "Angeheftete Tabs im Browser überspringen" },
   "exclude_label":      { "message": "Ausschlussmuster" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Viele Tabs öffnen?" },
 
   "advanced":          { "message": "Erweitert" },
-  "filters_title_alt": { "message": "Filter" },
 
   "shortcuts_title":       { "message": "Tastenkombinationen" },
   "shortcuts_copy_suffix": { "message": "URLs kopieren" },

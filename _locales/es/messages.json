@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtros" },
   "opt_dedup":          { "message": "Eliminar duplicados" },
-  "opt_http":           { "message": "Solo http/https" },
   "opt_nopinned":       { "message": "Excluir pestañas [fijadas]" },
   "opt_nopinned_hint":  { "message": "Omitir pestañas que están fijadas en el navegador" },
   "exclude_label":      { "message": "Patrones de exclusión" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "¿Abrir muchas pestañas?" },
 
   "advanced":          { "message": "Avanzado" },
-  "filters_title_alt": { "message": "Filtros" },
 
   "shortcuts_title":       { "message": "Atajos de teclado" },
   "shortcuts_copy_suffix": { "message": "Copiar URLs" },

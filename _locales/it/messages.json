@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filtri" },
   "opt_dedup":          { "message": "Rimuovi duplicati" },
-  "opt_http":           { "message": "Solo http/https" },
   "opt_nopinned":       { "message": "Escludi schede [fissate]" },
   "opt_nopinned_hint":  { "message": "Salta le schede fissate nel browser" },
   "exclude_label":      { "message": "Pattern di esclusione" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Aprire molte schede?" },
 
   "advanced":          { "message": "Avanzate" },
-  "filters_title_alt": { "message": "Filtri" },
 
   "shortcuts_title":       { "message": "Scorciatoie da tastiera" },
   "shortcuts_copy_suffix": { "message": "Copia URL" },

@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Фильтры" },
   "opt_dedup":          { "message": "Удалить дубликаты" },
-  "opt_http":           { "message": "Только http/https" },
   "opt_nopinned":       { "message": "Исключить [закрепленные] вкладки" },
   "opt_nopinned_hint":  { "message": "Пропускает закрепленные вкладки в браузере" },
   "exclude_label":      { "message": "Шаблоны исключения" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Открыть много вкладок?" },
 
   "advanced":          { "message": "Расширенные" },
-  "filters_title_alt": { "message": "Фильтры" },
 
   "shortcuts_title":       { "message": "Сочетания клавиш" },
   "shortcuts_copy_suffix": { "message": "Копировать URL" },

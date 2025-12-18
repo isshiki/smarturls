@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filter" },
   "opt_dedup":          { "message": "Hapus duplikat" },
-  "opt_http":           { "message": "Hanya http/https" },
   "opt_nopinned":       { "message": "Kecualikan tab [disematkan]" },
   "opt_nopinned_hint":  { "message": "Melewati tab yang disematkan di browser" },
   "exclude_label":      { "message": "Pola pengecualian" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Buka banyak tab?" },
 
   "advanced":          { "message": "Lanjutan" },
-  "filters_title_alt": { "message": "Filter" },
 
   "shortcuts_title":       { "message": "Pintasan keyboard" },
   "shortcuts_copy_suffix": { "message": "Salin URL" },

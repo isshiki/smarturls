@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "Filters" },
   "opt_dedup":          { "message": "Remove duplicates" },
-  "opt_http":           { "message": "http/https only" },
   "opt_nopinned":       { "message": "Exclude [pinned] tabs" },
   "opt_nopinned_hint":  { "message": "Skip tabs that are pinned in the browser" },
   "exclude_label":      { "message": "Exclude patterns" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "Open many tabs?" },
 
   "advanced":          { "message": "Advanced" },
-  "filters_title_alt": { "message": "Filters" },
 
   "shortcuts_title":       { "message": "Keyboard Shortcuts" },
   "shortcuts_copy_suffix": { "message": "Copy URLs" },

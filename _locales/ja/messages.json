@@ -35,7 +35,6 @@
 
   "filters_title":      { "message": "フィルター" },
   "opt_dedup":          { "message": "重複URLを除外" },
-  "opt_http":           { "message": "http/httpsのみ" },
   "opt_nopinned":       { "message": "［固定］を除外" },
   "opt_nopinned_hint":  { "message": "ブラウザで［固定］されているタブをスキップします" },
   "exclude_label":      { "message": "除外パターン" },
@@ -57,7 +56,6 @@
   "confirm_many":   { "message": "大量のタブを開きます。続行しますか？" },
 
   "advanced":          { "message": "詳細設定" },
-  "filters_title_alt": { "message": "フィルター" },
 
   "shortcuts_title":       { "message": "キーボードショートカット" },
   "shortcuts_copy_suffix": { "message": "URLをコピー" },
