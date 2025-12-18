@@ -98,19 +98,20 @@
             <input type="checkbox" id="chkCopyProtocolRestrict" checked />
             <span data-i18n="protocol_restrict_label">Restrict protocols</span>
           </label>
-          <label class="row" style="margin-left: 1.5em;">
-            <span data-i18n="protocol_allowed_label">Allowed:</span>
+          <div style="display: flex; align-items: center; margin: 6px 0 6px 1.5em; gap: 4px;">
+            <span data-i18n="protocol_allowed_label" style="white-space: nowrap;">Allowed:</span>
             <input
               type="text"
               id="copyProtocolAllowed"
-              value="http,https,file"
-              style="flex: 1; margin-left: 4px; min-width: 0;"
+              value="http, https, file"
+              maxlength="120"
+              style="flex: 1; min-width: 80px;"
               data-i18n-placeholder="protocol_allowed_placeholder"
               data-i18n-title="protocol_allowed_hint"
               placeholder="e.g., http, https, file, chrome, view-source"
               title="Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all."
             />
-          </label>
+          </div>
         </div>
 
         <div class="field">
@@ -226,19 +227,20 @@
             <input type="checkbox" id="chkOpenProtocolRestrict" checked />
             <span data-i18n="protocol_restrict_label">Restrict protocols</span>
           </label>
-          <label class="row" style="margin-left: 1.5em;">
-            <span data-i18n="protocol_allowed_label">Allowed:</span>
+          <div style="display: flex; align-items: center; margin: 6px 0 6px 1.5em; gap: 4px;">
+            <span data-i18n="protocol_allowed_label" style="white-space: nowrap;">Allowed:</span>
             <input
               type="text"
               id="openProtocolAllowed"
-              value="http,https,file"
-              style="flex: 1; margin-left: 4px; min-width: 0;"
+              value="http, https, file"
+              maxlength="120"
+              style="flex: 1; min-width: 80px;"
               data-i18n-placeholder="protocol_allowed_placeholder"
               data-i18n-title="protocol_allowed_hint"
               placeholder="e.g., http, https, file, chrome, view-source"
               title="Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all."
             />
-          </label>
+          </div>
         </div>
 
         <div class="field">

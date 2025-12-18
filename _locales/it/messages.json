@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "Limita protocolli" },
   "protocol_allowed_label":     { "message": "Consentiti:" },
   "protocol_allowed_placeholder": { "message": "es., http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "Specificare i protocolli consentiti separati da virgole (es., http, https, file). Disattivare per consentire tutti." },
+  "protocol_allowed_hint":      { "message": "Specificare i protocolli consentiti separati da virgole (es., http, https, file). Disattivare per consentire tutti" },
   "opened_skipped_suffix":      { "message": " (Saltati: {count} / filtro protocollo)" },
-  "opened_failed_suffix":       { "message": " (Falliti: {count})" }
+  "opened_skipped_with_proto_suffix": { "message": " (Saltati: {count} / {protocols})" },
+  "opened_failed_suffix":       { "message": " (Falliti: {count})" },
+  "opened_failed_with_proto_suffix": { "message": " (Errore: {count} / {protocols})" },
+
+  "protocol_skipped_suffix":      { "message": " (Saltati: {count} / filtro protocollo)" },
+  "protocol_skipped_with_proto_suffix": { "message": " (Saltati: {count} / {protocols})" },
+  "protocol_failed_suffix":       { "message": " (Falliti: {count})" },
+  "protocol_failed_with_proto_suffix": { "message": " (Errore: {count} / {protocols})" }
 }

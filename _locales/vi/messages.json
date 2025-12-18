@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "Hạn chế giao thức" },
   "protocol_allowed_label":     { "message": "Cho phép:" },
   "protocol_allowed_placeholder": { "message": "vd., http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "Chỉ định các giao thức được phép phân tách bằng dấu phẩy (vd., http, https, file). TẮT để cho phép tất cả." },
+  "protocol_allowed_hint":      { "message": "Chỉ định các giao thức được phép phân tách bằng dấu phẩy (vd., http, https, file). TẮT để cho phép tất cả" },
   "opened_skipped_suffix":      { "message": " (Đã bỏ qua: {count} / lọc giao thức)" },
-  "opened_failed_suffix":       { "message": " (Thất bại: {count})" }
+  "opened_skipped_with_proto_suffix": { "message": " (Đã bỏ qua: {count} / {protocols})" },
+  "opened_failed_suffix":       { "message": " (Thất bại: {count})" },
+  "opened_failed_with_proto_suffix": { "message": " (Thất bại: {count} / {protocols})" },
+
+  "protocol_skipped_suffix":      { "message": " (Đã bỏ qua: {count} / lọc giao thức)" },
+  "protocol_skipped_with_proto_suffix": { "message": " (Đã bỏ qua: {count} / {protocols})" },
+  "protocol_failed_suffix":       { "message": " (Thất bại: {count})" },
+  "protocol_failed_with_proto_suffix": { "message": " (Thất bại: {count} / {protocols})" }
 }

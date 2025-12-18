@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "Restringir protocolos" },
   "protocol_allowed_label":     { "message": "Permitidos:" },
   "protocol_allowed_placeholder": { "message": "ej., http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "Especifique los protocolos permitidos separados por comas (ej., http, https, file). Desactive para permitir todos." },
+  "protocol_allowed_hint":      { "message": "Especifique los protocolos permitidos separados por comas (ej., http, https, file). Desactive para permitir todos" },
   "opened_skipped_suffix":      { "message": " (Omitidos: {count} / filtrado por protocolo)" },
-  "opened_failed_suffix":       { "message": " (Fallidos: {count})" }
+  "opened_skipped_with_proto_suffix": { "message": " (Omitidos: {count} / {protocols})" },
+  "opened_failed_suffix":       { "message": " (Fallidos: {count})" },
+  "opened_failed_with_proto_suffix": { "message": " (Error: {count} / {protocols})" },
+
+  "protocol_skipped_suffix":      { "message": " (Omitidos: {count} / filtrado por protocolo)" },
+  "protocol_skipped_with_proto_suffix": { "message": " (Omitidos: {count} / {protocols})" },
+  "protocol_failed_suffix":       { "message": " (Fallidos: {count})" },
+  "protocol_failed_with_proto_suffix": { "message": " (Error: {count} / {protocols})" }
 }

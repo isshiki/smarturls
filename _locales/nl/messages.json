@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "Protocollen beperken" },
   "protocol_allowed_label":     { "message": "Toegestaan:" },
   "protocol_allowed_placeholder": { "message": "bijv., http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "Geef toegestane protocollen op, gescheiden door komma's (bijv., http, https, file). Uitschakelen om alles toe te staan." },
+  "protocol_allowed_hint":      { "message": "Geef toegestane protocollen op, gescheiden door komma's (bijv., http, https, file). Uitschakelen om alles toe te staan" },
   "opened_skipped_suffix":      { "message": " (Overgeslagen: {count} / protocolfilter)" },
-  "opened_failed_suffix":       { "message": " (Mislukt: {count})" }
+  "opened_skipped_with_proto_suffix": { "message": " (Overgeslagen: {count} / {protocols})" },
+  "opened_failed_suffix":       { "message": " (Mislukt: {count})" },
+  "opened_failed_with_proto_suffix": { "message": " (Mislukt: {count} / {protocols})" },
+
+  "protocol_skipped_suffix":      { "message": " (Overgeslagen: {count} / protocolfilter)" },
+  "protocol_skipped_with_proto_suffix": { "message": " (Overgeslagen: {count} / {protocols})" },
+  "protocol_failed_suffix":       { "message": " (Mislukt: {count})" },
+  "protocol_failed_with_proto_suffix": { "message": " (Mislukt: {count} / {protocols})" }
 }

@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "プロトコルを制限" },
   "protocol_allowed_label":     { "message": "許可:" },
   "protocol_allowed_placeholder": { "message": "例: http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "カンマで区切って許可するプロトコルを指定（例: http, https, file）。OFFにするとすべて許可されます。" },
+  "protocol_allowed_hint":      { "message": "カンマで区切って許可するプロトコルを指定（例: http, https, file）。OFFにするとすべて許可されます" },
   "opened_skipped_suffix":      { "message": "（スキップ: {count} / プロトコル対象外）" },
-  "opened_failed_suffix":       { "message": "（失敗: {count}）" }
+  "opened_skipped_with_proto_suffix": { "message": "（スキップ: {count} / {protocols}）" },
+  "opened_failed_suffix":       { "message": "（失敗: {count}）" },
+  "opened_failed_with_proto_suffix": { "message": "（失敗: {count} / {protocols}）" },
+
+  "protocol_skipped_suffix":      { "message": "（スキップ: {count} / プロトコル対象外）" },
+  "protocol_skipped_with_proto_suffix": { "message": "（スキップ: {count} / {protocols}）" },
+  "protocol_failed_suffix":       { "message": "（失敗: {count}）" },
+  "protocol_failed_with_proto_suffix": { "message": "（失敗: {count} / {protocols}）" }
 }

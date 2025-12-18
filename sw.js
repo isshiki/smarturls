@@ -37,6 +37,35 @@ function isSafeHttpUrl(value) {
   }
 }
 
+/**
+ * Check if URL is safe to open based on allowed protocols.
+ * @param {string} value - URL to check
+ * @param {Set<string>} allowedProtocols - Set of allowed protocols (e.g., Set(['https:', 'file:']))
+ * @returns {boolean} - True if URL is safe to open
+ */
+function isSafeUrlForOpen(value, allowedProtocols) {
+  // Empty allowlist = fail-closed (block all)
+  if (!allowedProtocols || allowedProtocols.size === 0) {
+    return false;
+  }
+
+  try {
+    const u = new URL(String(value));
+
+    // Check if protocol is in the allowed list
+    if (!allowedProtocols.has(u.protocol)) {
+      return false;
+    }
+
+    // All protocols in allowlist are considered safe for attempt
+    // (failure to open due to permissions will be caught by chrome.tabs.create)
+    return true;
+  } catch {
+    // Malformed URLs rejected
+    return false;
+  }
+}
+
 /** Tiny sleep helper. */
 function delay(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -45,20 +74,31 @@ function delay(ms) {
 /**
  * Open URLs in new background tabs with validation and throttling
  *
- * Sanitizes input, validates URLs (http/https only), and opens tabs with a delay
- * to avoid browser throttling. Enforces MAX_OPEN_TABS limit for safety.
+ * Sanitizes input, validates URLs based on allowed protocols, and opens tabs with
+ * a delay to avoid browser throttling. Enforces MAX_OPEN_TABS limit for safety.
  *
  * @param {string[]} urls - Array of URLs to open
  * @param {number} limit - Maximum number of tabs to open (capped at MAX_OPEN_TABS)
- * @returns {Promise<{ok: boolean, opened: number, requested: number, accepted: number, limitedTo: number, max: number}>}
+ * @param {Set<string>} allowedProtocols - Optional set of allowed protocols (e.g., Set(['https:', 'file:']))
+ * @returns {Promise<{ok: boolean, opened: number, requested: number, accepted: number, limitedTo: number, max: number, failed: number, failedFile: number, rejectedBySecurityBoundary: number}>}
  */
-async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
+async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS, allowedProtocols = null) {
   // Normalize and sanitize input
   const allUrls = Array.isArray(urls) ? urls.map(String) : [];
 
-  // Apply security boundary (http/https only)
-  const safeUrls = allUrls.filter(isSafeHttpUrl);
-  const rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
+  // Apply security boundary based on allowlist
+  let safeUrls;
+  let rejectedBySecurityBoundary = 0;
+
+  if (allowedProtocols && allowedProtocols.size > 0) {
+    // Use allowlist-aware security gate
+    safeUrls = allUrls.filter(u => isSafeUrlForOpen(u, allowedProtocols));
+    rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
+  } else {
+    // Fallback to http/https only if no allowlist provided
+    safeUrls = allUrls.filter(isSafeHttpUrl);
+    rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
+  }
 
   // Cap limit defensively
   const requestedLimit = Number.isFinite(Number(limit)) ? Number(limit) : MAX_OPEN_TABS;
@@ -67,6 +107,7 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
 
   let opened = 0;
   let failed = 0;
+  const failedProtocolsSet = new Set(); // Track unique protocols that failed
 
   for (const url of toOpen) {
     try {
@@ -75,15 +116,26 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
     } catch (e) {
       console.warn('[SW] Failed to open tab:', url, e);
       failed += 1;
+
+      // Collect failing protocol (normalized to no-colon form for display)
+      try {
+        const u = new URL(url);
+        const proto = u.protocol.replace(':', ''); // "file:" → "file"
+        failedProtocolsSet.add(proto);
+      } catch {}
     }
     await delay(OPEN_DELAY_MS);
   }
+
+  // Convert Set to sorted array for display
+  const failedProtocols = Array.from(failedProtocolsSet).sort();
 
   return {
     ok: true,
     opened,
     rejectedBySecurityBoundary,
     failed,
+    failedProtocols, // NEW: ["file", "http"] etc.
     requested: allUrls.length,
     accepted: safeUrls.length,
     limitedTo: finalLimit,
@@ -92,7 +144,7 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS) {
 }
 
 /**
- * Message handler: { type: "OPEN_URLS", urls: string[], limit?: number }
+ * Message handler: { type: "OPEN_URLS", urls: string[], limit?: number, allowedProtocols?: string[] }
  *
  * Used by popup.js when the user clicks the Open button. The service worker's
  * keyboard shortcut handler (handleOpenCommand) calls openUrlsInTabs() directly
@@ -109,8 +161,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return;
   }
 
+  // Reconstruct Set from array for allowedProtocols
+  const allowed = msg.allowedProtocols ? new Set(msg.allowedProtocols) : null;
+
   // Call the shared function and send response
-  openUrlsInTabs(msg.urls, msg.limit)
+  openUrlsInTabs(msg.urls, msg.limit, allowed)
     .then((result) => {
       sendResponse(result);
     })
@@ -199,7 +254,7 @@ async function handleOpenCommand() {
       return;
     }
 
-    const { urls, count, skippedByProtocol } = await prepareOpenUrls(text);
+    const { urls, count, skippedByProtocol, skippedProtocols, allowedProtocols } = await prepareOpenUrls(text);
 
     if (count === 0) {
       await chrome.notifications.create('open-no-urls', {
@@ -213,7 +268,7 @@ async function handleOpenCommand() {
     }
 
     // Open tabs directly (avoids message-passing overhead)
-    const response = await openUrlsInTabs(urls, MAX_OPEN_TABS);
+    const response = await openUrlsInTabs(urls, MAX_OPEN_TABS, allowedProtocols);
 
     if (response?.ok) {
       // Build compact status message
@@ -221,16 +276,40 @@ async function handleOpenCommand() {
 
       // Add protocol skip count (user's allowlist filtered these out)
       if (skippedByProtocol > 0) {
-        const suffix = chrome.i18n.getMessage('opened_skipped_suffix')
-          .replace('{count}', skippedByProtocol);
+        let suffix;
+
+        if (skippedProtocols && skippedProtocols.length > 0) {
+          // Use protocol-specific template
+          const protocols = skippedProtocols.join(',');
+          suffix = chrome.i18n.getMessage('protocol_skipped_with_proto_suffix')
+            .replace('{count}', skippedByProtocol)
+            .replace('{protocols}', protocols);
+        } else {
+          // Use generic template
+          suffix = chrome.i18n.getMessage('protocol_skipped_suffix')
+            .replace('{count}', skippedByProtocol);
+        }
+
         message += suffix;
       }
 
       // Add failure count (security boundary rejected + chrome.tabs.create failed)
       const totalFailed = response.rejectedBySecurityBoundary + response.failed;
       if (totalFailed > 0) {
-        const suffix = chrome.i18n.getMessage('opened_failed_suffix')
-          .replace('{count}', totalFailed);
+        let suffix;
+
+        if (response.failedProtocols && response.failedProtocols.length > 0) {
+          // Use protocol-specific template
+          const protocols = response.failedProtocols.join(','); // "file,http"
+          suffix = chrome.i18n.getMessage('protocol_failed_with_proto_suffix')
+            .replace('{count}', totalFailed)
+            .replace('{protocols}', protocols);
+        } else {
+          // Use generic template
+          suffix = chrome.i18n.getMessage('protocol_failed_suffix')
+            .replace('{count}', totalFailed);
+        }
+
         message += suffix;
       }
 

@@ -122,15 +122,33 @@ async function fetchTabs(scope, { copyProtocolRestrict, copyProtocolAllowed, noP
   } else {
     tabs = await chrome.tabs.query({ currentWindow: true });
   }
-  return tabs.filter(t => {
+
+  const skippedProtocolsSet = new Set();
+  let skippedByProtocol = 0;
+
+  const filtered = tabs.filter(t => {
     if (noPinned && t.pinned) return false;
     if (!t.url) return false;
+
     if (copyProtocolRestrict) {
       const allowed = parseProtocolAllowlist(copyProtocolAllowed);
-      if (!isProtocolAllowed(t.url, allowed)) return false;
+      if (!isProtocolAllowed(t.url, allowed)) {
+        // Track skipped protocol
+        try {
+          const proto = new URL(t.url).protocol.replace(':', '');
+          skippedProtocolsSet.add(proto);
+        } catch {}
+        skippedByProtocol++;
+        return false;
+      }
     }
+
     return true;
   });
+
+  const skippedProtocols = Array.from(skippedProtocolsSet).sort();
+
+  return { tabs: filtered, skippedByProtocol, skippedProtocols };
 }
 
 function sortTabs(tabs, key, desc) {
@@ -238,25 +256,28 @@ function utf8ByteLength(str) {
 function extractUrlsSmart(text) {
   const urls = new Set();
 
+  // Protocol-agnostic patterns (support file://, chrome://, etc.)
+  const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+
   // 1) Markdown [title](url)
-  const md = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi;
+  const md = new RegExp(`\\[[^\\]]+\\]\\((${protoPattern}[^\\s)]+)\\)`, 'gi');
   let m;
   while ((m = md.exec(text)) !== null) urls.add(m[1]);
 
   // 2) <https://...>
-  const angle = /<\s*(https?:\/\/[^>\s]+)\s*>/gi;
+  const angle = new RegExp(`<\\s*(${protoPattern}[^>\\s]+)\\s*>`, 'gi');
   while ((m = angle.exec(text)) !== null) urls.add(m[1]);
 
   // 3) HTML <a href="...">
-  const ahref = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi;
+  const ahref = new RegExp(`<a\\s[^>]*href=["'](${protoPattern}[^"'>\\s]+)["'][^>]*>`, 'gi');
   while ((m = ahref.exec(text)) !== null) urls.add(m[1]);
 
   // 4) JSON Lines {"url":"..."}
-  const jsonl = /"url"\s*:\s*"(https?:\/\/[^"]+)"/gi;
+  const jsonl = new RegExp(`"url"\\s*:\\s*"(${protoPattern}[^"]+)"`, 'gi');
   while ((m = jsonl.exec(text)) !== null) urls.add(m[1]);
 
   // 5) bare URLs
-  const bare = /https?:\/\/[^\s)\]>]+/gi;
+  const bare = new RegExp(`${protoPattern}[^\\s)\\]>]+`, 'gi');
   while ((m = bare.exec(text)) !== null) {
     let u = m[0];
     u = u.replace(/[),.>]+$/g, "");
@@ -269,17 +290,24 @@ function extractByFormat(fmt, text, tpl) {
   if (fmt === "smart") return extractUrlsSmart(text);
 
   const out = new Set();
-  const addIf = (u) => { if (u && /^https?:\/\//i.test(u)) out.add(u); };
+  // Accept any valid scheme://... URL
+  const addIf = (u) => {
+    if (u && /^[a-z][a-z0-9+.-]*:\/\//i.test(u)) {
+      out.add(u);
+    }
+  };
 
   if (fmt === "md") {
-    const r = /\[[^\]]+\]\((https?:\/\/[^\s)]+)\)/gi;
+    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+    const r = new RegExp(`\\[[^\\]]+\\]\\((${protoPattern}[^\\s)]+)\\)`, 'gi');
     let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
 
   } else if (fmt === "url") {
+    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
     text.split(/\r?\n/).forEach(line => {
       const s = line.trim();
-      const m = s.match(/^https?:\/\/[^\s)>\]]+$/i);
+      const m = s.match(new RegExp(`^${protoPattern}[^\\s)>\\]]+$`, 'i'));
       if (m) addIf(m[0]);
     });
 
@@ -290,7 +318,8 @@ function extractByFormat(fmt, text, tpl) {
     });
 
   } else if (fmt === "html") {
-    const r = /<a\s[^>]*href=["'](https?:\/\/[^"'>\s]+)["'][^>]*>/gi;
+    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+    const r = new RegExp(`<a\\s[^>]*href=["'](${protoPattern}[^"'>\\s]+)["'][^>]*>`, 'gi');
     let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
 
@@ -313,7 +342,8 @@ function extractByFormat(fmt, text, tpl) {
     pat = pat.split(esc("$nl")).join("\\n");
     otherTokens.forEach(tok => { pat = pat.split(esc(tok)).join(".*?"); });
     // $url is the only token that captures (extracts the URL from matched text)
-    pat = pat.split(esc("$url")).join("(https?://[^\\s)>\"]+)");
+    // Protocol-agnostic pattern
+    pat = pat.split(esc("$url")).join("([a-z][a-z0-9+.-]*://[^\\s)>\"]+)");
 
     let re;
     try {
@@ -336,7 +366,7 @@ function extractByFormat(fmt, text, tpl) {
       const m = re.exec(line);
       if (m && m[1]) {
         const u = m[1];
-        if (/^https?:\/\//i.test(u)) out.add(u);
+        if (/^[a-z][a-z0-9+.-]*:\/\//i.test(u)) out.add(u);
         matches++;
         if (matches >= LIMITS.customMaxMatches) break;
       }
@@ -350,16 +380,18 @@ function extractByFormat(fmt, text, tpl) {
 
 /**
  * Prepare copy data (fetch tabs and format)
- * Returns { text: string, count: number } or throws error
+ * Returns { text: string, count: number, skippedByProtocol: number, skippedProtocols: string[] } or throws error
  */
 async function prepareCopyData(config = null) {
   const cfg = config || Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
 
-  let tabs = await fetchTabs(cfg.scope, {
+  const { tabs: tabsRaw, skippedByProtocol, skippedProtocols } = await fetchTabs(cfg.scope, {
     copyProtocolRestrict: cfg.copyProtocolRestrict,
     copyProtocolAllowed: cfg.copyProtocolAllowed,
     noPinned: cfg.noPinned
   });
+
+  let tabs = tabsRaw;
   if (cfg.dedup) tabs = uniqueByUrl(tabs);
   tabs = sortTabs(tabs, cfg.sort, cfg.desc);
 
@@ -369,7 +401,7 @@ async function prepareCopyData(config = null) {
   const lines = tabs.map((t, i) => formatLine(t, cfg, i));
   const text = lines.join("\n");
 
-  return { text, count: lines.length };
+  return { text, count: lines.length, skippedByProtocol, skippedProtocols };
 }
 
 /**
@@ -388,16 +420,33 @@ async function prepareOpenUrls(text, config = null) {
   const ex = (cfg.excludeList || "").trim();
   if (ex) urls = urls.filter(u => !excludeFilter(u, ex));
 
+  let allowedProtocols = null;
+  const skippedProtocolsSet = new Set();
+
   if (cfg.openProtocolRestrict) {
-    const allowed = parseProtocolAllowlist(cfg.openProtocolAllowed);
+    allowedProtocols = parseProtocolAllowlist(cfg.openProtocolAllowed);
     const beforeCount = urls.length;
-    urls = urls.filter(u => isProtocolAllowed(u, allowed));
+
+    // Filter and collect skipped protocols
+    urls = urls.filter(u => {
+      const allowed = isProtocolAllowed(u, allowedProtocols);
+      if (!allowed) {
+        try {
+          const proto = new URL(u).protocol.replace(':', '');
+          skippedProtocolsSet.add(proto);
+        } catch {}
+      }
+      return allowed;
+    });
+
     skippedByProtocol = beforeCount - urls.length;
   }
 
   if (cfg.dedup) urls = Array.from(new Set(urls));
 
-  return { urls, count: urls.length, skippedByProtocol };
+  const skippedProtocols = Array.from(skippedProtocolsSet).sort();
+
+  return { urls, count: urls.length, skippedByProtocol, skippedProtocols, allowedProtocols };
 }
 
 /* ===================== Exports ===================== */

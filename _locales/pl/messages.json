@@ -80,7 +80,14 @@
   "protocol_restrict_label":    { "message": "Ogranicz protokoły" },
   "protocol_allowed_label":     { "message": "Dozwolone:" },
   "protocol_allowed_placeholder": { "message": "np., http, https, file, chrome, view-source" },
-  "protocol_allowed_hint":      { "message": "Określ dozwolone protokoły oddzielone przecinkami (np., http, https, file). Wyłącz, aby zezwolić na wszystkie." },
+  "protocol_allowed_hint":      { "message": "Określ dozwolone protokoły oddzielone przecinkami (np., http, https, file). Wyłącz, aby zezwolić na wszystkie" },
   "opened_skipped_suffix":      { "message": " (Pominięto: {count} / filtrowanie protokołu)" },
-  "opened_failed_suffix":       { "message": " (Nie udało się: {count})" }
+  "opened_skipped_with_proto_suffix": { "message": " (Pominięto: {count} / {protocols})" },
+  "opened_failed_suffix":       { "message": " (Nie udało się: {count})" },
+  "opened_failed_with_proto_suffix": { "message": " (Niepowodzenie: {count} / {protocols})" },
+
+  "protocol_skipped_suffix":      { "message": " (Pominięto: {count} / filtrowanie protokołu)" },
+  "protocol_skipped_with_proto_suffix": { "message": " (Pominięto: {count} / {protocols})" },
+  "protocol_failed_suffix":       { "message": " (Nie udało się: {count})" },
+  "protocol_failed_with_proto_suffix": { "message": " (Niepowodzenie: {count} / {protocols})" }
 }

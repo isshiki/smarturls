@@ -477,9 +477,31 @@ document.addEventListener("DOMContentLoaded", init);
 $("#btnCopy").addEventListener("click", async () => {
   try {
     // Use shared prepareCopyData function
-    const { text, count } = await prepareCopyData();
+    const { text, count, skippedByProtocol, skippedProtocols } = await prepareCopyData();
     await navigator.clipboard.writeText(text);
-    toast(t("copied_n", "Copied ") + `${count}`);
+
+    let message = t("copied_n", "Copied ") + `${count}`;
+
+    // Add protocol skip count if any
+    if (skippedByProtocol > 0) {
+      let suffix;
+
+      if (skippedProtocols && skippedProtocols.length > 0) {
+        // Use protocol-specific template
+        const protocols = skippedProtocols.join(',');
+        suffix = t("protocol_skipped_with_proto_suffix", ` (Skipped: ${skippedByProtocol} / {protocols})`)
+          .replace("{count}", skippedByProtocol)
+          .replace("{protocols}", protocols);
+      } else {
+        // Use generic template
+        suffix = t("protocol_skipped_suffix", ` (Skipped: ${skippedByProtocol} / protocol filtered)`)
+          .replace("{count}", skippedByProtocol);
+      }
+
+      message += suffix;
+    }
+
+    toast(message);
   } catch (e) {
     console.error(e);
     toast(t("copy_failed", "Copy failed"), false);
@@ -514,7 +536,7 @@ $("#btnOpen").addEventListener("click", async () => {
     }
 
     // Use shared prepareOpenUrls function
-    const { urls, count, skippedByProtocol } = await prepareOpenUrls(text, cfg);
+    const { urls, count, skippedByProtocol, skippedProtocols, allowedProtocols } = await prepareOpenUrls(text, cfg);
 
     if (count === 0) {
       toast(t("no_urls","No URLs found"), false);
@@ -529,7 +551,12 @@ $("#btnOpen").addEventListener("click", async () => {
 
     // Delegate to background service worker
     chrome.runtime.sendMessage(
-      { type: "OPEN_URLS", urls, limit },
+      {
+        type: "OPEN_URLS",
+        urls,
+        limit,
+        allowedProtocols: allowedProtocols ? Array.from(allowedProtocols) : null
+      },
       (res) => {
         if (chrome.runtime.lastError) {
           toast(t("open_failed","Open failed") + ": " + chrome.runtime.lastError.message, false);
@@ -537,15 +564,39 @@ $("#btnOpen").addEventListener("click", async () => {
           let message = t("opened_n","Opened ") + `${res.opened}`;
 
           if (skippedByProtocol > 0) {
-            const suffix = t("opened_skipped_suffix", ` (Skipped: ${skippedByProtocol} / protocol filtered)`)
-              .replace("{count}", skippedByProtocol);
+            let suffix;
+
+            if (skippedProtocols && skippedProtocols.length > 0) {
+              // Use protocol-specific template
+              const protocols = skippedProtocols.join(',');
+              suffix = t("protocol_skipped_with_proto_suffix", ` (Skipped: ${skippedByProtocol} / {protocols})`)
+                .replace("{count}", skippedByProtocol)
+                .replace("{protocols}", protocols);
+            } else {
+              // Use generic template
+              suffix = t("protocol_skipped_suffix", ` (Skipped: ${skippedByProtocol} / protocol filtered)`)
+                .replace("{count}", skippedByProtocol);
+            }
+
             message += suffix;
           }
 
           const totalFailed = (res.rejectedBySecurityBoundary || 0) + (res.failed || 0);
           if (totalFailed > 0) {
-            const suffix = t("opened_failed_suffix", ` (Failed: ${totalFailed})`)
-              .replace("{count}", totalFailed);
+            let suffix;
+
+            if (res.failedProtocols && res.failedProtocols.length > 0) {
+              // Use protocol-specific template
+              const protocols = res.failedProtocols.join(',');
+              suffix = t("protocol_failed_with_proto_suffix", ` (Failed: ${totalFailed} / {protocols})`)
+                .replace("{count}", totalFailed)
+                .replace("{protocols}", protocols);
+            } else {
+              // Use generic template
+              suffix = t("protocol_failed_suffix", ` (Failed: ${totalFailed})`)
+                .replace("{count}", totalFailed);
+            }
+
             message += suffix;
           }
 
