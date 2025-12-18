@@ -81,10 +81,6 @@
   "protocol_allowed_label":     { "message": "İzin verilen:" },
   "protocol_allowed_placeholder": { "message": "örn., http, https, file, chrome, view-source" },
   "protocol_allowed_hint":      { "message": "Virgülle ayrılmış izin verilen protokolleri belirtin (örn., http, https, file). Tümüne izin vermek için KAPATIN" },
-  "opened_skipped_suffix":      { "message": " (Atlanan: {count} / protokol filtresi)" },
-  "opened_skipped_with_proto_suffix": { "message": " (Atlanan: {count} / {protocols})" },
-  "opened_failed_suffix":       { "message": " (Başarısız: {count})" },
-  "opened_failed_with_proto_suffix": { "message": " (Başarısız: {count} / {protocols})" },
 
   "protocol_skipped_suffix":      { "message": " (Atlanan: {count} / protokol filtresi)" },
   "protocol_skipped_with_proto_suffix": { "message": " (Atlanan: {count} / {protocols})" },

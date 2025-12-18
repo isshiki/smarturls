@@ -81,10 +81,6 @@
   "protocol_allowed_label":     { "message": "允许:" },
   "protocol_allowed_placeholder": { "message": "例如: http, https, file, chrome, view-source" },
   "protocol_allowed_hint":      { "message": "指定允许的协议，用逗号分隔（例如: http, https, file）。关闭以允许所有协议" },
-  "opened_skipped_suffix":      { "message": " (已跳过: {count} / 协议过滤)" },
-  "opened_skipped_with_proto_suffix": { "message": " (已跳过: {count} / {protocols})" },
-  "opened_failed_suffix":       { "message": " (失败: {count})" },
-  "opened_failed_with_proto_suffix": { "message": " (失败: {count} / {protocols})" },
 
   "protocol_skipped_suffix":      { "message": " (已跳过: {count} / 协议过滤)" },
   "protocol_skipped_with_proto_suffix": { "message": " (已跳过: {count} / {protocols})" },

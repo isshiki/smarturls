@@ -81,10 +81,6 @@
   "protocol_allowed_label":     { "message": "Allowed:" },
   "protocol_allowed_placeholder": { "message": "e.g., http, https, file, chrome, view-source" },
   "protocol_allowed_hint":      { "message": "Specify allowed protocols separated by commas (e.g., http, https, file). Turn OFF to allow all" },
-  "opened_skipped_suffix":      { "message": " (Skipped: {count} / protocol filtered)" },
-  "opened_skipped_with_proto_suffix": { "message": " (Skipped: {count} / {protocols})" },
-  "opened_failed_suffix":       { "message": " (Failed: {count})" },
-  "opened_failed_with_proto_suffix": { "message": " (Failed: {count} / {protocols})" },
 
   "protocol_skipped_suffix":      { "message": " (Skipped: {count} / protocol filtered)" },
   "protocol_skipped_with_proto_suffix": { "message": " (Skipped: {count} / {protocols})" },

@@ -81,10 +81,6 @@
   "protocol_allowed_label":     { "message": "Разрешено:" },
   "protocol_allowed_placeholder": { "message": "напр., http, https, file, chrome, view-source" },
   "protocol_allowed_hint":      { "message": "Укажите разрешенные протоколы через запятую (напр., http, https, file). Отключите для разрешения всех" },
-  "opened_skipped_suffix":      { "message": " (Пропущено: {count} / фильтрация протокола)" },
-  "opened_skipped_with_proto_suffix": { "message": " (Пропущено: {count} / {protocols})" },
-  "opened_failed_suffix":       { "message": " (Не удалось: {count})" },
-  "opened_failed_with_proto_suffix": { "message": " (Не удалось: {count} / {protocols})" },
 
   "protocol_skipped_suffix":      { "message": " (Пропущено: {count} / фильтрация протокола)" },
   "protocol_skipped_with_proto_suffix": { "message": " (Пропущено: {count} / {protocols})" },

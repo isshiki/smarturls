@@ -81,10 +81,6 @@
   "protocol_allowed_label":     { "message": "허용:" },
   "protocol_allowed_placeholder": { "message": "예: http, https, file, chrome, view-source" },
   "protocol_allowed_hint":      { "message": "쉼표로 구분하여 허용된 프로토콜을 지정하세요(예: http, https, file). 모두 허용하려면 끄세요" },
-  "opened_skipped_suffix":      { "message": " (건너뜀: {count} / 프로토콜 필터링)" },
-  "opened_skipped_with_proto_suffix": { "message": " (건너뜀: {count} / {protocols})" },
-  "opened_failed_suffix":       { "message": " (실패: {count})" },
-  "opened_failed_with_proto_suffix": { "message": " (실패: {count} / {protocols})" },
 
   "protocol_skipped_suffix":      { "message": " (건너뜀: {count} / 프로토콜 필터링)" },
   "protocol_skipped_with_proto_suffix": { "message": " (건너뜀: {count} / {protocols})" },
