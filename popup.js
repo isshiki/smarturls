@@ -345,29 +345,72 @@ async function init() {
     checkManualInputLength(); // Check initial value
   }
 
-  // Copy protocol allowlist length warning
+  // Helper: Check if protocol allowlist has invalid tokens
+  const hasInvalidProtocol = (input) => {
+    if (!input || !input.trim()) return false;
+    const schemePattern = /^[a-z][a-z0-9+.-]*$/i;
+    const entries = input.split(',');
+    return entries.some(entry => {
+      let scheme = entry.trim().toLowerCase();
+      if (!scheme) return false;
+      if (scheme.endsWith(':')) scheme = scheme.slice(0, -1);
+      return !schemePattern.test(scheme);
+    });
+  };
+
+  // Copy protocol allowlist warnings (length + validity)
   const copyProtocolInput = $("#copyProtocolAllowed");
   const copyProtocolWarning = $("#copyProtocolAllowed-warning");
   let checkCopyProtocolLength = null;
   if (copyProtocolInput && copyProtocolWarning) {
     checkCopyProtocolLength = () => {
       const len = copyProtocolInput.value.length;
-      const warnSuffix = t("tplTooLongSuffix", " — too long");
-      copyProtocolWarning.textContent = len > 100 ? warnSuffix : "";
+
+      // Priority 1: Length warning (if > 100)
+      if (len > 100) {
+        const warnSuffix = t("tplTooLongSuffix", " — too long");
+        copyProtocolWarning.textContent = warnSuffix;
+        return;
+      }
+
+      // Priority 2: Invalid protocol warning (if length OK but has invalid)
+      if (hasInvalidProtocol(copyProtocolInput.value)) {
+        const warnSuffix = t("invalidProtocolSuffix", " — invalid protocol");
+        copyProtocolWarning.textContent = warnSuffix;
+        return;
+      }
+
+      // No warnings
+      copyProtocolWarning.textContent = "";
     };
     copyProtocolInput.addEventListener("input", checkCopyProtocolLength);
     checkCopyProtocolLength(); // Check initial value
   }
 
-  // Open protocol allowlist length warning
+  // Open protocol allowlist warnings (length + validity)
   const openProtocolInput = $("#openProtocolAllowed");
   const openProtocolWarning = $("#openProtocolAllowed-warning");
   let checkOpenProtocolLength = null;
   if (openProtocolInput && openProtocolWarning) {
     checkOpenProtocolLength = () => {
       const len = openProtocolInput.value.length;
-      const warnSuffix = t("tplTooLongSuffix", " — too long");
-      openProtocolWarning.textContent = len > 100 ? warnSuffix : "";
+
+      // Priority 1: Length warning (if > 100)
+      if (len > 100) {
+        const warnSuffix = t("tplTooLongSuffix", " — too long");
+        openProtocolWarning.textContent = warnSuffix;
+        return;
+      }
+
+      // Priority 2: Invalid protocol warning (if length OK but has invalid)
+      if (hasInvalidProtocol(openProtocolInput.value)) {
+        const warnSuffix = t("invalidProtocolSuffix", " — invalid protocol");
+        openProtocolWarning.textContent = warnSuffix;
+        return;
+      }
+
+      // No warnings
+      openProtocolWarning.textContent = "";
     };
     openProtocolInput.addEventListener("input", checkOpenProtocolLength);
     checkOpenProtocolLength(); // Check initial value

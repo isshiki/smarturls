@@ -86,7 +86,7 @@ function parseProtocolAllowlist(input) {
 
     // Validate scheme format
     if (!schemePattern.test(scheme)) {
-      console.warn(`[actions] Invalid protocol scheme ignored: "${entry}"`);
+      console.debug(`[actions] Invalid protocol scheme ignored: "${entry}"`);
       continue;
     }
 

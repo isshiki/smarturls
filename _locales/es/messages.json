@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "Tokens: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nueva línea), …" },
   "custom_tpl_tokens_link":{ "message": "Ver lista completa." },
   "tplTooLongSuffix":      { "message": " — demasiado largo" },
+  "invalidProtocolSuffix": { "message": " — protocolo no válido" },
   "open_tpl_label":        { "message": "Plantilla personalizada de apertura" },
   "same_tokens_hint":   { "message": "Usa los mismos tipos de tokens que Copiar, ej.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

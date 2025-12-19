@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "Jetons : $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nouvelle ligne), …" },
   "custom_tpl_tokens_link":{ "message": "Voir la liste complète." },
   "tplTooLongSuffix":      { "message": " — trop long" },
+  "invalidProtocolSuffix": { "message": " — protocole invalide" },
   "open_tpl_label":        { "message": "Modèle personnalisé d'ouverture" },
   "same_tokens_hint":   { "message": "Utilisez les mêmes types de jetons que Copier, ex. : $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

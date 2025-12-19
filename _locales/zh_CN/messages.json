@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "令牌：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (换行), …" },
   "custom_tpl_tokens_link":{ "message": "查看完整列表。" },
   "tplTooLongSuffix":      { "message": " — 过长" },
+  "invalidProtocolSuffix": { "message": " — 无效协议" },
   "open_tpl_label":     { "message": "打开自定义模板" },
   "same_tokens_hint":   { "message": "使用与复制相同类型的令牌，例如：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

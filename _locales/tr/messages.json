@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "Tokenler: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (yeni satır), …" },
   "custom_tpl_tokens_link":{ "message": "Tam listeyi gör." },
   "tplTooLongSuffix":      { "message": " — çok uzun" },
+  "invalidProtocolSuffix": { "message": " — geçersiz protokol" },
   "open_tpl_label":     { "message": "Açma için özel şablon" },
   "same_tokens_hint":   { "message": "Kopyalama ile aynı token türlerini kullanın, örn.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

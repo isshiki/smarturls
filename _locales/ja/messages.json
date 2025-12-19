@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "トークン: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (改行), …" },
   "custom_tpl_tokens_link":{ "message": "全リストを見る。" },
   "tplTooLongSuffix":      { "message": " — 長すぎです" },
+  "invalidProtocolSuffix": { "message": " — 無効なプロトコルです" },
   "open_tpl_label":        { "message": "オープン用カスタムテンプレート" },
   "same_tokens_hint":   { "message": "コピーと同じ種類のトークンが使えます（例）：$$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

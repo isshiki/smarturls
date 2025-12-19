@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "토큰: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (줄바꿈), …" },
   "custom_tpl_tokens_link":{ "message": "전체 목록 보기." },
   "tplTooLongSuffix":      { "message": " — 너무 깁니다" },
+  "invalidProtocolSuffix": { "message": " — 잘못된 프로토콜" },
   "open_tpl_label":        { "message": "열기용 사용자 정의 템플릿" },
   "same_tokens_hint":   { "message": "복사와 동일한 유형의 토큰 사용 가능（예）： $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 

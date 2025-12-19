@@ -30,6 +30,7 @@
   "custom_tpl_tokens":     { "message": "Tokens: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, $$nl (nieuwe regel), …" },
   "custom_tpl_tokens_link":{ "message": "Zie volledige lijst." },
   "tplTooLongSuffix":      { "message": " — te lang" },
+  "invalidProtocolSuffix": { "message": " — ongeldig protocol" },
   "open_tpl_label":     { "message": "Aangepaste sjabloon voor openen" },
   "same_tokens_hint":   { "message": "Gebruik dezelfde soorten tokens als Kopiëren, bijv.: $$title, $$url, $$domain, $$path, $$basename, $$idx, $$date, $$time, …" },
 
