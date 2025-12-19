@@ -91,13 +91,14 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS, allowedProtocols = nu
   let rejectedBySecurityBoundary = 0;
 
   if (allowedProtocols && allowedProtocols.size > 0) {
-    // Use allowlist-aware security gate
+    // Protocol restriction ON: Use allowlist-aware security gate
     safeUrls = allUrls.filter(u => isSafeUrlForOpen(u, allowedProtocols));
     rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
   } else {
-    // Fallback to http/https only if no allowlist provided
-    safeUrls = allUrls.filter(isSafeHttpUrl);
-    rejectedBySecurityBoundary = allUrls.length - safeUrls.length;
+    // Protocol restriction OFF: No protocol filtering (allow all)
+    // Chrome's security boundaries and permissions still apply during chrome.tabs.create()
+    safeUrls = allUrls;
+    rejectedBySecurityBoundary = 0;
   }
 
   // Cap limit defensively

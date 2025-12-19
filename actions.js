@@ -249,6 +249,24 @@ function formatLine(tab, cfg, idx) {
 
 /* ===================== Open URL Extraction ===================== */
 
+/*
+ * view-source URL support:
+ * Extracts URLs with view-source: prefix (e.g., view-source:https://example.com)
+ *
+ * Test cases:
+ *   Input: [VS HTTPS](view-source:https://example.com)
+ *   Input: [VS FILE](view-source:file:///C:/test.txt)
+ *   Input: <view-source:https://example.com>
+ *   Input: view-source:https://example.com
+ *
+ * Expected behavior:
+ *   - Extracted into urls list
+ *   - Protocol detected as "view-source:" by new URL().protocol
+ *   - Allowed when "view-source" in protocol allowlist
+ *   - Skipped when not in allowlist (counted in skippedProtocols)
+ *   - Failed when Chrome blocks chrome.tabs.create() (permission/security)
+ */
+
 function utf8ByteLength(str) {
   return new TextEncoder().encode(str).length;
 }
@@ -256,15 +274,16 @@ function utf8ByteLength(str) {
 function extractUrlsSmart(text) {
   const urls = new Set();
 
-  // Protocol-agnostic patterns (support file://, chrome://, etc.)
-  const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+  // Protocol-agnostic patterns (support file://, chrome://, view-source:, etc.)
+  // Matches: scheme:// OR view-source:scheme://
+  const protoPattern = '(?:view-source:)?[a-z][a-z0-9+.-]*:\\/\\/';
 
   // 1) Markdown [title](url)
   const md = new RegExp(`\\[[^\\]]+\\]\\((${protoPattern}[^\\s)]+)\\)`, 'gi');
   let m;
   while ((m = md.exec(text)) !== null) urls.add(m[1]);
 
-  // 2) <https://...>
+  // 2) <https://...> or <view-source:...>
   const angle = new RegExp(`<\\s*(${protoPattern}[^>\\s]+)\\s*>`, 'gi');
   while ((m = angle.exec(text)) !== null) urls.add(m[1]);
 
@@ -276,7 +295,7 @@ function extractUrlsSmart(text) {
   const jsonl = new RegExp(`"url"\\s*:\\s*"(${protoPattern}[^"]+)"`, 'gi');
   while ((m = jsonl.exec(text)) !== null) urls.add(m[1]);
 
-  // 5) bare URLs
+  // 5) bare URLs (including bare view-source:...)
   const bare = new RegExp(`${protoPattern}[^\\s)\\]>]+`, 'gi');
   while ((m = bare.exec(text)) !== null) {
     let u = m[0];
@@ -290,21 +309,21 @@ function extractByFormat(fmt, text, tpl) {
   if (fmt === "smart") return extractUrlsSmart(text);
 
   const out = new Set();
-  // Accept any valid scheme://... URL
+  // Accept any valid scheme://... URL or view-source:scheme://... URL
   const addIf = (u) => {
-    if (u && /^[a-z][a-z0-9+.-]*:\/\//i.test(u)) {
+    if (u && /^(?:view-source:)?[a-z][a-z0-9+.-]*:\/\//i.test(u)) {
       out.add(u);
     }
   };
 
   if (fmt === "md") {
-    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+    const protoPattern = '(?:view-source:)?[a-z][a-z0-9+.-]*:\\/\\/';
     const r = new RegExp(`\\[[^\\]]+\\]\\((${protoPattern}[^\\s)]+)\\)`, 'gi');
     let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
 
   } else if (fmt === "url") {
-    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+    const protoPattern = '(?:view-source:)?[a-z][a-z0-9+.-]*:\\/\\/';
     text.split(/\r?\n/).forEach(line => {
       const s = line.trim();
       const m = s.match(new RegExp(`^${protoPattern}[^\\s)>\\]]+$`, 'i'));
@@ -318,7 +337,7 @@ function extractByFormat(fmt, text, tpl) {
     });
 
   } else if (fmt === "html") {
-    const protoPattern = '[a-z][a-z0-9+.-]*:\\/\\/';
+    const protoPattern = '(?:view-source:)?[a-z][a-z0-9+.-]*:\\/\\/';
     const r = new RegExp(`<a\\s[^>]*href=["'](${protoPattern}[^"'>\\s]+)["'][^>]*>`, 'gi');
     let m;
     while ((m = r.exec(text)) !== null) addIf(m[1]);
