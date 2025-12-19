@@ -189,7 +189,19 @@ async function load() {
 
   return cfg;
 }
-async function save(partial) { await chrome.storage.sync.set(partial); }
+async function save(partial) {
+  try {
+    await chrome.storage.sync.set(partial);
+  } catch (err) {
+    // Suppress quota/rate-limit errors to avoid "Uncaught (in promise)" in extension errors
+    if (err.message && (err.message.includes('QUOTA') || err.message.includes('MAX_WRITE'))) {
+      console.debug('[popup] Storage sync quota/rate limit hit, write skipped:', err.message);
+    } else {
+      // Re-throw unexpected errors
+      throw err;
+    }
+  }
+}
 
 /* ===================== Paste box ===================== */
 function updatePasteBox(forceKind) {
@@ -420,7 +432,7 @@ async function init() {
    ["chkCopyProtocolRestrict","copyProtocolRestrict"],
    ["chkOpenProtocolRestrict","openProtocolRestrict"]]
     .forEach(([id,key]) => $("#" + id).addEventListener("change", e => save({[key]: e.target.checked})));
-  ["excludeList","copyProtocolAllowed","openProtocolAllowed"].forEach(id => $("#" + id).addEventListener("input", e => save({[id]: e.target.value})));
+  ["excludeList","copyProtocolAllowed","openProtocolAllowed"].forEach(id => $("#" + id).addEventListener("change", e => save({[id]: e.target.value})));
 
   $("#chkCopyProtocolRestrict").addEventListener("change", () => {
     updateProtocolInputState("copy");
