@@ -3,7 +3,7 @@
 Deze FAQ legt uit waarom bevestigingsmeldingen mogelijk niet verschijnen bij het gebruik van sneltoetsen.
 Meldingen worden bepaald door de instellingen van je besturingssysteem en browser. SmartURLs kan deze regels niet overschrijven.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Waarom zie ik soms geen meldingspop-ups in Windows?**
 

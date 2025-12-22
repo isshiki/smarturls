@@ -3,7 +3,7 @@
 To FAQ wyjaśnia, dlaczego powiadomienia potwierdzające mogą się nie pojawić podczas używania skrótów klawiszowych.
 Powiadomienia są kontrolowane przez ustawienia systemu operacyjnego i przeglądarki. SmartURLs nie może nadpisać tych zasad.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Dlaczego czasami nie widzę wyskakujących powiadomień w Windows?**
 

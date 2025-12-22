@@ -3,7 +3,7 @@
 Questa FAQ spiega perché le notifiche di conferma potrebbero non apparire quando si usano le scorciatoie da tastiera.
 Le notifiche sono controllate dalle impostazioni del sistema operativo e del browser. SmartURLs non può sovrascrivere queste regole.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Perché a volte non vedo i pop-up di notifica su Windows?**
 

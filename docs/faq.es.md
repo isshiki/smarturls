@@ -3,7 +3,7 @@
 Este FAQ explica por qué las notificaciones de confirmación pueden no aparecer al usar atajos de teclado.
 Las notificaciones están controladas por la configuración del sistema operativo y del navegador. SmartURLs no puede anular esas reglas.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: ¿Por qué a veces no veo ventanas emergentes de notificación en Windows?**
 

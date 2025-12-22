@@ -3,7 +3,7 @@
 Diese FAQ erklärt, warum Bestätigungsbenachrichtigungen beim Verwenden von Tastenkürzeln möglicherweise nicht angezeigt werden.
 Benachrichtigungen werden von den Einstellungen Ihres Betriebssystems und Browsers gesteuert. SmartURLs kann diese Regeln nicht überschreiben.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Warum sehe ich unter Windows manchmal keine Benachrichtigungs-Pop-ups?**
 

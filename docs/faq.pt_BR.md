@@ -3,7 +3,7 @@
 Este FAQ explica por que as notificações de confirmação podem não aparecer ao usar atalhos de teclado.
 As notificações são controladas pelas configurações do sistema operacional e do navegador. O SmartURLs não pode substituir essas regras.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Por que às vezes não vejo pop-ups de notificação no Windows?**
 

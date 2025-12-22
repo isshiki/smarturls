@@ -3,7 +3,7 @@
 Bu SSS, klavye kısayolları kullanılırken onay bildirimlerinin neden görünmeyebileceğini açıklar.
 Bildirimler işletim sistemi ve tarayıcı ayarları tarafından kontrol edilir. SmartURLs bu kuralları geçersiz kılamaz.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Windows'ta bazen neden bildirim pop-up'larını görmüyorum?**
 

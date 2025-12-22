@@ -3,7 +3,7 @@
 이 FAQ는 키보드 바로가기를 사용할 때 확인 알림이 표시되지 않을 수 있는 이유를 설명합니다.
 알림은 OS와 브라우저 설정에 의해 제어됩니다. SmartURLs는 이러한 규칙을 변경할 수 없습니다.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Windows에서 알림 팝업이 가끔 보이지 않는 이유는 무엇인가요?**
 

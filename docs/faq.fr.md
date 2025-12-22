@@ -3,7 +3,7 @@
 Cette FAQ explique pourquoi les notifications de confirmation peuvent ne pas apparaître lors de l'utilisation de raccourcis clavier.
 Les notifications sont contrôlées par les paramètres du système d'exploitation et du navigateur. SmartURLs ne peut pas contourner ces règles.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Pourquoi ne vois-je pas toujours les pop-ups de notification sur Windows ?**
 

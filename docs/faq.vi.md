@@ -3,7 +3,7 @@
 FAQ này giải thích vì sao thông báo xác nhận có thể không xuất hiện khi dùng phím tắt.
 Thông báo được kiểm soát bởi cài đặt hệ điều hành và trình duyệt. SmartURLs không thể ghi đè các quy tắc này.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Vì sao đôi khi tôi không thấy pop-up thông báo trên Windows?**
 

@@ -3,7 +3,7 @@
 FAQ ini menjelaskan mengapa notifikasi konfirmasi mungkin tidak muncul saat menggunakan pintasan keyboard.
 Notifikasi dikendalikan oleh pengaturan sistem operasi dan browser Anda. SmartURLs tidak dapat menimpa aturan tersebut.
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Mengapa terkadang saya tidak melihat pop-up notifikasi di Windows?**
 

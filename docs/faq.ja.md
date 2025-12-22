@@ -3,7 +3,7 @@
 このFAQでは、キーボードショートカット使用時に確認通知が表示されない理由を説明します。
 通知はOSとブラウザの設定により制御されます。SmartURLsはそれらのルールを変更できません。
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: Windowsで通知ポップアップが表示されないことがあるのはなぜですか？**
 

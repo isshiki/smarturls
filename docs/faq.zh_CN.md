@@ -3,7 +3,7 @@
 此FAQ说明在使用键盘快捷键时，确认通知为何可能不会出现。
 通知由操作系统和浏览器设置控制，SmartURLs无法覆盖这些规则。
 
-## 🪟 Windows Notification Behavior
+## 💻 Windows Notification Behavior
 
 **Q: 为什么我在 Windows 上有时看不到通知弹窗？**
 
