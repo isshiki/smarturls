@@ -137,7 +137,6 @@ This is normal system behavior and not a bug.
 **Q: Why don't I see notification popups on macOS, even though actions are working?**
 
 On macOS, notifications from Chrome extensions are delivered via **“Google Chrome Helper (Alerts)”** and may not appear as pop-ups depending on system settings.
-
 This is normal behavior and not a bug.
 
 **Why this happens:**
