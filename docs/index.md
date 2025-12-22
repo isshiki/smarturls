@@ -93,11 +93,14 @@ Click a language to open its documentation.
 Each language includes:
 
 * **Custom Template Guide** (v1.4.0+)
-* **FAQ**
-* Syntax and tokens reference
-* Conditional block system
-* Examples and output previews
-* Limitations & compatibility notes
+  * Syntax and tokens reference
+  * Conditional block system
+  * Examples and output previews
+  * Limitations & compatibility notes
+* **FAQ** (v1.5.1+)
+  * Windows Notification Behavior
+  * macOS Notification Behavior
+  * Linux Notification Behavior
 
 ## 💬 Feedback
 
