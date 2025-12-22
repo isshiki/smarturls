@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Copier" },
   "open_btn":       { "message": "Ouvrir" },
+  "cancel_btn":     { "message": "Annuler" },
 
   "scope_label":    { "message": "Portée" },
   "scope_current":  { "message": "Fenêtre actuelle" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Non configuré" },
   "shortcuts_config":      { "message": "Configurer" },
   "shortcuts_config_hint": { "message": "Ouvre les paramètres des raccourcis Chrome" },
+  "shortcut_note":         { "message": "Remarque : Lors de l’utilisation d’un raccourci clavier, une notification de confirmation apparaît si le nombre d’URL dépasse la valeur définie ci-dessus (N). Si aucune notification n’apparaît, vérifiez les paramètres de notifications de votre système d’exploitation ou navigateur." },
   
   "commands_copy_from_tabs":      { "message": "Copier les URL des onglets" },
   "commands_open_from_clipboard": { "message": "Ouvrir les URL du presse-papiers" },

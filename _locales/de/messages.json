@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Kopieren" },
   "open_btn":       { "message": "Öffnen" },
+  "cancel_btn":     { "message": "Abbrechen" },
 
   "scope_label":    { "message": "Bereich" },
   "scope_current":  { "message": "Aktuelles Fenster" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Nicht konfiguriert" },
   "shortcuts_config":      { "message": "Konfigurieren" },
   "shortcuts_config_hint": { "message": "Öffnet die Chrome-Tastenkombinationseinstellungen" },
+  "shortcut_note":         { "message": "Hinweis: Bei Verwendung eines Tastenkürzels erscheint eine Bestätigungsbenachrichtigung, wenn die Anzahl der URLs den oben festgelegten Wert (N) überschreitet. Wenn keine Benachrichtigungen erscheinen, prüfen Sie die Benachrichtigungseinstellungen Ihres Betriebssystems oder Browsers." },
   
   "commands_copy_from_tabs":      { "message": "URLs aus Tabs kopieren" },
   "commands_open_from_clipboard": { "message": "URLs aus Zwischenablage öffnen" },

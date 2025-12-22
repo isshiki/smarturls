@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Kopyala" },
   "open_btn":       { "message": "Aç" },
+  "cancel_btn":     { "message": "İptal" },
 
   "scope_label":    { "message": "Kapsam" },
   "scope_current":  { "message": "Geçerli pencere" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Ayarlanmadı" },
   "shortcuts_config":      { "message": "Yapılandır" },
   "shortcuts_config_hint": { "message": "Chrome kısayol ayarlarını aç" },
+  "shortcut_note":         { "message": "Not: Klavye kısayolu kullanıldığında, URL sayısı yukarıda ayarlanan değeri (N) aşarsa bir onay bildirimi görünür. Bildirimler görünmüyorsa, işletim sistemi veya tarayıcı bildirim ayarlarını kontrol edin." },
   
   "commands_copy_from_tabs":      { "message": "Sekmelerden URL kopyala" },
   "commands_open_from_clipboard": { "message": "Panodan URL aç" },

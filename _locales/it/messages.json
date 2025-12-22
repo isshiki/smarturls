@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Copia" },
   "open_btn":       { "message": "Apri" },
+  "cancel_btn":     { "message": "Annulla" },
 
   "scope_label":    { "message": "Ambito" },
   "scope_current":  { "message": "Finestra corrente" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Non configurato" },
   "shortcuts_config":      { "message": "Configura" },
   "shortcuts_config_hint": { "message": "Apri impostazioni scorciatoie Chrome" },
+  "shortcut_note":         { "message": "Nota: Quando si usa una scorciatoia da tastiera, viene visualizzata una notifica di conferma se il numero di URL supera il valore impostato sopra (N). Se le notifiche non compaiono, controlla le impostazioni di notifica del sistema operativo o del browser." },
   
   "commands_copy_from_tabs":      { "message": "Copia URL dalle schede" },
   "commands_open_from_clipboard": { "message": "Apri URL dagli appunti" },

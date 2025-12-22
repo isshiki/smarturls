@@ -22,10 +22,86 @@ try {
 }
 
 /** Hard cap to avoid tab spam even if popup validation fails. */
-const MAX_OPEN_TABS = 30;
+const MAX_OPEN_TABS = 999;
 
 /** Small delay between opening tabs to reduce bursty behavior and throttling. */
 const OPEN_DELAY_MS = 60;
+
+/** Track pending open confirmations triggered by keyboard shortcuts. */
+const pendingOpenConfirmations = new Map();
+
+function buildOpenStatusMessage(response, skippedByProtocol, skippedProtocols) {
+  let message = chrome.i18n.getMessage('opened_n') + response.opened;
+
+  if (skippedByProtocol > 0) {
+    let suffix;
+
+    if (skippedProtocols && skippedProtocols.length > 0) {
+      const protocols = skippedProtocols.join(',');
+      suffix = chrome.i18n.getMessage('protocol_skipped_with_proto_suffix')
+        .replace('{count}', skippedByProtocol)
+        .replace('{protocols}', protocols);
+    } else {
+      suffix = chrome.i18n.getMessage('protocol_skipped_suffix')
+        .replace('{count}', skippedByProtocol);
+    }
+
+    message += suffix;
+  }
+
+  const totalFailed = (response.rejectedBySecurityBoundary || 0) + (response.failed || 0);
+  if (totalFailed > 0) {
+    let suffix;
+
+    if (response.failedProtocols && response.failedProtocols.length > 0) {
+      const protocols = response.failedProtocols.join(',');
+      suffix = chrome.i18n.getMessage('protocol_failed_with_proto_suffix')
+        .replace('{count}', totalFailed)
+        .replace('{protocols}', protocols);
+    } else {
+      suffix = chrome.i18n.getMessage('protocol_failed_suffix')
+        .replace('{count}', totalFailed);
+    }
+
+    message += suffix;
+  }
+
+  return message;
+}
+
+async function notifyOpenResult(response, skippedByProtocol, skippedProtocols) {
+  const message = buildOpenStatusMessage(response, skippedByProtocol, skippedProtocols);
+
+  await chrome.notifications.create('open-success', {
+    type: 'basic',
+    iconUrl: 'icons/icon128.png',
+    title: 'SmartURLs - Open',
+    message,
+    priority: 1
+  });
+}
+
+async function createOpenConfirmationNotification(pending) {
+  const notificationId = `open-confirm-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const confirmText = chrome.i18n.getMessage('confirm_many') || 'Open many tabs?';
+  const openText = chrome.i18n.getMessage('open_btn') || 'Open';
+  const cancelText = chrome.i18n.getMessage('cancel_btn') || 'Cancel';
+
+  pendingOpenConfirmations.set(notificationId, pending);
+
+  await chrome.notifications.create(notificationId, {
+    type: 'basic',
+    iconUrl: 'icons/icon128.png',
+    title: 'SmartURLs - Open',
+    message: `${confirmText} ${pending.count}`,
+    priority: 2,
+    requireInteraction: true,
+    buttons: [
+      { title: openText },
+      { title: cancelText }
+    ]
+  });
+}
 
 /** Validate URL is well-formed and limited to http/https to avoid scheme abuse. */
 function isSafeHttpUrl(value) {
@@ -75,14 +151,14 @@ function delay(ms) {
  * Open URLs in new background tabs with validation and throttling
  *
  * Sanitizes input, validates URLs based on allowed protocols, and opens tabs with
- * a delay to avoid browser throttling. Enforces MAX_OPEN_TABS limit for safety.
+ * a delay to avoid browser throttling.
  *
  * @param {string[]} urls - Array of URLs to open
- * @param {number} limit - Maximum number of tabs to open (capped at MAX_OPEN_TABS)
+ * @param {number|null} limit - Maximum number of tabs to open; null means open all (capped)
  * @param {Set<string>} allowedProtocols - Optional set of allowed protocols (e.g., Set(['https:', 'file:']))
  * @returns {Promise<{ok: boolean, opened: number, requested: number, accepted: number, limitedTo: number, max: number, failed: number, failedFile: number, rejectedBySecurityBoundary: number}>}
  */
-async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS, allowedProtocols = null) {
+async function openUrlsInTabs(urls, limit = null, allowedProtocols = null) {
   // Normalize and sanitize input
   const allUrls = Array.isArray(urls) ? urls.map(String) : [];
 
@@ -102,7 +178,7 @@ async function openUrlsInTabs(urls, limit = MAX_OPEN_TABS, allowedProtocols = nu
   }
 
   // Cap limit defensively
-  const requestedLimit = Number.isFinite(Number(limit)) ? Number(limit) : MAX_OPEN_TABS;
+  const requestedLimit = Number.isFinite(Number(limit)) ? Number(limit) : safeUrls.length;
   const finalLimit = Math.min(Math.max(0, requestedLimit), MAX_OPEN_TABS);
   const toOpen = safeUrls.slice(0, finalLimit);
 
@@ -201,6 +277,43 @@ chrome.commands.onCommand.addListener(async (command) => {
   }
 });
 
+chrome.notifications.onButtonClicked.addListener(async (notificationId, buttonIndex) => {
+  const pending = pendingOpenConfirmations.get(notificationId);
+  if (!pending) return;
+
+  pendingOpenConfirmations.delete(notificationId);
+  await chrome.notifications.clear(notificationId);
+
+  if (buttonIndex !== 0) {
+    return;
+  }
+
+  try {
+    const response = await openUrlsInTabs(pending.urls, pending.limit, pending.allowedProtocols);
+    if (response?.ok) {
+      await notifyOpenResult(response, pending.skippedByProtocol, pending.skippedProtocols);
+    } else {
+      throw new Error('Failed to open tabs');
+    }
+  } catch (err) {
+    console.error('[SW] Open failed:', err);
+
+    await chrome.notifications.create('open-error', {
+      type: 'basic',
+      iconUrl: 'icons/icon128.png',
+      title: 'SmartURLs - Open Failed',
+      message: err.message || 'Failed to open URLs',
+      priority: 2
+    });
+  }
+});
+
+chrome.notifications.onClosed.addListener((notificationId) => {
+  if (pendingOpenConfirmations.has(notificationId)) {
+    pendingOpenConfirmations.delete(notificationId);
+  }
+});
+
 /**
  * Handle Copy URLs command (Ctrl/Cmd+Shift+U)
  *
@@ -242,6 +355,7 @@ async function handleCopyCommand() {
  */
 async function handleOpenCommand() {
   try {
+    const cfg = Object.assign({}, defaults, await chrome.storage.sync.get(Object.keys(defaults)));
     const text = await readFromClipboard();
 
     if (!text || !text.trim()) {
@@ -255,7 +369,7 @@ async function handleOpenCommand() {
       return;
     }
 
-    const { urls, count, skippedByProtocol, skippedProtocols, allowedProtocols } = await prepareOpenUrls(text);
+    const { urls, count, skippedByProtocol, skippedProtocols, allowedProtocols } = await prepareOpenUrls(text, cfg);
 
     if (count === 0) {
       await chrome.notifications.create('open-no-urls', {
@@ -268,59 +382,24 @@ async function handleOpenCommand() {
       return;
     }
 
+    const confirmThreshold = Number(cfg.openLimit) || 30;
+    if (count > confirmThreshold) {
+      await createOpenConfirmationNotification({
+        urls,
+        count,
+        limit: urls.length,
+        allowedProtocols,
+        skippedByProtocol,
+        skippedProtocols
+      });
+      return;
+    }
+
     // Open tabs directly (avoids message-passing overhead)
-    const response = await openUrlsInTabs(urls, MAX_OPEN_TABS, allowedProtocols);
+    const response = await openUrlsInTabs(urls, urls.length, allowedProtocols);
 
     if (response?.ok) {
-      // Build compact status message
-      let message = chrome.i18n.getMessage('opened_n') + response.opened;
-
-      // Add protocol skip count (user's allowlist filtered these out)
-      if (skippedByProtocol > 0) {
-        let suffix;
-
-        if (skippedProtocols && skippedProtocols.length > 0) {
-          // Use protocol-specific template
-          const protocols = skippedProtocols.join(',');
-          suffix = chrome.i18n.getMessage('protocol_skipped_with_proto_suffix')
-            .replace('{count}', skippedByProtocol)
-            .replace('{protocols}', protocols);
-        } else {
-          // Use generic template
-          suffix = chrome.i18n.getMessage('protocol_skipped_suffix')
-            .replace('{count}', skippedByProtocol);
-        }
-
-        message += suffix;
-      }
-
-      // Add failure count (security boundary rejected + chrome.tabs.create failed)
-      const totalFailed = response.rejectedBySecurityBoundary + response.failed;
-      if (totalFailed > 0) {
-        let suffix;
-
-        if (response.failedProtocols && response.failedProtocols.length > 0) {
-          // Use protocol-specific template
-          const protocols = response.failedProtocols.join(','); // "file,http"
-          suffix = chrome.i18n.getMessage('protocol_failed_with_proto_suffix')
-            .replace('{count}', totalFailed)
-            .replace('{protocols}', protocols);
-        } else {
-          // Use generic template
-          suffix = chrome.i18n.getMessage('protocol_failed_suffix')
-            .replace('{count}', totalFailed);
-        }
-
-        message += suffix;
-      }
-
-      await chrome.notifications.create('open-success', {
-        type: 'basic',
-        iconUrl: 'icons/icon128.png',
-        title: 'SmartURLs - Open',
-        message,
-        priority: 1
-      });
+      await notifyOpenResult(response, skippedByProtocol, skippedProtocols);
       console.log(`[SW] Open succeeded: ${response.opened} tabs`);
     } else {
       throw new Error('Failed to open tabs');

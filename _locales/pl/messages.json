@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Kopiuj" },
   "open_btn":       { "message": "Otwórz" },
+  "cancel_btn":     { "message": "Anuluj" },
 
   "scope_label":    { "message": "Zakres" },
   "scope_current":  { "message": "Bieżące okno" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Nie skonfigurowano" },
   "shortcuts_config":      { "message": "Konfiguruj" },
   "shortcuts_config_hint": { "message": "Otwórz ustawienia skrótów Chrome" },
+  "shortcut_note":         { "message": "Uwaga: Podczas używania skrótu klawiszowego pojawi się powiadomienie o potwierdzeniu, jeśli liczba adresów URL przekroczy wartość ustawioną powyżej (N). Jeśli powiadomienia się nie pojawiają, sprawdź ustawienia powiadomień systemu operacyjnego lub przeglądarki." },
   
   "commands_copy_from_tabs":      { "message": "Kopiuj URL z kart" },
   "commands_open_from_clipboard": { "message": "Otwórz URL ze schowka" },

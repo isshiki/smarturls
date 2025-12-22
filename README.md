@@ -89,6 +89,7 @@ SmartURLs has full multi-language documentation for the Custom Template System (
 
 | Version | Date       | Notes                  |
 | ------- | ---------- | ---------------------- |
+| 1.5.1   | 2025-12-22 | Shortcut open confirmations via notifications |
 | 1.5.0   | 2025-12-19 | Protocol restrictions for copy/open with detailed status feedback |
 | 1.4.0   | 2025-12-11 | Custom Template System enhancements |
 | 1.3.0   | 2025-12-05 | Added keyboard shortcut support |

@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "コピー" },
   "open_btn":       { "message": "オープン" },
+  "cancel_btn":     { "message": "キャンセル" },
 
   "scope_label":    { "message": "対象" },
   "scope_current":  { "message": "現在のウィンドウ" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "未設定" },
   "shortcuts_config":      { "message": "設定する" },
   "shortcuts_config_hint": { "message": "Chromeのショートカット設定画面を開きます" },
+  "shortcut_note":         { "message": "注: ショートカットキーを使用する場合、URL数が上で設定した値（N）を超えると確認通知が表示されます。通知が表示されない場合は、OSまたはブラウザの通知設定を確認してください。" },
 
   "commands_copy_from_tabs":      { "message": "タブのURLをコピー" },
   "commands_open_from_clipboard": { "message": "クリップボードからURLを開く" },

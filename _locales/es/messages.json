@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Copiar" },
   "open_btn":       { "message": "Abrir" },
+  "cancel_btn":     { "message": "Cancelar" },
 
   "scope_label":    { "message": "Alcance" },
   "scope_current":  { "message": "Ventana actual" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "No configurado" },
   "shortcuts_config":      { "message": "Configurar" },
   "shortcuts_config_hint": { "message": "Abre la configuración de atajos de Chrome" },
+  "shortcut_note":         { "message": "Nota: Al usar un atajo de teclado, aparece una notificación de confirmación si el número de URL supera el valor establecido arriba (N). Si no aparecen notificaciones, comprueba la configuración de notificaciones del sistema operativo o del navegador." },
   
   "commands_copy_from_tabs":      { "message": "Copiar URLs de pestañas" },
   "commands_open_from_clipboard": { "message": "Abrir URLs desde portapapeles" },

@@ -629,8 +629,8 @@ $("#btnOpen").addEventListener("click", async () => {
     }
 
     // Confirmation for many tabs
-    const limit = Number(cfg.openLimit) || 30;
-    if (count > limit) {
+    const confirmThreshold = Number(cfg.openLimit) || 30;
+    if (count > confirmThreshold) {
       if (!confirm(`${t("confirm_many","Open many tabs?")} ${count}`)) return;
     }
 
@@ -639,7 +639,7 @@ $("#btnOpen").addEventListener("click", async () => {
       {
         type: "OPEN_URLS",
         urls,
-        limit,
+        limit: urls.length,
         allowedProtocols: allowedProtocols ? Array.from(allowedProtocols) : null
       },
       (res) => {

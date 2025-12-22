@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Копировать" },
   "open_btn":       { "message": "Открыть" },
+  "cancel_btn":     { "message": "Отмена" },
 
   "scope_label":    { "message": "Область" },
   "scope_current":  { "message": "Текущее окно" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Не настроено" },
   "shortcuts_config":      { "message": "Настроить" },
   "shortcuts_config_hint": { "message": "Открыть настройки сочетаний клавиш Chrome" },
+  "shortcut_note":         { "message": "Примечание: При использовании клавиатурного ярлыка появляется уведомление о подтверждении, если количество URL превышает заданное выше значение (N). Если уведомления не появляются, проверьте настройки уведомлений ОС или браузера." },
   
   "commands_copy_from_tabs":      { "message": "Копировать URL из вкладок" },
   "commands_open_from_clipboard": { "message": "Открыть URL из буфера обмена" },

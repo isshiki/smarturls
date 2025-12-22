@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Salin" },
   "open_btn":       { "message": "Buka" },
+  "cancel_btn":     { "message": "Batal" },
 
   "scope_label":    { "message": "Cakupan" },
   "scope_current":  { "message": "Jendela saat ini" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Tidak diatur" },
   "shortcuts_config":      { "message": "Konfigurasi" },
   "shortcuts_config_hint": { "message": "Buka pengaturan pintasan Chrome" },
+  "shortcut_note":         { "message": "Catatan: Saat menggunakan pintasan keyboard, notifikasi konfirmasi akan muncul jika jumlah URL melebihi nilai yang diatur di atas (N). Jika notifikasi tidak muncul, periksa pengaturan notifikasi sistem operasi atau browser." },
   
   "commands_copy_from_tabs":      { "message": "Salin URL dari tab" },
   "commands_open_from_clipboard": { "message": "Buka URL dari clipboard" },

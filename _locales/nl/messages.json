@@ -10,6 +10,7 @@
 
   "copy_btn":       { "message": "Kopiëren" },
   "open_btn":       { "message": "Openen" },
+  "cancel_btn":     { "message": "Annuleren" },
 
   "scope_label":    { "message": "Bereik" },
   "scope_current":  { "message": "Huidig venster" },
@@ -64,6 +65,7 @@
   "shortcut_not_set":      { "message": "Niet geconfigureerd" },
   "shortcuts_config":      { "message": "Configureren" },
   "shortcuts_config_hint": { "message": "Open Chrome sneltoetsen-instellingen" },
+  "shortcut_note":         { "message": "Opmerking: Bij gebruik van een sneltoets verschijnt er een bevestigingsmelding als het aantal URL's de hierboven ingestelde waarde (N) overschrijdt. Als er geen meldingen verschijnen, controleer dan de meldingsinstellingen van je besturingssysteem of browser." },
   
   "commands_copy_from_tabs":      { "message": "URL's van tabbladen kopiëren" },
   "commands_open_from_clipboard": { "message": "URL's van klembord openen" },
