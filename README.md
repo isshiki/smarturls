@@ -106,7 +106,7 @@ SmartURLs has full multi-language documentation for the Custom Template System (
 
 **Q: Why don't I see notification popups on Windows sometimes?**
 
-On Windows, notification behavior depends on **system notification settings*- and **Focus Assist (Do Not Disturb)**.
+On Windows, notification behavior depends on **system notification settings*- and **Focus Assist (Do Not Disturb)**.  
 This is normal system behavior and not a bug.
 
 **Why this happens:**
@@ -136,7 +136,7 @@ This is normal system behavior and not a bug.
 
 **Q: Why don't I see notification popups on macOS, even though actions are working?**
 
-On macOS, notifications from Chrome extensions are delivered via **“Google Chrome Helper (Alerts)”** and may not appear as pop-ups depending on system settings.
+On macOS, notifications from Chrome extensions are delivered via **“Google Chrome Helper (Alerts)”** and may not appear as pop-ups depending on system settings.  
 This is normal behavior and not a bug.
 
 **Why this happens:**
