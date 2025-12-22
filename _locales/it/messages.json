@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Non configurato" },
   "shortcuts_config":      { "message": "Configura" },
   "shortcuts_config_hint": { "message": "Apri impostazioni scorciatoie Chrome" },
-  "shortcut_note":         { "message": "Nota: Quando si usa una scorciatoia da tastiera, viene visualizzata una notifica di conferma se il numero di URL supera il valore impostato sopra (N). Se le notifiche non compaiono, controlla le impostazioni di notifica del sistema operativo o del browser." },
-  
+  "shortcut_note":         { "message": "Nota: Quando si usa una scorciatoia da tastiera, viene mostrata una notifica di conferma se il numero di URL supera il valore impostato sopra (N). Se non la vedi, controlla le impostazioni delle notifiche e la modalità Focus." },
+  "shortcut_note_link":    { "message": "Vedi FAQ." },
   "commands_copy_from_tabs":      { "message": "Copia URL dalle schede" },
   "commands_open_from_clipboard": { "message": "Apri URL dagli appunti" },
 

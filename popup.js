@@ -92,6 +92,25 @@ const HELP_URLS = {
   zh_TW: "https://isshiki.github.io/SmartURLs/custom-templates.zh_TW"
 };
 
+const FAQ_URLS = {
+  en: "https://isshiki.github.io/SmartURLs/faq.en",
+  ja: "https://isshiki.github.io/SmartURLs/faq.ja",
+  ko: "https://isshiki.github.io/SmartURLs/faq.ko",
+  es: "https://isshiki.github.io/SmartURLs/faq.es",
+  fr: "https://isshiki.github.io/SmartURLs/faq.fr",
+  de: "https://isshiki.github.io/SmartURLs/faq.de",
+  it: "https://isshiki.github.io/SmartURLs/faq.it",
+  pt_BR: "https://isshiki.github.io/SmartURLs/faq.pt_BR",
+  ru: "https://isshiki.github.io/SmartURLs/faq.ru",
+  nl: "https://isshiki.github.io/SmartURLs/faq.nl",
+  pl: "https://isshiki.github.io/SmartURLs/faq.pl",
+  tr: "https://isshiki.github.io/SmartURLs/faq.tr",
+  vi: "https://isshiki.github.io/SmartURLs/faq.vi",
+  id: "https://isshiki.github.io/SmartURLs/faq.id",
+  zh_CN: "https://isshiki.github.io/SmartURLs/faq.zh_CN",
+  zh_TW: "https://isshiki.github.io/SmartURLs/faq.zh_TW"
+};
+
 function getEffectiveLang() {
   // Get the effective language code
   if (currentLang !== "AutoLang") return currentLang;
@@ -108,6 +127,15 @@ function updateHelpLink() {
   const effectiveLang = getEffectiveLang();
   const url = HELP_URLS[effectiveLang] || HELP_URLS.en; // Fallback to English
   helpLink.href = url;
+}
+
+function updateFaqLink() {
+  const faqLink = $("#shortcut-note-link");
+  if (!faqLink) return;
+
+  const effectiveLang = getEffectiveLang();
+  const url = FAQ_URLS[effectiveLang] || FAQ_URLS.en; // Fallback to English
+  faqLink.href = url;
 }
 
 /* ===================== UI helpers ===================== */
@@ -270,6 +298,7 @@ async function init() {
   applyI18nPlaceholder();
   applyVersionBadge();
   updateHelpLink(); // Set help link URL based on current language
+  updateFaqLink(); // Set FAQ link URL based on current language
 
   // 4) bindings
   ["fmt","tpl","sort","openFmt","openTpl"].forEach(id => {
@@ -467,6 +496,7 @@ async function init() {
     if (checkOpenProtocolLength) checkOpenProtocolLength();
     // Update help link URL to reflect new language
     updateHelpLink();
+    updateFaqLink();
   });
 
   // source radio<->select sync

@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Chưa thiết lập" },
   "shortcuts_config":      { "message": "Cấu hình" },
   "shortcuts_config_hint": { "message": "Mở cài đặt phím tắt Chrome" },
-  "shortcut_note":         { "message": "Lưu ý: Khi dùng phím tắt, thông báo xác nhận sẽ xuất hiện nếu số lượng URL vượt quá giá trị được đặt ở trên (N). Nếu không thấy thông báo, hãy kiểm tra cài đặt thông báo của hệ điều hành hoặc trình duyệt." },
-  
+  "shortcut_note":         { "message": "Lưu ý: Khi dùng phím tắt, thông báo xác nhận sẽ hiển thị nếu số lượng URL vượt quá giá trị được đặt ở trên (N). Nếu bạn không thấy, hãy kiểm tra cài đặt thông báo và chế độ Tập trung." },
+  "shortcut_note_link":    { "message": "Xem FAQ." },
   "commands_copy_from_tabs":      { "message": "Sao chép URL từ tab" },
   "commands_open_from_clipboard": { "message": "Mở URL từ clipboard" },
 

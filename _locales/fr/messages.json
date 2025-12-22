@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Non configuré" },
   "shortcuts_config":      { "message": "Configurer" },
   "shortcuts_config_hint": { "message": "Ouvre les paramètres des raccourcis Chrome" },
-  "shortcut_note":         { "message": "Remarque : Lors de l’utilisation d’un raccourci clavier, une notification de confirmation apparaît si le nombre d’URL dépasse la valeur définie ci-dessus (N). Si aucune notification n’apparaît, vérifiez les paramètres de notifications de votre système d’exploitation ou navigateur." },
-  
+  "shortcut_note":         { "message": "Remarque : Lors de l’utilisation d’un raccourci clavier, une notification de confirmation s’affiche si le nombre d’URL dépasse la valeur définie ci-dessus (N). Si vous ne la voyez pas, vérifiez les paramètres de notifications et le mode Concentration." },
+  "shortcut_note_link":    { "message": "Voir la FAQ." },
   "commands_copy_from_tabs":      { "message": "Copier les URL des onglets" },
   "commands_open_from_clipboard": { "message": "Ouvrir les URL du presse-papiers" },
 

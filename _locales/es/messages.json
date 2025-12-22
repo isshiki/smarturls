@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "No configurado" },
   "shortcuts_config":      { "message": "Configurar" },
   "shortcuts_config_hint": { "message": "Abre la configuración de atajos de Chrome" },
-  "shortcut_note":         { "message": "Nota: Al usar un atajo de teclado, aparece una notificación de confirmación si el número de URL supera el valor establecido arriba (N). Si no aparecen notificaciones, comprueba la configuración de notificaciones del sistema operativo o del navegador." },
-  
+  "shortcut_note":         { "message": "Nota: Al usar un atajo de teclado, se muestra una notificación de confirmación si el número de URL supera el valor establecido arriba (N). Si no la ves, revisa la configuración de notificaciones y el modo de concentración." },
+  "shortcut_note_link":    { "message": "Ver FAQ." },
   "commands_copy_from_tabs":      { "message": "Copiar URLs de pestañas" },
   "commands_open_from_clipboard": { "message": "Abrir URLs desde portapapeles" },
 

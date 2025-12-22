@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Not set" },
   "shortcuts_config":      { "message": "Configure" },
   "shortcuts_config_hint": { "message": "Opens Chrome's keyboard shortcut settings" },
-  "shortcut_note":         { "message": "Note: When using a keyboard shortcut, a confirmation notification appears if the number of URLs exceeds the value set above (N). If notifications do not appear, check your OS or browser notification settings." },
-
+  "shortcut_note":         { "message": "Note: When using a keyboard shortcut, a confirmation notification is shown if the number of URLs exceeds the value set above (N). If you don't see it, check your notification settings and Focus mode." },
+  "shortcut_note_link":    { "message": "See FAQ." },
   "commands_copy_from_tabs":      { "message": "Copy URLs from tabs" },
   "commands_open_from_clipboard": { "message": "Open URLs from clipboard" },
 

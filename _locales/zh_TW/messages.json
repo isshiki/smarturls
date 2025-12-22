@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "未設定" },
   "shortcuts_config":      { "message": "設定" },
   "shortcuts_config_hint": { "message": "開啟 Chrome 快速鍵設定" },
-  "shortcut_note":         { "message": "注意：使用鍵盤快捷鍵時，若 URL 數量超過上方設定的值（N），會顯示確認通知。若通知未出現，請檢查作業系統或瀏覽器的通知設定。" },
-  
+  "shortcut_note":         { "message": "注意：使用鍵盤快捷鍵時，若 URL 數量超過上方設定的值（N），會顯示確認通知。若沒有看到，請檢查通知設定與專注模式。" },
+  "shortcut_note_link":    { "message": "查看 FAQ。" },
   "commands_copy_from_tabs":      { "message": "從分頁複製 URL" },
   "commands_open_from_clipboard": { "message": "從剪貼簿開啟 URL" },
 

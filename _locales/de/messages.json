@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Nicht konfiguriert" },
   "shortcuts_config":      { "message": "Konfigurieren" },
   "shortcuts_config_hint": { "message": "Öffnet die Chrome-Tastenkombinationseinstellungen" },
-  "shortcut_note":         { "message": "Hinweis: Bei Verwendung eines Tastenkürzels erscheint eine Bestätigungsbenachrichtigung, wenn die Anzahl der URLs den oben festgelegten Wert (N) überschreitet. Wenn keine Benachrichtigungen erscheinen, prüfen Sie die Benachrichtigungseinstellungen Ihres Betriebssystems oder Browsers." },
-  
+  "shortcut_note":         { "message": "Hinweis: Bei Verwendung eines Tastenkürzels wird eine Bestätigungsbenachrichtigung angezeigt, wenn die Anzahl der URLs den oben festgelegten Wert (N) überschreitet. Wenn Sie sie nicht sehen, prüfen Sie die Benachrichtigungseinstellungen und den Fokusmodus." },
+  "shortcut_note_link":    { "message": "FAQ ansehen." },
   "commands_copy_from_tabs":      { "message": "URLs aus Tabs kopieren" },
   "commands_open_from_clipboard": { "message": "URLs aus Zwischenablage öffnen" },
 

@@ -2,7 +2,7 @@
 
 Welcome to the official documentation for **SmartURLs** — a lightweight and flexible URL copying tool designed for developers, writers, researchers, and anyone who works with links.
 
-This site provides multi-language guides for SmartURLs features, starting with the **Custom Template System (v1.4.0+)**.
+This site provides multi-language guides for SmartURLs features, including the **Custom Template System (v1.4.0+)** and FAQ.
 
 ## 📚 Available Languages (16)
 
@@ -11,72 +11,89 @@ Click a language to open its documentation.
 ### 🇺🇸 English
 
 * [Custom Template Guide](https://isshiki.github.io/SmartURLs/custom-templates.en)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.en)
 
 ### 🇩🇪 Deutsch (German)
 
 * [Benutzerdefinierte Vorlagen-Anleitung](https://isshiki.github.io/SmartURLs/custom-templates.de)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.de)
 
 ### 🇪🇸 Español (Spanish)
 
 * [Guía de plantillas personalizadas](https://isshiki.github.io/SmartURLs/custom-templates.es)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.es)
 
 ### 🇫🇷 Français (French)
 
 * [Guide des modèles personnalisés](https://isshiki.github.io/SmartURLs/custom-templates.fr)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.fr)
 
 ### 🇮🇩 Bahasa Indonesia (Indonesian)
 
 * [Panduan Template Kustom](https://isshiki.github.io/SmartURLs/custom-templates.id)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.id)
 
 ### 🇮🇹 Italiano (Italian)
 
 * [Guida ai modelli personalizzati](https://isshiki.github.io/SmartURLs/custom-templates.it)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.it)
 
 ### 🇯🇵 日本語 (Japanese)
 
 * [カスタムテンプレートガイド](https://isshiki.github.io/SmartURLs/custom-templates.ja)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.ja)
 
 ### 🇰🇷 한국어 (Korean)
 
 * [커스텀 템플릿 가이드](https://isshiki.github.io/SmartURLs/custom-templates.ko)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.ko)
 
 ### 🇳🇱 Nederlands (Dutch)
 
 * [Handleiding aangepaste sjablonen](https://isshiki.github.io/SmartURLs/custom-templates.nl)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.nl)
 
 ### 🇵🇱 Polski (Polish)
 
 * [Przewodnik po szablonach niestandardowych](https://isshiki.github.io/SmartURLs/custom-templates.pl)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.pl)
 
 ### 🇵🇹 Português – Brasil (pt_BR)
 
 * [Guia de modelos personalizados](https://isshiki.github.io/SmartURLs/custom-templates.pt_BR)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.pt_BR)
 
 ### 🇷🇺 Русский (Russian)
 
 * [Руководство по пользовательским шаблонам](https://isshiki.github.io/SmartURLs/custom-templates.ru)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.ru)
 
 ### 🇹🇷 Türkçe (Turkish)
 
 * [Özel Şablon Kılavuzu](https://isshiki.github.io/SmartURLs/custom-templates.tr)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.tr)
 
 ### 🇻🇳 Tiếng Việt (Vietnamese)
 
 * [Hướng dẫn mẫu tùy chỉnh](https://isshiki.github.io/SmartURLs/custom-templates.vi)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.vi)
 
 ### 🇨🇳 简体中文 (Simplified Chinese)
 
 * [自定义模板指南](https://isshiki.github.io/SmartURLs/custom-templates.zh_CN)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.zh_CN)
 
 ### 🇹🇼 繁體中文 (Traditional Chinese)
 
 * [自訂範本指南](https://isshiki.github.io/SmartURLs/custom-templates.zh_TW)
+* [FAQ](https://isshiki.github.io/SmartURLs/faq.zh_TW)
 
 ## 📄 Document Structure
 
 Each language includes:
 
 * **Custom Template Guide** (v1.4.0+)
+* **FAQ**
 * Syntax and tokens reference
 * Conditional block system
 * Examples and output previews

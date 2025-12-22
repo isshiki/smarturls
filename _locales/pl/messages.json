@@ -65,8 +65,8 @@
   "shortcut_not_set":      { "message": "Nie skonfigurowano" },
   "shortcuts_config":      { "message": "Konfiguruj" },
   "shortcuts_config_hint": { "message": "Otwórz ustawienia skrótów Chrome" },
-  "shortcut_note":         { "message": "Uwaga: Podczas używania skrótu klawiszowego pojawi się powiadomienie o potwierdzeniu, jeśli liczba adresów URL przekroczy wartość ustawioną powyżej (N). Jeśli powiadomienia się nie pojawiają, sprawdź ustawienia powiadomień systemu operacyjnego lub przeglądarki." },
-  
+  "shortcut_note":         { "message": "Uwaga: Podczas używania skrótu klawiszowego pojawia się powiadomienie z potwierdzeniem, jeśli liczba adresów URL przekracza wartość ustawioną powyżej (N). Jeśli go nie widzisz, sprawdź ustawienia powiadomień i tryb skupienia." },
+  "shortcut_note_link":    { "message": "Zobacz FAQ." },
   "commands_copy_from_tabs":      { "message": "Kopiuj URL z kart" },
   "commands_open_from_clipboard": { "message": "Otwórz URL ze schowka" },
 
